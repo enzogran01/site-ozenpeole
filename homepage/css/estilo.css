@@ -7,6 +7,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #D5D7DB;
+    overflow-x: hidden;
 }
 
 html {
@@ -119,7 +120,20 @@ header .header-left, .header-right {
 }
 
 .whale-img {
-    height: 325px;
+    height: 350px;
+    transition: all 0.5s;
+}
+
+.whale-img:hover {
+    filter: drop-shadow(black 5px 3px 0.3rem);
+}
+
+.whale {
+    transition: all 0.5s;
+}
+
+.whale:hover {
+    transform: scale(1.1);
 }
 
 .whatIs {
