@@ -64,7 +64,23 @@ body {
     margin-bottom: 20px;
 }
 
+.form-group label {
+    color: #fff;
+}
+
+.form-group input {
+    width: 100%;
+    height: 1.5rem;
+    background-color: #313638;
+}
+
+.form-minigroup input {
+    width: fit-content;
+}
+
 .terms-conditions {
+    margin-top: 10px;
+    margin-bottom: 20px;
     font-size: 14px;
     color: #b1b1b1;
 }
