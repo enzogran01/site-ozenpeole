@@ -116,6 +116,7 @@ body {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    height: 55px;
     justify-items: left;
     align-items: center;
 }
@@ -168,6 +169,7 @@ input[type=checkbox] {
     cursor: pointer;
     background-color: #143da3;
     color: #fff;
+    box-shadow:0 15px 30px rgba(0, 0, 0, 0.6);
 }
 
 .google-btn {
