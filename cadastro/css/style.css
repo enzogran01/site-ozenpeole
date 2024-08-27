@@ -200,4 +200,6 @@ input[type=checkbox] {
 .img img {
     border-radius: 10px;
     margin: 0;
+    max-width: 417px;
+    max-height: 626px;
 }
