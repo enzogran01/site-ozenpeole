@@ -24,27 +24,27 @@
                 <form id="formulario" action="#" method="post">
                     <div class="form-minigroup">
                         <div class="form-group">
-                            <label class="input-label" for="name">Nome</label>
-                            <input class="input-field" type="text" name="name" autofocus>
+                            <!-- <label class="input-label" for="name">Nome</label> -->
+                            <input placeholder="Insira seu nome" class="input-field" type="text" name="name" required autofocus>
                        </div>
                           <div class="form-group">
-                            <label class="input-label" for="email">Email</label>
-                            <input class="input-field" type="email" name="email">
+                            <!-- <label class="input-label" for="email">Email</label> -->
+                            <input placeholder="Insira um email válido" autocomplete="email" class="input-field" type="email" name="email" required>
                           </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="input-label" for="password">Senha</label>
-                        <input class="input-field" type="password" name="password">
+                        <!-- <label class="input-label" for="password">Senha</label> -->
+                        <input placeholder="Senha" class="input-field" type="password" name="password" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="input-label" for="telephone">Telefone</label>
-                        <input class="input-field" type="tel" name="telephone">
+                        <!-- <label class="input-label" for="telephone">Telefone</label> -->
+                        <input placeholder="Número de telefone" class="input-field" type="tel" name="telephone" maxlength="11" minlength="11" required>
                     </div>
 
                     <div class="terms-conditions">
-                        <input type="checkbox">
+                        <input type="checkbox" required>
                         <label for="">Eu concordo com os <a href="#">Termos e Condições</a></label>
                     </div>
 
