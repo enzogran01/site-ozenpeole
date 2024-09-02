@@ -8,17 +8,18 @@
 <body>
     
     <div class="dropdown">
-        <select id= comercios name="comercios" onchange="Onselecione(event)" required>
+        
+        <select id= comercios name="comercios" required>
         <option value="selecione">Selecione</option>
         <option value="restaurante">Restaurante</option>
         <option value="roupas">Loja de Roupa Feminina</option>
         <option value="materiais">Materiais de Construção</option>
         <option value="informatica">Informática</option>
-</select>
-    
-    <button class="proximo">Próximo</button>
-    
-</div>
+        </select>
+
+        <button class="proximo" onclick="OnClick(event)">Próximo</button>
+
+    </div>
 <p id="selecione"></p>
 <script scr="js/script.js"></script>
 </body>
