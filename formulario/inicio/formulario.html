@@ -3,22 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Formulário</title>
 </head>
 <body>
     
     <div class="dropdown">
+
         <select id= comercios required>
         <option value="selecione">Selecione</option>
         <option value="restaurante">Restaurante</option>
         <option value="roupas">Loja de Roupa Feminina</option>
         <option value="materiais">Materiais de Construção</option>
         <option value="informatica">Informática</option>
-</select>
+        </select>
     
     <button id="confirmar">Confirmar</button>
     
-</div>
+    </div>
+
+    <div class="perguntas">
+        <form>
+            <label>
+                <input type="radio" name="idade" value="18 a 24">
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="idade" value="25 a 35">
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="idade" value="35 a 50">
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="idade" value="50 a 65">
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="idade" value="65+">
+            </label>
+        </form>
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>

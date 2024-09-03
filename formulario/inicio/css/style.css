@@ -1,0 +1,7 @@
+.dropdown{
+    background-color: antiquewhite;
+    justify-content: space-around;
+    display: flex;
+    border: 0;
+    padding: 0;
+}
