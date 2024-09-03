@@ -10,3 +10,5 @@ revealer.addEventListener('click', function reveal () {
         passwordInput.type = "password";
     }
 });
+
+

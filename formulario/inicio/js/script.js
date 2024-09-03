@@ -1,14 +1,27 @@
 let selecione = document.querySelector("#selecione");
-let materiais = document.getElementsByTagName("materias")[0].value;
-let roupas = document.getElementsByTagName("roupas")[1].value;
-let restaurante = document.getElementsByTagName("restaurante")[2].value;
-let informatica = document.getElementsByTagName("informatica")[3].value;
+let materiais = "construcao.html";
+let roupas = "loja-roupa.html"
+let restaurante = "restaurante.html";
+let informatica = "informatica.html"
 
-const OnClick = 0;
 
-function OnClick(event){
-   selecione.getElementById("comercios");
-   if(selecione == materais){
-       href = "./construção/construção.html";
-   }
-}
+
+// Adiciona um event listener ao botão para capturar o valor selecionado na dropdown
+document.getElementById('confirmar').addEventListener('click', function() {
+    // Captura o valor selecionado na dropdown
+    let area = document.getElementById('comercios').value;
+
+    // Exemplo de redirecionamento baseado no valor
+    if (area == 'materiais') {
+        window.location.href = '../construcao/construcao.html';
+    } 
+    else if (area == 'roupas') {
+        window.location.href = '../loja-roupa/loja-roupa.html';
+    } 
+    else if (area == 'restaurante') {
+        window.location.href = '../restaurante/restaurante.html';
+    } 
+    else if (area == 'informatica') {
+        window.location.href = '../informatica/informatica.html';
+    }
+});
