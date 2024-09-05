@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Cadastre-se</title>
 </head>
 <body>
@@ -18,29 +19,29 @@
             </div>
 
             <div class="form">
-                <div class="title"> <h1>Criar sua conta</h1> </div>
+                <div class="title"> <h1>Criar sua conta</h1> <a href="../homepage/homepage.html"><img src="./img/exit.png" alt=""></a> </div>
                 <div class="login"><span>Já tem uma conta? <a href="../login/login.html">Login</a> </span></div>
 
                 <form id="formulario" action="#" method="post">
                     <div class="form-minigroup">
                         <div class="form-group">
                             <!-- nome -->
-                            <input placeholder="Insira seu nome" class="input-field" type="text" name="name" minlength="4" maxlength="30" required autofocus>
+                            <input id="name" placeholder="Insira seu nome" class="input-field" type="text" name="name" minlength="4" maxlength="30" autofocus>
                        </div>
                           <div class="form-group">
                             <!-- email  -->
-                            <input placeholder="Insira um email válido" autocomplete="email" class="input-field" type="email" name="email" required>
+                            <input id="email" placeholder="Insira um email válido" autocomplete="email" class="input-field" type="email" name="email">
                           </div>
                     </div>
 
                     <div class="form-group">
                         <!-- Senha  -->
-                        <input id="password" placeholder="Senha" class="input-field" type="password" name="password" minlength="8" maxlength="20" required>
+                        <input id="password" placeholder="Senha" class="input-field" type="password" name="password">
                     </div>
 
                     <div class="form-group">
                         <!-- Telefone -->
-                        <input placeholder="Número de telefone" class="input-field" type="tel" name="telephone" maxlength="11" minlength="11" required>
+                        <input id="phoneNum" placeholder="Número de telefone" class="input-field" type="tel" name="telephone" maxlength="11" minlength="11">
                     </div>
 
                     <div class="revealer-div">
@@ -49,7 +50,7 @@
                     </div>
                     
                     <div class="terms-conditions">
-                        <input type="checkbox" required>
+                        <input id="conditions" name="conditions" type="checkbox">
                         <label for="">Eu concordo com os <a href="#">Termos e Condições</a></label>
                     </div>
 
