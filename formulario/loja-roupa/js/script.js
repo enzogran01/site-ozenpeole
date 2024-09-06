@@ -11,31 +11,34 @@ function clickGeral(){
     let formGeral = document.getElementById("respostas");
     //querySelector para selecionar o radio
 
-    let idade = document.getElementById('respostas');
-    let local = document.getElementById('respostas');
-    let social = document.getElementById('respostas');
-
-
     // função para pegar as repostas
     function obterResposta(name){
         const pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
-        console.log(`Selecionado para ${name}:`, pegandoValor ? pegandoValor.value : 'Nenhum selecionado');
+        console.log(`Selecionado para "${name}":`, pegandoValor ? pegandoValor.value : 'Nenhum selecionado');
         return pegandoValor ? pegandoValor.value : '';
+
     }
 
     //joga cada resposta para a sua devida variável
-        idade = obterResposta('idade')
-        local = obterResposta('local')
-        social = obterResposta('social')
+        let idade = obterResposta('idade')
+        let local = obterResposta('local')
+        let social = obterResposta('social')
+        let venda = obterResposta('venda')
+        let preco = obterResposta('preco')
+        let propaganda = obterResposta('propaganda')
 
     //joga todas as respostas para a variável "geral"
     let geral = {
         idade : idade,
         local : local,
-        social : social
+        social : social,
+        venda : venda,
+        preco : preco,
+        propaganda : propaganda
+
     };
 
-    alert(`Suas respostas foram: , \n Idade: ${idade}; \n Local: ${local}; \n Rede social: ${social};`);
+    alert(`Suas respostas foram: \n Idade: ${idade}; \n Local: ${local}; \n Rede social: ${social}; \n Maioria das vendas: ${venda}; \n Faixa de preço: ${preco}; \n Já faz propaganda? ${propaganda};`);
 }
 // Adicione um listener para o evento de clique no botão
 document.getElementById('btnGeral').addEventListener('click', clickGeral);

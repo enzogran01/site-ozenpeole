@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
 <body>
     
     <button id="voltar">Voltar</button>
 
+    <h3>Público Alvo</h3>
+
     <div class="box-p1">
         <h1 class="pergunta1">Qual a faixa etária do seu público alvo?</h1>
     </div>
-    <div class="box-r1">
-        <form id="respostas">
-            
+
+    <form id="respostas">
+
+    <div class="box-r1">        
                 <input type="radio" id="18 a 24" name="idade" value="18 a 24" checked required>
                 <label for="18 a 24"> 18 a 24 anos </label>
             <br>
@@ -36,6 +40,7 @@
     <div class="box-p2">
         <h1 class="pergunta2">De onde são a maioria dos seus clientes?</h1>
     </div>
+        
     <div class="box-r2">
         
             
@@ -53,11 +58,12 @@
             
                 <input type="radio" id="Guarujá" name="local" value="Guarujá">
                 <label for="Guarujá"> Guarujá </label>
-        </form>
-
+        
+    </div>
         <div class="box-p3">
             <h1 class="pergunta3">De onde são a maioria dos seus clientes?</h1>
         </div>
+
         <div class="box-r3">
             
                 
@@ -72,10 +78,71 @@
                     <input type="radio" id="TikTok" name="social" value="TikTok">
                     <label for="TikTok"> TikTok </label>
                 <br>   
-            </form>
+        </div>
 
+        <h3> Produtos </h3>
+
+        <h1> As suas vendas são feitas em maior parte:</h1>
+        <div class="box-r4">
+            
+                
+            <input type="radio" id="Presencial" name="venda" value="Presencial" checked required>
+            <label for="Presencial"> Presencialmente </label>
+        <br>
+        
+            <input type="radio" id="Online" name="venda" value="Online">
+            <label for="Online"> Online </label>
+        <br><br>
+        </div>
+
+        
+        <h1> Indique o ticket médio da sua empresa: </h1>
+
+        <div class="box-r5">
+
+            <input type="radio" id="5a30" name="preco" value="R$ 5,00 - R$ 30,00" checked required>
+            <label for="5a30"> R$ 5,00 - R$ 30,00 </label>
+        <br>
+
+            <input type="radio" id="40a100" name="preco" value="R$ 40,00 - R$ 100,00">
+            <label for="40a100"> R$ 40,00 - R$ 100,00 </label>
+        <br>
+
+            <input type="radio" id="100a300" name="preco" value="R$ 100,00 a R$ 300,00">
+            <label for="100a300"> R$ 100,00 a R$ 300,00 </label>
+        <br> 
+            <input type="radio" id="300a500" name="preco" value="R$ 300,00 a R$ 500,00">
+            <label for="300a500"> R$ 300,00 a R$ 500,00 </label>
+        <br> 
+            <input type="radio" id="500a1000" name="preco" value="R$ 500,00 a R$ 1000,00">
+            <label for="500a1000"> R$ 500,00 a R$ 1000,00 </label>
+        <br> 
+            <input type="radio" id="1000" name="preco" value="Mais de R$ 1000,00">
+            <label for="1000"> Mais de R$ 1000,00 </label>
+        <br><br>
+        </div>
+
+
+        <h1>A loja já faz algum tipo de propaganda?</h1>
+        <div class="box-r6">
+
+            <input type="radio" id="sim" name="propaganda" value="Sim" checked required>
+            <label for="sim"> Sim </label>
+        <br>
+
+            <input type="radio" id="nao" name="propaganda" value="Não">
+            <label for="nao"> Não </label>
+        <br><br>    
+        </div>
+    
+    
+    
+    
+    
+    
+    
+    </form>
         <button id="btnGeral">Confirmar</button>
-    </div>
 
     <script src="js/script.js"></script>
     
