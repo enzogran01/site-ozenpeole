@@ -190,7 +190,7 @@ body {
     display: flex;
     font-size: 14px;
     margin-top: 10px;
-    /* margin-bottom: 25px; */
+    margin-bottom: 25px;
     color: #b1b1b1;
     gap: 10px;
 }

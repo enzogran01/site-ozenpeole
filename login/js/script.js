@@ -1,10 +1,10 @@
 const form = document.getElementById('formulario');
 const revealer = document.getElementById('revealer');
-const nameInput = document.getElementById('name');
+// const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
-const phoneInput = document.getElementById('phoneNum');
+// const phoneInput = document.getElementById('phoneNum');
 const passwordInput = document.getElementById('password');
-const conditionsInput = document.getElementById('conditions');
+// const conditionsInput = document.getElementById('conditions');
 
 // Mostrar/ocultar senha
 revealer.addEventListener('click', function reveal() {
@@ -15,11 +15,11 @@ revealer.addEventListener('click', function reveal() {
     }
 });
 
-// Função para validar nome (apenas letras e espaços)
-function validateName(name) {
-    const nameRegex = /^[A-Za-z\s]+$/;
-    return nameRegex.test(name);
-}
+// // Função para validar nome (apenas letras e espaços)
+// function validateName(name) {
+//     const nameRegex = /^[A-Za-z\s]+$/;
+//     return nameRegex.test(name);
+// }
 
 // Função para validar email (formato de email)
 function validateEmail(email) {
@@ -33,11 +33,11 @@ function validatePassword(password) {
     return passwordRegex.test(password);
 }
 
-// Função para validar número de telefone (apenas números, comprimento 11)
-function validatePhone(phone) {
-    const phoneRegex = /^\d{11}$/;
-    return phoneRegex.test(phone);
-}
+// // Função para validar número de telefone (apenas números, comprimento 11)
+// function validatePhone(phone) {
+//     const phoneRegex = /^\d{11}$/;
+//     return phoneRegex.test(phone);
+// }
 
 // Função para adicionar/remover classes de erro
 function toggleError(inputElement, isValid) {
@@ -57,13 +57,13 @@ form.addEventListener('submit', function validate(e) {
     // Verificação dos campos
     let isValid = true;
 
-    // Validação do Nome
-    if (nameInput.value.trim() === "" || !validateName(nameInput.value)) {
-        toggleError(nameInput, false);
-        isValid = false;
-    } else {
-        toggleError(nameInput, true);
-    }
+    // // Validação do Nome
+    // if (nameInput.value.trim() === "" || !validateName(nameInput.value)) {
+    //     toggleError(nameInput, false);
+    //     isValid = false;
+    // } else {
+    //     toggleError(nameInput, true);
+    // }
 
     // Validação do Email
     if (emailInput.value.trim() === "" || !validateEmail(emailInput.value)) {
@@ -81,19 +81,19 @@ form.addEventListener('submit', function validate(e) {
         toggleError(passwordInput, true);
     }
 
-    // Validação do Telefone
-    if (phoneInput.value.trim() === "" || !validatePhone(phoneInput.value)) {
-        toggleError(phoneInput, false);
-        isValid = false;
-    } else {
-        toggleError(phoneInput, true);
-    }
+    // // Validação do Telefone
+    // if (phoneInput.value.trim() === "" || !validatePhone(phoneInput.value)) {
+    //     toggleError(phoneInput, false);
+    //     isValid = false;
+    // } else {
+    //     toggleError(phoneInput, true);
+    // }
 
-    // Validação dos Termos e Condições
-    if (!conditionsInput.checked) {
-        alert("Você deve aceitar os Termos e Condições.");
-        isValid = false;
-    }
+    // // Validação dos Termos e Condições
+    // if (!conditionsInput.checked) {
+    //     alert("Você deve aceitar os Termos e Condições.");
+    //     isValid = false;
+    // }
 
     // Se tudo estiver válido, o formulário pode ser enviado
     if (isValid) {

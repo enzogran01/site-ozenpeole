@@ -2,12 +2,77 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Login</title>
 </head>
 <body>
-    <a href="../homepage/homepage.html">return</a>
-    <span>TESTEEEE</span>
-    <span>qualquer coisa</span>
+    <section class="content">
+
+        <section class="main">
+
+            <div class="img">
+                <img src="./img/banner.jpg" alt="">
+            </div>
+
+            <div class="form">
+                <div class="title"> <h1>Entrar</h1> <a href="../homepage/homepage.html"><img src="./img/exit.png" alt=""></a> </div>
+                <div class="login"><span>Ainda não tem uma conta? <a href="../cadastro/cadastro.html">Cadastro</a> </span></div>
+
+                <form id="formulario" action="#" method="post">
+                    <div class="form-group">
+                      <!-- email  -->
+                      <input id="email" placeholder="Insira um email válido *" autocomplete="email" class="input-field" type="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Senha  -->
+                        <input id="password" placeholder="Senha *" class="input-field" type="password" name="password">
+                    </div>
+
+                    <!-- <div class="requirements">
+                        <p>Sua senha deve conter no mínimo:</p>
+                        <ul>
+                            <li>8 caracteres</li>
+                            <li>1 Letra Maiúscula</li>
+                            <li>1 Número</li>
+                            <li>1 Símbolo ($*&@#_-)</li>
+                        </ul>
+                    </div> -->
+
+                    <div class="revealer-div">
+                        <!-- mostrar senha -->
+                        <input id="revealer" type="checkbox" name="revealer"> <label for="revealer">Mostrar senha</label>
+                    </div>
+                    
+                    <!-- <div class="terms-conditions">
+                        <input id="conditions" name="conditions" type="checkbox">
+                        <label for="">Eu concordo com os <a href="#">Termos e Condições</a></label>
+                    </div> -->
+
+                    <div class="submit-btn">
+                        <button name="submit" type="submit">Login</button>
+                    </div>
+
+                    <div class="alternative">
+                        <span>ou</span>
+                    </div>
+
+                    <div class="google-btn">
+                        <button type="submit" class="google-btn">Continuar com o Google</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </section>
+
+    <script src="./js/script.js"></script>
 </body>
 </html>
