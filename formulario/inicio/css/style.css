@@ -1,9 +1,53 @@
 .dropdown{
-    background-color: antiquewhite;
-    justify-content: space-around;
-    display: flex;
-    border: 0;
-    padding: 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+
+    /* Duas sombras ao redor da div */
+    box-shadow: 
+        0 0 10px 4px #F95A33,  /* Primeira sombra laranja */
+        0 0 15px 8px #1A53E3; /* Segunda sombra preta com transparência */
+}
+
+body, html {
+height: 100%;
+margin: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #D5D7DB; /* Cor de fundo para destacar a sombra */
+}
+
+select {
+background-color: #f0f0f0; /* Cor de fundo do dropdown */
+color: #333;               /* Cor do texto */
+padding: 10px;             /* Espaçamento interno */
+border-radius: 5px;        /* Bordas arredondadas */
+border: 1px solid #ccc;    /* Borda */
+width: 200px;              /* Largura do dropdown */
+appearance: none;          /* Remove o estilo padrão do dropdown */
+}
+
+/* Estilizando as opções dentro do dropdown */
+option {
+background-color: #ffffff; /* Cor de fundo das opções */
+color: #333;               /* Cor do texto das opções */
+}
+
+.titulo {
+font-size: 3em;              /* Tamanho grande para o título */
+color: #F95A33;              /* Cor laranja combinando com a sombra */
+text-transform: uppercase;   /* Deixar o texto em letras maiúsculas */
+letter-spacing: 2px;         /* Espaçamento entre letras */
+margin-bottom: 20px;         /* Espaçamento entre o título e a div */
+font-weight: bold;           /* Negrito para dar destaque */
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra no texto */
+}
+
+.container {
+text-align: center;  /* Centraliza o conteúdo do container */
 }
 
 .pergunta1{
