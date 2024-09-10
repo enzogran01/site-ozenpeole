@@ -23,7 +23,6 @@ document.getElementById('confirmar').addEventListener('click', function() {
     }
 });
 
-
 // //configuração radios
 // function obterResposta(){
 //     //entrar no form
