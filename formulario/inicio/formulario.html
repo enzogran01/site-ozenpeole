@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,24 +10,33 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Formulário</title>
 </head>
-<body>
-    <div class="container"> 
-     <h1 class="titulo">Indique a área de atuação da empresa</h1>
-    <div class="dropdown">
 
-        <select id= comercios required>
-        <option value="selecione">Selecione</option>
-        <option value="restaurante">Restaurante</option>
-        <option value="roupas">Loja de Roupa Feminina</option>
-        <option value="materiais">Materiais de Construção</option>
-        <option value="informatica">Informática</option>
-        </select>
+<body>
+    <section class="content">
+        <div class="container">
+            <div class="title">
+                <h1>Indique a área de atuação da sua empresa.</h1>
+            </div>
+
+            <div class="form">
+                <div class="dropdown">
+                    <select id=comercios required>
+                        <option value="selecione">Selecione</option>
+                        <option value="restaurante">Restaurante</option>
+                        <option value="roupas">Loja de Roupa Feminina</option>
+                        <option value="materiais">Materiais de Construção</option>
+                        <option value="informatica">Informática</option>
+                    </select>
+                </div>
     
-    <button id="confirmar">Confirmar</button>
-    
-    </div>
-</div>
+                <div class="submit">
+                    <button id="confirmar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <script src="js/script.js"></script>
 </body>
+
 </html>
