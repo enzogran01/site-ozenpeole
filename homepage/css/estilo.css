@@ -162,7 +162,7 @@ header .header-left, .header-right {
     line-height: 1.8em;
     text-align: right;
     margin: 0;
-
+    
 }
 
 .whatIs-text {
@@ -203,11 +203,11 @@ header .header-left, .header-right {
     background-size: 0% 2px;
     background-repeat: no-repeat;
     transition:
-      background-size 0.3s,
-      background-position 0s 0.3s;
-  }
-  
-  .return a:hover {
+    background-size 0.3s,
+    background-position 0s 0.3s;
+}
+
+.return a:hover {
     cursor: pointer;
     background-position: 100% 100%;
     background-size: 100% 2px;
@@ -276,4 +276,39 @@ footer {
     width: 1%;
     height: 400px;
     margin: 5% -100% 8% 0;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f9fb;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after {
+    content: '';
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #1A53E3;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
 }
