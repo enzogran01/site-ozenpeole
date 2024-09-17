@@ -126,3 +126,16 @@ button{
 button:hover{
     opacity: 0.5;
 }
+
+/* .box-pergunta1{
+    position: fixed;
+    justify-content: center;
+    right: 5%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 500px;
+    max-width: 90%;
+    padding: 1.2rem;
+    border-radius: 0.5rem; 
+} */

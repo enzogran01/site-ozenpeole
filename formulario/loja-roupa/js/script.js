@@ -40,8 +40,9 @@ function clickGeral(){
 
     alert(`Suas respostas foram: \n Idade: ${idade}; \n Local: ${local}; \n Rede social: ${social}; \n Maioria das vendas: ${venda}; \n Faixa de preço: ${preco}; \n Já faz propaganda? ${propaganda};`);
 }
+
 // Adicione um listener para o evento de clique no botão
-document.getElementById('btnGeral').addEventListener('click', clickGeral);
+document.getElementById('btngeral').addEventListener('click', btnkGeral);
 
 
 

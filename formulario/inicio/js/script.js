@@ -3,6 +3,7 @@ let materiais = "construcao.html";
 let roupas = "loja-roupa.html"
 let restaurante = "restaurante.html";
 let informatica = "informatica.html"
+
 // Adiciona um event listener ao botão para capturar o valor selecionado na dropdown
 document.getElementById('confirmar').addEventListener('click', function() {
     // Captura o valor selecionado na dropdown
