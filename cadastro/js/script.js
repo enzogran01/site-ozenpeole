@@ -1,13 +1,3 @@
-window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader');
-
-    loader.classList.add('loader-hidden');
-
-    loader.addEventListener('transitioned', () => {
-        document.body.removeChild('loader');
-    })
-})
-
 const form = document.getElementById('formulario');
 const revealer = document.getElementById('revealer');
 const nameInput = document.getElementById('name');
@@ -37,7 +27,7 @@ function validateEmail(email) {
     return emailRegex.test(email);
 }
 
-// Função para validar senha (pelo menos 8 caracteres, 1 letra maiuscula, 1 letra minuscula, 1 simbolo ($*&@#), se der não permitir sequencia)
+// Função para validar senha (pelo menos 8 caracteres, 1 letra maiúscula, 1 letra minúscula, 1 símbolo)
 function validatePassword(password) {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#_-])[0-9a-zA-Z$*&@#]{8,}$/;
     return passwordRegex.test(password);
@@ -105,8 +95,30 @@ form.addEventListener('submit', function validate(e) {
         isValid = false;
     }
 
-    // Se tudo estiver válido, o formulário pode ser enviado
-    if (isValid) {
-        form.submit();
+    // agora envia via fetch que basicamente faz requisições HTTP pro servidor web nesse caso dos dados do cadastro
+    if (isValid) { // kinghost
+        const userData = {
+            name: nameInput.value,
+            email: emailInput.value,
+            password: passwordInput.value,
+            telephone: phoneInput.value
+        };
+
+        // envia os dados pro servidor
+        fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // mensagem de sucesso ou erro
+        })
+        .catch(error => {
+            console.error('Erro ao registrar usuário:', error);
+            alert('Erro ao registrar usuário');
+        });
     }
 });

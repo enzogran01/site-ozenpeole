@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "mysql2": "^3.11.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "site-tcc",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muff0se/Site-TCC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Muff0se/Site-TCC/issues"
+  },
+  "homepage": "https://github.com/Muff0se/Site-TCC#readme"
+}
