@@ -312,3 +312,37 @@ footer {
         transform: rotate(1turn);
     }
 }
+
+.redeSocial{
+    width: 50%;
+    margin-left: auto;
+    max-width: 500px;
+}
+.redeSocial-title{
+    text-align: right;
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 60px;
+    line-height: 1.2em;
+    margin: 0;
+}
+
+.redeSocial-p{
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 19px;
+    line-height: 1.8em;
+    text-align: right;
+    margin: 0;
+    position: relative;
+    width: 1000px;
+    justify-content: right;
+}
+
+.whatIs-redeSocial{
+    margin: 10% 8% 7% 8%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    display: flex;
+    align-items: center;
+    border-top: #313638 solid 3px;
+    border-bottom: #313638 solid 3px;
+}
