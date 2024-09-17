@@ -108,8 +108,12 @@ header .header-left, .header-right {
     color: #F95A33;
 }
 .corpo{
-    padding-left: 5%;
-    padding-top: 2%;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 100%;
+    background-color: white;
+    padding-top: 35px;
+
 }
 button{
     padding: 0.6rem 1.2rem;

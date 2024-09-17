@@ -113,6 +113,7 @@ button{
     opacity: 0.9;   
     font-size: 1rem;
     transition: .4s;
+    
 }
 button:hover{
     opacity: 0.5;
@@ -146,4 +147,13 @@ button:hover{
 #fade.hide{
 
     opacity: 1;
+}
+.BOXPERGUNTA1{
+
+}
+.imagem{
+
+    max-height: 100%;
+    width: max-content;
+
 }

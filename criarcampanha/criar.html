@@ -22,89 +22,40 @@
      </div>
 </header>
       </div>
-      <div class="corpo">
-        <h1 class="crietitulo"> Crie Sua campanha</h1>
-        
-        <form>  
-        <p> Selecione sua área de atuação</p>
-         <div class="radio">
-        <input type="checkbox" name="restaurante">
-        <label for="Restaurante"> Restaurante</label>
-        </div>
-       
-        <div class="radio">
-        <input type="checkbox" name="asstecnica">
-        <label for="asstecnica"> Assistência Técnica </label>
-       </div>
-        
-       <div class="radio">
-        <input type="checkbox" name="lojaderoupa">
-         <label for="lojaderoupa"> Loja de Roupa </label>
-        </div>
-        
-        <p>Qual seu público alvo</p>
-        <div class="radio">
-        <input type="checkbox" name=" pergunta">
-        <label for="pergunta"> perguntasemnome </label>
-        </div>
 
-        <div class="radio">
-        <input type="checkbox" name="pergunta2">
-        <label for="pergunta2"> perguntasemnome</label>
-        </div>
-
-        <div class="radio">
-        <input type="checkbox" name="pergunta3">
-        <label for="pergunta3">perguntasemnome</label>
-        </div>
-        
-        <p>Pergunta sem nome algum cara</p>
-        <div class="radio">
-        <input type="checkbox" name="perguntadu">
-        <label for="perguntadu">perguntadu</label>
-        </div>
-
-        <div class="radio">
-        <input type="checkbox" name="perguntadu2">
-        <label for="perguntadu2">perguntadu2 </label>
-        </div>
-
-        <div class="radio">
-            <input type="checkbox" name="perguntadu3">
-            <label for="perguntadu3">perguntadu3</label>
-        </div>
-        
-        <p>Pergunta sem nome algum cara</p>
-        <div class="radio">
-        <input type="checkbox" name="perguntacara">
-        <label for="perguntacara">perguntacara</label>
-        </div>
-        
-        <div class="radio">
-        <input type="checkbox" name="perguntacara2">
-        <label for="perguntacara2">perguntacara</label>
-        </div>
-        
-        <div class="radio">
-        <input type="checkbox" name="perguntacara3">
-        <label for="perguntacara3">perguntacara3</label>
-        </div>
-           
-        <div class="buttomcampanha">
-       <button name="submit-btn" type="submit-btn"> Gerar </button>
-        </div>
-        
-        </form>
-        <div id="fade" class="hide"></div>
-        <div id="modal" class="hide">
-             <div id="modal-header">
-              <h2> Sua campanha está pronta.</h2>
-
-             </div>
-             <button id="close-modal"> Ok </button>
-        </div>
+      <div>
+        <img src="imgs/imagemteste.jpg" class="imagem">
       </div>
-    
+      
+        <div class="BOXPERGUNTA1">
+          <div id="esconder" class="hide"></div>
+          <div id="modal" class="hide">
+       
+     <div id="pergunta-header">
+        <div class="box-p1">
+          <h1 class="pergunta1">Qual a faixa etária do seu público alvo?</h1>
+      </div>
+    </div>
+
+        <div class="box-r1">
+          <input type="radio" id="18 a 24" name="idade" value="18 a 24" checked required>
+          <label for="18 a 24"> 18 a 24 anos </label>
+          <br>
+
+          <input type="radio" id="25 a 35" name="idade" value="25 a 35">
+          <label for="25 a 35"> 25 a 35 anos </label>
+          <br>
+
+          <input type="radio" id="35 a 50" name="idade" value="35 a 50">
+          <label for="35 a 50"> 35 a 50 anos </label>
+          <br>
+
+          <input type="radio" id="50" name="idade" value="50+">
+          <label for="50"> 50+ </label>
+          <button id="close-modal"> Proxima Pergunta </button>
+        </div>
+    </div>
+
     <script src="scripts.js" defer></script>
 </body>
 </html>
