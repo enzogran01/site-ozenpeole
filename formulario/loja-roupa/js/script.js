@@ -5,8 +5,11 @@ function btnVoltar(voltar) {
 document.getElementById('voltar').addEventListener('click', btnVoltar);
 
 
+
+
+
 //configuração radios
-function clickGeral(){
+function clickGeral(btnGeral){
     //entrar no form
     let formGeral = document.getElementById("respostas");
     //querySelector para selecionar o radio
@@ -35,10 +38,34 @@ function clickGeral(){
         venda : venda,
         preco : preco,
         propaganda : propaganda
+};
 
-    };
+    let campanha = 
+    idade +
+    local +
+    social +
+    venda +
+    preco +
+    propaganda;
 
-    alert(`Suas respostas foram: \n Idade: ${idade}; \n Local: ${local}; \n Rede social: ${social}; \n Maioria das vendas: ${venda}; \n Faixa de preço: ${preco}; \n Já faz propaganda? ${propaganda};`);
+        // Exibe os valores (ou faça o que desejar com eles)
+    console.log("Idade:", idade);
+    console.log("Local:", local);
+    console.log("Social:", social);
+    console.log("Venda:", venda);
+    console.log("Preço:", preco);
+    console.log("Propaganda:", propaganda);
+
+
+    alert(`Suas respostas foram: 
+        \nIdade: ${idade}
+        \nLocal: ${local}
+        \nRede social: ${social}
+        \nMaioria das vendas: ${venda}
+        \nFaixa de preço: ${preco}
+        \nJá faz propaganda? ${propaganda}
+        \nCampanha: ${campanha}
+        \nDados geral: ${geral}`);
 }
 
 // Adicione um listener para o evento de clique no botão
