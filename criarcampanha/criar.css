@@ -55,11 +55,10 @@ html {
     height: 8px;
 }
 .corpo{
-    margin-left: 25%;
-    margin-right: 25%;
-    height: 100%;
-    background-color: white;
-    padding-top: 35px;
+    display: flex;
+            justify-content: flex-end; /* Alinha o conteúdo à direita */
+            height: 100vh; /* Altura total da tela */
+            margin: 0;
 
 }
 .crietitulo{
@@ -138,6 +137,7 @@ button:hover{
     max-width: 90%;
     padding: 1.2rem;
     border-radius: 0.5rem;
+    
 
 }
 #modal-header{
@@ -148,7 +148,6 @@ button:hover{
 
     opacity: 1;
 }
-<<<<<<< HEAD
 .BOXPERGUNTA1{
 
 }
@@ -158,5 +157,9 @@ button:hover{
     width: max-content;
 
 }
-=======
->>>>>>> 3ebdc66186c5386f426f211891468565cf19b75f
+.AQUIAQUI{
+    display: flex;
+            justify-content: flex-end; /* Alinha o conteúdo à direita */
+            height: 100vh; /* Altura total da tela */
+            margin: 0;
+}
