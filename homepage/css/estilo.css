@@ -260,6 +260,7 @@ header .header-left, .header-right {
 
 .why-title h1 {
     margin: 0;
+    margin-bottom: 3%;
 }
  
 .why-boxes {
@@ -267,6 +268,7 @@ header .header-left, .header-right {
     justify-content: space-around;
     align-items: stretch; /* Alinha as caixas com altura uniforme */
     width: 100%;
+    margin-bottom: 5%;
 }
 
 .why-box-blue, .why-box-orange {
@@ -313,6 +315,25 @@ header .header-left, .header-right {
     background-color: #F95A33;
     color: #fff;
     border-color: #fff;
+}
+
+.why-box-gray {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.479);
+    transition: all 0.3s;
+    border-radius: 0.7em;
+    background-color: rgba(255, 255, 255, 0.486);
+    color: rgba(0, 0, 0, 0.555);
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 19px;
+    line-height: 1.8em;
+    min-height: 200px; /* Garante que todas as caixas tenham a mesma altura mínima */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o texto */
+    justify-content: center; /* Centraliza horizontalmente o texto */
+    text-align: center;
 }
 
 footer {
