@@ -1,4 +1,4 @@
-const form = document.getElementById('formulario');
+const form = document.getElementById('formulario'); 
 const revealer = document.getElementById('revealer');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
@@ -95,8 +95,8 @@ form.addEventListener('submit', function validate(e) {
         isValid = false;
     }
 
-    // agora envia via fetch que basicamente faz requisições HTTP pro servidor web nesse caso dos dados do cadastro
-    if (isValid) { // kinghost
+    // Agora envia via fetch os dados do cadastro
+    if (isValid) {
         const userData = {
             name: nameInput.value,
             email: emailInput.value,
@@ -104,7 +104,7 @@ form.addEventListener('submit', function validate(e) {
             telephone: phoneInput.value
         };
 
-        // envia os dados pro servidor
+        // Envia os dados para o servidor
         fetch('http://localhost:3000/register', {
             method: 'POST',
             headers: {
@@ -115,6 +115,10 @@ form.addEventListener('submit', function validate(e) {
         .then(response => response.text())
         .then(data => {
             alert(data); // mensagem de sucesso ou erro
+            if (data === 'Usuário registrado com sucesso') {
+                // Redireciona para a página de usuário
+                window.location.href = '../login/login.html';
+            }
         })
         .catch(error => {
             console.error('Erro ao registrar usuário:', error);

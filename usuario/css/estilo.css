@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
+
+body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    background-color: #D5D7DB;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #313638;
+    padding: 18px 8%;
+    font-family: "Inter", sans-serif;
+    transition: 0.3s;
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+}
+header a:hover {
+    text-decoration: underline;
+    color: #1A53E3;
+}
+
+header .header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-bottom-border {
+    position: relative;
+}
+.header-bottom-border::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0px;
+    background: linear-gradient(to right, #F95A33, #1A53E3);
+    transition: ease-in-out 0.3s;
+}
+.header-bottom-border:hover::after {
+    height: 8px;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10% 8% 15% 8%;
+    padding: 0;
+}
+
+.main-title {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: fit-content;
+    height: 9vmax;
+    width: 10.4em;
+    line-height: 1.2em;
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 60px;
+}
+
+.main-p {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 19px;
+    line-height: 1.8em;
+    width: fit-content;
+    width: 32.88em
+}
+
+.main-button {
+    padding: 0;
+    margin: 2.3em 0 0 0;
+    position: relative;
+    width: fit-content;
+}
+
+.main-button button {
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size:19px;
+    border: #F95A33 solid 2px;
+    border-radius: 6px;
+    background-color: #F95A33;
+    height: 50px;
+    width: 140px;
+    transition: ease-in-out 0.3s;
+}
+
+.main-button button:hover {
+    background-color: white;
+    border: #F95A33 solid 2px;
+    color: #F95A33;
+    cursor: pointer;
+}
+
+.whale-img {
+    height: 350px;
+    transition: all 0.5s;
+}
+
+.whale-img:hover {
+    filter: drop-shadow(black 5px 3px 0.3rem);
+}
+
+.whale {
+    transition: all 0.5s;
+}
+
+.whale:hover {
+    transform: scale(1.1);
+}
+
+.whatIs {
+    margin: 10% 8% 7% 8%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    display: flex;
+    align-items: center;
+    border-top: #313638 solid 3px;
+    border-bottom: #313638 solid 3px;
+}
+
+.whatIs-title {
+    text-align: right;
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 60px;
+    line-height: 1.2em;
+    margin: 0;
+}
+
+.whatIs-p {
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 19px;
+    line-height: 1.8em;
+    text-align: right;
+    margin: 0;
+    
+}
+
+.whatIs-text {
+    width: 50%;
+    margin-left: auto;
+    max-width: 500px;
+}
+
+.whatIs-pitch {
+    width: 50%;
+    height: auto;
+    margin: 0;
+}
+
+.about {
+    margin: 0 8% 10% 8%;
+    padding: 0;
+}
+
+.return {
+    position: absolute;
+    text-align: center;
+    width: max-content;
+    margin: 0 0 0 91%;
+    padding: 5px;
+}
+
+.return a {
+    text-decoration: none;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    color: #313638;
+    font-weight: bolder;
+    display: inline-block;
+    padding-bottom:2px;
+    background-image: linear-gradient(#313638 0 0);
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    transition:
+    background-size 0.3s,
+    background-position 0s 0.3s;
+}
+
+.return a:hover {
+    cursor: pointer;
+    background-position: 100% 100%;
+    background-size: 100% 2px;
+}
+
+.about-text {
+    position: relative;
+}
+
+.about-title {
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 19px;
+    width: fit-content;
+}
+
+.about-title2 {
+    padding: 0;
+    margin: -4% 0 -4% 0;
+    height: 9vmax;
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 60px;
+    width: 58%;
+    line-height: 1.2em;
+}
+
+.about-p {
+    position: relative;
+    width: fit-content;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 19px;
+    margin: 6% 50% 0 0;
+    line-height: 1.8em;
+}
+
+.why-marketing {
+    display: flex;
+    flex-direction: column;
+    margin: 0 8% 5% 8%;
+    text-align: center;
+    justify-content: center;
+    border-bottom: #313638 solid 3px;
+}
+ 
+.why-title {
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 60px;
+    line-height: 1.2em;
+    margin-bottom: 20px;
+}
+
+.why-title h1 {
+    margin: 0;
+    margin-bottom: 3%;
+}
+ 
+.why-boxes {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch; /* Alinha as caixas com altura uniforme */
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.why-box-blue, .why-box-orange {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    border: 2px solid black;
+    transition: all 0.3s;
+    border-radius: 0.7em;
+    background-color: #fff;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 19px;
+    line-height: 1.8em;
+    min-height: 200px; /* Garante que todas as caixas tenham a mesma altura mínima */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o texto */
+    justify-content: center; /* Centraliza horizontalmente o texto */
+    text-align: center;
+}
+
+.why-box-blue:hover, .why-box-orange:hover {
+    transform: scale(1.2);
+    box-shadow: 0px 10px 0px rgba(0, 0, 0, 1);
+    cursor: pointer;
+}
+
+.why-box-blue {
+    background-color: #fff;
+    border-color: black;
+}
+
+.why-box-blue:hover {
+    background-color: #1A53E3;
+    color: #fff;
+    border-color: #fff;
+}
+
+.why-box-orange {
+    background-color: #fff;
+    border-color: black;
+}
+
+.why-box-orange:hover {
+    background-color: #F95A33;
+    color: #fff;
+    border-color: #fff;
+}
+
+.why-box-gray {
+    flex: 1;
+    margin: 0 10px;
+    padding: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.479);
+    transition: all 0.3s;
+    border-radius: 0.7em;
+    background-color: rgba(255, 255, 255, 0.486);
+    color: rgba(0, 0, 0, 0.555);
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 19px;
+    line-height: 1.8em;
+    min-height: 200px; /* Garante que todas as caixas tenham a mesma altura mínima */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o texto */
+    justify-content: center; /* Centraliza horizontalmente o texto */
+    text-align: center;
+}
+
+footer {
+    background-color: #313638;
+    color: white;
+    padding: 35px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.terms {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.terms a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.teste {
+    width: 1%;
+    height: 400px;
+    margin: 5% -100% 8% 0;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f9fb;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after {
+    content: '';
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #1A53E3;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}

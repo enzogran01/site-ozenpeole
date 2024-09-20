@@ -1,53 +1,33 @@
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
-
     loader.classList.add('loader-hidden');
 
-    loader.addEventListener('transitioned', () => {
-        document.body.removeChild('loader');
-    })
-})
+    loader.addEventListener('transitionend', () => {
+        document.body.removeChild(loader);
+    });
+});
 
 const form = document.getElementById('formulario');
 const revealer = document.getElementById('revealer');
-// const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
-// const phoneInput = document.getElementById('phoneNum');
 const passwordInput = document.getElementById('password');
-// const conditionsInput = document.getElementById('conditions');
 
 // Mostrar/ocultar senha
 revealer.addEventListener('click', function reveal() {
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-    } else {
-        passwordInput.type = "password";
-    }
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 });
 
-// // Função para validar nome (apenas letras e espaços)
-// function validateName(name) {
-//     const nameRegex = /^[A-Za-z\s]+$/;
-//     return nameRegex.test(name);
-// }
-
-// Função para validar email (formato de email)
+// Função para validar email
 function validateEmail(email) {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i;
     return emailRegex.test(email);
 }
 
-// Função para validar senha (pelo menos 8 caracteres, 1 letra maiuscula, 1 letra minuscula, 1 simbolo ($*&@#), se der não permitir sequencia)
+// Função para validar senha
 function validatePassword(password) {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#_-])[0-9a-zA-Z$*&@#]{8,}$/;
     return passwordRegex.test(password);
 }
-
-// // Função para validar número de telefone (apenas números, comprimento 11)
-// function validatePhone(phone) {
-//     const phoneRegex = /^\d{11}$/;
-//     return phoneRegex.test(phone);
-// }
 
 // Função para adicionar/remover classes de erro
 function toggleError(inputElement, isValid) {
@@ -62,18 +42,9 @@ function toggleError(inputElement, isValid) {
 
 // Validação no envio do formulário
 form.addEventListener('submit', function validate(e) {
-    e.preventDefault();
+    e.preventDefault(); // Impede o envio padrão do formulário
 
-    // Verificação dos campos
     let isValid = true;
-
-    // // Validação do Nome
-    // if (nameInput.value.trim() === "" || !validateName(nameInput.value)) {
-    //     toggleError(nameInput, false);
-    //     isValid = false;
-    // } else {
-    //     toggleError(nameInput, true);
-    // }
 
     // Validação do Email
     if (emailInput.value.trim() === "" || !validateEmail(emailInput.value)) {
@@ -91,22 +62,29 @@ form.addEventListener('submit', function validate(e) {
         toggleError(passwordInput, true);
     }
 
-    // // Validação do Telefone
-    // if (phoneInput.value.trim() === "" || !validatePhone(phoneInput.value)) {
-    //     toggleError(phoneInput, false);
-    //     isValid = false;
-    // } else {
-    //     toggleError(phoneInput, true);
-    // }
-
-    // // Validação dos Termos e Condições
-    // if (!conditionsInput.checked) {
-    //     alert("Você deve aceitar os Termos e Condições.");
-    //     isValid = false;
-    // }
-
-    // Se tudo estiver válido, o formulário pode ser enviado
+    // Se tudo estiver válido, faz a requisição
     if (isValid) {
-        form.submit();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === 'Login bem-sucedido!') {
+                alert('Login realizado com sucesso!');
+                window.location.href = '../usuario/usuario.html'; // Redireciona
+            } else {
+                alert(data.message); // Exibe mensagem de erro
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao fazer login:', error);
+        });
     }
 });
