@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
+
+body {
+    background-image: url(imgs/background.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    background-color: #D5D7DB;
+    overflow-x: hidden;
+}
+
+footer {
+    background-color: #313638;
+    color: white;
+    padding: 35px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.terms {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.terms a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.radio{
+
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+}
+.container{
+    display: block;
+    background-color: blue;
+    padding: 10%;
+    border-radius: 30px;
+    opacity: 0.5;
+    max-width: 600px;
+}
+.corpo{
+ align-items: center;
+
+}
+.nomeusuarioDIV{
+
+}
+.nomeusuario{
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 35px;
+}
