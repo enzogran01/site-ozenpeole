@@ -67,7 +67,7 @@ body {
 .login {
     display: flex;
     margin-top: 22px;
-    margin-bottom: 45px;
+    margin-bottom: 35px;
     font-size: 14px;
 }
 
@@ -85,6 +85,29 @@ body {
     color: #1A53E3;
     text-decoration: underline;
 }
+
+.error-hidden {
+    display: none;
+    padding: 12px 14px;
+    background-color: #ff8181;
+    border: solid 2px #ff4545;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.error {
+    display: flex;
+    padding: 12px 14px;
+    background-color: #ff8181;
+    border: solid 2px #ff4545;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
 
 .input-field {
     width: 100%;
@@ -185,6 +208,7 @@ body {
 .form-minigroup input {
     width: 100%;
 }
+
 
 .revealer-div {
     display: flex;

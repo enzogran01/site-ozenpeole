@@ -1,3 +1,12 @@
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.loader');
+    loader.classList.add('loader-hidden');
+
+    loader.addEventListener('transitionend', () => {
+        document.body.removeChild(loader);
+    });
+});
+
 const form = document.getElementById('formulario'); 
 const revealer = document.getElementById('revealer');
 const nameInput = document.getElementById('name');
@@ -5,6 +14,10 @@ const emailInput = document.getElementById('email');
 const phoneInput = document.getElementById('phoneNum');
 const passwordInput = document.getElementById('password');
 const conditionsInput = document.getElementById('conditions');
+const errorMessageDiv = document.getElementById('error-message');
+
+// Inicialmente esconde a div de erros
+errorMessageDiv.style.display = 'none';
 
 // Mostrar/ocultar senha
 revealer.addEventListener('click', function reveal() {
@@ -39,63 +52,91 @@ function validatePhone(phone) {
     return phoneRegex.test(phone);
 }
 
-// Função para adicionar/remover classes de erro
-function toggleError(inputElement, isValid) {
+// Função para adicionar/remover classes de erro e exibir mensagens na div de erros
+function toggleError(inputElement, isValid, errorMessage) {
     if (isValid) {
         inputElement.classList.remove('input-field-fail');
         inputElement.classList.add('input-field');
     } else {
         inputElement.classList.remove('input-field');
         inputElement.classList.add('input-field-fail');
+        const errorList = document.querySelector('#error-message ul');
+        const errorItem = document.createElement('li');
+        errorItem.textContent = errorMessage;
+        errorList.appendChild(errorItem);
     }
+}
+
+// Limpar lista de erros
+function clearErrors() {
+    const errorList = document.querySelector('#error-message ul');
+    errorList.innerHTML = '';  // Remove todas as mensagens de erro
 }
 
 // Validação no envio do formulário
 form.addEventListener('submit', function validate(e) {
     e.preventDefault();
+    
+    // Limpar os erros anteriores
+    clearErrors();
+    
+    // Variável que determina se houve erro
+    let hasError = false;
 
     // Verificação dos campos
     let isValid = true;
 
     // Validação do Nome
     if (nameInput.value.trim() === "" || !validateName(nameInput.value)) {
-        toggleError(nameInput, false);
+        toggleError(nameInput, false, 'Nome inválido. Apenas letras e espaços são permitidos.');
         isValid = false;
+        hasError = true;
     } else {
-        toggleError(nameInput, true);
+        toggleError(nameInput, true, '');
     }
 
     // Validação do Email
     if (emailInput.value.trim() === "" || !validateEmail(emailInput.value)) {
-        toggleError(emailInput, false);
+        toggleError(emailInput, false, 'Email inválido. Insira um formato de email válido.');
         isValid = false;
+        hasError = true;
     } else {
-        toggleError(emailInput, true);
+        toggleError(emailInput, true, '');
     }
 
     // Validação da Senha
     if (passwordInput.value.trim() === "" || !validatePassword(passwordInput.value)) {
-        toggleError(passwordInput, false);
+        toggleError(passwordInput, false, 'A senha deve ter no mínimo 8 caracteres, incluindo 1 letra maiúscula, 1 número e 1 símbolo.');
         isValid = false;
+        hasError = true;
     } else {
-        toggleError(passwordInput, true);
+        toggleError(passwordInput, true, '');
     }
 
     // Validação do Telefone
     if (phoneInput.value.trim() === "" || !validatePhone(phoneInput.value)) {
-        toggleError(phoneInput, false);
+        toggleError(phoneInput, false, 'Número de telefone inválido. Deve conter 11 dígitos.');
         isValid = false;
+        hasError = true;
     } else {
-        toggleError(phoneInput, true);
+        toggleError(phoneInput, true, '');
     }
 
     // Validação dos Termos e Condições
     if (!conditionsInput.checked) {
-        alert("Você deve aceitar os Termos e Condições.");
+        toggleError(conditionsInput, false, 'Você deve aceitar os Termos e Condições.');
         isValid = false;
+        hasError = true;
     }
 
-    // Agora envia via fetch os dados do cadastro
+    // Exibe a div de erros somente se houver erros
+    if (hasError) {
+        errorMessageDiv.style.display = 'block';
+    } else {
+        errorMessageDiv.style.display = 'none'; // Esconde se estiver tudo ok
+    }
+
+    // Agora envia via fetch os dados do cadastro, se for válido
     if (isValid) {
         const userData = {
             name: nameInput.value,
@@ -116,7 +157,7 @@ form.addEventListener('submit', function validate(e) {
         .then(data => {
             alert(data); // mensagem de sucesso ou erro
             if (data === 'Usuário registrado com sucesso') {
-                // Redireciona para a página de usuário
+                // Redireciona para a página de login
                 window.location.href = '../login/login.html';
             }
         })
