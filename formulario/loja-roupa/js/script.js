@@ -71,21 +71,34 @@ function clickGeral(btnGeral){
 //numero é uma variável que vai adicionando um numero, aí junta com a palavra pergunta para ficar 'pergunta' + numero que é o numero da pergunta
 function proximaPergunta(numero) {
     // Esconde a pergunta atual
-    document.getElementById('pergunta' + numero).style.display = 'none';
+    document.getElementById('box-pergunta' + numero).style.display = 'none';
     
     // Mostra a próxima pergunta
-    let proxima = 'numero' + 1;
-    let proximaPergunta = document.getElementById('pergunta' + proxima);
+    let proxima = numero + 1;
+    let proximaPergunta = document.getElementById('box-pergunta' + proxima);
     
-    if (proximaPergunta) { //possível erro aqui 
-        proximaPergunta.style = 'display: block';
+    if (proximaPergunta) {  
+        proximaPergunta.style.display = 'block';
     }else{
         console.error("Pergunta não encontrada: pergunta" + numero);
         return; // Sai da função se a pergunta não for encontrada
     }
     }
 
+    
+//função para os botoes irem mudando também
+function proximoBtn(numero){
+    //pega o nome do botão, que é 'pergunta' e o numero da pergunta
+    document.getElementById('pergunta' + numero).style.diplay = 'none';
 
+    //mostra o próximo botão
+    let proximo = numero + 1;
+    let proximoBtn = document.getElementById('pergunta' + proximo);
+
+    if (proximoBtn){
+        proximoBtn.style.display = 'block';
+    }
+}
 
 // if(resposta1Selecionada){
     //     //pegando o valor do radio
