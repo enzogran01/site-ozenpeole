@@ -2,10 +2,6 @@ function btnVoltar(voltar) {
     window.location.href="../inicio/formulario.html";
 }
 
-document.getElementById('voltar').addEventListener('click', btnVoltar);
-
-
-
 
 
 //configuração radios
@@ -68,8 +64,26 @@ function clickGeral(btnGeral){
         \nDados geral: ${geral}`);
 }
 
-// Adicione um listener para o evento de clique no botão
-document.getElementById('btngeral').addEventListener('click', btnkGeral);
+
+
+
+//teste função para ocultar as perguntas e mostrar uma de cada vez
+//numero é uma variável que vai adicionando um numero, aí junta com a palavra pergunta para ficar 'pergunta' + numero que é o numero da pergunta
+function proximaPergunta(numero) {
+    // Esconde a pergunta atual
+    document.getElementById('pergunta' + numero).style.display = 'none';
+    
+    // Mostra a próxima pergunta
+    let proxima = 'numero' + 1;
+    let proximaPergunta = document.getElementById('pergunta' + proxima);
+    
+    if (proximaPergunta) { //possível erro aqui 
+        proximaPergunta.style = 'display: block';
+    }else{
+        console.error("Pergunta não encontrada: pergunta" + numero);
+        return; // Sai da função se a pergunta não for encontrada
+    }
+    }
 
 
 

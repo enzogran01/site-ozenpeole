@@ -14,8 +14,8 @@
     <header id="header">
 
         <div class="header-left">
-            <a href="homepage.html" class="logo"><img src="img/ozenpelogo.png" alt=""></a>
-            <a href="homepage.html" class="ozenpeole">Ozenpeole</a>
+            <a href="../../homepage/homepage.html" class="logo"><img src="../loja-roupa/img/ozenpelogo.png" alt=""></a>
+            <a href="../../homepage/homepage.html" class="ozenpeole">Ozenpeole</a>
             
         </div>
     </header>
@@ -27,7 +27,7 @@
         <form id="respostas">
 
 
-            <div class="box-pergunta1"> 
+            <div class="box-pergunta1" id="box-pergunta1"> 
 
                 <div class="box-p1">
                     <h1 class="pergunta1">Qual a faixa etária do seu público alvo?</h1>
@@ -54,7 +54,7 @@
 
 
 
-            <div class="box-pergunta2">
+            <div class="box-pergunta2" id="box-pergunta2" style="display:none;">
 
                 <div class="box-p2">
                     <h1 class="pergunta2">De onde são a maioria dos seus clientes?</h1>
@@ -85,7 +85,7 @@
 
 
 
-            <div class="box-pergunta3">
+            <div class="box-pergunta3" id="box-pergunta3" style="display:none;">
 
                 <div class="box-p3">
                     <h1 class="pergunta3">De onde são a maioria dos seus clientes?</h1>
@@ -115,7 +115,7 @@
 
 
 
-            <div class="box-pergunta4">
+            <div class="box-pergunta4" id="box-pergunta4" style="display:none;">
 
                 <div class="box-p4">
                     <h1> As suas vendas são feitas em maior parte:</h1>
@@ -137,7 +137,7 @@
 
 
 
-            <div class="box-pergunta5">
+            <div class="box-pergunta5" id="box-pergunta5" style="display:none;">
 
                 <div class="box-p5">
                     <h1 class="subtitulo"> Indique o ticket médio da sua empresa: </h1>
@@ -171,7 +171,7 @@
 
 
 
-            <div class="box-pergunta6">
+            <div class="box-pergunta6" id="box-pergunta6" style="display:none;">
                 <div class="box-p6">
                     <h1 class="subtitulo">A loja já faz algum tipo de propaganda?</h1>
                 </div>
@@ -192,9 +192,15 @@
 
 
         </form>
+        <button type="button" id="btnProxima1" class="btnProxima(1)" onclick="proximaPergunta(1)">Próxima</button>
+        <button type="button" id="btnProxima2" class="btnProxima(2)" style="display:none;" onclick="proximaPergunta(2)">Próxima</button>
+        <button type="button" id="btnProxima3" class="btnProxima(3)" style="display:none;" onclick="proximaPergunta(3)">Próxima</button>
+        <button type="button" id="btnProxima4" class="btnProxima(4)" style="display:none;" onclick="proximaPergunta(4)">Próxima</button>
+        <button type="button" id="btnProxima5" class="btnProxima(5)" style="display:none;" onclick="proximaPergunta(5)">Próxima</button>
+        <button type="button" id="btnProxima6" class="btnProxima(6)" style="display:none;" onclick="proximaPergunta(6)">Próxima</button>
 
-        <button onclick="clickGeral()" type="button" class="btnGeral">Confirmar</button>
-
+        <button onclick="clickGeral()" type="button" id="btnGeral" class="btnGeral">Confirmar</button>
+        <button onclick="btnVoltar()" type="button" class="btnVoltar">Voltar</button>
     </div>
     <script src="js/script.js"></script>
 </body>
