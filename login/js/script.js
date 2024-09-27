@@ -78,7 +78,7 @@ form.addEventListener('submit', function validate(e) {
         .then(data => {
             if (data.message === 'Login bem-sucedido!') {
                 alert('Login realizado com sucesso!');
-                window.location.href = '../usuario/usuario.html'; // Redireciona
+                window.location.href = '../homepage/homepage.html'; // Redireciona
             } else {
                 alert(data.message); // Exibe mensagem de erro
             }
