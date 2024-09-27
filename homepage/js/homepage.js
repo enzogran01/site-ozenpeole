@@ -1,17 +1,23 @@
-// Quando a página carrega
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
 
     loader.classList.add('loader-hidden');
 
     loader.addEventListener('transitionend', () => {
-        document.body.removeChild(loader); 
+        document.body.removeChild(loader);
     });
-
-   
 });
 
-// Função para animar as caixas
+// Verifica se o usuário está logado
+const userName = localStorage.getItem('userName');
+if (userName) {
+    // Exibir "Bem-vindo, [userName]"
+    const welcomeMessage = document.getElementById('welcome-message');
+    welcomeMessage.textContent = `Bem-vindo, ${userName}!`;
+    welcomeMessage.style.display = 'block'; // Exibe a mensagem
+}
+
+// Restante do código
 document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
     box.addEventListener('mouseenter', () => {
         document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(otherBox => {
