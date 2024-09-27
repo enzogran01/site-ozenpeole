@@ -1,3 +1,13 @@
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.loader');
+
+    loader.classList.add('loader-hidden');
+
+    loader.addEventListener('transitioned', () => {
+        document.body.removeChild('loader');
+    })
+})
+
 let selecione = document.querySelector("#selecione");
 let materiais = "construcao.html";
 let roupas = "loja-roupa.html"
