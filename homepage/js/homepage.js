@@ -1,13 +1,17 @@
+// Quando a página carrega
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
 
     loader.classList.add('loader-hidden');
 
-    loader.addEventListener('transitioned', () => {
-        document.body.removeChild('loader');
-    })
-})
+    loader.addEventListener('transitionend', () => {
+        document.body.removeChild(loader); 
+    });
 
+   
+});
+
+// Função para animar as caixas
 document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
     box.addEventListener('mouseenter', () => {
         document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(otherBox => {
@@ -38,4 +42,3 @@ document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
         });
     });
 });
-
