@@ -63,15 +63,23 @@ function clickGeral(btnGeral){
     console.log("Propaganda:", propaganda);
 
 
-    alert(`Suas respostas foram: 
-        \nIdade: ${idade}
-        \nLocal: ${local}
-        \nRede social: ${social}
-        \nMaioria das vendas: ${venda}
-        \nFaixa de preço: ${preco}
-        \nJá faz propaganda? ${propaganda}
-        \nCampanha: ${campanha}
-        \nDados geral: ${geral}`);
+    // alert(`Suas respostas foram: 
+    //     \nIdade: ${idade}
+    //     \nLocal: ${local}
+    //     \nRede social: ${social}
+    //     \nMaioria das vendas: ${venda}
+    //     \nFaixa de preço: ${preco}
+    //     \nJá faz propaganda? ${propaganda}
+    //     \nCampanha: ${campanha}
+    //     \nDados geral: ${geral}`);
+
+
+
+        //função para exibir uma campanha de demonstração
+        document.getElementById('campanha').style.display = 'block';
+        for(let i = 1; i <= totalPerguntas; i++){
+        document.getElementById(`box-pergunta${i}`).style.display = 'none';
+    }
 }
 
 
@@ -129,6 +137,7 @@ function anterior(){
     if(perguntaAtual > 1){
         perguntaAtual--;
         proximaPergunta();
+        document.getElementById('campanha').style.display = 'none';
     } 
 }
 

@@ -165,7 +165,21 @@ button:hover{
         transform: rotate(1turn);
     }
 }
+.campanha-demonstrativa {
+    justify-content: center;
+    align-items: center;
+    width: 300px; /* Largura da box */
+    height: 500px; /* Altura da box */
+    margin: 20px auto; /* Centraliza na página */
+}
 
+.campanha-demonstrativa img {
+    max-width: 100%; /* Para a imagem ocupar a largura da box */
+    max-height: 100%; /* Para a imagem ocupar a altura da box */
+    object-fit: contain; /* Mantém a proporção da imagem */
+    border: 1px solid #ccc; /* Borda */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
 /* .box-pergunta1{
     position: fixed;
     justify-content: center;
