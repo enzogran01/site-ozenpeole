@@ -77,12 +77,13 @@ form.addEventListener('submit', function validate(e) {
         .then(response => response.json())
         .then(data => {
             if (data.message === 'Login bem-sucedido!') {
-                const user = data.user; // Obter os dados do usuário
-                localStorage.setItem('userName', user.nm_usuario); // Armazenar o nome do usuário
+                // armazena o nome do usuário no localStorage
+                localStorage.setItem('userName', data.userName); // `userName` vem do servidor
+                
                 alert('Login realizado com sucesso!');
-                window.location.href = '../homepage/homepage.html'; // Redireciona
+                window.location.href = '../homepage/homepage.html'; // redireciona para a homepage
             } else {
-                alert(data.message); // Exibe mensagem de erro
+                alert(data.message); // exibe mensagem de erro
             }
         })
         .catch(error => {

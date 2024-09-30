@@ -34,7 +34,6 @@ db.connect((err) => {
 app.post('/login', (req, res) => { 
     const { email, password } = req.body;
 
-    // Verificar se o email existe no banco de dados
     const query = 'SELECT * FROM usuario WHERE nm_email = ?';
     db.query(query, [email], (err, results) => {
         if (err) {
@@ -43,28 +42,19 @@ app.post('/login', (req, res) => {
         }
 
         if (results.length === 0) {
-            // Se o email não for encontrado, retornar erro
             return res.status(401).json({ message: 'Email ou senha incorretos.' });
         }
 
-        // Comparar a senha criptografada com a que foi enviada
         const user = results[0];
-        bcrypt.compare(password, user.cd_senha, (err, isMatch) => {
-            if (err) {
-                console.error('Erro ao comparar senhas:', err);
-                return res.status(500).json({ message: 'Erro interno do servidor.' });
-            }
-
-            if (isMatch) {
-                // Login bem-sucedido
-                res.status(200).json({ message: 'Login bem-sucedido!', user: { nm_usuario: user.nm_usuario } });
-            } else {
-                // Senha incorreta
-                res.status(401).json({ message: 'Email ou senha incorretos.' });
-            }
-        });
+        if (password === user.cd_senha) {
+            // Login bem-sucedido, retorna o nome do usuário
+            res.status(200).json({ message: 'Login bem-sucedido!', userName: user.nm_usuario });
+        } else {
+            return res.status(401).json({ message: 'Email ou senha incorretos.' });
+        }
     });
 });
+
 
 
   
