@@ -82,6 +82,7 @@ header .header-left, .header-right {
 .container {
     display: block;
     background-color: var(--darker-gray);
+    width: 34%;
     padding: 10%;
     border-radius: 30px;
 }
@@ -97,10 +98,16 @@ header .header-left, .header-right {
     font-size: 35px;
 }
 
+select#comercios {
+    width: 150%;
+    padding: 10px;
+    vertical-align: baseline;
+}
+
 .form {
     display: flex;
     justify-content: space-between;
-    
+    vertical-align: baseline;
 }
 button{
     padding: 10px;
@@ -113,7 +120,8 @@ button{
     background-color: #1A53E3;
     color: #fff;
     transition: all 0.2s;
-cursor: pointer;
+    cursor: pointer;
+    vertical-align: baseline;
 }
 button:hover{
     opacity: 0.5;

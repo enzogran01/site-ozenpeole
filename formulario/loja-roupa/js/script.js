@@ -82,9 +82,6 @@ function clickGeral(btnGeral){
     }
 }
 
-
-
-
 let perguntaAtual = 1;
 const totalPerguntas = 6;
 
