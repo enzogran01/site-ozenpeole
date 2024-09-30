@@ -2,10 +2,28 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
 
-/* CSS para manter a div oculta até que o login seja feito */
+
+/* CSS para manter a div oculta até que o login seja feito
 #userGreeting {
     display: none;
+} */
+ /* Oculta a mensagem de boas-vindas por padrão */
+.welcome-message-hidden {
+    display: none;
 }
+
+/* Estilo padrão para a mensagem de boas-vindas */
+.welcome-message {
+    font-size: 1.5em;
+    color: #1A53E3;
+    margin-right: 20px;
+}
+
+/* Esconde os botões de login e cadastro */
+.hidden {
+    display: none;
+}
+
 
 body {
     scroll-behavior: smooth;
