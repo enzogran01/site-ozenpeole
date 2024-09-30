@@ -107,10 +107,16 @@ header .header-left, .header-right {
     width: 32.88em
 }
 
+.box-pergunta {
+    max-height: 440px;
+    min-height: 440px;
+}
+
 .box-p1,.box-p2,.box-p3,.box-p4,.box-p5,.box-p6{
     font-size: 35px;
     font-family: 'Archivo Narrow', sans-serif;
     font-weight: bold;
+    margin: 0;
     color: #000000;
 }
 
@@ -159,7 +165,8 @@ header .header-left, .header-right {
 
 .buttons {
     display: flex;
-    margin-top: 17%;
+    margin-top: 5%;
+    margin-bottom: 10%;
     padding: 2%;
     /* background-color: var(--darker-gray); */
     border-radius: 5px;
