@@ -8,11 +8,11 @@ window.addEventListener('load', () => {
     })
 })
 
-function btnVoltar(voltar) {
+function btnVoltar() {
     window.location.href="../inicio/formulario.html";
+        window.story.back();
+    
 }
-
-
 
 //configuração radios
 function clickGeral(btnGeral){
@@ -80,6 +80,11 @@ function clickGeral(btnGeral){
         for(let i = 1; i <= totalPerguntas; i++){
         document.getElementById(`box-pergunta${i}`).style.display = 'none';
     }
+
+    //função para o botão não funcionar quando já tiver na ultima página
+    if(perguntaAtual === totalPerguntas){
+        document.getElementById('btnGeral').style.display = 'none';
+    }
 }
 
 let perguntaAtual = 1;
@@ -146,45 +151,3 @@ document.getElementById('btnAvancar').addEventListener('click', avancar);
 document.getElementById('btnAnterior').addEventListener('click', anterior);
 
  
-
-// //teste função para ocultar as perguntas e mostrar uma de cada vez
-// //numero é uma variável que vai adicionando um numero, aí junta com a palavra pergunta para ficar 'pergunta' + numero que é o numero da pergunta
-// function proximaPergunta() {
-//     // Esconde a pergunta atual
-//     document.getElementById('box-pergunta' + numero).style.display = 'none';
-    
-//     let numero = 1;
-//     // Mostra a próxima pergunta
-//     let proxima = numero + 1;
-//     let proximaPergunta = document.getElementById('box-pergunta' + proxima);
-//     let proximoBtn = document.getElementById('btnPergunta' + proxima);
-    
-//     if (proximaPergunta) {  
-//         proximaPergunta.style.display = 'block';
-//         proximoBtn.style.display = 'block';
-
-//     }else{
-//         console.error("Pergunta não encontrada: pergunta" + numero);
-//         return; // Sai da função se a pergunta não for encontrada
-//     }
-//     }
-
-
-// function voltaPergunta(numero) {
-//     // Esconde a pergunta atual
-//     document.getElementById('box-pergunta' + numero).style.display = 'none';
-        
-//     // Mostra a próxima pergunta
-//     let volta = numero - 1;
-//     let voltaPergunta = document.getElementById('box-pergunta' + volta);
-//     let voltaBtn = document.getElementById('btnPergunta' + volta);
-        
-//     if (voltaPergunta) {  
-//         voltaPergunta.style.display = 'block';
-//         voltaBtn.style.display = 'block';
-    
-//     }else{
-//         console.error("Pergunta não encontrada: pergunta" + numero);
-//         return; // Sai da função se a pergunta não for encontrada
-//     }
-//     }
