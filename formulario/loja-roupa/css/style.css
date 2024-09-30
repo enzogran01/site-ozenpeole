@@ -2,19 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
 body {
-    background-size: 1380px;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+z-index: -1;
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
+    background-color: #D5D7DB;
     overflow-x: hidden;
-    background-image: url(imgs/back.png);
-    z-index: -1;
 }
 
 html {
     scroll-behavior: smooth;
+    
 }
 
 header {
@@ -97,40 +98,46 @@ header .header-left, .header-right {
     width: 32.88em
 }
 .box-p1,.box-p2,.box-p3,.box-p4,.box-p5,.box-p6{
-    font-size: 15px;
-    font-family: "Inter", sans-serif;
+    font-size: 35px;
+    font-family: 'Archivo Narrow', sans-serif;
     font-weight: bold;
+    color: #000000;
 }
 .box-r1,.box-r2,.box-r3,.box-r4,.box-r4,.box-r5,.box-r6{
-    font-size: 13px;
-    font-family: "Inter", sans-serif;
+    font-size: 25px;
+    font-family: 'Archivo Narrow', sans-serif;
 }
 .subtitulo{
-    font-size: 25px;
-    font-family: "Inter", sans-serif;
+    font-size: 55px;
+    font-family: 'Archivo Narrow', sans-serif;
     font-weight: bold;
     color: #000000;
 }
 .corpo{
-    border-radius: 25px;
-    background-color: #ccc;
+    border-radius: 20px;
+    background-color: #ffffff;
     margin-left: 50%;
     height: 100%;
     padding-top: 35px;
     padding: 50px;
-
 }
-button{
+.btnVoltar{
     padding: 0.6rem 1.2rem;
-    background-color: #1A53E3;
-    color: white;
-    border:none;
-    border-radius: 0.25rem;
+    background-color: #ffffff;
+    color: #f95a33;
+    border-radius: 0.35rem;
     cursor: pointer;
-    opacity: 0.9;   
-    font-size: 1rem;
+    opacity: 1;   
+    font-size: 18px;
     transition: .4s;
     margin: 2%;
+    font-family: "Inter", sans-serif;
+    font-style: bold;
+    border: 2px solid #f95a33;
+}
+.btnVoltar:hover{
+    background-color: #f95a33;
+    color: white;
 }
 button:hover{
     opacity: 0.5;
@@ -197,4 +204,45 @@ button:hover{
     padding: 1.2rem;
     border-radius: 0.5rem; 
 } */
-
+.btnAvancar{
+    padding: 0.6rem 1.2rem;
+    background-color: #1a53e3;
+    color: rgb(255, 255, 255);
+    border:none;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    opacity: 0.9;   
+    font-size: 18px;
+    transition: .4s;
+    margin: 2%;
+    font-family: "Inter", sans-serif;
+    font: bold;
+}
+.btnAnterior{
+    padding: 0.6rem 1.2rem;
+    background-color: #1a53e3;
+    color: #ffffff;;
+    border:none;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    opacity: 0.9;   
+    font-size: 18px;
+    transition: .4s;
+    margin: 2%;
+    font-family: "Inter", sans-serif;
+   font: bold;
+}
+button{
+    padding: 0.6rem 1.2rem;
+    background-color: #1a53e3;
+    color: #ffffff;;
+    border:none;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    opacity: 0.9;   
+    font-size: 18px;
+    transition: .4s;
+    margin: 2%;
+    font-family: "Inter", sans-serif;
+   font: bold;
+}
