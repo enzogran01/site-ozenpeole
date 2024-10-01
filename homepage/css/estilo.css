@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
 
-
-
 body {
     scroll-behavior: smooth;
     margin: 0;
@@ -34,6 +32,7 @@ header a {
     text-align: center;
     transition: all 0.2s;
 }
+
 header a:hover {
     text-decoration: underline;
     color: #1A53E3;
@@ -48,6 +47,7 @@ header .header-left, .header-right {
 .header-bottom-border {
     position: relative;
 }
+
 .header-bottom-border::after {
     content: "";
     position: absolute;
@@ -58,30 +58,25 @@ header .header-left, .header-right {
     background: linear-gradient(to right, #F95A33, #1A53E3);
     transition: ease-in-out 0.3s;
 }
+
 .header-bottom-border:hover::after {
     height: 8px;
 }
 
-/* CSS para manter a div oculta até que o login seja feito
-#userGreeting {
-    display: none;
-} */
- /* Oculta a mensagem de boas-vindas por padrão */
 .welcome-message-hidden {
     display: none;
 }
 
-/* Estilo padrão para a mensagem de boas-vindas */
 .welcome-message {
     font-size: 1.5em;
     color: #1A53E3;
     margin-right: 20px;
 }
 
-/* Esconde os botões de login e cadastro */
 .hidden {
     display: none;
 }
+
 .logo img {
     max-height: 50px;
 }
@@ -91,6 +86,7 @@ header .header-left, .header-right {
     align-items: center;
     justify-content: space-between;
     margin: 10% 8% 15% 8%;
+    gap: 100px;
     padding: 0;
 }
 
@@ -358,10 +354,6 @@ header .header-left, .header-right {
     text-align: center;
 }
 
-.instaLogo{
-    width: 50px;
-    height: 50px;
-}
 
 footer {
     background-color: #313638;
@@ -374,6 +366,7 @@ footer {
     align-items: center;
     padding-top: 2%;
     padding-bottom: 2%;
+    vertical-align: baseline;
 }
 
 .terms {
@@ -397,6 +390,22 @@ footer {
     width: 1%;
     height: 400px;
     margin: 5% -100% 8% 0;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.instaIcon{
+    max-width: 39px;
+    max-height: 39px;
+}
+
+.instaIcon:hover {
+    transform: scale(1.1);
 }
 
 .loader {
