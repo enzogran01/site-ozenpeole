@@ -1,10 +1,11 @@
+
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
     loader.addEventListener('transitionend', () => {
         document.body.removeChild(loader);
     });
-
+    
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
 
@@ -38,7 +39,7 @@ document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
             }
         });
     });
-
+    
     box.addEventListener('mouseleave', () => {
         document.querySelectorAll('.why-box-gray').forEach(grayBox => {
             grayBox.classList.remove('why-box-gray'); // Remove a classe 'why-box-gray'
@@ -46,10 +47,21 @@ document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
             // Restaura a classe original a partir do 'data-original-class'
             const originalClass = grayBox.dataset.originalClass;
             grayBox.classList.add(originalClass);
-
+            
             // Remove o atributo 'data-original-class' após restaurar
             grayBox.removeAttribute('data-original-class');
         });
     });
 });
 
+const modal = document.querySelector('#modal');
+const noModalButton = document.querySelector('#modal .options #btn-no');
+const yesButtonModal = document.querySelector('#modal .options #btn-yes');
+
+noModalButton.addEventListener('click', () => {
+    modal.close();
+})
+yesButtonModal.addEventListener('click', () => {
+    window.open('../formulario/inicio/formulario.html', '_blank');
+    modal.close();
+});
