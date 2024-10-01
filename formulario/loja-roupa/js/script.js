@@ -117,6 +117,7 @@ function avancar(){
     if(perguntaAtual < totalPerguntas){
         perguntaAtual++;
         proximaPergunta();
+        document.getElementById('btnAnterior').style.display = 'block';
     } 
 }
 
@@ -125,7 +126,6 @@ function anterior(){
     if(perguntaAtual > 1){
         perguntaAtual--;
         proximaPergunta();
-        document.getElementById('campanha').style.display = 'none';
     } 
 }
 

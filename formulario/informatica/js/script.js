@@ -8,24 +8,23 @@ window.addEventListener('load', () => {
     })
 })
 
-function btnVoltar(voltar) {
+function btnVoltar() {
+
     window.location.href="../inicio/formulario.html";
+    
 }
-
-
 
 //configuração radios
 function clickGeral(btnGeral){
+
     //entrar no form
     let formGeral = document.getElementById("respostas");
-    //querySelector para selecionar o radio
 
     // função para pegar as repostas
     function obterResposta(name){
         const pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
         console.log(`Selecionado para "${name}":`, pegandoValor ? pegandoValor.value : 'Nenhum selecionado');
         return pegandoValor ? pegandoValor.value : '';
-
     }
 
     //joga cada resposta para a sua devida variável
@@ -45,42 +44,31 @@ function clickGeral(btnGeral){
         preco : preco,
         propaganda : propaganda
 };
-
+    //'campanha' se torna a variável com todas as variáveis
     let campanha = 
-    idade +
-    local +
-    social +
-    venda +
-    preco +
-    propaganda;
+        idade +
+        local +
+        social +
+        venda +
+        preco +
+        propaganda;
 
-        // Exibe os valores (ou faça o que desejar com eles)
-    console.log("Idade:", idade);
-    console.log("Local:", local);
-    console.log("Social:", social);
-    console.log("Venda:", venda);
-    console.log("Preço:", preco);
-    console.log("Propaganda:", propaganda);
+    // Exibe os valores (ou faça o que desejar com eles)
+        console.log("Nº da campanha:", campanha);
 
-
-    // alert(`Suas respostas foram: 
-    //     \nIdade: ${idade}
-    //     \nLocal: ${local}
-    //     \nRede social: ${social}
-    //     \nMaioria das vendas: ${venda}
-    //     \nFaixa de preço: ${preco}
-    //     \nJá faz propaganda? ${propaganda}
-    //     \nCampanha: ${campanha}
-    //     \nDados geral: ${geral}`);
-
-
-
-        //função para exibir uma campanha de demonstração
-        document.getElementById('campanha').style.display = 'block';
-        for(let i = 1; i <= totalPerguntas; i++){
+    //fazendo aparecer a primeira pergunta
+    for(let i = 1; i <= totalPerguntas; i++){
         document.getElementById(`box-pergunta${i}`).style.display = 'none';
+        }
+
+    //condição para o botão não funcionar quando já tiver na ultima página
+    if(perguntaAtual === totalPerguntas){
+        document.getElementById('btnGeral').style.display = 'none';
     }
+
+    window.location.href='../../../visualizarcampanha/segundafeira/html/visucampanha.html'
 }
+
 
 
 
@@ -147,3 +135,5 @@ proximaPergunta();
 //adiciona o click aos botões
 document.getElementById('btnAvancar').addEventListener('click', avancar);
 document.getElementById('btnAnterior').addEventListener('click', anterior);
+
+ 

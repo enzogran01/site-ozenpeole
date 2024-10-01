@@ -358,6 +358,11 @@ header .header-left, .header-right {
     text-align: center;
 }
 
+.instaLogo{
+    width: 50px;
+    height: 50px;
+}
+
 footer {
     background-color: #313638;
     color: white;

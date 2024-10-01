@@ -181,7 +181,6 @@
                 </div>
 
                 <div class="box-r6">
-
                     <input type="radio" id="sim" name="propaganda" value="1" checked required>
                     <label for="sim"> Sim </label>
                     <br>
@@ -189,7 +188,6 @@
                     <input type="radio" id="nao" name="propaganda" value="2">
                     <label for="nao"> Não </label>
                     <br><br>
-
                 </div>
             </div>
 
@@ -197,19 +195,51 @@
 
         </form>
 
-        
-        <button id="btnAvancar" class="btnAvancar" >Próxima Pergunta </button><button onclick="clickGeral()" type="button" id="btnGeral" class="btnGeral">Confirmar</button>
-        <button id="btnAnterior" class="btnAnterior" disabled > Pergunta Anterior </button>
-        
+        <div class="buttons-hidden">
+            <button id="btnAnterior" class="btnAnterior" disabled > Pergunta Anterior </button>
+            <button id="btnAvancar" class="btnAvancar" >Próxima Pergunta</button> 
+            <button onclick="btnVoltar()" type="button" class="btnVoltar">Voltar</button>
+        </div>
 
-        <button onclick="btnVoltar()" type="button" class="btnVoltar">Voltar</button>
-        
-        <div class="campanha-demonstrativa">
-            <img id="campanha" src="img/campanha.png" style="display: none;" alt="Campanha demonstrativa">
+        <div class="buttons">
+            <div class="button">
+                <img src="./img/back.png" alt="" id="btnAnterior" onclick="anterior()" disabled>
+                <p for="btnAnterior">Voltar</p>
+            </div>
+            
+            <div class="button">
+                <img src="./img/close.png" alt="" id="btnVoltar" onclick="btnVoltar()" type="button">
+                <p for="btnVoltar">Cancelar</p> 
+            </div>
+            
+            <div class="button">
+                <img src="./img/forward.png" alt="" id="btnAvancar" onclick="avancar()" type="button">
+                <p for="btnAvancar">Próximo</p>
+            </div>
+            
+            <button onclick="clickGeral(btnGeral) && visuCampanha()" type="button" id="btnGeral" class="btnGeral">Confirmar</button>
+            
         </div>
     
         
     </div>
+
+    <footer>
+
+        <div class="copyright">
+            <span>Ozenpeole Copyright © 2024 Todos os direitos reservados.</span>
+        </div>
+
+        <div class="terms">
+            <a href ="https://docs.google.com/document/d/1uI8eRSbQ8778ycy549skT_LPuZCI1NHyTrv0ovt7mi4/edit?usp=sharing" target="_blank">
+                <span>política de privacidade</span>
+            </a>
+            <a href="https://docs.google.com/document/d/13bmbLT9fWwzV-tpBQ2dZC1ZnN7kVsEjAAQ6ll-oIDbc/edit?usp=sharing" target="_blank">
+                <span>termos de uso</span>
+            </a>
+        </div>
+
+    </footer>
     
     <div class="loader"></div>
 
