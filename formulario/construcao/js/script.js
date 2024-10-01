@@ -66,7 +66,6 @@ function clickGeral(btnGeral){
         document.getElementById('btnGeral').style.display = 'none';
     }
 
-    window.location.href='../../../visualizarcampanha/segundafeira/html/visucampanha.html'
 }
 
 

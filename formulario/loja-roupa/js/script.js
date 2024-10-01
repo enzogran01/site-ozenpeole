@@ -66,7 +66,7 @@ function clickGeral(btnGeral){
         document.getElementById('btnGeral').style.display = 'none';
     }
 
-    window.location.href='../../../visualizarcampanha/segundafeira/html/visucampanha.html'
+    window.location.href='../../../visualizarcampanha/diaria/html/visuCampanha.html';
 }
 
 
@@ -110,6 +110,13 @@ function proximaPergunta(){
     //atualiza os botões
     document.getElementById('btnAnterior').disabled = perguntaAtual === 1;
     document.getElementById('btnAvancar').disabled = perguntaAtual === totalPerguntas;
+}
+
+//mostra o botão de pergunta anterios só quando aparece a segunda pergunta
+if(perguntaAtual === 1){
+    document.getElementById('btnAnterior').style.display = 'none'
+}else{
+    document.getElementById('btnAnterior').style.display = 'block'
 }
 
 //função para avançar a pergunta
