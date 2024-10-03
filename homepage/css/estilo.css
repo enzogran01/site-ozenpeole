@@ -2,6 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
 
+
+/* Oculta a mensagem de boas-vindas por padrão */
+.welcome-message-hidden {
+    display: none;
+}
+/* Estilo padrão para a mensagem de boas-vindas */
+.welcome-message {
+    font-size: 1.5em;
+    color: white;
+    margin-right: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
 body {
     scroll-behavior: smooth;
     margin: 0;

@@ -1,26 +1,45 @@
-
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
     loader.addEventListener('transitionend', () => {
         document.body.removeChild(loader);
     });
-    
+
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
 
     if (userName) {
         // Mostra a mensagem de boas-vindas
         const welcomeMessage = document.querySelector('.welcome-message');
-        welcomeMessage.textContent = `Boa  ${userName}!`;
+        welcomeMessage.textContent = `Bem Vindo  ${userName}!`;
         welcomeMessage.classList.remove('welcome-message-hidden');
 
         // Esconde os botões de login e cadastro
-        const authButtons = document.getElementById('auth-buttons');
-        if (authButtons) {
-            authButtons.classList.add('hidden');
+        document.getElementById('login').classList.add("hidden");
+        document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
+        document.getElementById('sair').classList.remove("hidden");
+        
+        // Esconde o botão de cadastro laranja na página inicial
+        const cadastroBtn = document.getElementById('cadastro-btn');
+        if (cadastroBtn) {
+            cadastroBtn.style.display = "none"; // Esconder o botão de cadastro
         }
     }
+});
+
+document.getElementById("sair").addEventListener("click", () => {
+    localStorage.removeItem("userName")
+    
+    document.getElementById('login').classList.remove("hidden");
+    document.getElementById('cadastro').classList.remove("hidden");
+    
+    // Mostra novamente o botão de cadastro laranja na página inicial após logout
+    const cadastroBtn = document.getElementById('cadastro-btn');
+    if (cadastroBtn) {
+        cadastroBtn.style.display = "block"; // Exibir o botão de cadastro de novo
+    }
+
+    window.location.href = "./homepage.html";
 });
 
 document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
@@ -39,7 +58,7 @@ document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
             }
         });
     });
-    
+
     box.addEventListener('mouseleave', () => {
         document.querySelectorAll('.why-box-gray').forEach(grayBox => {
             grayBox.classList.remove('why-box-gray'); // Remove a classe 'why-box-gray'
@@ -47,12 +66,13 @@ document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
             // Restaura a classe original a partir do 'data-original-class'
             const originalClass = grayBox.dataset.originalClass;
             grayBox.classList.add(originalClass);
-            
+
             // Remove o atributo 'data-original-class' após restaurar
             grayBox.removeAttribute('data-original-class');
         });
     });
 });
+
 
 const modal = document.querySelector('#modal');
 const noModalButton = document.querySelector('#modal .options #btn-no');
