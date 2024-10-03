@@ -142,6 +142,10 @@ header .header-left, .header-right {
     height: 8px;
 }
 
+.logo img {
+    max-height: 50px;
+}
+
 .welcome-message-hidden {
     display: none;
 }
@@ -154,10 +158,6 @@ header .header-left, .header-right {
 
 .hidden {
     display: none;
-}
-
-.logo img {
-    max-height: 50px;
 }
 
 .main {

@@ -57,10 +57,14 @@ document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
 const modal = document.querySelector('#modal');
 const noModalButton = document.querySelector('#modal .options #btn-no');
 const yesButtonModal = document.querySelector('#modal .options #btn-yes');
+// const openModalButton = document.querySelector('#openDiag');
 
+// openModalButton.addEventListener('click', () => {
+//     modal.showModal();
+// });
 noModalButton.addEventListener('click', () => {
     modal.close();
-})
+});
 yesButtonModal.addEventListener('click', () => {
     window.open('../formulario/inicio/formulario.html', '_blank');
     modal.close();

@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+    --darker-gray: #313638;
+    --gray-two: #c7c8cb;
+    --gray: #D5D7DB;
+    --blue: #1A53E3;
+    --orange: #F95A33;
+}
+
+body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    background-color: var(--gray);
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--darker-gray);
+    padding: 18px 8%;
+    font-family: "Inter", sans-serif;
+    transition: 0.3s;
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+header a:hover {
+    text-decoration: underline;
+    color: #1A53E3;
+}
+
+header .header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-bottom-border {
+    position: relative;
+}
+
+.header-bottom-border::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0px;
+    background: linear-gradient(to right, var(--orange), var(--blue));
+    transition: ease-in-out 0.3s;
+}
+
+.header-bottom-border:hover::after {
+    height: 8px;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+.aside {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 30px 30px 30px 30px;
+    background-color: var(--gray-two);
+    width: 12vw;
+}
+
+.aside .options {
+    display: flex;
+    flex-direction: column;
+    /* gap: 40px; */
+}
+
+.divisor {
+    height: 3px;
+    width: 100%;
+    margin: 15px 0 15px 0;
+    border-radius: 30px;
+    background-color: var(--darker-gray);
+}
+
+.aside .options .option p {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    max-width: 100%;
+    padding: 20px 14px 20px 14px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.button-active {
+    transform: translateX(3px);
+    background-color: var(--blue);
+    color: white;
+}
+
+/* .aside .options .option p:hover {
+    background-color: var(--gray);
+} */
+
+.aside .options .option p .option-icon {
+    max-width: 25px;
+    transition: all 0.2s;
+}
