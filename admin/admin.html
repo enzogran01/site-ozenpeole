@@ -30,7 +30,6 @@
             <div class="options">
                 <div class="option">
                     <p id="dashButton">
-                        <!-- <img src="./img/dashboardIcon.png" alt="" class="option-icon" id="dashIcon">Dashboard -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none"><path id="path" d="M5 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3H5C3 2 2 3 2 5v2c0 2 1 3 3 3ZM17 10h2c2 0 3-1 3-3V5c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3ZM17 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3h-2c-2 0-3 1-3 3v2c0 2 1 3 3 3ZM5 22h2c2 0 3-1 3-3v-2c0-2-1-3-3-3H5c-2 0-3 1-3 3v2c0 2 1 3 3 3Z" stroke="#000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>Dashboard
                     </p>
                 </div>
@@ -55,7 +54,7 @@
             </div>
         </aside>
 
-        <section class="dashboard" id="dashboard">
+        <section class="hidden" id="dashboard">
             <h1 class="dash-title">Dashboard</h1>
             <section class="qtd-info">
                 <div class="new-users">
@@ -105,10 +104,37 @@
         </section>
 
         <section class="user-section" id="user-section">
+            <h1>Usuários</h1>
 
+            <div class="user-options">
+                <input type="search">
+                <button>
+                    Adicionar usuário
+                </button>
+            </div>
+
+            <div class="user-table">
+                <table>
+                    <tr>
+                        <th>Nome</th>    
+                        <th>Email</th>    
+                        <th>Ações</th>    
+                    </tr>
+                    <tr>
+                        <td>Alfred</td>
+                        <td>pennyworth@wayne.com</td>
+                        <td>sla</td>
+                    </tr>
+                    <tr>
+                        <td>Batman</td>
+                        <td>wayne.bruce@hotmail.com</td>
+                        <td>sla</td>
+                    </tr>
+                </table>
+            </div>
         </section>
 
-        <section class="admin-section" id="admin-section">
+        <section class="hidden" id="admin-section">
 
         </section>
     </section>

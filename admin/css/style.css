@@ -139,10 +139,6 @@ header .header-left, .header-right {
     color: white;
 }
 
-/* .aside .options .option p:hover {
-    background-color: var(--gray);
-} */
-
 .aside .options .option p .option-icon {
     max-width: 25px;
     transition: all 0.3s;
@@ -155,7 +151,7 @@ header .header-left, .header-right {
     width: 100%;
 }
 
-.dashboard {
+.dash-section {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -215,15 +211,38 @@ header .header-left, .header-right {
 
 /* CSS do user table */
 
-/* .user-table {
+.user-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 20px;
+}
 
-} */
+.user-options {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+}
+
+.user-section table {
+    background-color: #fff;
+    width: 100%;
+    border: 1px solid var(--gray-two);
+}
+
+.user-section table td, th {
+    padding: 10px;
+    border: 1px solid var(--gray-two);
+    border-collapse: collapse;
+}
 
 /* CSS do admin table */
 
-/* .admin-table {
+.admin-section {
 
-} */
+}
 
 .loader {
     position: fixed;
