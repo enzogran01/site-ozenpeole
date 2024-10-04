@@ -10,6 +10,11 @@
     --orange: #F95A33;
 }
 
+.hidden {
+    display: none;
+    transition: all 0.3s;
+}
+
 body {
     scroll-behavior: smooth;
     margin: 0;
@@ -85,6 +90,7 @@ header .header-left, .header-right {
     background-color: var(--gray-two);
     border-radius: 0 15px 15px 0;
     width: 12vw;
+    transition: all 0.3s;
 }
 
 .aside .options {
@@ -111,13 +117,25 @@ header .header-left, .header-right {
     font-size: 16px;
     max-width: 100%;
     padding: 20px 14px 20px 14px;
-    transition: all 0.2s;
+    transition: all 0.3s;
     cursor: pointer;
 }
 
 .button-active {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    max-width: 100%;
+    padding: 20px 14px 20px 14px;
+    transition: all 0.3s;
+    cursor: pointer;
     transform: translateX(3px);
     background-color: var(--blue);
+    box-shadow: 0px 0px 39px 0px rgba(26,83,227,1);
     color: white;
 }
 
@@ -127,7 +145,7 @@ header .header-left, .header-right {
 
 .aside .options .option p .option-icon {
     max-width: 25px;
-    transition: all 0.2s;
+    transition: all 0.3s;
 }
 
 /* CSS da Dashboard */
@@ -193,4 +211,51 @@ header .header-left, .header-right {
     width: 33.5%;
     background-color: white;
     border-radius: 15px;
+}
+
+/* CSS do user table */
+
+/* .user-table {
+
+} */
+
+/* CSS do admin table */
+
+/* .admin-table {
+
+} */
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f9fb;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after {
+    content: '';
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #1A53E3;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
 }

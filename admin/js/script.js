@@ -1,10 +1,22 @@
-const dashButton = document.querySelector('aside .options .option #dashButton');
-const userButton = document.querySelector('aside .options .option #userButton');
-const adminButton = document.querySelector('aside .options .option #adminButton');
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.loader');
+    loader.classList.add('loader-hidden');
+    loader.addEventListener('transitionend', () => {
+        document.body.removeChild(loader);
+    });
+});
+
+const dashButton = document.querySelector('#dashButton');
+const userButton = document.querySelector('#userButton');
+const adminButton = document.querySelector('#adminButton');
+
+const dashSection = document.querySelector('#dashboard');
+const userSection = document.querySelector('#user-section');
+const adminSection = document.querySelector('#admin-section');
 
 let icons = document.querySelectorAll("#path");
 
-function RemoveClass(...properties) {
+function RemoveButtonClass(...properties) {
     properties.forEach((property) => {
         property.classList.remove("button-active")
     })
@@ -20,21 +32,35 @@ function ChangeIconColor(icons, ...clickedIcons) {
     })
 }
 
+// function changeSectionState(clickedSections, ...sections) {
+//     clickedSections.forEach((clickedSection) => {
+//         clickedSection.classList.add('dashboard')
+//     })
+
+//     sections.forEach((section) => {
+//         section.classList.remove('dashboard')
+//         section.classList.add('hidden')
+//     })
+// }
+
 dashButton.addEventListener('click', () => {
-    RemoveClass(userButton, adminButton)
+    RemoveButtonClass(userButton, adminButton)
     ChangeIconColor(icons, icons[0])
+    // changeSectionState(dashSection, userSection, adminSection)
     dashButton.classList.add('button-active');
 });
 
 userButton.addEventListener('click', () => {
-    RemoveClass(dashButton, adminButton)
+    RemoveButtonClass(dashButton, adminButton)
     ChangeIconColor(icons, icons[1])
+    // changeSectionState(userSection, dashSection, adminSection)
     userButton.classList.add('button-active');
 });
 
 adminButton.addEventListener('click', () => {
-    RemoveClass(userButton, dashButton)
+    RemoveButtonClass(userButton, dashButton)
     ChangeIconColor(icons, icons[2], icons[3], icons[4])
+    // changeSectionState(adminSection, dashSection, userSection)
     adminButton.classList.add('button-active');
 });
 
