@@ -14,6 +14,12 @@ function btnVoltar() {
     
 }
 
+//para deixar todos os radios em branco
+const radios = document.querySelectorAll('input[name="opcao"]');
+        radios.forEach(radio => radio.checked = false);
+
+
+
 //configuração radios
 function clickGeral(btnGeral){
 
@@ -116,7 +122,8 @@ function avancar(){
     if(perguntaAtual < totalPerguntas){
         perguntaAtual++;
         proximaPergunta();
-    } 
+    }
+    verifica(); 
 }
 
 //função para volta pergunta
@@ -128,11 +135,18 @@ function anterior(){
     } 
 }
 
+function verifica(){
+
+    const verifica = Array.from('comercios').some(checkbox != checkbox.checked && radios != radios.checked);
+    if (!selecionado) {
+        alert("Por favor, selecione pelo menos uma opção antes de continuar.");
+        return;
+    }
+}
+
 //inicia a primeira pergunta
 proximaPergunta();
 
 //adiciona o click aos botões
 document.getElementById('btnAvancar').addEventListener('click', avancar);
 document.getElementById('btnAnterior').addEventListener('click', anterior);
-
- 
