@@ -26,8 +26,8 @@ footer {
     align-items: center;
     padding-top: 2%;
     padding-bottom: 2%;
+    vertical-align: baseline;
 }
-
 .terms {
     display: flex;
     justify-content: space-between;
@@ -44,27 +44,55 @@ footer {
     text-decoration: underline;
     cursor: pointer;
 }
-.radio{
-
-    font-family: "Inter", sans-serif;
-    font-size: 15px;
+.iconeusuario{
+    max-width: 350px;
+    max-height: 350px;
 }
-.container{
-    display: block;
-    background-color: blue;
-    padding: 10%;
-    border-radius: 30px;
-    opacity: 0.5;
-    max-width: 600px;
+.inputusuario,.inputemail,.inputtelefone,.inputdata{
+border-radius: 5px;
+border: rgb(94, 93, 93);
+bottom: 255px;
+}
+.labelnomeusuario,.labelemail,.labeltelefone,.labeldata{
+font-family: "Inter", sans-serif; ;
+color: black;
+display: block; 
+    margin-bottom: 5px;
+}
+.salvarbutton{
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size:13px;
+    border: rgb(26, 83, 227) solid 2px;
+    border-radius: 6px;
+    background-color: rgb(26, 83, 227);
+    height: 40px;
+    width: 100px;
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
+
+}
+.cancelarbutton{
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size:13px;
+    border: rgb(255, 0, 0) solid 2px;
+    border-radius: 6px;
+    background-color: rgb(255, 0, 0);
+    height: 40px;
+    width: 100px;
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
+}
+.containerusuario{
+    background-color: rgb(180, 180, 180);
+    align-items: center;
+    border-radius: 25px;
+    height: 400px;
+    width: 50%;
+    padding: 25px;
+   
 }
 .corpo{
- align-items: center;
-
-}
-.nomeusuarioDIV{
-
-}
-.nomeusuario{
-    font-family: 'Dm Serif Display', sans-serif;
-    font-size: 35px;
+    text-align: center;
 }
