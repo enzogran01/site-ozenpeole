@@ -224,25 +224,81 @@ header .header-left, .header-right {
     display: flex;
     justify-content: right;
     gap: 20px;
+    align-items: center;
+}
+
+.user-options button {
+    padding-block: 16px;
+    padding-inline: 16px;
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--blue);
+    transition: all 0.2s;
+}
+
+.user-options input[type=search] {
+    padding-block: 16px;
+    padding-inline: 16px;
+    width: 40%;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--darker-gray);
+}
+
+.user-options input[type=search]::first-letter {
+    color: var(--blue);
+}
+
+/* Pra tirar o 'x' que fica quando clicado */
+.user-options input[type="search"]::-webkit-search-decoration,
+.user-options input[type="search"]::-webkit-search-cancel-button,
+.user-options input[type="search"]::-webkit-search-results-button,
+.user-options input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+.user-options svg {
+    cursor: text;
+    position: absolute;
+    margin-right: 200px;
+}
+
+.user-options button:hover {
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    background-color: #fff;
 }
 
 .user-section table {
     background-color: #fff;
     width: 100%;
     border: 1px solid var(--gray-two);
+    border-radius: 12px;
+    border-spacing: 0;
 }
 
 .user-section table td, th {
     padding: 10px;
     border: 1px solid var(--gray-two);
     border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.user-actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.user-actions svg {
+    cursor: pointer;
 }
 
 /* CSS do admin table */
 
-.admin-section {
+/* .admin-section {
 
-}
+} */
 
 .loader {
     position: fixed;
