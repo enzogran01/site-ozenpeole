@@ -14,51 +14,46 @@ body {
     background-color: #D5D7DB;
     overflow-x: hidden;
 }
-
-footer {
-    background-color: #313638;
-    color: white;
-    padding: 35px;
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    vertical-align: baseline;
-}
-.terms {
-    display: flex;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-.terms a {
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.terms a:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-.iconeusuario{
-    max-width: 350px;
-    max-height: 350px;
-    justify-items: left;
-}
-.inputusuario,.inputemail,.inputtelefone,.inputdata{
+.inputemail,.inputdata{
 border-radius: 5px;
 border: rgb(94, 93, 93);
-
+width: 250px;
+height: 35px;
 }
 .labelnomeusuario,.labelemail,.labeltelefone,.labeldata{
 font-family: "Inter", sans-serif; ;
 color: black;
 display: block; 
     margin-bottom: 5px;
+}
+.corpo{
+    display: grid;
+    place-items: center;
+
+}
+.buttons{
+ justify-content: end;
+
+}
+.backformulario {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    
+}
+
+.backformulario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: -1;
+    border-radius: 12px;
+    width: 700px;   
+    height: 500px;
 }
 .salvarbutton{
     color: white;
@@ -82,20 +77,18 @@ display: block;
     background-color: rgb(255, 0, 0);
     height: 40px;
     width: 100px;
-    transition: ease-in-out 0.3s;
+    transition: ease-in-out 0.10s;
     cursor: pointer;
 }
-.containerusuario{
-    background-color: rgb(180, 180, 180);
-    align-items: center;
-    border-radius: 25px;
-    height: 500px;
-    width: 50%;
-    padding: 25px;
-    
+.nomeTelefone{
+    display: flex;
+    justify-items: flex-start;
+
 }
-.corpo{
-    display: grid;
-    place-items: center;
+.inputusuario,.inputtelefone{
+border-radius: 10px;
+border:solid rgb(104, 104, 104) 1px;
+width: 250px;
+height: 35px;
 
 }
