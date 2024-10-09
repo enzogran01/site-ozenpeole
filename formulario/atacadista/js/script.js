@@ -14,7 +14,7 @@ function btnVoltar() {
     
 }
 
-//configuração radios
+//configuração botão CONFIRMAR
 function clickGeral(btnGeral){
 
     //entrar no form
@@ -67,6 +67,7 @@ function clickGeral(btnGeral){
     }
 
     window.location.href='../../../visualizarcampanha/diaria/html/visuCampanha.html';
+
 }
 
 
@@ -114,11 +115,39 @@ function proximaPergunta(){
 
 //função para avançar a pergunta
 function avancar(){
+    if(validarRadio() = true){
+        
     if(perguntaAtual < totalPerguntas){
         perguntaAtual++;
         proximaPergunta();
-    } 
+        } 
+    }else{
+        validarRadio();
+    }
 }
+function validarRadio() {
+    const radios = document.getElementsByName('respostas');
+    const mensagemErro = document.getElementById('mensagemErro');
+    let radioSelecionado = false;
+
+    // Verificar se algum radio foi selecionado
+    for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            radioSelecionado = true;
+            break;
+        }
+    }
+
+    if (!radioSelecionado) {
+        mensagemErro.innerHTML = 'Por favor, selecione uma opção.';
+        return false; // Impede o envio do formulário
+    }
+
+    return true; // Permite o envio do formulário
+}
+
+
+
 
 //função para volta pergunta
 function anterior(){
@@ -137,3 +166,37 @@ document.getElementById('btnAvancar').addEventListener('click', avancar);
 document.getElementById('btnAnterior').addEventListener('click', anterior);
 
  
+
+
+
+//função para buscar as campanhas no banco de dados
+function getCampanhas(){
+
+    if (isValid) {
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === 'Login bem-sucedido!') {
+                // armazena o nome do usuário no localStorage
+                localStorage.setItem('userName', data.userName); // `userName` vem do servidor
+                
+                alert('Login realizado com sucesso!');
+                window.location.href = '../homepage/homepage.html'; // redireciona para a homepage
+            } else {
+                alert(data.message); // exibe mensagem de erro
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao fazer login:', error);
+        });
+    }
+}
