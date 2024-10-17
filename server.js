@@ -30,30 +30,83 @@ db.connect((err) => {
 });
 
 // tenta login
-// Rota de login
 app.post('/login', (req, res) => { 
     const { email, password } = req.body;
 
-    const query = 'SELECT * FROM usuario WHERE nm_email = ?';
-    db.query(query, [email], (err, results) => {
+    // verifica se o email ta na tabela do usuario
+    const userQuery = 'SELECT * FROM usuario WHERE nm_email = ?'; // procura no banco o email do usuario
+    db.query(userQuery, [email], (err, userResults) => {  //ele criou uma variavel chamada user e ta dando query pra verificar email e senha
         if (err) {
             console.error('Erro ao consultar o banco de dados:', err);
             return res.status(500).json({ message: 'Erro interno do servidor.' });
         }
 
-        if (results.length === 0) {
-            return res.status(401).json({ message: 'Email ou senha incorretos.' });
-        }
-
-        const user = results[0];
-        if (password === user.cd_senha) {
-            // Login bem-sucedido, retorna o nome do usuário
-            res.status(200).json({ message: 'Login bem-sucedido!', userName: user.nm_usuario });
+        // se  achar user
+        if (userResults.length > 0) {
+            const user = userResults[0];
+            if (password === user.cd_senha) { //verifica se a senha bate com o banco
+                // login do usuario bem-sucedido, volta como status de 'user'
+                return res.status(200).json({ 
+                    message: 'Login bem-sucedido!', 
+                    userName: user.nm_usuario, 
+                    status: 'user' 
+                });
+            } else {
+                return res.status(401).json({ message: 'Email ou senha incorretos.' });
+            }
         } else {
-            return res.status(401).json({ message: 'Email ou senha incorretos.' });
+            // Se não encontrar na tabela de usuários, verifica na tabela de administradores
+            const adminQuery = 'SELECT * FROM administrador WHERE nm_email_adm = ?';
+            db.query(adminQuery, [email], (err, adminResults) => {
+                if (err) {
+                    console.error('Erro ao consultar o banco de dados:', err);
+                    return res.status(500).json({ message: 'Erro interno do servidor.' });
+                }
+
+                // Se o administrador for encontrado
+                if (adminResults.length > 0) {
+                    const admin = adminResults[0];
+                    if (password === admin.cd_senha_adm) {
+                        // Login de administrador bem-sucedido, retorna o status de 'admin'
+                        return res.status(200).json({ 
+                            message: 'Login bem-sucedido!', 
+                            userName: admin.nm_administrador, 
+                            status: 'admin' 
+                        });
+                    } else {
+                        return res.status(401).json({ message: 'Email ou senha incorretos.' });
+                    }
+                } else {
+                    // Se não encontrar nem na tabela de usuários nem na de administradores
+                    return res.status(401).json({ message: 'Email ou senha incorretos.' });
+                }
+            });
         }
     });
 });
+// app.post('/login', (req, res) => { 
+//     const { email, password } = req.body;
+
+//     const query = 'SELECT * FROM usuario WHERE nm_email = ?';
+//     db.query(query, [email], (err, results) => {
+//         if (err) {
+//             console.error('Erro ao consultar o banco de dados:', err);
+//             return res.status(500).json({ message: 'Erro interno do servidor.' });
+//         }
+
+//         if (results.length === 0) {
+//             return res.status(401).json({ message: 'Email ou senha incorretos.' });
+//         }
+
+//         const user = results[0];
+//         if (password === user.cd_senha) {
+//             // Login bem-sucedido, retorna o nome do usuário
+//             res.status(200).json({ message: 'Login bem-sucedido!', userName: user.nm_usuario });
+//         } else {
+//             return res.status(401).json({ message: 'Email ou senha incorretos.' });
+//         }
+//     });
+// });
 
 
 

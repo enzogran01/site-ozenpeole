@@ -76,18 +76,37 @@ form.addEventListener('submit', function validate(e) {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.message === 'Login bem-sucedido!') {
-                // armazena o nome do usuário no localStorage
+            if (data.status === 'admin') {
+                // login de administrador
+                alert('Login realizado como administrador!');
+                window.location.href = '../admin/admin.html'; // vai pro admin html
+            } else if (data.status === 'user') {
+                // login de usuário comum bem-sucedido
                 localStorage.setItem('userName', data.userName); // `userName` vem do servidor
-                
                 alert('Login realizado com sucesso!');
-                window.location.href = '../homepage/homepage.html'; // redireciona para a homepage
+                window.location.href = '../homepage/homepage.html'; // vai pra a homepage
             } else {
-                alert(data.message); // exibe mensagem de erro
+                // credenciais incorretas
+                alert(data.message);
             }
         })
         .catch(error => {
             console.error('Erro ao fazer login:', error);
         });
+        // .then(response => response.json())
+        // .then(data => {
+        //     if (data.message === 'Login bem-sucedido!') {
+        //         // armazena o nome do usuário no localStorage
+        //         localStorage.setItem('userName', data.userName); // `userName` vem do servidor
+                
+        //         alert('Login realizado com sucesso!');
+        //         window.location.href = '../homepage/homepage.html'; // redireciona para a homepage
+        //     } else {
+        //         alert(data.message); // exibe mensagem de erro
+        //     }
+        // })
+        // .catch(error => {
+        //     console.error('Erro ao fazer login:', error);
+        // });
     }
 });
