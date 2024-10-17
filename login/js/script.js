@@ -78,6 +78,7 @@ form.addEventListener('submit', function validate(e) {
         .then(data => {
             if (data.status === 'admin') {
                 // login de administrador
+                localStorage.setItem('userName', data.userName);
                 alert('Login realizado como administrador!');
                 window.location.href = '../admin/admin.html'; // vai pro admin html
             } else if (data.status === 'user') {

@@ -113,7 +113,6 @@ app.post('/login', (req, res) => {
   
 
 // rota que registra um novo usuário (cadastro)
-// Rota para registrar um novo usuário (cadastro) sem bcrypt
 app.post('/register', (req, res) => {
   const { name, email, password, telephone } = req.body;
 

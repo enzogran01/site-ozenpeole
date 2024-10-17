@@ -11,7 +11,7 @@ window.addEventListener('load', () => {
     if (userName) {
         // Mostra a mensagem de boas-vindas
         const welcomeMessage = document.querySelector('.welcome-message');
-        welcomeMessage.textContent = `Bem Vindo  ${userName}!`;
+        welcomeMessage.textContent = `${userName}`;
         welcomeMessage.classList.remove('welcome-message-hidden');
 
         // Esconde os botões de login e cadastro
