@@ -16,6 +16,23 @@ const adminSection = document.querySelector('#admin-section');
 
 let icons = document.querySelectorAll("#path");
 
+function ChangeSectionState(clickedSection, ...sections) {
+    clickedSection.forEach((cSection) => {
+        if (cSection === "#dashboard") {
+            cSection.classList.add("dash-section")
+            sections.classList.add("hidden")
+        }
+        else if (cSection === "#user-section") {
+            cSection.classList.add('user-section')
+            sections.classList.add('hidden')
+        }
+        else if (cSection === "#admin-section") {
+            cSection.classList.add('admin-section')
+            sections.classList.add('hidden')
+        }
+    })
+}
+
 function RemoveButtonClass(...properties) {
     properties.forEach((property) => {
         property.classList.remove("button-active")
@@ -32,35 +49,24 @@ function ChangeIconColor(icons, ...clickedIcons) {
     })
 }
 
-// function changeSectionState(clickedSections, ...sections) {
-//     clickedSections.forEach((clickedSection) => {
-//         clickedSection.classList.add('dashboard')
-//     })
-
-//     sections.forEach((section) => {
-//         section.classList.remove('dashboard')
-//         section.classList.add('hidden')
-//     })
-// }
-
 dashButton.addEventListener('click', () => {
     RemoveButtonClass(userButton, adminButton)
     ChangeIconColor(icons, icons[0])
-    // changeSectionState(dashSection, userSection, adminSection)
+    ChangeSectionState(dashSection, userSection, adminButton)
     dashButton.classList.add('button-active');
 });
 
 userButton.addEventListener('click', () => {
     RemoveButtonClass(dashButton, adminButton)
     ChangeIconColor(icons, icons[1])
-    // changeSectionState(userSection, dashSection, adminSection)
+    ChangeSectionState(userSection, dashSection, adminButton)
     userButton.classList.add('button-active');
 });
 
 adminButton.addEventListener('click', () => {
     RemoveButtonClass(userButton, dashButton)
     ChangeIconColor(icons, icons[2], icons[3], icons[4])
-    // changeSectionState(adminSection, dashSection, userSection)
+    ChangeSectionState(adminSection, dashSection, userSection)
     adminButton.classList.add('button-active');
 });
 
@@ -104,5 +110,3 @@ new Chart(GraphPie, {
         }
     }
 });
-
-

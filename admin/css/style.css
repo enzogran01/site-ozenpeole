@@ -296,9 +296,13 @@ header .header-left, .header-right {
 
 /* CSS do admin table */
 
-/* .admin-section {
-
-} */
+.admin-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 20px;
+}
 
 .loader {
     position: fixed;
