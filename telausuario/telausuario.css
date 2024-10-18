@@ -14,31 +14,36 @@ body {
     background-color: #D5D7DB;
     overflow-x: hidden;
 }
-.inputemail,.inputdata{
-border-radius: 5px;
-border: rgb(94, 93, 93);
-width: 250px;
-height: 35px;
+.inputemail{
+    border-radius: 10px;
+    border:solid rgb(104, 104, 104) 1px;
+    width: 511px;
+    height: 35px;
+}
+.inputdata{
+    border-radius: 10px;
+    border:solid rgb(104, 104, 104) 1px;
+    width: 512px;
+    height: 35px;
+    margin-bottom: 20px;
 }
 .labelnomeusuario,.labelemail,.labeltelefone,.labeldata{
-font-family: "Inter", sans-serif; ;
-color: black;
-display: block; 
-    margin-bottom: 5px;
+    font-family: "Inter", sans-serif; ;
+    color: black;
+    display: block; 
+    margin-bottom: 2px;
 }
 .corpo{
     display: grid;
     place-items: center;
 
 }
-.buttons{
- justify-content: end;
-
-}
 .backformulario {
     position: relative;
     z-index: 1;
     padding: 20px;
+    display: flex;
+    
     
 }
 
@@ -63,12 +68,17 @@ display: block;
     border-radius: 6px;
     background-color: rgb(26, 83, 227);
     height: 40px;
-    width: 100px;
+    width: 150px;
     transition: ease-in-out 0.3s;
     cursor: pointer;
+    margin-right: 5px;
+    transition: all 0.2s;
+}
+.salvarbutton:hover{
+    background-color: rgb(3, 55, 187);
 
 }
-.cancelarbutton{
+.desativarbutton{
     color: white;
     font-family: 'Inter', sans-serif;
     font-size:13px;
@@ -76,19 +86,75 @@ display: block;
     border-radius: 6px;
     background-color: rgb(255, 0, 0);
     height: 40px;
-    width: 100px;
-    transition: ease-in-out 0.10s;
+    width: 150px;
+    transition: all 0.2s;
     cursor: pointer;
+    
+}
+.desativarbutton:hover{
+    background-color: rgb(206, 0, 0);
 }
 .nomeTelefone{
     display: flex;
     justify-items: flex-start;
 
 }
-.inputusuario,.inputtelefone{
+.inputusuario{
 border-radius: 10px;
 border:solid rgb(104, 104, 104) 1px;
 width: 250px;
 height: 35px;
+margin-right: 4px;
 
+}
+.inputtelefone{
+    border-radius: 10px;
+    border:solid rgb(104, 104, 104) 1px;
+    width: 250px;
+    height: 35px;
+
+}
+.usuario{
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: fit-content;
+    height: 9vmax;
+    width: 10.4em;
+    line-height: 1.2em;
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 50px;
+}
+.salvar-desativar{
+    justify-content: space-between;
+    display: flex;
+}
+.nome-usuario{
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 50px;
+    
+}
+.icon-img{
+    max-width: 300px;
+    max-height: 300px;
+}
+.option-campanhas{
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    color:rgb(104, 104, 104);
+}
+.option-sair{
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    color:rgb(104, 104, 104);
+    
+}
+.option-conta{
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    color:rgb(104, 104, 104);
+}
+.options{
+   margin-right: 45px;
+   place-content: center;
 }
