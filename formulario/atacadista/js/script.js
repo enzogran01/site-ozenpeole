@@ -68,6 +68,30 @@ function clickGeral(btnGeral){
 
     window.location.href='../../../visualizarcampanha/diaria/html/visuCampanha.html';
 
+
+
+    //pegando os dados do bancos
+    // Faz a requisição à API
+    fetch('http://localhost:3000/api/dados')
+        .then(response => {
+            // Verifica se a resposta foi bem-sucedida
+            if (!response.ok) {
+                throw new Error('Erro na requisição: ' + response.statusText);
+            }
+            return response.json(); // Converte a resposta para JSON
+        })
+        .then(data => {
+            // Limpa a lista antes de adicionar novos dados
+            lista.innerHTML = '';
+
+            // Adiciona os dados à lista
+            data.forEach(item => {
+                const li = document.createElement('li'); // Cria um novo item de lista
+                li.textContent = item.nome; // Altera 'nome' para a propriedade que você quer exibir
+                lista.appendChild(li); // Adiciona o item à lista
+            });
+        })
+        .catch(error => console.error('Erro:', error)); // Trata erros
 }
 
 
@@ -111,6 +135,8 @@ function proximaPergunta(){
     //atualiza os botões
     document.getElementById('btnAnterior').disabled = perguntaAtual === 1;
     document.getElementById('btnAvancar').disabled = perguntaAtual === totalPerguntas;
+
+    return;
 }
 
 //função para avançar a pergunta
@@ -124,6 +150,8 @@ function avancar(){
     }else{
         validarRadio();
     }
+
+    return;
 }
 function validarRadio() {
     const radios = document.getElementsByName('respostas');
@@ -156,6 +184,7 @@ function anterior(){
         proximaPergunta();
         document.getElementById('campanha').style.display = 'none';
     } 
+    return;
 }
 
 //inicia a primeira pergunta
@@ -200,3 +229,5 @@ function getCampanhas(){
         });
     }
 }
+
+
