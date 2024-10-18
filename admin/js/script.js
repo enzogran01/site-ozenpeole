@@ -111,12 +111,12 @@ window.addEventListener('load', () => {
         document.getElementById('admin-name').textContent = adminName;
     } else {
         alert('Nome do administrador não encontrado. Faça login novamente.');
-        window.location.href = '../login/login.html'; // Redireciona para a página de login
+        window.location.href = '../homepage/homepage.html'; // Redireciona para a página de login
     }
     const logoutButton = document.getElementById('sair');
     logoutButton.addEventListener('click', () => {
         localStorage.removeItem('userName'); // Limpa o localStorage
-        window.location.href = '../login/login.html'; 
+        window.location.href = '../homepage/homepage.html'; 
     });
 });
 
