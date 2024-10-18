@@ -73,10 +73,9 @@ document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
     });
 });
 
-
-const modal = document.querySelector('#modal');
-const noModalButton = document.querySelector('#modal .options #btn-no');
-const yesButtonModal = document.querySelector('#modal .options #btn-yes');
+const modal = document.querySelector('#logonModal');
+const noModalButton = document.querySelector('#logonModal .options #btn-no');
+const yesButtonModal = document.querySelector('#logonModal .options #btn-yes');
 // const openModalButton = document.querySelector('#openDiag');
 
 // openModalButton.addEventListener('click', () => {
