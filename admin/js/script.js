@@ -10,40 +10,27 @@ const dashButton = document.querySelector('#dashButton');
 const userButton = document.querySelector('#userButton');
 const adminButton = document.querySelector('#adminButton');
 
-let dashSection = document.querySelector('#dashboard');
-let userSection = document.querySelector('#user-section');
-let adminSection = document.querySelector('#admin-section');
+const dashSection = document.querySelector('#dashboard');
+const userSection = document.querySelector('#user-section');
+const adminSection = document.querySelector('#admin-section');
 
 let icons = document.querySelectorAll("#path");
 
-function searchInput() {
-    let input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById('searchBox');
-    filter = input.value.toUpperCase();
-    table = document.getElementById('userTable');
-    tr = table.getElementsByTagName('tr');
-
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName('td')[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
-
 function ChangeSectionState(clickedSection, ...sections) {
-    sections.forEach((section) => {
-        console.log(section)
-        section.classList.add('hidden')
-        section.classList.remove('general-section')
+    clickedSection.forEach((cSection) => {
+        if (cSection === "#dashboard") {
+            cSection.classList.add("dash-section")
+            sections.classList.add("hidden")
+        }
+        else if (cSection === "#user-section") {
+            cSection.classList.add('user-section')
+            sections.classList.add('hidden')
+        }
+        else if (cSection === "#admin-section") {
+            cSection.classList.add('admin-section')
+            sections.classList.add('hidden')
+        }
     })
-    clickedSection.classList.remove('hidden')
-    clickedSection.classList.add('general-section')
 }
 
 function RemoveButtonClass(...properties) {
@@ -65,14 +52,14 @@ function ChangeIconColor(icons, ...clickedIcons) {
 dashButton.addEventListener('click', () => {
     RemoveButtonClass(userButton, adminButton)
     ChangeIconColor(icons, icons[0])
-    ChangeSectionState(dashSection, userSection, adminSection)
+    ChangeSectionState(dashSection, userSection, adminButton)
     dashButton.classList.add('button-active');
 });
 
 userButton.addEventListener('click', () => {
     RemoveButtonClass(dashButton, adminButton)
     ChangeIconColor(icons, icons[1])
-    ChangeSectionState(userSection, dashSection, adminSection)
+    ChangeSectionState(userSection, dashSection, adminButton)
     userButton.classList.add('button-active');
 });
 
@@ -133,9 +120,10 @@ window.addEventListener('load', () => {
         alert('Nome do administrador não encontrado. Faça login novamente.');
         window.location.href = '../login/login.html'; // Redireciona para a página de login
     }
+    const logoutButton = document.getElementById('sair');
+    logoutButton.addEventListener('click', () => {
+        localStorage.removeItem('userName'); // Limpa o localStorage
+        window.location.href = '../login/login.html'; 
+    });
 });
 
-document.getElementById("sair").addEventListener("click", () => {
-    localStorage.removeItem("adminName")    
-    window.location.href = "./homepage.html";
-});
