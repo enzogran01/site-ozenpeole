@@ -66,7 +66,7 @@ form.addEventListener('submit', function validate(e) {
     if (isValid) {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
-
+       
         fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
@@ -76,38 +76,51 @@ form.addEventListener('submit', function validate(e) {
         })
         .then(response => response.json())
         .then(data => {
-            if (data.status === 'admin') {
-                // login de administrador
-                localStorage.setItem('userName', data.userName);
-                alert('Login realizado como administrador!');
-                window.location.href = '../admin/admin.html'; // vai pro admin html
-            } else if (data.status === 'user') {
-                // login de usuário comum bem-sucedido
+            if (data.message === 'Login bem-sucedido!') {
+                // Armazena o nome do administrador ou do usuário no localStorage
                 localStorage.setItem('userName', data.userName); // `userName` vem do servidor
-                alert('Login realizado com sucesso!');
-                window.location.href = '../homepage/homepage.html'; // vai pra a homepage
+                
+                if (data.status === 'admin') {
+                    alert('Login de administrador realizado com sucesso!');
+                    window.location.href = '../admin/admin.html'; // redireciona para a página de admin
+                } else {
+                    alert('Login de usuário realizado com sucesso!');
+                    window.location.href = '../homepage/homepage.html'; // redireciona para a homepage
+                }
             } else {
-                // credenciais incorretas
-                alert(data.message);
+                alert(data.message); // exibe mensagem de erro
             }
         })
         .catch(error => {
             console.error('Erro ao fazer login:', error);
         });
+        // fetch('http://localhost:3000/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({ email, password })
+        // })
         // .then(response => response.json())
         // .then(data => {
-        //     if (data.message === 'Login bem-sucedido!') {
-        //         // armazena o nome do usuário no localStorage
+        //     if (data.status === 'admin') {
+        //         // login de administrador
+        //         localStorage.setItem('userName', data.userName);
+        //         alert('Login realizado como administrador!');
+        //         window.location.href = '../admin/admin.html'; // vai pro admin html
+        //     } else if (data.status === 'user') {
+        //         // login de usuário comum bem-sucedido
         //         localStorage.setItem('userName', data.userName); // `userName` vem do servidor
-                
         //         alert('Login realizado com sucesso!');
-        //         window.location.href = '../homepage/homepage.html'; // redireciona para a homepage
+        //         window.location.href = '../homepage/homepage.html'; // vai pra a homepage
         //     } else {
-        //         alert(data.message); // exibe mensagem de erro
+        //         // credenciais incorretas
+        //         alert(data.message);
         //     }
         // })
         // .catch(error => {
         //     console.error('Erro ao fazer login:', error);
         // });
+     
     }
 });

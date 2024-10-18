@@ -110,3 +110,19 @@ new Chart(GraphPie, {
         }
     }
 });
+
+window.addEventListener('load', () => {
+    const adminName = localStorage.getItem('userName'); // Recupera o nome do administrador
+
+    if (adminName) {
+        document.getElementById('admin-name').textContent = adminName;
+    } else {
+        alert('Nome do administrador não encontrado. Faça login novamente.');
+        window.location.href = '../login/login.html'; // Redireciona para a página de login
+    }
+});
+
+document.getElementById("sair").addEventListener("click", () => {
+    localStorage.removeItem("adminName")    
+    window.location.href = "./homepage.html";
+});
