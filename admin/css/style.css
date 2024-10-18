@@ -146,17 +146,17 @@ header .header-left, .header-right {
 
 /* CSS da Dashboard */
 
-.content {
-    display: flex;
-    width: 100%;
-}
-
-.dash-section {
+.general-section {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 100%;
     padding: 20px;
+}
+
+.content {
+    display: flex;
+    width: 100%;
 }
 
 .qtd-info {
@@ -211,12 +211,8 @@ header .header-left, .header-right {
 
 /* CSS do user table */
 
-.user-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    padding: 20px;
+.user-title {
+    font-size: 30px;
 }
 
 .user-options {
@@ -270,7 +266,7 @@ header .header-left, .header-right {
     background-color: #fff;
 }
 
-.user-section table {
+.user-table table {
     background-color: #fff;
     width: 100%;
     border: 1px solid var(--gray-two);
@@ -278,7 +274,7 @@ header .header-left, .header-right {
     border-spacing: 0;
 }
 
-.user-section table td, th {
+.user-table table td, th {
     padding: 10px;
     border: 1px solid var(--gray-two);
     border-collapse: collapse;
@@ -295,14 +291,6 @@ header .header-left, .header-right {
 }
 
 /* CSS do admin table */
-
-.admin-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    padding: 20px;
-}
 
 .loader {
     position: fixed;
