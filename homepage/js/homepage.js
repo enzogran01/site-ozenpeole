@@ -1,9 +1,6 @@
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
-    loader.addEventListener('transitionend', () => {
-        document.body.removeChild(loader);
-    });
 
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
@@ -27,20 +24,20 @@ window.addEventListener('load', () => {
     }
 });
 
-document.getElementById("sair").addEventListener("click", () => {
-    localStorage.removeItem("userName")
+// document.getElementById("sair").addEventListener("click", () => {
+//     localStorage.removeItem("userName")
     
-    document.getElementById('login').classList.remove("hidden");
-    document.getElementById('cadastro').classList.remove("hidden");
+//     document.getElementById('login').classList.remove("hidden");
+//     document.getElementById('cadastro').classList.remove("hidden");
     
-    // Mostra novamente o botão de cadastro laranja na página inicial após logout
-    const cadastroBtn = document.getElementById('cadastro-btn');
-    if (cadastroBtn) {
-        cadastroBtn.style.display = "block"; // Exibir o botão de cadastro de novo
-    }
+//     // Mostra novamente o botão de cadastro laranja na página inicial após logout
+//     const cadastroBtn = document.getElementById('cadastro-btn');
+//     if (cadastroBtn) {
+//         cadastroBtn.style.display = "block"; // Exibir o botão de cadastro de novo
+//     }
 
-    window.location.href = "./homepage.html";
-});
+//     window.location.href = "./homepage.html";
+// });
 
 document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
     box.addEventListener('mouseenter', () => {
@@ -73,7 +70,7 @@ document.querySelectorAll('.why-box-blue, .why-box-orange').forEach(box => {
     });
 });
 
-const modal = document.querySelector('#logonModal');
+const modal = document.getElementById('logonModal');
 const noModalButton = document.querySelector('#logonModal .options #btn-no');
 const yesButtonModal = document.querySelector('#logonModal .options #btn-yes');
 // const openModalButton = document.querySelector('#openDiag');

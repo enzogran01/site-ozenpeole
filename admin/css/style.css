@@ -144,8 +144,6 @@ header .header-left, .header-right {
     transition: all 0.3s;
 }
 
-/* CSS da Dashboard */
-
 .general-section {
     display: flex;
     flex-direction: column;
@@ -153,6 +151,8 @@ header .header-left, .header-right {
     width: 100%;
     padding: 20px;
 }
+
+/* CSS da Dashboard */
 
 .content {
     display: flex;
@@ -291,6 +291,85 @@ header .header-left, .header-right {
 }
 
 /* CSS do admin table */
+
+.admin-title {
+    font-size: 30px;
+}
+
+.admin-options {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+    align-items: center;
+}
+
+.admin-options button {
+    padding-block: 16px;
+    padding-inline: 16px;
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--blue);
+    transition: all 0.2s;
+}
+
+.admin-options input[type=search] {
+    padding-block: 16px;
+    padding-inline: 16px;
+    width: 40%;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--darker-gray);
+}
+
+.admin-options input[type=search]::first-letter {
+    color: var(--blue);
+}
+
+/* Pra tirar o 'x' que fica quando clicado */
+.admin-options input[type="search"]::-webkit-search-decoration,
+.admin-options input[type="search"]::-webkit-search-cancel-button,
+.admin-options input[type="search"]::-webkit-search-results-button,
+.admin-options input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+.admin-options svg {
+    cursor: text;
+    position: absolute;
+    margin-right: 245px;
+}
+
+.admin-options button:hover {
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    background-color: #fff;
+}
+
+.admin-table table {
+    background-color: #fff;
+    width: 100%;
+    border: 1px solid var(--gray-two);
+    border-radius: 12px;
+    border-spacing: 0;
+}
+
+.admin-table table td, th {
+    padding: 10px;
+    border: 1px solid var(--gray-two);
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.admin-actions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.admin-actions svg {
+    cursor: pointer;
+}
 
 .loader {
     position: fixed;
