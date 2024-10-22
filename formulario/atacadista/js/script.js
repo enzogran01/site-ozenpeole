@@ -14,87 +14,78 @@ function btnVoltar() {
     
 }
 
-//configuração botão CONFIRMAR
+//click para recolher as informações das radios e armazenar nas variáveis
 function clickGeral(btnGeral){
 
-    //entrar no form
-    let formGeral = document.getElementById("respostas");
+        //entrar no form
+        let formGeral = document.getElementById("respostas");
 
-    // função para pegar as repostas
-    function obterResposta(name){
-        const pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
-        console.log(`Selecionado para "${name}":`, pegandoValor ? pegandoValor.value : 'Nenhum selecionado');
-        return pegandoValor ? pegandoValor.value : '';
-    }
-
-    //joga cada resposta para a sua devida variável
-        let idade = obterResposta('idade')
-        let local = obterResposta('local')
-        let social = obterResposta('social')
-        let venda = obterResposta('venda')
-        let preco = obterResposta('preco')
-        let propaganda = obterResposta('propaganda')
-
-    //joga todas as respostas para a variável "geral"
-    let geral = {
-        idade : idade,
-        local : local,
-        social : social,
-        venda : venda,
-        preco : preco,
-        propaganda : propaganda
-};
-    //'campanha' se torna a variável com todas as variáveis
-    let campanha = 
-        idade +
-        local +
-        social +
-        venda +
-        preco +
-        propaganda;
-
-    // Exibe os valores (ou faça o que desejar com eles)
-        console.log("Nº da campanha:", campanha);
-
-    //fazendo aparecer a primeira pergunta
-    for(let i = 1; i <= totalPerguntas; i++){
-        document.getElementById(`box-pergunta${i}`).style.display = 'none';
+        // função para pegar as respostas
+        function obterResposta(name){
+            const pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
+            return pegandoValor ? pegandoValor.value : '';
         }
 
-    //condição para o botão não funcionar quando já tiver na ultima página
-    if(perguntaAtual === totalPerguntas){
-        document.getElementById('btnGeral').style.display = 'none';
-    }
+        //joga cada resposta para a sua devida variável
+        let idade = obterResposta('idade');
+        let local = obterResposta('local');
+        let social = obterResposta('social');
+        let venda = obterResposta('venda');
+        let preco = obterResposta('preco');
+        let propaganda = obterResposta('propaganda');
 
-    window.location.href='../../../visualizarcampanha/diaria/html/visuCampanha.html';
-
-
-
-    //pegando os dados do bancos
-    // Faz a requisição à API
-    fetch('http://localhost:3000/api/dados')
+        // Enviar os dados para o backend via fetch
+        fetch('http://127.0.0.1:3001/generate-campaign', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                idade,
+                local,
+                social,
+                venda,
+                preco,
+                propaganda,
+            }),
+        })
         .then(response => {
-            // Verifica se a resposta foi bem-sucedida
+            // Verifica se a resposta foi bem-sucedida (códigos de status 200-299)
             if (!response.ok) {
-                throw new Error('Erro na requisição: ' + response.statusText);
+                // Se não for bem-sucedida, lança um erro
+                throw new Error('Erro na resposta do servidor: ' + response.status);
             }
-            return response.json(); // Converte a resposta para JSON
+            // Caso contrário, tenta converter a resposta em JSON
+            return response.json();
         })
         .then(data => {
-            // Limpa a lista antes de adicionar novos dados
-            lista.innerHTML = '';
+            // Exibir a campanha gerada no console e na interface
+            console.log("Campanha Gerada:", data.campaign);
+            document.getElementById('resultado').textContent = data.campaign;
 
-            // Adiciona os dados à lista
-            data.forEach(item => {
-                const li = document.createElement('li'); // Cria um novo item de lista
-                li.textContent = item.nome; // Altera 'nome' para a propriedade que você quer exibir
-                lista.appendChild(li); // Adiciona o item à lista
-            });
+            // Armazena a campanha no localStorage antes de redirecionar
+        localStorage.setItem('campanhaGerada', data.campaign);
+
+        // Redireciona para RESULTADO.html
+        location.href = 'RESULTADO.html';
+
         })
-        .catch(error => console.error('Erro:', error)); // Trata erros
+        .catch(error => {
+            console.error('Erro ao gerar a campanha:', error);
+            alert('Erro ao gerar a campanha.'); // Mensagem de erro para o usuário
+        });
+
+        //fazendo aparecer a primeira pergunta
+        for(let i = 1; i <= totalPerguntas; i++){
+            document.getElementById(`box-pergunta${i}`).style.display = 'none';
+        }
+
+        //condição para o botão não funcionar quando já tiver na ultima página
+        if(perguntaAtual === totalPerguntas){
+            document.getElementById('btnGeral').style.display = 'none';
+        }
+
 }
-
-
 
 
 
@@ -139,40 +130,36 @@ function proximaPergunta(){
     return;
 }
 
-//função para avançar a pergunta
-function avancar(){
-    if(validarRadio() = true){
-        
+
+    //função para avançar a pergunta
+function avanco(){
     if(perguntaAtual < totalPerguntas){
         perguntaAtual++;
         proximaPergunta();
-        } 
-    }else{
-        validarRadio();
     }
-
-    return;
 }
-function validarRadio() {
-    const radios = document.getElementsByName('respostas');
-    const mensagemErro = document.getElementById('mensagemErro');
-    let radioSelecionado = false;
 
-    // Verificar se algum radio foi selecionado
-    for (let i = 0; i < radios.length; i++) {
-        if (radios[i].checked) {
-            radioSelecionado = true;
-            break;
+    function validarRadio() {
+        const radios = document.getElementsByName('respostas');
+        const mensagemErro = document.getElementById('mensagemErro');
+        let radioSelecionado = false;
+
+        // Verificar se algum radio foi selecionado
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                radioSelecionado = true;
+                break;
+            }
         }
+
+        if (!radioSelecionado) {
+            mensagemErro.innerHTML = 'Por favor, selecione uma opção.';
+            return false; // Impede o envio do formulário
+        }
+
+        return true; // Permite o envio do formulário
     }
 
-    if (!radioSelecionado) {
-        mensagemErro.innerHTML = 'Por favor, selecione uma opção.';
-        return false; // Impede o envio do formulário
-    }
-
-    return true; // Permite o envio do formulário
-}
 
 
 

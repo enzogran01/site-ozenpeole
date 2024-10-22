@@ -1,3 +1,7 @@
+require('dotenv').config();
+const apiKey = process.env.OPENAI_API_KEY; //api do chat gpt
+
+
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
 
@@ -14,13 +18,13 @@ function btnVoltar() {
     
 }
 
-//configuração radios
+//click para recolher as informações das radios e armazenar nas variáveis
 function clickGeral(btnGeral){
 
     //entrar no form
     let formGeral = document.getElementById("respostas");
 
-    // função para pegar as repostas
+    // função para pegar as respostas
     function obterResposta(name){
         const pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
         console.log(`Selecionado para "${name}":`, pegandoValor ? pegandoValor.value : 'Nenhum selecionado');
@@ -28,49 +32,51 @@ function clickGeral(btnGeral){
     }
 
     //joga cada resposta para a sua devida variável
-        let idade = obterResposta('idade')
-        let local = obterResposta('local')
-        let social = obterResposta('social')
-        let venda = obterResposta('venda')
-        let preco = obterResposta('preco')
-        let propaganda = obterResposta('propaganda')
+    let idade = obterResposta('idade');
+    let local = obterResposta('local');
+    let social = obterResposta('social');
+    let venda = obterResposta('venda');
+    let preco = obterResposta('preco');
+    let propaganda = obterResposta('propaganda');
 
     //joga todas as respostas para a variável "geral"
     let geral = {
-        idade : idade,
-        local : local,
-        social : social,
-        venda : venda,
-        preco : preco,
-        propaganda : propaganda
-};
-    //'campanha' se torna a variável com todas as variáveis
-    let campanha = 
-        idade +
-        local +
-        social +
-        venda +
-        preco +
-        propaganda;
+        idade: idade,
+        local: local,
+        social: social,
+        venda: venda,
+        preco: preco,
+        propaganda: propaganda
+    };
 
-    // Exibe os valores (ou faça o que desejar com eles)
-        console.log("Nº da campanha:", campanha);
+    // Enviar os dados para o backend via fetch
+    fetch('/generate-campaign', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(geral),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Exibir a campanha gerada no console e na interface
+        console.log("Campanha Gerada:", data.campaign);
+        document.getElementById('resultado').textContent = data.campaign;
+    })
+    .catch(error => {
+        console.error('Erro ao gerar a campanha:', error);
+    });
 
     //fazendo aparecer a primeira pergunta
     for(let i = 1; i <= totalPerguntas; i++){
         document.getElementById(`box-pergunta${i}`).style.display = 'none';
-        }
+    }
 
     //condição para o botão não funcionar quando já tiver na ultima página
     if(perguntaAtual === totalPerguntas){
         document.getElementById('btnGeral').style.display = 'none';
     }
-
-    window.location.href='../../../visualizarcampanha/diaria/html/visuCampanha.html';
 }
-
-
-
 
 
 let perguntaAtual = 1;

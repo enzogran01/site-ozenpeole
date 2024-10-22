@@ -1,16 +1,17 @@
 // importa os pacotes necessários
+require('dotenv').config();
 const express = require('express');
+const axios = require('axios');
+const cors = require('cors'); // Se você ainda não tiver, instale o cors
 const mysql = require('mysql2');
-const cors = require('cors');
-const bodyParser = require('body-parser');
 
-// começa app express
 const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-// Middleware para resolver CORS
+const mysqlPort = 3000;  // Porta para o MySQL
+const apiPort = 3001;    // Porta para a API OpenAI 
+
+// Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors()); // Habilita CORS
 
 // configura pra conectar com o banco de dados MySQL
 const db = mysql.createConnection({
@@ -140,3 +141,67 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000');
 });
+
+
+
+//configuração da API do chat gpt
+// Rota para gerar campanha (API OpenAI)
+const openAIApp = express(); // Cria uma nova instância do Express para a API OpenAI
+openAIApp.use(express.json());
+openAIApp.use(cors()); // Habilita CORS para a API OpenAI
+
+const apiKey = process.env.OPENAI_API_KEY; // Certifique-se de ter a chave da API no arquivo .env
+console.log('Chave da API:', apiKey); // Para depuração
+
+// Função para gerar a campanha de marketing
+async function getMarketingCampaign(idade, local, social, venda, preco, propaganda) {
+    const prompt = `
+        Crie uma campanha de marketing para uma loja com as seguintes informações:
+        - Público-alvo: ${idade} anos.
+        - Localização: ${local}.
+        - Rede social mais utilizada: ${social}.
+        - Vendas ${venda === 'presencial' ? 'presenciais' : 'online'}.
+        - Ticket médio: ${preco}.
+        - Já faz marketing? ${propaganda ? 'Sim' : 'Não'}.
+    `;
+
+    console.log("Prompt enviado:", prompt); // Para depuração
+    
+    try {
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+            model: 'gpt-3.5-turbo',
+            messages: [{ role: 'user', content: prompt }],
+        }, {
+            headers: {
+                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response.data.choices[0].message.content;
+    } catch (error) {
+        console.error('Erro ao chamar a API do ChatGPT:', error);
+        throw new Error('Erro ao gerar a campanha de marketing.'); // Lança um erro para ser capturado no front-end
+    }
+}
+
+// Rota para gerar campanha
+app.post('/generate-campaign', async (req, res) => {
+    const { idade, local, social, venda, preco, propaganda } = req.body;
+
+    console.log("Dados recebidos:", { idade, local, social, venda, preco, propaganda });
+
+    try {
+        const campaign = await getMarketingCampaign(idade, local, social, venda, preco, propaganda);
+        res.json({ campaign });
+    } catch (error) {
+        console.error('Erro ao gerar campanha:', error.response ? error.response.data : error.message);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Inicia o servidor
+app.listen(3001, () => {
+    console.log(`Servidor rodando em http://localhost:${apiPort}`);
+});
+

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Campanha Gerada:</h2>
+    <p id="resultado"></p>
+
+    <script>
+        // Recupera a campanha armazenada no localStorage
+        const campanhaGerada = localStorage.getItem('campanhaGerada');
+        if (campanhaGerada) {
+            document.getElementById('resultado').textContent = campanhaGerada; // Mostra a campanha
+        } else {
+            document.getElementById('resultado').textContent = 'Nenhuma campanha gerada.'; // Mensagem caso não tenha
+        }
+    </script>
+</body>
+</html>
