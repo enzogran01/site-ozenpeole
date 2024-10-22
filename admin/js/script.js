@@ -1,8 +1,21 @@
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
-    loader.addEventListener('transitionend', () => {
-        document.body.removeChild(loader);
+});
+
+window.addEventListener('load', () => {
+    const adminName = localStorage.getItem('userName'); // Recupera o nome do administrador
+
+    if (adminName) {
+        document.getElementById('admin-name').textContent = adminName;
+    } else {
+        alert('Nome do administrador não encontrado. Faça login novamente.');
+        window.location.href = '../homepage/homepage.html'; // Redireciona para a página de login
+    }
+    const logoutButton = document.getElementById('sair');
+    logoutButton.addEventListener('click', () => {
+        localStorage.removeItem('userName'); // Limpa o localStorage
+        window.location.href = '../homepage/homepage.html'; 
     });
 });
 
@@ -101,6 +114,18 @@ adminButton.addEventListener('click', () => {
     adminButton.classList.add('button-active');
 });
 
+const addUserButton = document.getElementById('addUserButton');
+const addUserModal = document.getElementById('addUserModal');
+const closeUserButton = document.getElementById('closeUserModal');
+
+addUserButton.addEventListener('click', () => {
+    addUserModal.showModal();
+})
+
+closeUserButton.addEventListener('click', () => {
+    addUserModal.close();
+})
+
 const GraphBar = document.getElementById('GraphBar');
 const GraphPie = document.getElementById('GraphPie');
 
@@ -126,10 +151,10 @@ new Chart(GraphBar, {
 new Chart(GraphPie, {
     type: 'pie',
     data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green'],
+        labels: ['Atacadista', 'Automobilístico', 'Varejista'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 20, 15],
+            data: [12, 19, 20],
             borderWidth: 3
         }]
     },
@@ -141,20 +166,3 @@ new Chart(GraphPie, {
         }
     }
 });
-
-window.addEventListener('load', () => {
-    const adminName = localStorage.getItem('userName'); // Recupera o nome do administrador
-
-    if (adminName) {
-        document.getElementById('admin-name').textContent = adminName;
-    } else {
-        alert('Nome do administrador não encontrado. Faça login novamente.');
-        window.location.href = '../homepage/homepage.html'; // Redireciona para a página de login
-    }
-    const logoutButton = document.getElementById('sair');
-    logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('userName'); // Limpa o localStorage
-        window.location.href = '../homepage/homepage.html'; 
-    });
-});
-

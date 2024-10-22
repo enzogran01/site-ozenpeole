@@ -211,6 +211,85 @@ header .header-left, .header-right {
 
 /* CSS do user table */
 
+#addUserModal[open] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    border-radius: 12px;
+    padding-inline: 30px;
+    padding-block: 30px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#addUserModal[open]::backdrop {
+    background-color: rgb(0 0 0 / .3);
+}
+
+.user-modal-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-modal-title h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 9px;
+    font-size: 15px;
+    outline: none;
+    border: 2px solid var(--gray-two);
+    border-radius: 5px;
+    transition: all 0.15s;
+}
+
+.form-group input:focus {
+    border: 2px solid var(--darker-gray);
+}
+
+.add-user-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-user-option button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background-color: var(--blue);
+    color: #fff;
+    transition: all 0.2s;
+}
+
+.add-user-option button:hover {
+    background-color: #fff;
+    color: var(--blue);
+    border: 2px solid var(--blue);
+}
+
+.user-modal-title svg {
+    cursor: pointer;
+}
+
 .user-title {
     font-size: 30px;
 }
@@ -371,6 +450,22 @@ header .header-left, .header-right {
     cursor: pointer;
 }
 
+/* btn logut */
+.btn-logout {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #d32f2f;
+}
+
 .loader {
     position: fixed;
     top: 0;
@@ -404,20 +499,4 @@ header .header-left, .header-right {
     to {
         transform: rotate(1turn);
     }
-}
-
-/* btn logut */
-.btn-logout {
-    padding: 10px 20px;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.btn-logout:hover {
-    background-color: #d32f2f;
 }

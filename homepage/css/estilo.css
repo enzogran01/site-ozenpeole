@@ -30,7 +30,7 @@ html {
     scroll-behavior: smooth;
 }
 
-dialog[open] {
+#logonModal[open] {
     display: block;
     justify-content: center;
     border: none;
@@ -42,28 +42,28 @@ dialog[open] {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-dialog::backdrop {
+#logonModal::backdrop {
     background-color: rgb(0 0 0 / .3);
 }
 
-dialog[open] .text {
+#logonModal[open] .text {
     display: block;
     font-family: 'Inter', sans-serif;
     justify-content: center;
 }
 
-dialog[open] .text h1 {
+#logonModal[open] .text h1 {
     margin-top: 30px;
     margin-bottom: 0;
     text-align: center;
 }
-dialog[open] .text p {
+#logonModal[open] .text p {
     margin-top: 10px;
     text-align: center;
     width: 330px;
 }
 
-dialog[open] .img {
+#logonModal[open] .img {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,13 +73,13 @@ dialog[open] .img {
     margin: 0 auto;
 }
 
-dialog[open] .options {
+#logonModal[open] .options {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-dialog[open] .options .btn-yes {
+#logonModal[open] .options .btn-yes {
     font-size: 14px;
     color: #fff;
     background-color: #1A53E3;
@@ -91,7 +91,7 @@ dialog[open] .options .btn-yes {
 }
 
 
-dialog[open] .options .btn-no {
+#logonModal[open] .options .btn-no {
     font-size: 14px;
     border: none;
     background-color: rgb(216, 216, 216);
@@ -101,11 +101,11 @@ dialog[open] .options .btn-no {
     transition: all 0.2s;
 }
 
-dialog[open] .options .btn-yes:hover {
+#logonModal[open] .options .btn-yes:hover {
     box-shadow:0 0 10px #1A53E3;
 }
 
-dialog[open] .options .btn-no:hover {
+#logonModal[open] .options .btn-no:hover {
     box-shadow:0 0 10px black;
 }
 
