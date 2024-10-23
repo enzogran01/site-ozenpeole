@@ -13,19 +13,22 @@ body {
     padding: 0;
     background-color: #D5D7DB;
     overflow-x: hidden;
-}
+    min-height: 100vh;
+} 
 .inputemail{
     border-radius: 10px;
-    border:solid rgb(104, 104, 104) 1px;
+    border:solid rgb(94, 93, 93) 1px;
     width: 511px;
     height: 35px;
+    background-color:rgb(217, 217, 217);
 }
 .inputdata{
     border-radius: 10px;
-    border:solid rgb(104, 104, 104) 1px;
+    border:solid rgb(94, 93, 93) 1px;
     width: 512px;
     height: 35px;
     margin-bottom: 20px;
+    background-color:rgb(217, 217, 217);
 }
 .labelnomeusuario,.labelemail,.labeltelefone,.labeldata{
     font-family: "Inter", sans-serif; ;
@@ -39,26 +42,16 @@ body {
 
 }
 .backformulario {
-    position: relative;
+    margin-top: 12%;;
     z-index: 1;
     padding: 20px;
     display: flex;
-    
-    
-}
-
-.backformulario::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.5);
-    z-index: -1;
-    border-radius: 12px;
-    width: 700px;   
-    height: 500px;
+    align-items: center; 
+    background-color: rgba(255, 255, 255, 0.5); 
+    border-radius: 20px; 
+    width: 1000px; 
+    height: 350px;
+    padding-left: 50px;
 }
 .salvarbutton{
     color: white;
@@ -99,20 +92,13 @@ body {
     justify-items: flex-start;
 
 }
-.inputusuario{
+.inputusuario,.inputtelefone{
 border-radius: 10px;
-border:solid rgb(104, 104, 104) 1px;
+border:solid rgb(94, 93, 93) 1px;
 width: 250px;
 height: 35px;
 margin-right: 4px;
-
-}
-.inputtelefone{
-    border-radius: 10px;
-    border:solid rgb(104, 104, 104) 1px;
-    width: 250px;
-    height: 35px;
-
+background-color:rgb(217, 217, 217);
 }
 .usuario{
     position: relative;
@@ -129,32 +115,90 @@ margin-right: 4px;
     justify-content: space-between;
     display: flex;
 }
-.nome-usuario{
-    font-family: 'Dm Serif Display', sans-serif;
-    font-size: 50px;
-    
-}
+
 .icon-img{
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 350px;
+    max-height: 350px;
 }
-.option-campanhas{
-    font-family: "Inter", sans-serif;
-    font-size: 20px;
-    color:rgb(104, 104, 104);
+.icon-usuario{
+    position: absolute; 
+    top: 12%; 
+    left: 17%;
+    z-index: 2;
 }
-.option-sair{
-    font-family: "Inter", sans-serif;
-    font-size: 20px;
-    color:rgb(104, 104, 104);
-    
-}
-.option-conta{
+.option-campanhas,.option-sair,.option-conta{
     font-family: "Inter", sans-serif;
     font-size: 20px;
     color:rgb(104, 104, 104);
 }
 .options{
-   margin-right: 45px;
+   margin-right: 80px;
    place-content: center;
+}
+.nameuser{
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 60px;
+    top: 13%; 
+    left: 32%;
+    position: absolute; 
+}
+.useremail{
+    font-family: 'Dm Serif Display', sans-serif;
+    font-size: 30px;
+    top: 20%; 
+    left: 32%;
+    position: absolute; 
+}
+footer {
+    background-color: #313638;
+    color: white;
+    padding: 35px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    vertical-align: baseline;
+    position: fixed;
+    bottom: 0; 
+    width: 100%;
+}
+
+.terms {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.terms a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.teste {
+    width: 1%;
+    height: 400px;
+    margin: 5% -100% 8% 0;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.instaIcon{
+    max-width: 39px;
+    max-height: 39px;
+}
+
+.instaIcon:hover {
+    transform: scale(1.1);
 }
