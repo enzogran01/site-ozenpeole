@@ -126,6 +126,18 @@ closeUserButton.addEventListener('click', () => {
     addUserModal.close();
 })
 
+const addAdminModal = document.getElementById('addAdminModal');
+const addAdminButton = document.getElementById('addAdminButton');
+const closeAdminButton = document.getElementById('closeAdminModal');
+
+addAdminButton.addEventListener('click', () => {
+    addAdminModal.showModal();
+})
+
+closeAdminButton.addEventListener('click', () => {
+    addAdminModal.close();
+})
+
 const GraphBar = document.getElementById('GraphBar');
 const GraphPie = document.getElementById('GraphPie');
 
