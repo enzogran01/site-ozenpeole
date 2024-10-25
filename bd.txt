@@ -1,0 +1,82 @@
+CREATE SCHEMA IF NOT EXISTS ozenpeole;
+USE ozenpeole;
+
+-- Tabela administrador
+CREATE TABLE IF NOT EXISTS administrador (
+    id_administrador INT(11) NOT NULL AUTO_INCREMENT,
+    nm_administrador VARCHAR(30) NOT NULL,
+    nm_email_adm VARCHAR(50) NOT NULL,  
+    cd_senha_adm VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id_administrador)
+);
+
+INSERT INTO administrador (nm_administrador, nm_email_adm, cd_senha_adm) VALUES 
+('Enzo', 'enzo.correa@etec.sp.gov.br', 'Supersenha2@'),
+('Leonardo', 'leonardo.oliveira740@etec.sp.gov.br', 'Supersenha3#'),
+('Lorenzo', 'lorenzo.louzada@etec.sp.gov.br', 'Supersenha4$'),
+('Pedro', 'pedro.pereira297@etec.sp.gov.br', 'Supersenha1!');
+
+CREATE TABLE IF NOT EXISTS usuario (
+    id_usuario INT(11) NOT NULL AUTO_INCREMENT,
+    nm_usuario VARCHAR(30) NOT NULL,
+    nm_email VARCHAR(50) NOT NULL,
+    cd_senha VARCHAR(20) NOT NULL,
+    cd_telefone VARCHAR(13) NOT NULL,
+    PRIMARY KEY (id_usuario)
+);
+
+INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone) VALUES 
+('Amélia Jordan', 'ammy@hotmail.com', 'Supersenha123@', '13967890123'),
+('Rogério Bing', 'bingrogerio@hotmail.com', 'Supersenha123@', '13989012345'),
+('Plineo Doce', 'candyplin@hotmail.com', 'Supersenha123@', '13912345678'),
+('Danilo Gentil', 'contatodani@gmail.com', 'Supersenha123@', '13956789012'),
+('Doug Funni', 'cooldoug@outlook.com', 'Supersenha123@', '13934567890'),
+('Denis Alemida', 'empresadenis@outlook.com', 'Supersenha123@', '13987654321'),
+('Gertrude Farofa', 'farofa@outlook.com', 'Supersenha123@', '13978901234'),
+('Dina Frans', 'fransdina@hotmail.com', 'Supersenha123@', '13923456781'),
+('Fernando Pinto', 'fredp@gmail.com', 'Supersenha123@', '13990123456'),
+('Jorge Nitays', 'nitajorge@gmail.com', 'Supersenha123@', '13912345670'),
+('Garry Oldman', 'oldman@hotmail.com', 'Supersenha123@', '13981234567'),
+('Paula Shimeji', 'paula@gmail.com', 'Supersenha123@', '13998765432'),
+('Lisa Shark', 'sharklista@hotmail.com', 'Supersenha123@', '13945678901'),
+('Linda Tenório', 'tenorioconsultoria@gmail.com', 'Supersenha123@', '13923456789');
+
+
+CREATE TABLE campanha_loja_roupa (
+    id_campanha_lojar INT(11) NOT NULL AUTO_INCREMENT,
+    ds_campanha_seg VARCHAR(300) NOT NULL,
+    ds_campanha_ter VARCHAR(300) NOT NULL,
+    ds_campanha_qua VARCHAR(300) NOT NULL,
+    ds_campanha_qui VARCHAR(300) NOT NULL,
+    ds_campanha_sex VARCHAR(300) NOT NULL,
+    ds_campanha_sab VARCHAR(300) NOT NULL,
+    ds_campanha_dom VARCHAR(300) NOT NULL,
+    id_usuario INT(11),
+    id_administrador INT(11),
+    id_contrato INT(11),
+    PRIMARY KEY (id_campanha_lojar),
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_administrador) REFERENCES administrador(id_administrador));
+
+INSERT INTO campanha_loja_roupa (ds_campanha_seg, ds_campanha_ter, ds_campanha_qua, ds_campanha_qui, ds_campanha_sex, ds_campanha_sab, ds_campanha_dom) VALUES 
+('Imagem/Vídeo: Uma imagem atraente anunciando a semana especial com uma breve descrição.
+Texto: “ Começa hoje a nossa Semana Especial! Prepare-se para novos estilos e ofertas incríveis. Fique ligado e não perca nada! #SemanaEspecial [NomeDaLoja]”
+Hora: Instagram/Facebook: 10h00 ou 19h00', 
+'Imagem/Vídeo: Foto de um “look do dia” com as peças mais recentes ou em destaque.
+Texto: “ Look do Dia  Adote o estilo com nosso [Nome do Produto]! Disponível agora na nossa loja. #LookDoDia #Fashion [NomeDaLoja]”
+Hora: Instagram/Facebook: 11h00 ou 20h00', 
+'Imagem/Vídeo: Uma imagem ou um pequeno vídeo com dicas de estilo usando produtos da loja.
+Texto: “ Dica de Estilo  Combine nosso [Nome do Produto] com [outro produto] para um look incrível! #DicaDeEstilo [NomeDaLoja]”
+Hora: Instagram/Facebook: 10h00 ou 21h00', 
+'Imagem/Vídeo: Imagem destacando um produto em promoção.
+Texto: “ Promoção Especial de Quinta  [Nome do Produto] com [desconto]! Só hoje! #Promoção #Desconto [NomeDaLoja]”
+Hora: Instagram/Facebook: 10h00 ou 18h00', 
+'Imagem/Vídeo: Repostar uma foto de um cliente usando um produto da loja (com permissão).
+Texto: “ Destaque da Semana  Veja como [Nome do Cliente] arrasou com nosso [Nome do Produto]! #ClienteFeliz #Moda [NomeDaLoja]”
+Hora: Instagram/Facebook: 11h00 ou 20h00', 
+'Imagem/Vídeo: Collage ou slideshow das novas peças da semana.
+Texto: “ Novidades da Semana  Confira o que chegou de novo em nossa loja! #Novidades [NomeDaLoja]”
+Hora: Instagram/Facebook: 10h00 ou 15h00', 
+'Imagem/Vídeo: Imagem de agradecimento ou resumo dos destaques da semana.
+Texto: “ Agradecemos por acompanhar nossa Semana Especial! Esperamos que tenha gostado. Fique atento para mais novidades! #Agradecimento [NomeDaLoja]”
+Hora: Instagram/Facebook: 11h00 ou 20h00');

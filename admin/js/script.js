@@ -138,6 +138,18 @@ closeAdminButton.addEventListener('click', () => {
     addAdminModal.close();
 })
 
+// const editUserModal = document.getElementById('editUserModal');
+// const editUserSvg = document.querySelectorAll('#editUserSvg');
+
+// function openModalId(...id_modal){
+//     id_modal.forEach((edit) => {
+//         editUserModal.showModal();
+//     })
+// }
+
+// openModalId(document.querySelectorAll('#editUserSvg'));
+
+
 const GraphBar = document.getElementById('GraphBar');
 const GraphPie = document.getElementById('GraphPie');
 
