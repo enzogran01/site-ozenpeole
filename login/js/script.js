@@ -82,6 +82,8 @@ form.addEventListener('submit', function validate(e) {
                 
                 if (data.status === 'admin') {
                     alert('Login de administrador realizado com sucesso!');
+
+                    
                     window.location.href = '../admin/admin.html'; // redireciona para a página de admin
                 } else {
                     alert('Login de usuário realizado com sucesso!');

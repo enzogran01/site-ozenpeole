@@ -204,4 +204,3 @@ app.post('/generate-campaign', async (req, res) => {
 app.listen(3001, () => {
     console.log(`Servidor rodando em http://localhost:${apiPort}`);
 });
-
