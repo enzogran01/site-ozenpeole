@@ -14,6 +14,7 @@ function btnVoltar() {
     
 }
 
+const OPENAI_API_KEY = "sk-kFy28YHxvbpany4sNJliwb7lkkXFPYoxvbqGig6Y25T3BlbkFJRGQsFitMqjO0iRKls1CigtejOibt7KBfLGJVH3ON8A";
 //click para recolher as informações das radios e armazenar nas variáveis
 function clickGeral(btnGeral){
 
@@ -22,7 +23,7 @@ function clickGeral(btnGeral){
 
         // função para pegar as respostas
         function obterResposta(name){
-            const pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
+            let pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
             return pegandoValor ? pegandoValor.value : '';
         }
 
@@ -35,12 +36,17 @@ function clickGeral(btnGeral){
         let propaganda = obterResposta('propaganda');
 
         // Enviar os dados para o backend via fetch
-        fetch('http://127.0.0.1:3001/generate-campaign', {
-            method: 'POST',
+        fetch('https://api.openai.com/v1/chat/completions', {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "Autorization": "Bearer " + OPENAI_API_KEY,
             },
             body: JSON.stringify({
+                model: "text-davinci-003",
+                
+                prompt:
                 idade,
                 local,
                 social,
@@ -178,7 +184,7 @@ function anterior(){
 proximaPergunta();
 
 //adiciona o click aos botões
-document.getElementById('btnAvancar').addEventListener('click', avancar);
+document.getElementById('btnAvancar').addEventListener('click', avanco);
 document.getElementById('btnAnterior').addEventListener('click', anterior);
 
  
