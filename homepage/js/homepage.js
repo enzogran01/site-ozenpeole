@@ -7,14 +7,14 @@ window.addEventListener('load', () => {
 
     if (userName) {
         // Mostra a mensagem de boas-vindas
-        const welcomeMessage = document.querySelector('.welcome-message');
-        welcomeMessage.textContent = `${userName}`;
-        welcomeMessage.classList.remove('welcome-message-hidden');
+        const user = document.querySelector('#user');
+        user.textContent = `${userName}`;
+        user.classList.remove('hidden');
 
         // Esconde os botões de login e cadastro
         document.getElementById('login').classList.add("hidden");
         document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
-        document.getElementById('sair').classList.remove("hidden");
+        // document.getElementById('sair').classList.remove("hidden");
         
         // Esconde o botão de cadastro laranja na página inicial
         const cadastroBtn = document.getElementById('cadastro-btn');
@@ -87,8 +87,29 @@ yesButtonModal.addEventListener('click', () => {
 });
 
 const userModal = document.getElementById('userModal');
-const openUserDiag = document.getElementById('openUserDiag');
+const user = document.getElementById('user');
 
-openUserDiag.addEventListener('click', () => {
+function openModalBelowElement () {
+    const rect = user.getBoundingClientRect();
+
+    userModal.style.top = `${rect.bottom + window.scrollY}px`;
+    userModal.style.left = `${rect.left + window.scrollX}px`;
+
     userModal.showModal();
-})
+}
+
+user.addEventListener('click', openModalBelowElement);
+
+userModal.addEventListener('click', (event) => {
+    const dialogRect = userModal.getBoundingClientRect();
+
+    const isOutsideClick =
+        event.clientX < dialogRect.left ||
+        event.clientX > dialogRect.right ||
+        event.clientY < dialogRect.top ||
+        event.clientY > dialogRect.bottom;
+
+    if (isOutsideClick) {
+        userModal.close();
+    }
+});
