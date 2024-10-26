@@ -102,11 +102,73 @@ html {
 }
 
 #logonModal[open] .options .btn-yes:hover {
-    box-shadow:0 0 10px #1A53E3;
+    box-shadow:0 0 10px black;
+    background-color: #1543b7;
 }
 
 #logonModal[open] .options .btn-no:hover {
     box-shadow:0 0 10px black;
+    background-color: rgb(168, 168, 168);;
+}
+
+#userModal[open] {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#userModal[open]::backdrop {
+    background: none;
+}
+
+#userModal[open] .user-options {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0px;
+    font-family: "Inter", sans-serif;
+}
+
+#userModal[open] .user-options .config-button, .campaign-button {
+    color: black;
+    background-color: transparent;
+    border: transparent solid 2px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+#userModal[open] .user-options .config-button:hover, .campaign-button:hover {
+    background-color: #1A53E3;
+    border: #1A53E3 solid 2px;
+    color: #fff;
+}
+
+#userModal[open] .user-options .exit-button {
+    color: black;
+    background-color: transparent;
+    border: transparent solid 2px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+#userModal[open] .user-options .exit-button:hover {
+    background-color: #FF033E;
+    border: #FF033E solid 2px;
+    color: #fff;
+}
+
+#userModal[open] .user-options .divisor {
+    width: 100%;
+    background-color: #313638;
+    height: 1px;
 }
 
 header {
