@@ -3,17 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
 
 body {
-    background-image: url(imgs/background.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     background-color: #D5D7DB;
     overflow-x: hidden;
-    min-height: 100vh;
+    z-index: -1;
 } 
 .inputemail{
     border-radius: 10px;
@@ -126,15 +121,28 @@ background-color:rgb(217, 217, 217);
     left: 17%;
     z-index: 2;
 }
-.option-campanhas,.option-sair,.option-conta{
+.option-sair,.option-conta{
     font-family: "Inter", sans-serif;
     font-size: 20px;
     color:rgb(104, 104, 104);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 2s;
+    background-color: none;
+
 }
-.options{
-   margin-right: 80px;
-   place-content: center;
+.option-conta:hover,.option-sair:hover{
+    background-color: #313638;
+
 }
+.conta,.sair{
+    display: block;
+    margin: 5px;
+    margin-right: 80px;
+
+}
+
 .nameuser{
     font-family: 'Dm Serif Display', sans-serif;
     font-size: 60px;
