@@ -30,10 +30,11 @@
 
     <dialog id="userModal">
         <div class="user-options">
-            <a class="config-button" href="../telausuario/telausuario.html">Configurações</a>
-            <a class="campaign-button">Campanha</a>
+            <a id="configButton" class="gen-modal-button" href="../telausuario/telausuario.html">Configurações</a>
+            <a id="campButton" class="gen-modal-button" href="../visualizarcampanha/diaria/html/visuCampanha.html">Campanha</a>
+            <a id="dashButton" class="gen-modal-button" href="../admin/admin.html">Dashboard</a>
             <div class="divisor"></div>
-            <a class="exit-button" id="sair">Sair</a>
+            <a id="sair" class="exit-button">Sair</a>
         </div>
     </dialog>
 
@@ -43,15 +44,11 @@
                 <a href="homepage.html" class="logo"><img src="img/ozenpelogo.png" alt=""></a>
                 <a href="homepage.html" class="ozenpeole">Ozenpeole</a>
             </div>
-
-            <!-- Mensagem de boas-vindas escondida por padrão -->
             
-
             <!-- Botões de login e cadastro -->
             <div class="header-right" id="auth-buttons">
                 <h1 class="welcome-message welcome-message-hidden"><span id="user-name"></span>!</h1>
                 <a href="#about-us" id="sobre" class="sobre">Sobre nós</a>
-                <!-- <a href="#about-us" id="sair" class="sair hidden">Sair</a> -->
                 <a href="../login/login.html" id="login" class="login">Login</a>
                 <a href="../cadastro/cadastro.html" id="cadastro" class="cadastro">Cadastro</a>
                 <span href="#" id="user"></span>

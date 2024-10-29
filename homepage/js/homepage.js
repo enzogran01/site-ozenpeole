@@ -1,9 +1,9 @@
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
-
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
+    const typeUser = localStorage.getItem('typeUser');
 
     if (userName) {
         // Mostra a mensagem de boas-vindas
@@ -20,6 +20,18 @@ window.addEventListener('load', () => {
         const cadastroBtn = document.getElementById('cadastro-btn');
         if (cadastroBtn) {
             cadastroBtn.style.display = "none"; // Esconder o botão de cadastro
+        }
+
+        const campButton = document.getElementById('campButton');
+        const dashButton = document.getElementById('dashButton');
+
+        if (typeUser === 'admin') {
+            campButton.classList.add('hidden');
+            dashButton.classList.remove('hidden');
+        }
+        else {
+            campButton.classList.remove('hidden');
+            dashButton.classList.add('hidden');
         }
     }
 });

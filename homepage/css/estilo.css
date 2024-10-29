@@ -126,7 +126,7 @@ html {
     background: none;
 }
 
-#userModal[open] .user-options {
+.user-options {
     display: flex;
     flex-direction: column;
     text-align: left;
@@ -134,7 +134,7 @@ html {
     font-family: "Inter", sans-serif;
 }
 
-#userModal[open] .user-options .config-button, .campaign-button {
+.gen-modal-button {
     color: black;
     background-color: transparent;
     border: transparent solid 2px;
@@ -144,7 +144,7 @@ html {
     text-decoration: none;
 }
 
-#userModal[open] .user-options .config-button:hover, .campaign-button:hover {
+.gen-modal-button:hover {
     background-color: #1A53E3;
     border: #1A53E3 solid 2px;
     color: #fff;
