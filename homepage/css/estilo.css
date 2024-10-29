@@ -126,7 +126,7 @@ html {
     background: none;
 }
 
-.user-options {
+.modal-user-options {
     display: flex;
     flex-direction: column;
     text-align: left;

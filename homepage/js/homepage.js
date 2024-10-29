@@ -22,8 +22,8 @@ window.addEventListener('load', () => {
             cadastroBtn.style.display = "none"; // Esconder o botão de cadastro
         }
 
-        const campButton = document.getElementById('campButton');
-        const dashButton = document.getElementById('dashButton');
+        const campButton = document.getElementById('modalCampButton');
+        const dashButton = document.getElementById('mocalDashButton');
 
         if (typeUser === 'admin') {
             campButton.classList.add('hidden');

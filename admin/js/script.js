@@ -25,6 +25,12 @@ window.addEventListener('load', () => {
     }
 });
 
+document.getElementById("sair").addEventListener("click", () => {
+    localStorage.removeItem("userName")
+
+    window.location.href = "../homepage/homepage.html";
+});
+
 const dashButton = document.querySelector('#dashButton');
 const userButton = document.querySelector('#userButton');
 const adminButton = document.querySelector('#adminButton');
