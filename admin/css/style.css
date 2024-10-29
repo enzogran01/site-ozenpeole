@@ -53,6 +53,19 @@ header a:hover {
     color: #1A53E3;
 }
 
+header span {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+header span:hover {
+    text-decoration: underline;
+    color: #1A53E3;
+}
+
 header .header-left, .header-right {
     display: flex;
     align-items: center;
@@ -80,6 +93,67 @@ header .header-left, .header-right {
 
 .logo img {
     max-height: 50px;
+}
+
+#userModal[open] {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#userModal[open]::backdrop {
+    background: none;
+}
+
+.modal-user-options {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0px;
+    font-family: "Inter", sans-serif;
+}
+
+.gen-modal-button {
+    color: black;
+    background-color: transparent;
+    border: transparent solid 2px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.gen-modal-button:hover {
+    background-color: #1A53E3;
+    border: #1A53E3 solid 2px;
+    color: #fff;
+}
+
+.exit-button {
+    color: black;
+    background-color: transparent;
+    border: transparent solid 2px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.exit-button:hover {
+    background-color: #FF033E;
+    border: #FF033E solid 2px;
+    color: #fff;
+}
+
+.modal-divisor {
+    width: 100%;
+    background-color: #313638;
+    height: 1px;
 }
 
 .aside {

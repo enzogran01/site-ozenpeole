@@ -150,7 +150,7 @@ html {
     color: #fff;
 }
 
-#userModal[open] .user-options .exit-button {
+.exit-button {
     color: black;
     background-color: transparent;
     border: transparent solid 2px;
@@ -160,13 +160,13 @@ html {
     text-decoration: none;
 }
 
-#userModal[open] .user-options .exit-button:hover {
+.exit-button:hover {
     background-color: #FF033E;
     border: #FF033E solid 2px;
     color: #fff;
 }
 
-#userModal[open] .user-options .divisor {
+.modal-divisor {
     width: 100%;
     background-color: #313638;
     height: 1px;

@@ -14,9 +14,13 @@ window.addEventListener('load', () => {
         // Esconde os botões de login e cadastro
         document.getElementById('login').classList.add("hidden");
         document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
-        document.getElementById('cadastro-btn').classList.add("hidden");
+        // document.getElementById('sair').classList.remove("hidden");
         
-       
+        // Esconde o botão de cadastro laranja na página inicial
+        const cadastroBtn = document.getElementById('cadastro-btn');
+        if (cadastroBtn) {
+            cadastroBtn.style.display = "none"; // Esconder o botão de cadastro
+        }
 
         const campButton = document.getElementById('campButton');
         const dashButton = document.getElementById('dashButton');

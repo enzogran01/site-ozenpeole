@@ -1,22 +1,28 @@
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
-});
 
-window.addEventListener('load', () => {
     const adminName = localStorage.getItem('userName'); // Recupera o nome do administrador
+    const typeUser = localStorage.getItem('typeUser');
 
-    if (adminName) {
+    if (adminName && typeUser === 'admin') {
         document.getElementById('admin-name').textContent = adminName;
     } else {
         alert('Nome do administrador não encontrado. Faça login novamente.');
         window.location.href = '../homepage/homepage.html'; // Redireciona para a página de login
     }
-    const logoutButton = document.getElementById('sair');
-    logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('userName'); // Limpa o localStorage
-        window.location.href = '../homepage/homepage.html'; 
-    });
+
+    const modalCampButton = document.getElementById('modalCampButton');
+    const modalDashButton = document.getElementById('modalDashButton');
+
+    if (typeUser === 'admin') {
+        modalCampButton.classList.add('hidden');
+        modalDashButton.classList.remove('hidden');
+    }
+    else {
+        modalCampButton.classList.remove('hidden');
+        modalDashButton.classList.add('hidden');
+    }
 });
 
 const dashButton = document.querySelector('#dashButton');
@@ -156,6 +162,34 @@ const editAllUsers = document.querySelectorAll('#editUserSvg');
 
 const GraphBar = document.getElementById('GraphBar');
 const GraphPie = document.getElementById('GraphPie');
+
+const userModal = document.getElementById('userModal');
+const adminName = document.getElementById('admin-name');
+
+function openModalBelowElement () {
+    const rect = adminName.getBoundingClientRect();
+
+    userModal.style.top = `${rect.bottom + window.scrollY}px`;
+    userModal.style.left = `${rect.left + window.scrollX}px`;
+
+    userModal.showModal();
+}
+
+adminName.addEventListener('click', openModalBelowElement);
+
+userModal.addEventListener('click', (event) => {
+    const dialogRect = userModal.getBoundingClientRect();
+
+    const isOutsideClick =
+        event.clientX < dialogRect.left ||
+        event.clientX > dialogRect.right ||
+        event.clientY < dialogRect.top ||
+        event.clientY > dialogRect.bottom;
+
+    if (isOutsideClick) {
+        userModal.close();
+    }
+});
 
 new Chart(GraphBar, {
     type: 'bar',
