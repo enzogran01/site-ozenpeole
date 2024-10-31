@@ -14,9 +14,11 @@ function btnVoltar() {
     
 }
 
-const OPENAI_API_KEY = "sk-kFy28YHxvbpany4sNJliwb7lkkXFPYoxvbqGig6Y25T3BlbkFJRGQsFitMqjO0iRKls1CigtejOibt7KBfLGJVH3ON8A";
+const OPENAI_API_KEY = "LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876cd2349fe51d";
 //click para recolher as informações das radios e armazenar nas variáveis
-function clickGeral(btnGeral){
+
+// function clickGeral(btnGeral)
+document.getElementById('respostas').addEventListener('click', async () => {
 
         //entrar no form
         let formGeral = document.getElementById("respostas");
@@ -35,51 +37,21 @@ function clickGeral(btnGeral){
         let preco = obterResposta('preco');
         let propaganda = obterResposta('propaganda');
 
-        // Enviar os dados para o backend via fetch
-        fetch('https://api.openai.com/v1/chat/completions', {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                "Autorization": "Bearer " + OPENAI_API_KEY,
-            },
-            body: JSON.stringify({
-                model: "text-davinci-003",
-                
-                prompt:
-                idade,
-                local,
-                social,
-                venda,
-                preco,
-                propaganda,
-            }),
-        })
-        .then(response => {
-            // Verifica se a resposta foi bem-sucedida (códigos de status 200-299)
-            if (!response.ok) {
-                // Se não for bem-sucedida, lança um erro
-                throw new Error('Erro na resposta do servidor: ' + response.status);
-            }
-            // Caso contrário, tenta converter a resposta em JSON
-            return response.json();
-        })
-        .then(data => {
-            // Exibir a campanha gerada no console e na interface
-            console.log("Campanha Gerada:", data.campaign);
-            document.getElementById('resultado').textContent = data.campaign;
-
-            // Armazena a campanha no localStorage antes de redirecionar
-        localStorage.setItem('campanhaGerada', data.campaign);
-
-        // Redireciona para RESULTADO.html
-        location.href = 'RESULTADO.html';
-
-        })
-        .catch(error => {
-            console.error('Erro ao gerar a campanha:', error);
-            alert('Erro ao gerar a campanha.'); // Mensagem de erro para o usuário
-        });
+        try {
+            const response = await fetch('http://localhost:3000/api/marketing-campaign', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ idade, local, social, venda, preco, propaganda })
+            });
+    
+            const data = await response.json();
+            document.getElementById('campaignOutput').innerText = data.response || "Erro ao gerar a campanha";
+        } catch (error) {
+            console.error("Erro na requisição fetch:", error);
+        }
+        
 
         //fazendo aparecer a primeira pergunta
         for(let i = 1; i <= totalPerguntas; i++){
@@ -96,6 +68,7 @@ function clickGeral(btnGeral){
 
 
 let perguntaAtual = 1;
+
 const totalPerguntas = 6;
 
 //função pra passar pergunta
