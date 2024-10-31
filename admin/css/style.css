@@ -253,7 +253,7 @@ header .header-left, .header-right {
     margin-bottom: 10px;
 }
 
-.user-quantity, .camp-quantity, .users span {
+.visits, .camp-quantity, .users span {
     font-size: 50px;
 }
 .new-users-desc span, .camp-desc span {

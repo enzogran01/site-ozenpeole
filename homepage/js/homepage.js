@@ -26,12 +26,12 @@ window.addEventListener('load', () => {
         const dashButton = document.getElementById('mocalDashButton');
 
         if (typeUser === 'admin') {
-            campButton.classList.add('hidden');
-            dashButton.classList.remove('hidden');
+            modalCampButton.classList.add('hidden');
+            modalDashButton.classList.remove('hidden');
         }
         else {
-            campButton.classList.remove('hidden');
-            dashButton.classList.add('hidden');
+            modalCampButton.classList.remove('hidden');
+            modalDashButton.classList.add('hidden');
         }
     }
 });
