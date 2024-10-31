@@ -18,7 +18,7 @@ const OPENAI_API_KEY = "LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876
 //click para recolher as informações das radios e armazenar nas variáveis
 
 // function clickGeral(btnGeral)
-document.getElementById('respostas').addEventListener('click', async () => {
+document.getElementById('btnGeral').addEventListener('click', async () => {
 
         //entrar no form
         let formGeral = document.getElementById("respostas");
@@ -38,9 +38,10 @@ document.getElementById('respostas').addEventListener('click', async () => {
         let propaganda = obterResposta('propaganda');
 
         try {
-            const response = await fetch('http://localhost:3000/api/marketing-campaign', {
+            const response = await fetch('https://api.llama-api.com', {
                 method: 'POST',
                 headers: {
+                    'Authorization': `Bearer LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876cd2349fe51d`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ idade, local, social, venda, preco, propaganda })
@@ -51,25 +52,23 @@ document.getElementById('respostas').addEventListener('click', async () => {
         } catch (error) {
             console.error("Erro na requisição fetch:", error);
         }
-        
-
-        //fazendo aparecer a primeira pergunta
-        for(let i = 1; i <= totalPerguntas; i++){
-            document.getElementById(`box-pergunta${i}`).style.display = 'none';
-        }
-
-        //condição para o botão não funcionar quando já tiver na ultima página
-        if(perguntaAtual === totalPerguntas){
-            document.getElementById('btnGeral').style.display = 'none';
-        }
-
-}
+    });
 
 
-
-let perguntaAtual = 1;
+    let perguntaAtual = 1;
 
 const totalPerguntas = 6;
+
+    //fazendo aparecer a primeira pergunta
+    for(let i = 1; i <= totalPerguntas; i++){
+        document.getElementById(`box-pergunta${i}`).style.display = 'none';
+     }
+        
+    //condição para o botão não funcionar quando já tiver na ultima página
+    if(perguntaAtual === totalPerguntas){
+        document.getElementById('btnGeral').style.display = 'none';
+    }
+
 
 //função pra passar pergunta
 function proximaPergunta(){

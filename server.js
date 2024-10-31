@@ -85,33 +85,7 @@ app.post('/login', (req, res) => {
         }
     });
 });
-// app.post('/login', (req, res) => { 
-//     const { email, password } = req.body;
 
-//     const query = 'SELECT * FROM usuario WHERE nm_email = ?';
-//     db.query(query, [email], (err, results) => {
-//         if (err) {
-//             console.error('Erro ao consultar o banco de dados:', err);
-//             return res.status(500).json({ message: 'Erro interno do servidor.' });
-//         }
-
-//         if (results.length === 0) {
-//             return res.status(401).json({ message: 'Email ou senha incorretos.' });
-//         }
-
-//         const user = results[0];
-//         if (password === user.cd_senha) {
-//             // Login bem-sucedido, retorna o nome do usuário
-//             res.status(200).json({ message: 'Login bem-sucedido!', userName: user.nm_usuario });
-//         } else {
-//             return res.status(401).json({ message: 'Email ou senha incorretos.' });
-//         }
-//     });
-// });
-
-
-
-  
 
 // rota que registra um novo usuário (cadastro)
 app.post('/register', (req, res) => {
@@ -162,9 +136,12 @@ app.post('/api/marketing-campaign', async (req, res) => {
     Descreva o conteúdo e as estratégias recomendadas.`;
 
     try {
-        const response = await axios.post('http://localhost:11434/api/generate -d', {
+        const response = await axios.post('https://api.llama-api.com', {
             prompt: prompt,
-            // Inclua outros parâmetros da API, se necessário
+            messages: [{ role: "user", content: prompt }],
+            stream: false,  // Ou true, se desejar receber respostas parciais
+            function_call: "none"  // Define que não será usada chamada de função extra
+        
         }, {
             headers: { 'Authorization': `Bearer LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876cd2349fe51d` }
         });
