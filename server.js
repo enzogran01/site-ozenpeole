@@ -33,7 +33,7 @@ db.connect((err) => {
 // tenta login
 app.post('/login', (req, res) => { 
     const { email, password } = req.body;
-
+    
     // verifica se o email ta na tabela do usuario
     const userQuery = 'SELECT * FROM usuario WHERE nm_email = ?'; // procura no banco o email do usuario
     db.query(userQuery, [email], (err, userResults) => {  //ele criou uma variavel chamada user e ta dando query pra verificar email e senha
@@ -50,7 +50,7 @@ app.post('/login', (req, res) => {
                 return res.status(200).json({ 
                     message: 'Login bem-sucedido!', 
                     userName: user.nm_usuario, 
-                    status: 'user' 
+                    status: 'user'
                 });
             } else {
                 return res.status(401).json({ message: 'Email ou senha incorretos.' });
@@ -72,7 +72,7 @@ app.post('/login', (req, res) => {
                         return res.status(200).json({ 
                             message: 'Login bem-sucedido!', 
                             userName: admin.nm_administrador, 
-                            status: 'admin' 
+                            status: 'admin'
                         });
                     } else {
                         return res.status(401).json({ message: 'Email ou senha incorretos.' });
@@ -93,18 +93,17 @@ app.post('/register', (req, res) => {
 
   // Query do SQL para inserir um novo usuário
   const query = 'INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone) VALUES (?, ?, ?, ?)';
-
+  
   // Executa a query sem criptografar a senha
   db.query(query, [name, email, password, telephone], (err, result) => {
       if (err) {
           console.error('Erro ao registrar usuário:', err);
           res.status(500).send('Erro ao registrar usuário');
-      } else {
-          res.status(200).send('Usuário registrado com sucesso');
-      }
-  });
+        } else {
+            res.status(200).send('Usuário registrado com sucesso');
+        }
+    });
 });
-
 
 // testa tá rodando o server
 app.get('/', (req, res) => {
@@ -120,10 +119,11 @@ app.listen(3000, () => {
 
 
 
+
 //api llama (Deus me ajuda a dar certo!)
 app.post('/api/marketing-campaign', async (req, res) => {
     const { idade, local, social, venda, preco, propaganda } = req.body;
-
+    
     // Defina um prompt para a IA
     const prompt = `
     Crie uma campanha de marketing para uma loja considerando os seguintes dados:
@@ -134,18 +134,18 @@ app.post('/api/marketing-campaign', async (req, res) => {
     - Ticket médio: ${preco}
     - Já faz marketing?: ${propaganda}
     Descreva o conteúdo e as estratégias recomendadas.`;
-
+    
     try {
         const response = await axios.post('https://api.llama-api.com', {
             prompt: prompt,
             messages: [{ role: "user", content: prompt }],
             stream: false,  // Ou true, se desejar receber respostas parciais
             function_call: "none"  // Define que não será usada chamada de função extra
-        
+            
         }, {
             headers: { 'Authorization': `Bearer LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876cd2349fe51d` }
         });
-
+        
         res.json(response.data);  // Retorna a resposta para o front-end
     } catch (error) {
         console.error("Erro na API Llama:", error);
@@ -153,6 +153,7 @@ app.post('/api/marketing-campaign', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+app.listen(3001, () => {
     console.log(`Servidor rodando em http://localhost:3001`);
 });
+import {nome} from "./homepage/js/homepage.js"
