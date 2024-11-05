@@ -2,33 +2,33 @@ window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
 
-    const userName = localStorage.getItem('userName');
-    const typeUser = localStorage.getItem('typeUser');
+    // const userName = localStorage.getItem('userName');
+    // const typeUser = localStorage.getItem('typeUser');
 
-    if (userName) {
-        // Mostra a mensagem de boas-vindas
-        const user = document.querySelector('#user');
-        user.textContent = `${userName}`;
-        user.classList.remove('hidden');
+    // if (userName) {
+    //     // Mostra a mensagem de boas-vindas
+    //     const user = document.querySelector('#user');
+    //     user.textContent = `${userName}`;
+    //     user.classList.remove('hidden');
 
-        // Esconde os botões de login e cadastro
-        document.getElementById('login').classList.add("hidden");
-        document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
+    //     // Esconde os botões de login e cadastro
+    //     document.getElementById('login').classList.add("hidden");
+    //     document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
 
-        const campButton = document.getElementById('modalCampButton');
-        const dashButton = document.getElementById('mocalDashButton');
+    //     const campButton = document.getElementById('modalCampButton');
+    //     const dashButton = document.getElementById('mocalDashButton');
 
-        if (typeUser === 'admin') {
-            modalCampButton.classList.add('hidden');
-            modalDashButton.classList.remove('hidden');
-        }
-        else {
-            modalCampButton.classList.remove('hidden');
-            modalDashButton.classList.add('hidden');
-        }
-    } else {
-        window.location.href = "../../homepage/homepage.html"
-    }
+    //     if (typeUser === 'admin') {
+    //         modalCampButton.classList.add('hidden');
+    //         modalDashButton.classList.remove('hidden');
+    //     }
+    //     else {
+    //         modalCampButton.classList.remove('hidden');
+    //         modalDashButton.classList.add('hidden');
+    //     }
+    // } else {
+    //     window.location.href = "../../homepage/homepage.html"
+    // }
 })
 
 document.getElementById("sair").addEventListener("click", () => {
@@ -103,18 +103,25 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
 
     try {
         const campaignOutput = document.getElementById('respostas');
-        const response = await fetch('https://api.groq.com/v2/api', {
+        const response = await fetch ("https://api.groq.com/openai/v1/chat/completions", {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer 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`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ idade, local, social, venda, preco, propaganda })
+            body: JSON.stringify({
+                "model": "llama3-groq-70b-8192-tool-use-preview",
+                "messages": [{
+                  "role": "user",
+                  "content": `responda em português brasileiro: Crie uma campanha de marketing para uma loja com o conteúdo para uma semana de postagens na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando essos outros seguintes dados: Idade do público-alvo: ${idade}, Localização: ${local}, Tipo de venda: ${venda}, Ticket médio: ${preco}, Já faz marketing?: ${propaganda}. lembrando que é necessário a descrição da imagem da postagem, e a legenda necessária.`
+                }]
+              })
         });
 
         if (response.ok) {
             const data = await response.json();
-            const campaignOutput = document.getElementById('campaignOutput');
+            console.log(data);
+            const campaignOutput = document.getElementById('respostas');
             if (data.response) {
                 campaignOutput.innerText = data.response;
             }
@@ -279,7 +286,6 @@ document.getElementById('btnAnterior').addEventListener('click', anterior);
  
 
 
-
 //função para buscar as campanhas no banco de dados
 function getCampanhas(){
 
@@ -311,5 +317,3 @@ function getCampanhas(){
         });
     }
 }
-
-
