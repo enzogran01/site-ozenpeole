@@ -41,7 +41,7 @@ app.post('/login', (req, res) => {
             console.error('Erro ao consultar o banco de dados:', err);
             return res.status(500).json({ message: 'Erro interno do servidor.' });
         }
-
+        
         // se  achar user
         if (userResults.length > 0) {
             const user = userResults[0];
@@ -63,7 +63,7 @@ app.post('/login', (req, res) => {
                     console.error('Erro ao consultar o banco de dados:', err);
                     return res.status(500).json({ message: 'Erro interno do servidor.' });
                 }
-
+                
                 // Se o administrador for encontrado
                 if (adminResults.length > 0) {
                     const admin = adminResults[0];
@@ -89,16 +89,16 @@ app.post('/login', (req, res) => {
 
 // rota que registra um novo usuário (cadastro)
 app.post('/register', (req, res) => {
-  const { name, email, password, telephone } = req.body;
-
-  // Query do SQL para inserir um novo usuário
-  const query = 'INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone) VALUES (?, ?, ?, ?)';
-  
-  // Executa a query sem criptografar a senha
-  db.query(query, [name, email, password, telephone], (err, result) => {
-      if (err) {
-          console.error('Erro ao registrar usuário:', err);
-          res.status(500).send('Erro ao registrar usuário');
+    const { name, email, password, telephone } = req.body;
+    
+    // Query do SQL para inserir um novo usuário
+    const query = 'INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone) VALUES (?, ?, ?, ?)';
+    
+    // Executa a query sem criptografar a senha
+    db.query(query, [name, email, password, telephone], (err, result) => {
+        if (err) {
+            console.error('Erro ao registrar usuário:', err);
+            res.status(500).send('Erro ao registrar usuário');
         } else {
             res.status(200).send('Usuário registrado com sucesso');
         }
@@ -118,19 +118,12 @@ app.listen(3000, () => {
 
 
 
-<<<<<<< HEAD
-=======
-
-
-//api llama (Deus me ajuda a dar certo!)
->>>>>>> 8be33695058f0c172f2102a918c52a489761253d
 app.post('/api/marketing-campaign', async (req, res) => {
     const { idade, local, social, venda, preco, propaganda } = req.body;
     
     // Defina um prompt para a IA
-<<<<<<< HEAD
     const prompt = `responda em português brasileiro: Crie uma campanha de marketing para uma loja com o conteúdo para uma semana de postagens na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando esses outros seguintes dados: Idade do público-alvo: ${idade}, Localização: ${local}, Tipo de venda: ${venda}, Ticket médio: ${preco}, Já faz marketing?: ${propaganda}. lembrando que é necessário a descrição da imagem da postagem, e a legenda necessária.`;
-
+    
     try {
         const response = await axios.post('https://api.groq.com/v2/api', {
             "prompt": prompt,
@@ -139,25 +132,6 @@ app.post('/api/marketing-campaign', async (req, res) => {
             "top_p": 1.0, // ajuste a probabilidade de seleção para a escolha da resposta
             "frequency_penalty": 0.0, // ajuste a penalidade de frequência para evitar respostas banais
             "presence_penalty": 0.0 // ajuste a penalidade de presença para evitar respostas genéricas
-=======
-    const prompt = `
-    Crie uma campanha de marketing para uma loja considerando os seguintes dados:
-    - Idade do público-alvo: ${idade}
-    - Localização: ${local}
-    - Rede social mais utilizada: ${social}
-    - Tipo de venda: ${venda}
-    - Ticket médio: ${preco}
-    - Já faz marketing?: ${propaganda}
-    Descreva o conteúdo e as estratégias recomendadas.`;
-    
-    try {
-        const response = await axios.post('https://api.llama-api.com', {
-            prompt: prompt,
-            messages: [{ role: "user", content: prompt }],
-            stream: false,  // Ou true, se desejar receber respostas parciais
-            function_call: "none"  // Define que não será usada chamada de função extra
-            
->>>>>>> 8be33695058f0c172f2102a918c52a489761253d
         }, {
             headers: {
                 'Authorization': 'Bearer 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',
@@ -172,7 +146,6 @@ app.post('/api/marketing-campaign', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
 app.listen(3001 , () => {
     console.log(`Servidor rodando em http://localhost:3001`);
 });
@@ -180,43 +153,38 @@ app.listen(3001 , () => {
 
 // //api llama (Deus me ajuda a dar certo!)
 // app.post('/api/marketing-campaign', async (req, res) => {
-//     const { idade, local, social, venda, preco, propaganda } = req.body;
-
-//     // Defina um prompt para a IA
-//     const prompt = `
-//     Crie uma campanha de marketing para uma loja considerando os seguintes dados:
-//     - Idade do público-alvo: ${idade}
-//     - Localização: ${local}
-//     - Rede social mais utilizada: ${social}
-//     - Tipo de venda: ${venda}
-//     - Ticket médio: ${preco}
-//     - Já faz marketing?: ${propaganda}
-//     Descreva o conteúdo e as estratégias recomendadas.`;
-
-//     try {
-//         const response = await axios.post('https://api.llama-api.com', {
-//             prompt: prompt,
-//             messages: [{ role: "user", content: prompt }],
-//             stream: false,  // Ou true, se desejar receber respostas parciais
-//             function_call: "none"  // Define que não será usada chamada de função extra
-        
-//         }, {
-//             headers: { 'Authorization': `Bearer LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876cd2349fe51d` }
-//         });
-
-//         res.json(response.data);  // Retorna a resposta para o front-end
-//     } catch (error) {
-//         console.error("Erro na API Llama:", error);
-//         res.status(500).json({ error: "Erro ao gerar a campanha de marketing" });
-//     }
-// });
-
-// app.listen(PORT, () => {
-//     console.log(`Servidor rodando em http://localhost:3001`);
-// });
-=======
-app.listen(3001, () => {
-    console.log(`Servidor rodando em http://localhost:3001`);
-});
-import {nome} from "./homepage/js/homepage.js"
->>>>>>> 8be33695058f0c172f2102a918c52a489761253d
+    //     const { idade, local, social, venda, preco, propaganda } = req.body;
+    
+    //     // Defina um prompt para a IA
+    //     const prompt = `
+    //     Crie uma campanha de marketing para uma loja considerando os seguintes dados:
+    //     - Idade do público-alvo: ${idade}
+    //     - Localização: ${local}
+    //     - Rede social mais utilizada: ${social}
+    //     - Tipo de venda: ${venda}
+    //     - Ticket médio: ${preco}
+    //     - Já faz marketing?: ${propaganda}
+    //     Descreva o conteúdo e as estratégias recomendadas.`;
+    
+    //     try {
+        //         const response = await axios.post('https://api.llama-api.com', {
+            //             prompt: prompt,
+            //             messages: [{ role: "user", content: prompt }],
+            //             stream: false,  // Ou true, se desejar receber respostas parciais
+            //             function_call: "none"  // Define que não será usada chamada de função extra
+            
+            //         }, {
+                //             headers: { 'Authorization': `Bearer LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876cd2349fe51d` }
+                //         });
+                
+                //         res.json(response.data);  // Retorna a resposta para o front-end
+                //     } catch (error) {
+                    //         console.error("Erro na API Llama:", error);
+                    //         res.status(500).json({ error: "Erro ao gerar a campanha de marketing" });
+                    //     }
+                    // });
+                    
+                    // app.listen(PORT, () => {
+                        //     console.log(`Servidor rodando em http://localhost:3001`);
+                        // });
+                        

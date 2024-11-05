@@ -15,7 +15,6 @@
     "start": "node server.js"
   },
   "name": "site-tcc",
-  "type": "module",
   "description": "",
   "version": "1.0.0",
   "main": "server.js",

@@ -1,10 +1,6 @@
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
-
-    loader.addEventListener('transitionend', () => {
-        document.body.removeChild(loader);
-    });
 });
 
 const form = document.getElementById('formulario');
@@ -84,7 +80,6 @@ form.addEventListener('submit', function validate(e) {
                 if (data.status === 'admin') {
                     alert('Login de administrador realizado com sucesso!');
 
-                    
                     window.location.href = '../admin/admin.html'; // redireciona para a página de admin
                 } else {
                     alert('Login de usuário realizado com sucesso!');
