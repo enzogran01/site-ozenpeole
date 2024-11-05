@@ -14,45 +14,96 @@ function btnVoltar() {
     
 }
 
-const OPENAI_API_KEY = "LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876cd2349fe51d";
-//click para recolher as informações das radios e armazenar nas variáveis
 
 // function clickGeral(btnGeral)
 document.getElementById('btnGeral').addEventListener('click', async () => {
 
-        //entrar no form
-        let formGeral = document.getElementById("respostas");
+    // entrar no form
+    let formGeral = document.getElementById("respostas");
 
-        // função para pegar as respostas
-        function obterResposta(name){
-            let pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
-            return pegandoValor ? pegandoValor.value : '';
-        }
+    // função para pegar as respostas
+    function obterResposta(name){
+        let pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
+        return pegandoValor ? pegandoValor.value : '';
+    }
 
-        //joga cada resposta para a sua devida variável
-        let idade = obterResposta('idade');
-        let local = obterResposta('local');
-        let social = obterResposta('social');
-        let venda = obterResposta('venda');
-        let preco = obterResposta('preco');
-        let propaganda = obterResposta('propaganda');
+    // joga cada resposta para a sua devida variável
+    let idade = obterResposta('idade');
+    let local = obterResposta('local');
+    let social = obterResposta('social');
+    let venda = obterResposta('venda');
+    let preco = obterResposta('preco');
+    let propaganda = obterResposta('propaganda');
 
-        try {
-            const response = await fetch('https://api.llama-api.com', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876cd2349fe51d`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ idade, local, social, venda, preco, propaganda })
-            });
-    
+    try {
+        const campaignOutput = document.getElementById('respostas');
+        const response = await fetch('https://api.groq.com/v2/api', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer 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`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idade, local, social, venda, preco, propaganda })
+        });
+
+        if (response.ok) {
             const data = await response.json();
-            document.getElementById('campaignOutput').innerText = data.response || "Erro ao gerar a campanha";
-        } catch (error) {
-            console.error("Erro na requisição fetch:", error);
+            const campaignOutput = document.getElementById('campaignOutput');
+            if (data.response) {
+                campaignOutput.innerText = data.response;
+            }
+        } else {
+            console.error("Erro na requisição fetch:", response.statusText);
+            campaignOutput.innerText = "Erro ao gerar a campanha";
         }
-    });
+    } catch (error) {
+        console.error("Erro na requisição fetch:", error);
+        campaignOutput.innerText = "Erro ao gerar a campanha";
+    }
+});
+// // function clickGeral(btnGeral)
+// document.getElementById('btnGeral').addEventListener('click', async () => {
+
+//         //entrar no form
+//         let formGeral = document.getElementById("respostas");
+
+//         // função para pegar as respostas
+//         function obterResposta(name){
+//             let pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
+//             return pegandoValor ? pegandoValor.value : '';
+//         }
+
+//         //joga cada resposta para a sua devida variável
+//         let idade = obterResposta('idade');
+//         let local = obterResposta('local');
+//         let social = obterResposta('social');
+//         let venda = obterResposta('venda');
+//         let preco = obterResposta('preco');
+//         let propaganda = obterResposta('propaganda');
+
+//         try {
+//             const response = await fetch('https://api.groq.com/v2/api', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Authorization': `Bearer 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`,
+//                     'Content-Type': 'application/json'
+//                 },
+//                 body: JSON.stringify({ idade, local, social, venda, preco, propaganda })
+//             });
+    
+//             // const data = await response.json();
+//             // document.getElementById('campaignOutput').innerText = data.response || "Erro ao gerar a campanha";
+//             const data = await response.json();
+//             const campaignOutput = document.getElementById('campaignOutput');
+//             if (data.response) {
+//                 campaignOutput.innerText = data.response;
+//             }
+//         } 
+//         catch (error) {
+//             // console.error("Erro na requisição fetch:", error);
+//             campaignOutput.innerText = "Erro ao gerar a campanha";
+//         }
+//     });
 
 
     let perguntaAtual = 1;
