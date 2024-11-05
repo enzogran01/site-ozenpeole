@@ -5,7 +5,7 @@ window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
 
-    console.log(nome);
+    console.log(localStorage.getItem("formModal"));
     
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
@@ -30,7 +30,8 @@ window.addEventListener('load', () => {
 
         const campButton = document.getElementById('modalCampButton');
         const dashButton = document.getElementById('mocalDashButton');
-
+        
+        console.log("1")
         if (typeUser === 'admin') {
             modalCampButton.classList.add('hidden');
             modalDashButton.classList.remove('hidden');
@@ -39,8 +40,33 @@ window.addEventListener('load', () => {
             modalCampButton.classList.remove('hidden');
             modalDashButton.classList.add('hidden');
         }
-
+        console.log("2")
+        const modal = document.getElementById('logonModal');
+        const noModalButton = document.querySelector('#logonModal .options #btn-no');
+        const yesButtonModal = document.querySelector('#logonModal .options #btn-yes');
+        console.log("3")
+        let form_modal_storage = localStorage.getItem("formModal")
+        let isFormModal = form_modal_storage === "true";
+        console.log(form_modal_storage)
+        console.log(isFormModal)
+        if (isFormModal) {
+            console.log("4")
+            modal.close();
+        } else {
+            console.log("5")
+            modal.showModal();
+            localStorage.setItem("formModal", true)
+        }
+        console.log("6")
         
+        noModalButton.addEventListener('click', () => {
+            modal.close();
+        });
+
+        yesButtonModal.addEventListener('click', () => {
+            window.open('../formulario/inicio/formulario.html', '_blank');
+            modal.close();
+        });
     }
 });
 

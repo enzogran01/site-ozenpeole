@@ -76,6 +76,7 @@ form.addEventListener('submit', function validate(e) {
                 // Armazena o nome do administrador ou do usuário no localStorage
                 localStorage.setItem('userName', data.userName); // `userName` vem do servidor
                 localStorage.setItem('typeUser', data.status); // `userName` vem do servidor
+                localStorage.setItem('formModal', false);
                 
                 if (data.status === 'admin') {
                     alert('Login de administrador realizado com sucesso!');
