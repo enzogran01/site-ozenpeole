@@ -11,20 +11,29 @@
 </head>
 
 <body>
+    <dialog id="userModal">
+        <div class="modal-user-options">
+            <a id="modalConfigButton" class="gen-modal-button" href="../telausuario/telausuario.html">Configurações</a>
+            <a id="modalCampButton" class="gen-modal-button" href="../visualizarcampanha/diaria/html/visuCampanha.html">Campanha</a>
+            <a id="modalDashButton" class="gen-modal-button" href="../admin/admin.html">Dashboard</a>
+            <div class="modal-divisor"></div>
+            <a id="sair" class="exit-button">Sair</a>
+        </div>
+    </dialog>
+    
     <div class="header-bottom-border" id="header">
         <header id="header">
-
-            <div class="header-left">
+            <div class="header-left">   
                 <a href="../../homepage/homepage.html" class="logo"><img src="img/ozenpelogo.png" alt=""></a>
                 <a href="../../homepage/homepage.html" class="ozenpeole">Ozenpeole</a>
             </div>
-
-            <div class="header-right">
-                <a href="#about-us" class="sobre">Sobre nós</a>
-                <a href="../../login/login.html" class="login">Login</a>
-                <a href="../../cadastro/cadastro.html" class="cadastro">Cadastro</a>
+            
+            <!-- Botões de login e cadastro -->
+            <div class="header-right" id="auth-buttons">
+                <a href="../login/login.html" id="login" class="login">Login</a>
+                <a href="../cadastro/cadastro.html" id="cadastro" class="cadastro">Cadastro</a>
+                <span href="#" id="user"></span>
             </div>
-
         </header>
     </div>
 

@@ -1,6 +1,12 @@
+// import {nome} from "../../server.js"
+export const nome = 
+
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
+
+    console.log(nome);
+    
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
     const typeUser = localStorage.getItem('typeUser');
