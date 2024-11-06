@@ -8,7 +8,9 @@ body {
     padding: 0;
     background-color: #D5D7DB;
     overflow-x: hidden;
-    z-index: -1;
+    height: 100vh; /* Definir altura 100vh para garantir que o body ocupe toda a tela */
+    display: flex;
+    flex-direction: column
 } 
 .inputemail{
     border-radius: 10px;
@@ -34,19 +36,20 @@ body {
 .corpo{
     display: grid;
     place-items: center;
-
+    
 }
 .backformulario {
-    margin-top: 12%;;
     z-index: 1;
     padding: 20px;
     display: flex;
     align-items: center; 
+    justify-content: center; /* Centraliza o conteúdo horizontal e verticalmente */
     background-color: rgba(255, 255, 255, 0.5); 
     border-radius: 20px; 
-    width: 1000px; 
+    width: 900px; 
     height: 350px;
     padding-left: 50px;
+    margin-top: 12%;
 }
 .salvarbutton{
     color: white;
@@ -166,10 +169,10 @@ footer {
     justify-content: space-between;
     display: flex;
     align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
     vertical-align: baseline;
-    position: fixed;
-    bottom: 0; 
-    width: 100%;
+    margin-top: auto;
 }
 
 .terms {
