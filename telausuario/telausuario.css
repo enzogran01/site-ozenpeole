@@ -171,11 +171,9 @@ header .header-left, .header-right {
 .corpo{
     display: grid;
     place-items: center;
-    
 }
 
 .backformulario {
-    z-index: 1;
     padding: 20px;
     display: flex;
     align-items: center; 
@@ -216,7 +214,6 @@ header .header-left, .header-right {
     width: 150px;
     transition: all 0.2s;
     cursor: pointer;
-    
 }
 .desativarbutton:hover{
     background-color: rgb(206, 0, 0);
@@ -224,7 +221,6 @@ header .header-left, .header-right {
 .nomeTelefone{
     display: flex;
     justify-items: flex-start;
-
 }
 .inputusuario,.inputtelefone{
 border-radius: 10px;
@@ -258,7 +254,6 @@ background-color:rgb(217, 217, 217);
     position: absolute; 
     top: 12%; 
     left: 17%;
-    z-index: 2;
 }
 .option-sair,.option-conta{
     font-family: "Inter", sans-serif;
@@ -269,17 +264,14 @@ background-color:rgb(217, 217, 217);
     justify-content: center;
     transition: 2s;
     background-color: none;
-
 }
 .option-conta:hover,.option-sair:hover{
     background-color: #313638;
-
 }
 .conta,.sair{
     display: block;
     margin: 5px;
     margin-right: 80px;
-
 }
 
 .nameuser{
