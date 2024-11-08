@@ -9,6 +9,8 @@ window.addEventListener('load', () => {
     if (userName) {
         // Mostra a mensagem de boas-vindas
         const user = document.querySelector('#user');
+        const userTitle = document.querySelector('#userTitle');
+        userTitle.textContent = `${userName}`;
         user.textContent = `${userName}`;
         user.classList.remove('hidden');
 
