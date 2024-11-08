@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
 
+.hidden {
+    display: none;
+}
+
 body {
     scroll-behavior: smooth;
     margin: 0;
@@ -11,7 +15,135 @@ body {
     height: 100vh; /* Definir altura 100vh para garantir que o body ocupe toda a tela */
     display: flex;
     flex-direction: column
-} 
+}
+
+#userModal[open] {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#userModal[open]::backdrop {
+    background: none;
+}
+
+.modal-user-options {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0px;
+    font-family: "Inter", sans-serif;
+}
+
+.gen-modal-button {
+    color: black;
+    background-color: transparent;
+    border: transparent solid 2px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.gen-modal-button:hover {
+    background-color: #1A53E3;
+    border: #1A53E3 solid 2px;
+    color: #fff;
+}
+
+.exit-button {
+    color: black;
+    background-color: transparent;
+    border: transparent solid 2px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.exit-button:hover {
+    background-color: #FF033E;
+    border: #FF033E solid 2px;
+    color: #fff;
+}
+
+.modal-divisor {
+    width: 100%;
+    background-color: #313638;
+    height: 1px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #313638;
+    padding: 18px 8%;
+    font-family: "Inter", sans-serif;
+    transition: 0.3s;
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+header a:hover {
+    text-decoration: underline;
+    color: #1A53E3;
+}
+
+header .header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-right span {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.header-right span:hover {
+    text-decoration: underline;
+    color: #1A53E3;
+}
+
+.header-bottom-border {
+    position: relative;
+}
+
+.header-bottom-border::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0px;
+    background: linear-gradient(to right, #F95A33, #1A53E3);
+    transition: ease-in-out 0.3s;
+}
+
+.header-bottom-border:hover::after {
+    height: 8px;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
 .inputemail{
     border-radius: 10px;
     border:solid rgb(94, 93, 93) 1px;
@@ -19,6 +151,7 @@ body {
     height: 35px;
     background-color:rgb(217, 217, 217);
 }
+
 .inputdata{
     border-radius: 10px;
     border:solid rgb(94, 93, 93) 1px;
@@ -27,19 +160,20 @@ body {
     margin-bottom: 20px;
     background-color:rgb(217, 217, 217);
 }
+
 .labelnomeusuario,.labelemail,.labeltelefone,.labeldata{
     font-family: "Inter", sans-serif; ;
     color: black;
     display: block; 
     margin-bottom: 2px;
 }
+
 .corpo{
     display: grid;
     place-items: center;
-    
 }
+
 .backformulario {
-    z-index: 1;
     padding: 20px;
     display: flex;
     align-items: center; 
@@ -80,7 +214,6 @@ body {
     width: 150px;
     transition: all 0.2s;
     cursor: pointer;
-    
 }
 .desativarbutton:hover{
     background-color: rgb(206, 0, 0);
@@ -88,7 +221,6 @@ body {
 .nomeTelefone{
     display: flex;
     justify-items: flex-start;
-
 }
 .inputusuario,.inputtelefone{
 border-radius: 10px;
@@ -122,7 +254,6 @@ background-color:rgb(217, 217, 217);
     position: absolute; 
     top: 12%; 
     left: 17%;
-    z-index: 2;
 }
 .option-sair,.option-conta{
     font-family: "Inter", sans-serif;
@@ -133,17 +264,14 @@ background-color:rgb(217, 217, 217);
     justify-content: center;
     transition: 2s;
     background-color: none;
-
 }
 .option-conta:hover,.option-sair:hover{
     background-color: #313638;
-
 }
 .conta,.sair{
     display: block;
     margin: 5px;
     margin-right: 80px;
-
 }
 
 .nameuser{
@@ -212,4 +340,39 @@ footer {
 
 .instaIcon:hover {
     transform: scale(1.1);
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f9fb;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after {
+    content: '';
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #1A53E3;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
 }

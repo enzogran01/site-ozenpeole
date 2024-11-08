@@ -2,33 +2,6 @@ window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
 
-    // const userName = localStorage.getItem('userName');
-    // const typeUser = localStorage.getItem('typeUser');
-
-    // if (userName) {
-    //     // Mostra a mensagem de boas-vindas
-    //     const user = document.querySelector('#user');
-    //     user.textContent = `${userName}`;
-    //     user.classList.remove('hidden');
-
-    //     // Esconde os botões de login e cadastro
-    //     document.getElementById('login').classList.add("hidden");
-    //     document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
-
-    //     const campButton = document.getElementById('modalCampButton');
-    //     const dashButton = document.getElementById('mocalDashButton');
-
-    //     if (typeUser === 'admin') {
-    //         modalCampButton.classList.add('hidden');
-    //         modalDashButton.classList.remove('hidden');
-    //     }
-    //     else {
-    //         modalCampButton.classList.remove('hidden');
-    //         modalDashButton.classList.add('hidden');
-    //     }
-    // } else {
-    //     window.location.href = "../../homepage/homepage.html"
-    // }
 })
 
 document.getElementById("sair").addEventListener("click", () => {
@@ -132,49 +105,6 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
         campaignOutput.innerText = "Erro ao gerar a campanha";
     }
 });
-// // function clickGeral(btnGeral)
-// document.getElementById('btnGeral').addEventListener('click', async () => {
-
-//         //entrar no form
-//         let formGeral = document.getElementById("respostas");
-
-//         // função para pegar as respostas
-//         function obterResposta(name){
-//             let pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
-//             return pegandoValor ? pegandoValor.value : '';
-//         }
-
-//         //joga cada resposta para a sua devida variável
-//         let idade = obterResposta('idade');
-//         let local = obterResposta('local');
-//         let social = obterResposta('social');
-//         let venda = obterResposta('venda');
-//         let preco = obterResposta('preco');
-//         let propaganda = obterResposta('propaganda');
-
-//         try {
-//             const response = await fetch('https://api.groq.com/v2/api', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Authorization': `Bearer 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`,
-//                     'Content-Type': 'application/json'
-//                 },
-//                 body: JSON.stringify({ idade, local, social, venda, preco, propaganda })
-//             });
-    
-//             // const data = await response.json();
-//             // document.getElementById('campaignOutput').innerText = data.response || "Erro ao gerar a campanha";
-//             const data = await response.json();
-//             const campaignOutput = document.getElementById('campaignOutput');
-//             if (data.response) {
-//                 campaignOutput.innerText = data.response;
-//             }
-//         } 
-//         catch (error) {
-//             // console.error("Erro na requisição fetch:", error);
-//             campaignOutput.innerText = "Erro ao gerar a campanha";
-//         }
-//     });
 
 
     let perguntaAtual = 1;
