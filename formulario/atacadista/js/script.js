@@ -120,11 +120,9 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
+            console.log(data.choices[0].message.content);
             const campaignOutput = document.getElementById('respostas');
-            if (data.response) {
-                campaignOutput.innerText = data.response;
-            }
+            campaignOutput.innerText = data.choices[0].message.content;
         } else {
             console.error("Erro na requisição fetch:", response.statusText);
             campaignOutput.innerText = "Erro ao gerar a campanha";
