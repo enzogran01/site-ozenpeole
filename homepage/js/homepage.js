@@ -4,8 +4,6 @@ export const nome =
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
-
-    console.log(localStorage.getItem("formModal"));
     
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
@@ -31,7 +29,6 @@ window.addEventListener('load', () => {
         const campButton = document.getElementById('modalCampButton');
         const dashButton = document.getElementById('mocalDashButton');
         
-        console.log("1")
         if (typeUser === 'admin') {
             modalCampButton.classList.add('hidden');
             modalDashButton.classList.remove('hidden');

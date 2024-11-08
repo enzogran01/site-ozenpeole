@@ -1,7 +1,8 @@
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
-
+    
+    // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
     const typeUser = localStorage.getItem('typeUser');
 
@@ -14,10 +15,17 @@ window.addEventListener('load', () => {
         // Esconde os botões de login e cadastro
         document.getElementById('login').classList.add("hidden");
         document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
+        // document.getElementById('sair').classList.remove("hidden");
+        
+        // Esconde o botão de cadastro laranja na página inicial
+        const cadastroBtn = document.getElementById('cadastro-btn');
+        if (cadastroBtn) {
+            cadastroBtn.style.display = "none"; // Esconder o botão de cadastro
+        }
 
         const campButton = document.getElementById('modalCampButton');
         const dashButton = document.getElementById('mocalDashButton');
-
+        
         if (typeUser === 'admin') {
             modalCampButton.classList.add('hidden');
             modalDashButton.classList.remove('hidden');
@@ -30,7 +38,7 @@ window.addEventListener('load', () => {
         alert('Login não encontrado.');
         window.location.href = "../../homepage/homepage.html"
     }
-})
+});
 
 document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("userName")
@@ -44,7 +52,7 @@ document.getElementById("sair").addEventListener("click", () => {
         cadastroBtn.style.display = "block"; // Exibir o botão de cadastro de novo
     }
 
-    window.location.href = "../../homepage/homepage.html";
+    window.location.href = "../homepage/homepage.html";
 });
 
 const userModal = document.getElementById('userModal');
@@ -74,25 +82,3 @@ userModal.addEventListener('click', (event) => {
         userModal.close();
     }
 });
-
-let selecione = document.querySelector("#selecione");
-let atacadista = "atacadista.html";
-let automobilistico = "automobilistico.html";
-let varejista = "varejista.html";
-
-// Adiciona um event listener ao botão para capturar o valor selecionado na dropdown
-document.getElementById('confirmar').addEventListener('click', function () {
-    // Captura o valor selecionado na dropdown
-    let area = document.getElementById('comercios').value;
-
-    // Exemplo de redirecionamento baseado no valor
-    if (area == 'atacadista') {
-        window.location.href = '../atacadista/atacadista.html';
-    } 
-    else if (area == 'automobilistico') {
-        window.location.href = '../automobilistico/automobilistico.html';
-    } 
-    else if (area == 'varejista') {
-        window.location.href = '../varejista/varejista.html';
-    }
-})

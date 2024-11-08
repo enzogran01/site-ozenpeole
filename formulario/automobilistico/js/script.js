@@ -31,6 +31,7 @@ window.addEventListener('load', () => {
             modalDashButton.classList.add('hidden');
         }
     } else {
+        alert('Login não encontrado.');
         window.location.href = "../../homepage/homepage.html"
     }
 })
