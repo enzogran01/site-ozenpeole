@@ -162,7 +162,8 @@ header .header-left, .header-right {
 .container {
     display: block;
     background-color: var(--darker-gray);
-    width: 34%;
+    /* width: 34%; */
+    width: fit-content;
     padding: 10%;
     border-radius: 30px;
 }

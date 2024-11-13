@@ -5,31 +5,31 @@ window.addEventListener('load', () => {
     const userName = localStorage.getItem('userName');
     const typeUser = localStorage.getItem('typeUser');
 
-    if (userName) {
-        // Mostra a mensagem de boas-vindas
-        const user = document.querySelector('#user');
-        user.textContent = `${userName}`;
-        user.classList.remove('hidden');
+    // if (userName) {
+    //     // Mostra a mensagem de boas-vindas
+    //     const user = document.querySelector('#user');
+    //     user.textContent = `${userName}`;
+    //     user.classList.remove('hidden');
 
-        // Esconde os botões de login e cadastro
-        document.getElementById('login').classList.add("hidden");
-        document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
+    //     // Esconde os botões de login e cadastro
+    //     document.getElementById('login').classList.add("hidden");
+    //     document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
 
-        const campButton = document.getElementById('modalCampButton');
-        const dashButton = document.getElementById('mocalDashButton');
+    //     const campButton = document.getElementById('modalCampButton');
+    //     const dashButton = document.getElementById('mocalDashButton');
 
-        if (typeUser === 'admin') {
-            modalCampButton.classList.add('hidden');
-            modalDashButton.classList.remove('hidden');
-        }
-        else {
-            modalCampButton.classList.remove('hidden');
-            modalDashButton.classList.add('hidden');
-        }
-    } else {
-        alert('Login não encontrado.');
-        window.location.href = "../../homepage/homepage.html"
-    }
+    //     if (typeUser === 'admin') {
+    //         modalCampButton.classList.add('hidden');
+    //         modalDashButton.classList.remove('hidden');
+    //     }
+    //     else {
+    //         modalCampButton.classList.remove('hidden');
+    //         modalDashButton.classList.add('hidden');
+    //     }
+    // } else {
+    //     alert('Login não encontrado.');
+    //     window.location.href = "../../homepage/homepage.html"
+    // }
 })
 
 document.getElementById("sair").addEventListener("click", () => {
@@ -75,24 +75,9 @@ userModal.addEventListener('click', (event) => {
     }
 });
 
-let selecione = document.querySelector("#selecione");
-let atacadista = "atacadista.html";
-let automobilistico = "automobilistico.html";
-let varejista = "varejista.html";
 
 // Adiciona um event listener ao botão para capturar o valor selecionado na dropdown
 document.getElementById('confirmar').addEventListener('click', function () {
-    // Captura o valor selecionado na dropdown
-    let area = document.getElementById('comercios').value;
-
-    // Exemplo de redirecionamento baseado no valor
-    if (area == 'atacadista') {
-        window.location.href = '../atacadista/atacadista.html';
-    } 
-    else if (area == 'automobilistico') {
-        window.location.href = '../automobilistico/automobilistico.html';
-    } 
-    else if (area == 'varejista') {
-        window.location.href = '../varejista/varejista.html';
-    }
+    //redireciona para o formulário
+    window.location.href = "../atacadista/form.html";
 })

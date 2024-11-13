@@ -62,7 +62,10 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
 
     // função para pegar as respostas
     function obterResposta(name){
-        let pegandoValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
+        let radioValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
+        return pegandoValor ? pegandoValor.value : '';
+
+        let textValor = formGeral.querySelector(`input[name="${name}"]`);
         return pegandoValor ? pegandoValor.value : '';
     }
 
