@@ -63,10 +63,10 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
     // função para pegar as respostas
     function obterResposta(name){
         let radioValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
-        return pegandoValor ? pegandoValor.value : '';
+        return radioValor ? radioValor.value : '';
 
         let textValor = formGeral.querySelector(`input[name="${name}"]`);
-        return pegandoValor ? pegandoValor.value : '';
+        return textValor ? textValor.value : '';
     }
 
     // joga cada resposta para a sua devida variável
@@ -89,7 +89,7 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
                 "model": "llama3-groq-70b-8192-tool-use-preview",
                 "messages": [{
                   "role": "user",
-                  "content": `responda em português brasileiro: Crie uma campanha de marketing para uma loja com o conteúdo para uma semana de postagens na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando essos outros seguintes dados: Idade do público-alvo: ${idade}, Localização: ${local}, Tipo de venda: ${venda}, Ticket médio: ${preco}, Já faz marketing?: ${propaganda}. lembrando que é necessário a descrição da imagem da postagem, e a legenda necessária.`
+                  "content": `responda em português brasileiro: Crie uma campanha de marketing para uma loja com o conteúdo para uma semana de postagem na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando essos outros seguintes dados: Idade do público-alvo: ${idade}, Localização da maioria dos seus clientes: ${local}, Tipo de venda mais utilizado pela loja: ${venda}, Ticket médio: ${preco}, A loja ${propaganda} algum tipo de marketing . Lembrando que é necessário a descrição da imagem da postagem, a legenda necessária e o horário da postagem. Me reponda OBRIGATÓRIAMENTE neste formato: *Dia 1* - descrição da imagem 1,(pula linha)  - legenda 1, (pula linha) - horário da postagem 1, (pula linha); *Dia 2* - descrição da imagem 2,(pula linha)  - legenda 2, (pula linha) - horário da postagem 2, (pula linha); *Dia 3* - descrição da imagem 3,(pula linha)  - legenda 3, (pula linha) - horário da postagem 3, (pula linha); *Dia 4* - descrição da imagem 4,(pula linha)  - legenda 4, (pula linha) - horário da postagem 4, (pula linha); *Dia 5* - descrição da imagem 5,(pula linha)  - legenda 5, (pula linha) - horário da postagem 5, (pula linha); *Dia 6* - descrição da imagem 6,(pula linha)  - legenda 6, (pula linha) - horário da postagem 6, (pula linha); *Dia 7* - descrição da imagem 7,(pula linha)  - legenda 7, (pula linha) - horário da postagem 7, (pula linha);`
                 }]
               })
         });
@@ -97,8 +97,85 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
         if (response.ok) {
             const data = await response.json();
             console.log(data.choices[0].message.content);
+            const responseContent = data.choices[0].message.content;
             const campaignOutput = document.getElementById('respostas');
             campaignOutput.innerText = data.choices[0].message.content;
+
+            // Expressão regular para capturar os dias e seus respectivos dados
+        const regex = /\*Dia (\d+)\* - (.*?),\n  - (.*?),\n  - (.*?),/g;
+        let match;
+
+        // Variáveis para armazenar as informações dos 7 dias
+        let dia1, desc1, leg1, hr1;
+        let dia2, desc2, leg2, hr2;
+        let dia3, desc3, leg3, hr3;
+        let dia4, desc4, leg4, hr4;
+        let dia5, desc5, leg5, hr5;
+        let dia6, desc6, leg6, hr6;
+        let dia7, desc7, leg7, hr7;
+
+        // Loop para capturar todas as informações de cada dia
+        while ((match = regex.exec(responseContent)) !== null) {
+            const dia = match[1];            // Captura o número do dia
+            const descricaoImagem = match[2]; // Captura a descrição da imagem
+            const legenda = match[3];        // Captura a legenda da postagem
+            const horario = match[4];        // Captura o horário da postagem
+
+            // Atribuindo os valores às variáveis específicas
+            if (dia === '1') {
+                dia1 = "Dia 1";
+                desc1 = descricaoImagem;
+                leg1 = legenda;
+                hr1 = horario;
+            }
+            if (dia === '2') {
+                dia2 = "Dia 2";
+                desc2 = descricaoImagem;
+                leg2 = legenda;
+                hr2 = horario;
+            }
+            if (dia === '3') {
+                dia3 = "Dia 3";
+                desc3 = descricaoImagem;
+                leg3 = legenda;
+                hr3 = horario;
+            }
+            if (dia === '4') {
+                dia4 = "Dia 4";
+                desc4 = descricaoImagem;
+                leg4 = legenda;
+                hr4 = horario;
+            }
+            if (dia === '5') {
+                dia5 = "Dia 5";
+                desc5 = descricaoImagem;
+                leg5 = legenda;
+                hr5 = horario;
+            }
+            if (dia === '6') {
+                dia6 = "Dia 6";
+                desc6 = descricaoImagem;
+                leg6 = legenda;
+                hr6 = horario;
+            }
+            if (dia === '7') {
+                dia7 = "Dia 7";
+                desc7 = descricaoImagem;
+                leg7 = legenda;
+                hr7 = horario;
+            }
+        }
+
+        // Exibindo as variáveis no console para verificar
+        console.log(dia1, desc1, leg1, hr1);
+        console.log(dia2, desc2, leg2, hr2);
+        console.log(dia3, desc3, leg3, hr3);
+        console.log(dia4, desc4, leg4, hr4);
+        console.log(dia5, desc5, leg5, hr5);
+        console.log(dia6, desc6, leg6, hr6);
+        console.log(dia7, desc7, leg7, hr7);
+        
+        
         } else {
             console.error("Erro na requisição fetch:", response.statusText);
             campaignOutput.innerText = "Erro ao gerar a campanha";
