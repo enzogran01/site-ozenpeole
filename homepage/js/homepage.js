@@ -37,31 +37,26 @@ window.addEventListener('load', () => {
             modalCampButton.classList.remove('hidden');
             modalDashButton.classList.add('hidden');
         }
-        console.log("2")
         const modal = document.getElementById('logonModal');
         const noModalButton = document.querySelector('#logonModal .options #btn-no');
         const yesButtonModal = document.querySelector('#logonModal .options #btn-yes');
-        console.log("3")
         let form_modal_storage = localStorage.getItem("formModal")
         let isFormModal = form_modal_storage === "true";
         console.log(form_modal_storage)
         console.log(isFormModal)
         if (isFormModal) {
-            console.log("4")
             modal.close();
         } else {
-            console.log("5")
             modal.showModal();
             localStorage.setItem("formModal", true)
         }
-        console.log("6")
         
         noModalButton.addEventListener('click', () => {
             modal.close();
         });
 
         yesButtonModal.addEventListener('click', () => {
-            window.open('../formulario/inicio/formulario.html', '_blank');
+            window.open('../formulario/inicio/inicioForm.html');
             modal.close();
         });
     }

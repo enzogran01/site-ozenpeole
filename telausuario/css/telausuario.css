@@ -152,7 +152,7 @@ header .header-left, .header-right {
     background-color:rgb(217, 217, 217);
 }
 
-.inputdata{
+.inputsenha{
     border-radius: 10px;
     border:solid rgb(94, 93, 93) 1px;
     width: 512px;
@@ -161,14 +161,14 @@ header .header-left, .header-right {
     background-color:rgb(217, 217, 217);
 }
 
-.labelnomeusuario,.labelemail,.labeltelefone,.labeldata{
+.labelnomeusuario,.labelemail,.labeltelefone,.labelsenha{
     font-family: "Inter", sans-serif; ;
     color: black;
     display: block; 
     margin-bottom: 2px;
 }
 
-.corpo{
+.corpo {
     display: grid;
     place-items: center;
 }
