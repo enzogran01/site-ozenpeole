@@ -97,9 +97,16 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
         if (response.ok) {
             const data = await response.json();
             console.log(data.choices[0].message.content);
+            
             const responseContent = data.choices[0].message.content;
             const campaignOutput = document.getElementById('respostas');
             campaignOutput.innerText = data.choices[0].message.content;
+
+        // Salvar a campanha no LocalStorage para acessar na nova página
+        localStorage.setItem('campaignData', responseContent);
+
+        // Redirecionar para o arquivo viewCampanha.html
+        window.location.href = "/../../viewCampanha/viewCampanha.html";
 
             // Expressão regular para capturar os dias e seus respectivos dados
         const regex = /\*Dia (\d+)\* - (.*?),\n  - (.*?),\n  - (.*?),/g;
@@ -184,6 +191,9 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
         console.error("Erro na requisição fetch:", error);
         campaignOutput.innerText = "Erro ao gerar a campanha";
     }
+
+    
+
 });
 
 
