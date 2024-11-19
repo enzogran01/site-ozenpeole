@@ -12,7 +12,6 @@
 
 .hidden {
     display: none;
-    transition: all 0.3s;
 }
 
 body {
@@ -29,6 +28,7 @@ html {
     scroll-behavior: smooth;
 }
 
+/*CSS do header*/
 header {
     display: flex;
     justify-content: space-between;
@@ -95,6 +95,7 @@ header .header-left, .header-right {
     max-height: 50px;
 }
 
+/*CSS do modal*/
 #userModal[open] {
     display: flex;
     position: absolute;
@@ -154,4 +155,95 @@ header .header-left, .header-right {
     width: 100%;
     background-color: #313638;
     height: 1px;
+}
+
+/*CSS do aside*/
+.aside {
+    display: flex;
+    flex-direction: column;
+    height: 100vw;
+    padding: 30px 30px 30px 30px;
+    background-color: var(--gray-two);
+    border-radius: 0 15px 15px 0;
+    width: 12vw;
+    transition: all 0.3s;
+}
+
+.aside .options {
+    display: flex;
+    flex-direction: column;
+    /* gap: 40px; */
+}
+
+.divisor {
+    height: 3px;
+    width: 100%;
+    margin: 15px 0 15px 0;
+    border-radius: 30px;
+    background-color: var(--darker-gray);
+}
+
+.aside .options .option p {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    max-width: 100%;
+    padding: 20px 14px 20px 14px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.button-active {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    max-width: 100%;
+    padding: 20px 14px 20px 14px;
+    transition: all 0.3s;
+    cursor: pointer;
+    transform: translateX(3px);
+    background-color: var(--blue);
+    box-shadow: 0px 0px 39px 0px rgba(26,83,227,1);
+    color: white;
+}
+
+.aside .options .option p .option-icon {
+    max-width: 25px;
+    transition: all 0.3s;
+}
+
+.general-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 20px;
+}
+
+/* CSS da companha/content */
+.content {
+    display: flex;
+    width: 100%;
+}
+
+.camp-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 20px;
+}
+
+.camp-title {
+    font-size: 30px;
+    text-align: center;
+    align-items: center;
 }

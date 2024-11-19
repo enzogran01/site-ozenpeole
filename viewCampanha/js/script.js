@@ -12,8 +12,8 @@ window.addEventListener('load', () => {
         user.classList.remove('hidden');
 
         // Esconde os botões de login e cadastro
-        document.getElementById('login').classList.add("hidden");
-        document.getElementById('cadastro').classList.add("hidden");
+        // document.getElementById('login').classList.add("hidden");
+        // document.getElementById('cadastro').classList.add("hidden");
     }
 
     if (typeUser === 'admin') {
@@ -28,15 +28,6 @@ window.addEventListener('load', () => {
 
 document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("userName")
-    
-    document.getElementById('login').classList.remove("hidden");
-    document.getElementById('cadastro').classList.remove("hidden");
-    
-    // Mostra novamente o botão de cadastro laranja na página inicial após logout
-    const cadastroBtn = document.getElementById('cadastro-btn');
-    if (cadastroBtn) {
-        cadastroBtn.style.display = "block"; // Exibir o botão de cadastro de novo
-    }
 
     window.location.href = "../homepage/homepage.html";
 });
@@ -104,3 +95,4 @@ if (campaignData) {
     // Exibe mensagem caso não haja dados no localStorage
     document.getElementById('campaignContainer').innerText = "Nenhuma campanha encontrada.";
 }
+
