@@ -79,5 +79,5 @@ userModal.addEventListener('click', (event) => {
 // Adiciona um event listener ao botão para capturar o valor selecionado na dropdown
 document.getElementById('confirmar').addEventListener('click', function () {
     //redireciona para o formulário
-    window.location.href = "../atacadista/form.html";
+    window.location.href = "../form/form.html";
 })
