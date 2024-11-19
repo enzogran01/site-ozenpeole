@@ -234,16 +234,16 @@ header .header-left, .header-right {
     width: 100%;
 }
 
-.camp-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    padding: 20px;
-}
-
 .camp-title {
     font-size: 30px;
     text-align: center;
     align-items: center;
+}
+
+.camp-container {
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    width: 100%;
+    padding: 20px;
 }
