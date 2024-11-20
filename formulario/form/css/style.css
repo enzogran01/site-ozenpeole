@@ -202,9 +202,9 @@ header .header-left, .header-right {
     color: #000000;
 }
 
-.box-r1,.box-r2,.box-r3,.box-r4,.box-r4,.box-r5,.box-r6{
-    font-size: 25px;
-    font-family: 'Archivo Narrow', sans-serif;
+.box-r1,.box-r2,.box-r3,.box-r4,.box-r4,.box-r5,.box-r6,.box-r8{
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
 }
 
 .box-r3 {
@@ -212,9 +212,18 @@ header .header-left, .header-right {
     align-items: center;
 }
 
-.r3-input {
-    font-size: 15px;
-    padding: 10px;
+.box-r7 {
+    font-family: "inter", sans-serif;
+}
+
+.r1-input, .r3-input, .r4-input, .r5-input {
+    border-radius: 4px;
+    border: 1.7px solid #000;
+    outline: none;
+    font-size: 20px;
+    padding: 21px 14px;
+    transition: all 0.3s;
+    width: 100%;
 }
 
 .subtitulo{
@@ -275,8 +284,8 @@ header .header-left, .header-right {
 
 .buttons {
     display: flex;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 0px;
     /* background-color: var(--darker-gray); */
     border-radius: 5px;
     justify-content: space-around;
@@ -303,6 +312,7 @@ header .header-left, .header-right {
     vertical-align: center;
     align-items: center;
     text-align: center;
+    transition: all 0.3s;
 }
 
 .buttons .button:hover {
