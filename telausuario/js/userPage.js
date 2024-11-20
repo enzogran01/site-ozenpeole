@@ -44,6 +44,9 @@ window.addEventListener('load', () => {
 
 document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("userName")
+    localStorage.removeItem("campaignData")
+    localStorage.removeItem("typeUser")
+    localStorage.removeItem("formModal")
     
     document.getElementById('login').classList.remove("hidden");
     document.getElementById('cadastro').classList.remove("hidden");

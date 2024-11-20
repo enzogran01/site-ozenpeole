@@ -24,10 +24,14 @@ window.addEventListener('load', () => {
         modalCampButton.classList.remove('hidden');
         modalDashButton.classList.add('hidden');
     }
+    
 });
 
 document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("userName")
+    localStorage.removeItem("campaignData")
+    localStorage.removeItem("typeUser")
+    localStorage.removeItem("formModal")
 
     window.location.href = "../homepage/homepage.html";
 });

@@ -2,10 +2,47 @@ window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
 
+    const userName = localStorage.getItem('userName');
+    const typeUser = localStorage.getItem('typeUser');
+
+    if (userName) {
+        // Mostra a mensagem de boas-vindas
+        const user = document.querySelector('#user');
+        user.textContent = `${userName}`;
+        user.classList.remove('hidden');
+
+        // Esconde os botões de login e cadastro
+        document.getElementById('login').classList.add("hidden");
+        document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
+
+        const campButton = document.getElementById('modalCampButton');
+        const dashButton = document.getElementById('mocalDashButton');
+
+        if (typeUser === 'admin') {
+            modalCampButton.classList.add('hidden');
+            modalDashButton.classList.remove('hidden');
+        }
+        else {
+            modalCampButton.classList.remove('hidden');
+            modalDashButton.classList.add('hidden');
+        }
+
+        const campaignData = localStorage.getItem('campaignData');
+        
+        if (campaignData) {
+            modalCampButton.href = '../viewCampanha/viewCampanha.html'
+        }
+    // } else {
+    //     alert('Login não encontrado.');
+    //     window.location.href = "../../homepage/homepage.html"
+    }
 })
 
 document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("userName")
+    localStorage.removeItem("campaignData")
+    localStorage.removeItem("typeUser")
+    localStorage.removeItem("formModal")
     
     document.getElementById('login').classList.remove("hidden");
     document.getElementById('cadastro').classList.remove("hidden");
@@ -222,15 +259,19 @@ function proximaPergunta(){
     //tirar o botão quando chegar n aúltima pergunta
         if(perguntaAtual === totalPerguntas){
             document.getElementById('btnAvancar').style.display = 'none';
+            document.getElementById('pBtnAvancar').style.display = 'none';
         }else{
             document.getElementById('btnAvancar').style.display = 'block';
+            document.getElementById('pBtnAvancar').style.display = 'block';
         }
 
     //mostra o botão de pergunta anterios só quando aparece a segunda pergunta
     if(perguntaAtual === 1){
         document.getElementById('btnAnterior').style.display = 'none'
+        document.getElementById('pBtnAnterior').style.display = 'none'
     }else{
         document.getElementById('btnAnterior').style.display = 'block'
+        document.getElementById('pBtnAnterior').style.display = 'block'
     }
 
     //mostra o botão de confirmar só quando chega a última pergunta

@@ -13,8 +13,8 @@
 <body>
     <dialog id="userModal">
         <div class="modal-user-options">
-            <a id="modalConfigButton" class="gen-modal-button" href="../telausuario/telausuario.html">Configurações</a>
-            <a id="modalCampButton" class="gen-modal-button" href="../visualizarcampanha/diaria/html/visuCampanha.html">Campanha</a>
+            <a id="modalConfigButton" class="gen-modal-button" href="../../telausuario/telausuario.html">Configurações</a>
+            <a id="modalCampButton" class="gen-modal-button" href="../../formulario/inicio/inicioForm.html">Campanha</a>
             <a id="modalDashButton" class="gen-modal-button" href="../admin/admin.html">Dashboard</a>
             <div class="modal-divisor"></div>
             <a id="sair" class="exit-button">Sair</a>
@@ -40,7 +40,7 @@
     <div class="corpo"> 
 
 
-        <form id="respostas">
+        <form id="respostas" class="form">
 
 
             <div class="box-pergunta" id="box-pergunta1"> 
@@ -90,7 +90,7 @@
             <div class="box-pergunta" id="box-pergunta3" style="display:none;">
 
                 <div class="box-p3">
-                    <h2 class="pergunta33">Em caso da empresa já ter redes sociais... <br></h2>
+                    <h2>Em caso da empresa já ter redes sociais...</h2>
                     <h1 class="pergunta3"> Qual a rede social que atrai mais cliente para sua loja?</h1>
                 </div>
 
@@ -177,36 +177,34 @@
                 </div>
             </div>
 
+            <div class="buttons">
+                <div class="button">
+                    <img src="./img/back.png" alt="" id="btnAnterior" onclick="anterior()" disabled>
+                    <p id="pBtnAnterior">Voltar</p>
+                </div>
+                
+                <div class="button">
+                    <img src="./img/close.png" alt="" id="btnVoltar" onclick="btnVoltar()" type="button">
+                    <p id="pBtnVoltar">Cancelar</p> 
+                </div>
+                
+                <div class="button">
+                    <img src="./img/forward.png" alt="" id="btnAvancar" onclick="avanco()" type="button">
+                    <p id="pBtnAvancar">Próximo</p>
+                </div>
+                
+                <button type="button" id="btnGeral" class="btnGeral">Confirmar</button>
+                
+            </div>
 
+            <div class="buttons-hidden">
+                <button id="btnAnterior" class="btnAnterior" disabled > Pergunta Anterior </button>
+                <button id="btnAvancar" class="btnAvancar" >Próxima Pergunta</button> 
+                <button onclick="btnVoltar()" type="button" class="btnVoltar">Voltar</button>
+            </div>
+            <ul id="suaLista"></ul>
 
         </form>
-
-        <div class="buttons-hidden">
-            <button id="btnAnterior" class="btnAnterior" disabled > Pergunta Anterior </button>
-            <button id="btnAvancar" class="btnAvancar" >Próxima Pergunta</button> 
-            <button onclick="btnVoltar()" type="button" class="btnVoltar">Voltar</button>
-        </div>
-
-        <div class="buttons">
-            <div class="button">
-                <img src="./img/back.png" alt="" id="btnAnterior" onclick="anterior()" disabled>
-                <p for="btnAnterior">Voltar</p>
-            </div>
-            
-            <div class="button">
-                <img src="./img/close.png" alt="" id="btnVoltar" onclick="btnVoltar()" type="button">
-                <p for="btnVoltar">Cancelar</p> 
-            </div>
-            
-            <div class="button">
-                <img src="./img/forward.png" alt="" id="btnAvancar" onclick="avanco()" type="button">
-                <p for="btnAvancar">Próximo</p>
-            </div>
-            
-            <button type="button" id="btnGeral" class="btnGeral">Confirmar</button>
-            
-        </div>
-        <ul id="suaLista"></ul>
         
     </div>
 

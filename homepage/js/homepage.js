@@ -1,6 +1,3 @@
-// import {nome} from "../../server.js"
-export const nome = 
-
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
@@ -8,6 +5,9 @@ window.addEventListener('load', () => {
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
     const typeUser = localStorage.getItem('typeUser');
+
+    const campButton = document.getElementById('modalCampButton');
+    const dashButton = document.getElementById('mocalDashButton');
 
     if (userName) {
         // Mostra a mensagem de boas-vindas
@@ -25,9 +25,6 @@ window.addEventListener('load', () => {
         if (cadastroBtn) {
             cadastroBtn.style.display = "none"; // Esconder o botão de cadastro
         }
-
-        const campButton = document.getElementById('modalCampButton');
-        const dashButton = document.getElementById('mocalDashButton');
         
         if (typeUser === 'admin') {
             modalCampButton.classList.add('hidden');
@@ -37,6 +34,13 @@ window.addEventListener('load', () => {
             modalCampButton.classList.remove('hidden');
             modalDashButton.classList.add('hidden');
         }
+        
+        const campaignData = localStorage.getItem('campaignData');
+
+        if (campaignData) {
+            modalCampButton.href = '../viewCampanha/viewCampanha.html'
+        }
+
         const modal = document.getElementById('logonModal');
         const noModalButton = document.querySelector('#logonModal .options #btn-no');
         const yesButtonModal = document.querySelector('#logonModal .options #btn-yes');
@@ -54,16 +58,22 @@ window.addEventListener('load', () => {
         noModalButton.addEventListener('click', () => {
             modal.close();
         });
-
+        
         yesButtonModal.addEventListener('click', () => {
             window.open('../formulario/inicio/inicioForm.html');
             modal.close();
         });
+
     }
+
 });
+
 
 document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("userName")
+    localStorage.removeItem("campaignData")
+    localStorage.removeItem("typeUser")
+    localStorage.removeItem("formModal")
     
     document.getElementById('login').classList.remove("hidden");
     document.getElementById('cadastro').classList.remove("hidden");
