@@ -42,14 +42,25 @@
 
         <form id="respostas" class="form">
 
-
-            <div class="box-pergunta" id="box-pergunta1"> 
+            <div class="box-pergunta" id="box-pergunta1">
 
                 <div class="box-p1">
-                    <h1 class="pergunta1">Qual a faixa etária do seu público alvo?</h1>
+                    <h1 class="pergunta1">Qual a área de atuação da sua empresa?</h1>
                 </div>
 
                 <div class="box-r1">
+                    <input type="text" name="local" placeholder="Exemplo: Santos - SP *" required>
+                </div>
+
+            </div>
+
+            <div class="box-pergunta" id="box-pergunta2" style="display:none;"> 
+
+                <div class="box-p2">
+                    <h1 class="pergunta2">Qual a faixa etária do seu público alvo?</h1>
+                </div>
+
+                <div class="box-r2">
                     <input type="radio" id="18 a 24" name="idade" value="18 a 24 anos" required>
                     <label for="18 a 24"> 18 a 24 anos </label>
                     <br>
@@ -70,13 +81,29 @@
 
 
 
-            <div class="box-pergunta" id="box-pergunta2" style="display:none;">
+            <div class="box-pergunta" id="box-pergunta3" style="display:none;">
 
-                <div class="box-p2">
-                    <h1 class="pergunta2">De qual cidade são a maioria dos seus clientes?</h1>
+                <div class="box-p3">
+                    <h1 class="pergunta3">De qual cidade são a maioria dos seus clientes?</h1>
                 </div>
 
-                <div class="box-r2">
+                <div class="box-r3">
+
+                    <input type="text" name="lojaLocal" placeholder="Exemplo: Santos - SP *" required>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="box-pergunta" id="box-pergunta4" style="display:none;">
+
+                <div class="box-p4">
+                    <h1 class="pergunta4">De qual cidade são a maioria dos seus clientes?</h1>
+                </div>
+
+                <div class="box-r4">
 
                     <input type="text" name="local" placeholder="Exemplo: Santos - SP *" required>
 
@@ -87,14 +114,14 @@
 
 
 
-            <div class="box-pergunta" id="box-pergunta3" style="display:none;">
+            <div class="box-pergunta" id="box-pergunta5" style="display:none;">
 
-                <div class="box-p3">
+                <div class="box-p5">
                     <h2>Em caso da empresa já ter redes sociais...</h2>
-                    <h1 class="pergunta3"> Qual a rede social que atrai mais cliente para sua loja?</h1>
+                    <h1 class="pergunta5"> Qual a rede social que atrai mais cliente para sua loja?</h1>
                 </div>
 
-                <div class="box-r3">
+                <div class="box-r5">
 
                     <input type="text" name="social" placeholder="Exemplo: Instagram *"required>
 
@@ -105,13 +132,13 @@
 
 
 
-            <div class="box-pergunta" id="box-pergunta4" style="display:none;">
+            <div class="box-pergunta" id="box-pergunta6" style="display:none;">
 
-                <div class="box-p4">
+                <div class="box-p6">
                     <h1> As suas vendas são feitas em maior parte:</h1>
                 </div>
 
-                <div class="box-r4">
+                <div class="box-r6">
 
 
                     <input type="radio" id="Presencial" name="venda" value="Presencialmente" checked required>
@@ -127,13 +154,13 @@
 
 
 
-            <div class="box-pergunta" id="box-pergunta5" style="display:none;">
+            <div class="box-pergunta" id="box-pergunta7" style="display:none;">
 
-                <div class="box-p5">
+                <div class="box-p7">
                     <h1 class="subtitulo"> Indique o ticket médio da sua empresa: </h1>
                 </div>
 
-                <div class="box-r5">
+                <div class="box-r7">
 
                     <input type="radio" id="5a30" name="preco" value="de 5 a 30 reais" checked required>
                     <label for="5a30"> R$ 5,00 - R$ 30,00 </label>
@@ -161,12 +188,12 @@
 
 
 
-            <div class="box-pergunta" id="box-pergunta6" style="display:none;">
-                <div class="box-p6">
+            <div class="box-pergunta" id="box-pergunta8" style="display:none;">
+                <div class="box-p8">
                     <h1 class="subtitulo">A loja já faz algum tipo de propaganda?</h1>
                 </div>
 
-                <div class="box-r6">
+                <div class="box-r8">
                     <input type="radio" id="sim" name="propaganda" value="já faz algum tipo de propaganda nas redes sociais" checked required>
                     <label for="sim"> Sim </label>
                     <br>

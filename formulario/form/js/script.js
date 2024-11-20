@@ -107,7 +107,9 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
     }
 
     // joga cada resposta para a sua devida variável
+    let area = obterResposta('area');
     let idade = obterResposta('idade');
+    let lojaLocal = obterResposta('lojaLocal');
     let local = obterResposta('local');
     let social = obterResposta('social');
     let venda = obterResposta('venda');
@@ -126,7 +128,7 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
                 "model": "llama3-groq-70b-8192-tool-use-preview",
                 "messages": [{
                   "role": "user",
-                  "content": `responda em português brasileiro: Crie uma campanha de marketing para uma loja com o conteúdo para uma semana de postagem na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando essos outros seguintes dados: Idade do público-alvo: ${idade}, Localização da maioria dos seus clientes: ${local}, Tipo de venda mais utilizado pela loja: ${venda}, Ticket médio: ${preco}, A loja ${propaganda} algum tipo de marketing . Lembrando que é necessário a descrição da imagem da postagem, a legenda necessária e o horário da postagem. Me reponda OBRIGATÓRIAMENTE neste formato: *Dia 1* - descrição da imagem 1,  - legenda 1,  - horário da postagem 1, ; *Dia 2* - descrição da imagem 2,  - legenda 2,  - horário da postagem 2; *Dia 3* - descrição da imagem 3,  - legenda 3, - horário da postagem 3; *Dia 4* - descrição da imagem 4, - legenda 4, - horário da postagem 4; *Dia 5* - descrição da imagem 5, - legenda 5, - horário da postagem 5; *Dia 6* - descrição da imagem 6, - legenda 6, - horário da postagem 6; *Dia 7* - descrição da imagem 7,  - legenda 7, - horário da postagem 7;`
+                  "content": `responda em português brasileiro: Crie uma campanha de marketing baseada nas teorias mais usadas atualmente, para uma empresa que atua na area de ${area} com o conteúdo para uma semana de postagem na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando esses outros seguintes dados: Idade do público-alvo: ${idade}, Localização da maioria dos seus clientes: ${local}, Localização da loja ${lojaLocal}, Maior parte das vendas feitas ${venda}, Ticket médio: ${preco}, A loja ${propaganda} algum tipo de marketing . Lembrando que é necessário a descrição da imagem da postagem, a legenda necessária e o horário da postagem. Me reponda OBRIGATÓRIAMENTE neste formato: *Dia 1* - descrição da imagem 1,  - legenda 1,  - horário da postagem 1, ; *Dia 2* - descrição da imagem 2,  - legenda 2,  - horário da postagem 2; *Dia 3* - descrição da imagem 3,  - legenda 3, - horário da postagem 3; *Dia 4* - descrição da imagem 4, - legenda 4, - horário da postagem 4; *Dia 5* - descrição da imagem 5, - legenda 5, - horário da postagem 5; *Dia 6* - descrição da imagem 6, - legenda 6, - horário da postagem 6; *Dia 7* - descrição da imagem 7,  - legenda 7, - horário da postagem 7;`
                 }]
               })
         });
@@ -236,7 +238,7 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
 
     let perguntaAtual = 1;
 
-const totalPerguntas = 6;
+const totalPerguntas = 8;
 
     //fazendo aparecer a primeira pergunta
     for(let i = 1; i <= totalPerguntas; i++){
@@ -251,6 +253,7 @@ const totalPerguntas = 6;
 
 //função pra passar pergunta
 function proximaPergunta(){
+    
     //oculta todas as perguntas
     for(let i = 1; i <= totalPerguntas; i++){
         document.getElementById(`box-pergunta${i}`).style.display = 'none';
