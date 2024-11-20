@@ -264,6 +264,7 @@ header .header-left, .header-right {
     border: solid 2px transparent;
     border-radius: 6px;
     transition: all 0.5s;
+    cursor: default;
 }
 
 .day:hover {
