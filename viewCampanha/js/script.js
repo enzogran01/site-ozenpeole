@@ -16,6 +16,12 @@ window.addEventListener('load', () => {
         // document.getElementById('cadastro').classList.add("hidden");
     }
 
+    const campaignData = localStorage.getItem('campaignData');
+
+    if (campaignData) {
+        modalCampButton.href = '../viewCampanha/viewCampanha.html'
+    }
+
     if (typeUser === 'admin') {
         modalCampButton.classList.add('hidden');
         modalDashButton.classList.remove('hidden');
@@ -35,8 +41,6 @@ document.getElementById("sair").addEventListener("click", () => {
 
     window.location.href = "../homepage/homepage.html";
 });
-
-
 
 const userModal = document.getElementById('userModal');
 const user = document.getElementById('user');
@@ -99,4 +103,39 @@ if (campaignData) {
     // Exibe mensagem caso não haja dados no localStorage
     document.getElementById('campaignContainer').innerText = "Nenhuma campanha encontrada.";
 }
+
+const campButton = document.getElementById('campButton')
+const delButton = document.getElementById('delButton')
+let icons = document.querySelectorAll("#path");
+
+function RemoveButtonClass(...properties) {
+    properties.forEach((property) => {
+        if (property.id === "delButton") {
+            property.classList.remove ("del-button-active")
+        } else {
+            property.classList.remove("button-active")
+        }
+    })
+}
+
+function ChangeIconColor(icons, ...clickedIcons) {
+    icons.forEach((icon) => {
+        icon.setAttribute("stroke", "#000")
+    })
+
+    clickedIcons.forEach((clickedIcon) => {
+        clickedIcon.setAttribute("stroke", "#fff")
+    })
+}
+
+campButton.addEventListener('click', () => {
+    RemoveButtonClass(delButton)
+    ChangeIconColor(icons, icons[0])
+    campButton.classList.add('button-active')
+})
+delButton.addEventListener('click', () => {
+    RemoveButtonClass(campButton)
+    ChangeIconColor(icons, icons[0])
+    delButton.classList.add('del-button-active')
+})
 

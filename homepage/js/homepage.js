@@ -60,7 +60,7 @@ window.addEventListener('load', () => {
         });
         
         yesButtonModal.addEventListener('click', () => {
-            window.open('../formulario/inicio/inicioForm.html');
+            window.location.href = '../formulario/inicio/inicioForm.html'
             modal.close();
         });
 

@@ -44,43 +44,6 @@ let adminSection = document.querySelector('#admin-section');
 
 let icons = document.querySelectorAll("#path");
 
-function searchInput() {
-    let input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById('searchBox');
-    filter = input.value.toUpperCase();
-    table = document.getElementById('userTable');
-    tr = table.getElementsByTagName('tr');
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName('td')[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
-
-function searchAdminInput () {
-    let input, filter, tavle, tr, td, i, txtValue;
-    input = document.getElementById('searchAdmBox');
-    filter = input.value.toUpperCase();
-    table = document.getElementById('adminTable');
-    tr = table.getElementsByTagName('tr');
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName('td')[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
 
 function ChangeSectionState(clickedSection, ...sections) {
     sections.forEach((section) => {
@@ -128,6 +91,44 @@ adminButton.addEventListener('click', () => {
     ChangeSectionState(adminSection, dashSection, userSection)
     adminButton.classList.add('button-active');
 });
+
+function searchInput() {
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById('searchBox');
+    filter = input.value.toUpperCase();
+    table = document.getElementById('userTable');
+    tr = table.getElementsByTagName('tr');
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+function searchAdminInput () {
+    let input, filter, tavle, tr, td, i, txtValue;
+    input = document.getElementById('searchAdmBox');
+    filter = input.value.toUpperCase();
+    table = document.getElementById('adminTable');
+    tr = table.getElementsByTagName('tr');
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
 
 const addUserButton = document.getElementById('addUserButton');
 const addUserModal = document.getElementById('addUserModal');
