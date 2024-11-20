@@ -161,7 +161,7 @@ header .header-left, .header-right {
 .aside {
     display: flex;
     flex-direction: column;
-    height: 100vw;
+    height: 110vw;
     padding: 30px 30px 30px 30px;
     background-color: var(--gray-two);
     border-radius: 0 15px 15px 0;
@@ -220,14 +220,6 @@ header .header-left, .header-right {
     transition: all 0.3s;
 }
 
-.general-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    padding: 20px;
-}
-
 /* CSS da companha/content */
 .content {
     display: flex;
@@ -244,6 +236,64 @@ header .header-left, .header-right {
     display: flex;
     flex-direction: column;
     /* gap: 10px; */
+    padding: 20px;
+    gap: 20px;
+}
+
+.day {
+    background-color: #fff;
+    padding: 10px;
+    border: solid 2px transparent;
+    border-radius: 6px;
+    transition: all 0.5s;
+}
+
+.day:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 0px 39px 0px rgba(26,83,227,1);
+    border: solid 2px var(--blue);
+}
+
+.camp-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 100%;
     padding: 20px;
+}
+
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f9fb;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after {
+    content: '';
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #1A53E3;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
 }
