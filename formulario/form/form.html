@@ -80,19 +80,29 @@
             </div>
 
 
-
-            <div class="box-pergunta" id="box-pergunta3" style="display:none;">
+            <div class="box-pergunta" id="box-pergunta3" style="display:none;"> 
 
                 <div class="box-p3">
-                    <h1 class="pergunta3">De qual cidade são a maioria dos seus clientes?</h1>
+                    <h1 class="pergunta3">Qual a faixa etária do seu público alvo?</h1>
                 </div>
 
                 <div class="box-r3">
+                    <input type="radio" id="18 a 24" name="idade" value="18 a 24 anos" required>
+                    <label for="18 a 24"> 18 a 24 anos </label>
+                    <br>
 
-                    <input class="r3-input" type="text" name="lojaLocal" placeholder="Exemplo: Santos - SP *" required>
+                    <input type="radio" id="25 a 35" name="idade" value="25 a 35 anos">
+                    <label for="25 a 35"> 25 a 35 anos </label>
+                    <br>
 
+                    <input type="radio" id="35 a 50" name="idade" value="35 a 50 anos">
+                    <label for="35 a 50"> 35 a 50 anos </label>
+                    <br>
+
+                    <input type="radio" id="50" name="idade" value="50 anos ou mais">
+                    <label for="50"> 50+ </label>
                 </div>
-
+                <div id="mensagemErro" style="color:red;"></div>
             </div>
 
 
@@ -105,12 +115,11 @@
 
                 <div class="box-r4">
 
-                    <input class="r4-input" type="text" name="local" placeholder="Exemplo: Santos - SP *" required>
+                    <input class="r3-input" type="text" name="lojaLocal" placeholder="Exemplo: Santos - SP *" required>
 
                 </div>
 
             </div>
-
 
 
 

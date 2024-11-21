@@ -234,10 +234,10 @@ document.getElementById('btnGeral').addEventListener('click', async () => {
 
 const totalPerguntas = 8;
 
-    //fazendo aparecer a primeira pergunta
-    for(let i = 1; i <= totalPerguntas; i++){
-        document.getElementById(`box-pergunta${i}`).style.display = 'none';
-     }
+    // //fazendo aparecer a primeira pergunta
+    // for(let i = 1; i <= totalPerguntas; i++){
+    //     document.getElementById(`box-pergunta${i}`).style.display = 'none';
+    //  }
         
     //condição para o botão não funcionar quando já tiver na ultima página
     if(perguntaAtual === totalPerguntas){
@@ -245,15 +245,15 @@ const totalPerguntas = 8;
     }
 
 
-//função pra passar pergunta
+// funcao para passar pergunta
 function proximaPergunta(){
-    
-    //oculta todas as perguntas
-    for(let i = 1; i <= totalPerguntas; i++){
-        document.getElementById(`box-pergunta${i}`).style.display = 'none';
-    }
-
-    //tirar o botão quando chegar n aúltima pergunta
+    if(validarResposta() === true){
+        // Esconde todas as perguntas
+        for(let i = 1; i <= totalPerguntas; i++){
+            document.getElementById(`box-pergunta${i}`).style.display = 'none';
+        }
+        
+        // Tira o botão quando chegar na última pergunta
         if(perguntaAtual === totalPerguntas){
             document.getElementById('btnAvancar').style.display = 'none';
             document.getElementById('pBtnAvancar').style.display = 'none';
@@ -261,62 +261,70 @@ function proximaPergunta(){
             document.getElementById('btnAvancar').style.display = 'block';
             document.getElementById('pBtnAvancar').style.display = 'block';
         }
-
-    //mostra o botão de pergunta anterios só quando aparece a segunda pergunta
-    if(perguntaAtual === 1){
-        document.getElementById('btnAnterior').style.display = 'none'
-        document.getElementById('pBtnAnterior').style.display = 'none'
+        
+        // Mostra o botão de pergunta anterior só quando aparece a segunda pergunta
+        if(perguntaAtual === 1){
+            document.getElementById('btnAnterior').style.display = 'none';
+            document.getElementById('pBtnAnterior').style.display = 'none';
+        }else{
+            document.getElementById('btnAnterior').style.display = 'block';
+            document.getElementById('pBtnAnterior').style.display = 'block';
+        }
+        
+        // Mostra o botão de confirmar só quando chega a última pergunta
+        if(perguntaAtual != totalPerguntas){
+            document.getElementById('btnGeral').style.display = 'none';
+        }else{
+            document.getElementById('btnGeral').style.display = 'block';
+        }
+        
+        // Mostra a pergunta atual com base no id
+        document.getElementById(`box-pergunta${perguntaAtual}`).style.display = 'block';
+        
+        // Atualiza os botões
+        document.getElementById('btnAnterior').disabled = perguntaAtual === 1;
+        document.getElementById('btnAvancar').disabled = perguntaAtual === totalPerguntas;
+        
+        document.getElementById('mensagemErro').innerHTML = ''; // Limpa a mensagem de erro
     }else{
-        document.getElementById('btnAnterior').style.display = 'block'
-        document.getElementById('pBtnAnterior').style.display = 'block'
+        document.getElementById('mensagemErro').innerHTML = 'Responda para ir para a próxima!';
     }
-
-    //mostra o botão de confirmar só quando chega a última pergunta
-    if(perguntaAtual != totalPerguntas){
-        document.getElementById('btnGeral').style.display = 'none';
-    }else{
-        document.getElementById('btnGeral').style.display = 'block';
-    }
-    
-    //mostra a pergunta atual com base no id
-    document.getElementById(`box-pergunta${perguntaAtual}`).style.display = 'block';
-
-    //atualiza os botões
-    document.getElementById('btnAnterior').disabled = perguntaAtual === 1;
-    document.getElementById('btnAvancar').disabled = perguntaAtual === totalPerguntas;
-
-    return;
 }
 
-
-    //função para avançar a pergunta
+// Função para avançar a pergunta
 function avanco(){
     if(perguntaAtual < totalPerguntas){
-        perguntaAtual++;
-        proximaPergunta();
+        if (validarResposta()) {
+            perguntaAtual++;
+            proximaPergunta();
+        }
     }
 }
 
-    function validarRadio() {
-        const radios = document.getElementsByName('respostas');
-        const mensagemErro = document.getElementById('mensagemErro');
-        let radioSelecionado = false;
-
-        // Verificar se algum radio foi selecionado
-        for (let i = 0; i < radios.length; i++) {
-            if (radios[i].checked) {
-                radioSelecionado = true;
-                break;
+function validarResposta() {
+    const camposResposta = document.querySelectorAll('input[type="radio"], input[type="text"]');
+    let respostaRespondida = false;
+    
+    // Verificar se algum campo de resposta foi preenchido
+    camposResposta.forEach((campo) => {
+        if ( campo.type === 'radio' ) {
+            if ( campo.checked ) {
+                respostaRespondida = true;
+            }
+        } else if ( campo.type === 'text' ) {
+            if ( campo.value.trim() !== '' ) {
+                respostaRespondida = true;
             }
         }
-
-        if (!radioSelecionado) {
-            mensagemErro.innerHTML = 'Por favor, selecione uma opção.';
-            return false; // Impede o envio do formulário
-        }
-
-        return true; // Permite o envio do formulário
+    });
+    
+    if (!respostaRespondida) {
+        mensajeErro.innerHTML = 'Por favor, responder à pergunta.';
+        return false; // Impede o envio do formulário
     }
+    
+    return true; // Permite o envio do formulário
+}
 
 
 
