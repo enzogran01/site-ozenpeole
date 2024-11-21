@@ -84,12 +84,6 @@ userModal.addEventListener('click', (event) => {
     }
 });
 
-function btnVoltar() {
-
-    window.location.href="../inicio/formulario.html";
-    
-}
-
 
 // function clickGeral(btnGeral)
 document.getElementById('btnGeral').addEventListener('click', async () => {
@@ -379,3 +373,7 @@ function getCampanhas(){
         });
     }
 }
+
+document.getElementById('btnCancelar').addEventListener('click', () => {
+    window.href = '../../homepage/homepage.html'
+})

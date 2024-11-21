@@ -6,13 +6,18 @@
     display: none;
 }
 
-.h2 {
+h2 {
     size: 15px;
     margin: 0;
 }
 
 .pergunta3{
     size: 15px;
+}
+
+.pergunta5 {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 :root {

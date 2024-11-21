@@ -566,13 +566,12 @@ footer {
     gap: 40px;
 }
 
-.instaIcon{
-    max-width: 39px;
-    max-height: 39px;
+.insta-icon, .youtube-icon {
+    transition: all 0.3s;
 }
 
-.instaIcon:hover {
-    transform: scale(1.1);
+.insta-icon:hover, .youtube-icon:hover {
+    transform: translateY(-3px);
 }
 
 .loader {
