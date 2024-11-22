@@ -233,18 +233,18 @@ header .header-left, .header-right {
 
 .close-del-camp-modal {
     cursor: pointer;
-    transition: all 0.5s;
+    transition: all 0.2s;
 }
 
 .close-del-camp-modal:hover {
-    transform: rotateZ(-360deg)
+    transform: translateY(-1px)
 }
 
 /*CSS do aside*/
 .aside {
     display: flex;
     flex-direction: column;
-    height: 110vw;
+    height: 90vw;
     padding: 30px 30px 30px 30px;
     background-color: var(--gray-two);
     border-radius: 0 15px 15px 0;
@@ -362,6 +362,58 @@ header .header-left, .header-right {
     gap: 10px;
     width: 100%;
     padding: 20px;
+}
+
+footer {
+    background-color: #313638;
+    color: white;
+    padding: 35px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    vertical-align: baseline;
+}
+
+.terms {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.terms a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.teste {
+    width: 1%;
+    height: 400px;
+    margin: 5% -100% 8% 0;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.insta-icon, .youtube-icon {
+    transition: all 0.3s;
+}
+
+.insta-icon:hover, .youtube-icon:hover {
+    transform: translateY(-3px);
 }
 
 

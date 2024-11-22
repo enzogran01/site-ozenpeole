@@ -28,15 +28,10 @@ h2 {
 }
 
 body {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
     scroll-behavior: smooth;
     margin: 0;
     padding: 0;
     background-color: #D5D7DB;
-    overflow-x: hidden;
 }
 
 html {
@@ -240,9 +235,11 @@ header .header-left, .header-right {
     background-color: #ffffff;
     margin-left: 50%;
     margin-bottom: 0;
-    height: 10%;
+    height: 79.8vh;
     padding-top: 35px;
     padding: 50px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .campanha-demonstrativa {
@@ -318,36 +315,6 @@ header .header-left, .header-right {
 
 .buttons .button:hover {
     transform: scale(1.2);
-    cursor: pointer;
-}
-
-footer {
-    background-color: #313638;
-    color: white;
-    padding: 35px;
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    padding-top: 2%;
-    padding-bottom: 2%;
-}
-
-.terms {
-    display: flex;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-.terms a {
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.terms a:hover {
-    text-decoration: underline;
     cursor: pointer;
 }
 

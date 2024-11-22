@@ -32,9 +32,9 @@ window.addEventListener('load', () => {
         if (campaignData) {
             modalCampButton.href = '../viewCampanha/viewCampanha.html'
         }
-    // } else {
-    //     alert('Login não encontrado.');
-    //     window.location.href = "../../homepage/homepage.html"
+    } else {
+        alert('Login não encontrado.');
+        window.location.href = "../../homepage/homepage.html"
     }
 })
 
@@ -384,4 +384,10 @@ function getCampanhas(){
 
 document.getElementById('btnCancelar').addEventListener('click', () => {
     window.href = '../../homepage/homepage.html'
+})
+
+const btnCancelar = document.getElementById('btnCancelar')
+
+btnCancelar.addEventListener('click', () => {
+    window.location.href = '../../homepage/homepage.html'
 })

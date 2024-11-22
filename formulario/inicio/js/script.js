@@ -32,9 +32,9 @@ window.addEventListener('load', () => {
         if (campaignData) {
             modalCampButton.href = '../viewCampanha/viewCampanha.html'
         }
-    // } else {
-    //     alert('Login não encontrado.');
-    //     window.location.href = "../../homepage/homepage.html"
+    } else {
+        alert('Login não encontrado.');
+        window.location.href = "../../homepage/homepage.html"
     }
 })
 
