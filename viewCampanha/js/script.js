@@ -102,11 +102,51 @@ if (campaignData) {
 } else {
     // Exibe mensagem caso não haja dados no localStorage
     document.getElementById('campaignContainer').innerText = "Nenhuma campanha encontrada.";
+
+    alert('Nenhuma campanha encontrada');
+    window.location.href = "../homepage/homepage.html"
 }
 
 const campButton = document.getElementById('campButton')
 const delButton = document.getElementById('delButton')
+const delCampModal = document.getElementById('delCampModal')
+
+const closeDelCampModal = document.getElementById('closeDelCampModal')
+const dontDelCampButton = document.getElementById('dontDelCampButton')
+const delCampButton = document.getElementById('delCampButton')
+
 let icons = document.querySelectorAll("#path");
+
+campButton.addEventListener('click', () => {
+    RemoveButtonClass(delButton)
+    ChangeIconColor(icons, icons[0])
+    campButton.classList.add('button-active')
+})
+delButton.addEventListener('click', () => {
+    RemoveButtonClass(campButton)
+    ChangeIconColor(icons, icons[0])
+    delButton.classList.add('del-button-active')
+
+    delCampModal.showModal();
+})
+
+closeDelCampModal.addEventListener('click', () => {
+    delCampModal.close();
+    RemoveButtonClass(delButton)
+    ChangeIconColor(icons, icons[0])
+    campButton.classList.add('button-active')
+})
+dontDelCampButton.addEventListener('click', () => {
+    delCampModal.close();
+    RemoveButtonClass(delButton)
+    ChangeIconColor(icons, icons[0])
+    campButton.classList.add('button-active')
+})
+delCampButton.addEventListener('click', () => {
+    localStorage.removeItem("campaignData")
+
+    window.location.href = "../homepage/homepage.html"
+})
 
 function RemoveButtonClass(...properties) {
     properties.forEach((property) => {
@@ -128,14 +168,4 @@ function ChangeIconColor(icons, ...clickedIcons) {
     })
 }
 
-campButton.addEventListener('click', () => {
-    RemoveButtonClass(delButton)
-    ChangeIconColor(icons, icons[0])
-    campButton.classList.add('button-active')
-})
-delButton.addEventListener('click', () => {
-    RemoveButtonClass(campButton)
-    ChangeIconColor(icons, icons[0])
-    delButton.classList.add('del-button-active')
-})
 
