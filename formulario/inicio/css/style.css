@@ -56,6 +56,7 @@ html {
     cursor: pointer;
     transition: all 0.3s;
     text-decoration: none;
+    outline: none;
 }
 
 .gen-modal-button:hover {
