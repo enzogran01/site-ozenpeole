@@ -8,6 +8,7 @@
     --gray: #D5D7DB;
     --blue: #1A53E3;
     --orange: #F95A33;
+    --red: #FF033E;
 }
 
 .hidden {
@@ -245,10 +246,10 @@ header .header-left, .header-right {
 .aside {
     display: flex;
     flex-direction: column;
-    height: 90vw;
     padding: 30px 30px 30px 30px;
     background-color: var(--gray-two);
     border-radius: 0 15px 15px 0;
+    height: 110vw;
     width: 12vw;
     transition: all 0.3s;
 }
@@ -353,7 +354,7 @@ header .header-left, .header-right {
 
 .day:hover {
     transform: translateY(-3px);
-    box-shadow: 0px 0px 39px 0px rgba(26,83,227,1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
     border: solid 2px var(--blue);
 }
 
