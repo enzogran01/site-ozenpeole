@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => { // Substituído por DOMContentLoaded para garantir que todos os elementos estejam carregados
     const loader = document.querySelector('.loader');
-    loader?.classList.add('loader-hidden'); // Verifica se o loader existe
+    loader.classList.add('loader-hidden'); // Verifica se o loader existe
 
     const userName = localStorage.getItem('userName');
     const typeUser = localStorage.getItem('typeUser');
@@ -61,6 +61,7 @@ userModal?.addEventListener('click', (event) => {
 });
 
 const campaignData = localStorage.getItem('campaignData');
+console.log(campaignData);
 if (campaignData) {
     const container = document.getElementById('campaignContainer');
     const regex = /\*Dia (\d+)\* - (.*?),\s*- (.*?),\s*- (.*?);/g;

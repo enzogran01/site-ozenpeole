@@ -220,7 +220,11 @@ header .header-left, .header-right {
     align-items: center;
 }
 
-.r1-input, .r3-input, .r4-input, .r5-input {
+.nao-usa-rede {
+    margin-top: 20px;
+}
+
+.r1-input, .r2-input, .r3-input, .r4-input, .r5-input {
     border-radius: 4px;
     border: 1.7px solid #000;
     outline: none;

@@ -8,37 +8,37 @@ window.addEventListener('load', () => {
     const userName = localStorage.getItem('userName');
     const typeUser = localStorage.getItem('typeUser');
 
-    // if (userName) {
-    //     // Mostra a mensagem de boas-vindas
-    //     const user = document.querySelector('#user');
-    //     user.textContent = `${userName}`;
-    //     user.classList.remove('hidden');
+    if (userName) {
+        // Mostra a mensagem de boas-vindas
+        const user = document.querySelector('#user');
+        user.textContent = `${userName}`;
+        user.classList.remove('hidden');
 
-    //     // Esconde os botões de login e cadastro
-    //     document.getElementById('login').classList.add("hidden");
-    //     document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
+        // Esconde os botões de login e cadastro
+        document.getElementById('login').classList.add("hidden");
+        document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
 
-    //     const campButton = document.getElementById('modalCampButton');
-    //     const dashButton = document.getElementById('mocalDashButton');
+        const campButton = document.getElementById('modalCampButton');
+        const dashButton = document.getElementById('mocalDashButton');
 
-    //     if (typeUser === 'admin') {
-    //         modalCampButton.classList.add('hidden');
-    //         modalDashButton.classList.remove('hidden');
-    //     }
-    //     else {
-    //         modalCampButton.classList.remove('hidden');
-    //         modalDashButton.classList.add('hidden');
-    //     }
+        if (typeUser === 'admin') {
+            modalCampButton.classList.add('hidden');
+            modalDashButton.classList.remove('hidden');
+        }
+        else {
+            modalCampButton.classList.remove('hidden');
+            modalDashButton.classList.add('hidden');
+        }
 
-    //     const campaignData = localStorage.getItem('campaignData');
+        const campaignData = localStorage.getItem('campaignData');
         
-    //     if (campaignData) {
-    //         modalCampButton.href = '../viewCampanha/viewCampanha.html'
-    //     }
-    // } else {
-    //     alert('Login não encontrado.');
-    //     window.location.href = "../../homepage/homepage.html"
-    // }
+        if (campaignData) {
+            modalCampButton.href = '../viewCampanha/viewCampanha.html'
+        }
+    } else {
+        alert('Login não encontrado.');
+        window.location.href = "../../homepage/homepage.html"
+    }
 })
 
 

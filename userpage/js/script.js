@@ -2,7 +2,7 @@
 
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
-    loader.classList.add('hidden');
+    loader.classList.add('loader-hidden');
     
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
@@ -87,9 +87,13 @@ const logoutOption = document.getElementById('logoutOption')
 
 const profileOption = document.getElementById('profileOption')
 const passwordOption = document.getElementById('passwordOption')
+const resetPasswordOption = document.getElementById('resetPasswordOption')
 
 const configElements = document.getElementById('configElements')
 const passwordElements = document.getElementById('passwordElements')
+const resetPassword = document.getElementById('resetPassword')
+
+const resetPasswordModal = document.getElementById('resetPasswordModal')
 
 configOption.addEventListener('click', () => {
     changeOptionClass(configOption, campaignOption, logoutOption)
@@ -108,6 +112,9 @@ profileOption.addEventListener('click', () => {
 passwordOption.addEventListener('click', () => {
     changeMiniSectionState(passwordElements, configElements)
     changeOptionClass(passwordOption, profileOption)
+})
+resetPasswordOption.addEventListener('click', () => {
+    resetPasswordModal.showModal();
 })
 
 function changeMiniSectionState (clickedSection, ...sections) {
