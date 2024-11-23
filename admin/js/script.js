@@ -4,7 +4,6 @@ window.addEventListener('load', () => {
 
     const adminName = localStorage.getItem('userName'); // Recupera o nome do administrador
     const typeUser = localStorage.getItem('typeUser');
-
     if (adminName && typeUser === 'admin') {
         document.getElementById('admin-name').textContent = adminName;
     } else {

@@ -2,18 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
 
-
-/* Oculta a mensagem de boas-vindas por padrão */
-.welcome-message-hidden {
-    display: none;
-}
-/* Estilo padrão para a mensagem de boas-vindas */
-.welcome-message {
-    font-size: 1.5em;
-    color: white;
-    margin-right: 20px;
-}
-
 .hidden {
     display: none;
 }
@@ -245,10 +233,6 @@ header .header-left, .header-right {
     margin-right: 20px;
 }
 
-.hidden {
-    display: none;
-}
-
 .main {
     display: flex;
     align-items: center;
@@ -297,14 +281,14 @@ header .header-left, .header-right {
     background-color: #F95A33;
     height: 50px;
     width: 140px;
-    transition: ease-in-out 0.3s;
+    transition: all 0.3s;
+    cursor: pointer;
 }
 
 .main-button button:hover {
-    background-color: white;
     border: #F95A33 solid 2px;
-    color: #F95A33;
-    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 0px 0px 39px 0px #F95A33;
 }
 
 .whale-img {

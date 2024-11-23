@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+    --darker-gray: #313638;
+    --gray-two: #c7c8cb;
+    --gray: #D5D7DB;
+    --lighter-gray: #e6e7ea;
+    --blue: #1A53E3;
+    --lighter-blue: #708edc;
+    --even-lighter-blue: #8ba2de;
+    --even-even-lighter-blue: #adbbdf;
+    --orange: #F95A33;
+    --lighter-orange: #f88e73;
+    --red: #FF033E;
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    background-color: #D5D7DB;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/*CSS modal do usuario*/
+#userModal[open] {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#userModal[open]::backdrop {
+    background: none;
+}
+
+.modal-user-options {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0px;
+    font-family: "Inter", sans-serif;
+}
+
+.gen-modal-button {
+    color: black;
+    background-color: transparent;
+    border: transparent solid 2px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    outline: none;
+}
+
+.gen-modal-button:hover {
+    background-color: #1A53E3;
+    border: #1A53E3 solid 2px;
+    color: #fff;
+}
+
+.exit-button {
+    color: black;
+    background-color: transparent;
+    border: transparent solid 2px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.exit-button:hover {
+    background-color: #FF033E;
+    border: #FF033E solid 2px;
+    color: #fff;
+}
+
+.modal-divisor {
+    width: 100%;
+    background-color: #313638;
+    height: 1px;
+}
+
+/*CSS header*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #313638;
+    padding: 18px 8%;
+    font-family: "Inter", sans-serif;
+    transition: 0.3s;
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+header a:hover {
+    text-decoration: underline;
+    color: #1A53E3;
+}
+
+header .header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-right span {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.header-right span:hover {
+    text-decoration: underline;
+    color: #1A53E3;
+}
+
+.header-bottom-border {
+    position: relative;
+}
+
+.header-bottom-border::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0px;
+    background: linear-gradient(to right, #F95A33, #1A53E3);
+    transition: ease-in-out 0.3s;
+}
+
+.header-bottom-border:hover::after {
+    height: 8px;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+/*CSS do footer*/
+footer {
+    background-color: #313638;
+    color: white;
+    padding: 35px;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    vertical-align: baseline;
+}
+
+.terms {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.terms a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.teste {
+    width: 1%;
+    height: 400px;
+    margin: 5% -100% 8% 0;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.insta-icon, .youtube-icon {
+    transition: all 0.3s;
+}
+
+.insta-icon:hover, .youtube-icon:hover {
+    transform: translateY(-3px);
+}
+
+/*CSS do loader*/
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f9fb;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after {
+    content: '';
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: #1A53E3;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    }
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+/*CSS do aside*/
+.user-aside {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    height: 110vw;
+    width: 25vw;
+    transition: all 0.3s;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.option {
+    display: flex;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    padding: 20px;
+    transition: all 0.2s;
+    cursor: pointer;
+    align-items: center;
+    gap: 10px;
+}
+
+.option-active {
+    display: flex;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    padding: 20px;
+    transition: all 0.2s;
+    cursor: pointer;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--lighter-blue);
+    border-right: 6px solid var(--blue);
+}
+
+.option:hover {
+    background-color: var(--even-lighter-blue);
+}
+
+/*CSS de seções*/
+.content {
+    display: flex;
+}
+
+.general-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+/*CSS da configuração*/
+.config-title {
+    font-family: "Inter", sans-serif;
+    font-size: 30px;
+}
+
+.general-subtitle {
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    margin: 0;
+}
+
+.config-part {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;  
+    height: 100%;
+}
+
+.config-options {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding-block: 15px;
+    border-radius: 6px;
+    width: 12vw;
+    height: min-content;
+}
+
+.config-block {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding-block: 0;
+    padding-inline: 30px;
+    padding-block: 30px;
+    border-radius: 6px;
+    height: fit-content;
+    width: 100%;
+}
+
+.block-divisor {
+    background-color: var(--gray);
+    height: 2px;
+    border-radius: 100px;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+}
+
+.form-minigroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.shown-element {
+    display: block;
+}
+
+.general-text-input {
+    padding: 21px 14px;
+    border-radius: 5px;
+    border:solid 2px var(--gray);
+    transition: all 0.3s;
+}
+
+.general-text-input::placeholder {
+    font-size: 14px;
+}
+
+.general-text-input:focus {
+    outline: none;
+    border:solid 2px var(--blue);
+}
+
+.general-label {
+    font-weight: bold;
+}
+
+.submit-button {
+    display: flex;
+    justify-content: left;
+}
+
+.save-button {
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--blue);
+    color: #fff;
+    padding: 17px;
+    width: 25%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.save-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+}
+
+.password-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.password-option, .email-option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--lighter-gray);
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.password-desc, .email-desc {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
