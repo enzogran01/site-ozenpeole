@@ -20,16 +20,49 @@
     </dialog>
 
     <dialog class="reset-password-modal" id="resetPasswordModal">
-        <div class="reset-password-div">
-            <h1 class="general-subtitle">Redefinir senha</h1>
+        <div class="reset-password-div" id="firstResetPassword">
+            <div class="reset-password-title">
+                <svg id="firstArrowBack" class="back-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg>
+            </div>
+            
+            <div class="reset-password-sentence">
+                <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24" fill="none"><path d="M12 7.75V13M21.08 8.58v6.84c0 1.12-.6 2.16-1.57 2.73l-5.94 3.43c-.97.56-2.17.56-3.15 0l-5.94-3.43a3.15 3.15 0 0 1-1.57-2.73V8.58c0-1.12.6-2.16 1.57-2.73l5.94-3.43c.97-.56 2.17-.56 3.15 0l5.94 3.43c.97.57 1.57 1.6 1.57 2.73Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 16.2v.1" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
 
-            <div class="block-divisor"></div>
+            <h1 class="general-subtitle">Confirme seu email</h1>
 
-            <form action="POST">
+            <form action="POST" class="reset-password-form" id="confirmEmailForm">
                 <div class="form-minigroup">
-                    <input class="general-text-input" name="email" type="email" placeholder="exemplo@gmail.com">
+                    <input id="confirmEmailInput" class="general-text-input" name="confirmEmailInput" type="email" placeholder="exemplo@gmail.com">
                 </div>
             </form>
+
+            <div class="reset-password-div-buttons-1">
+                <button class="save-button" id="advanceResetButton">Avançar</button>
+            </div>
+        </div>
+
+        <div class="hidden" id="secondResetPassword">
+            <div class="reset-password-title">
+                <svg id="secondArrowBack" class="back-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg>
+                <h1 class="general-subtitle">Tudo pronto</h1>
+                <div class="blank"></div>
+            </div>
+
+            <form action="POST" class="reset-password-form" id="changePasswordForm">
+                <div class="form-minigroup">
+                    <input id="newPasswordInput" class="general-text-input" name="newPasswordInput" type="password" placeholder="Nova senha">
+                </div>
+
+                <div class="form-minigroup">
+                    <input id="confirmNewPasswordInput" class="general-text-input" name="confirmNewPasswordInput" type="password" placeholder="Confirmar senha">
+                </div>
+            </form>
+
+            <div class="reset-password-div-buttons-2">
+                <button class="cancel-button" id="cancelResetButton">Cancelar</button>
+                <button class="save-button" id="confirmResetButton">Confirmar</button>
+            </div>
         </div>
     </dialog>
 

@@ -35,6 +35,8 @@ window.addEventListener('load', () => {
 
 });
 
+const campaignData = localStorage.getItem('campaignData');
+
 document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("userName")
     localStorage.removeItem("campaignData")
@@ -81,28 +83,87 @@ userModal.addEventListener('click', (event) => {
     }
 });
 
+//Opções do aside
 const configOption = document.getElementById('configOption')
 const campaignOption = document.getElementById('campaignOption')
 const logoutOption = document.getElementById('logoutOption')
 
+//Opções da parte de configuração
 const profileOption = document.getElementById('profileOption')
 const passwordOption = document.getElementById('passwordOption')
 const resetPasswordOption = document.getElementById('resetPasswordOption')
 
+const resetPasswordModal = document.getElementById('resetPasswordModal')
+const firstArrowBack = document.getElementById('firstArrowBack')
+const secondArrowBack = document.getElementById('secondArrowBack')
+const firstResetPassword = document.getElementById('firstResetPassword')
+const secondResetPassword = document.getElementById('secondResetPassword')
+const advanceResetButton = document.getElementById('advanceResetButton')
+const cancelResetButton = document.getElementById('cancelResetButton')
+const confirmResetButton = document.getElementById('confirmResetButton')
+
+firstArrowBack.addEventListener('click', () => {
+    resetPasswordModal.close();
+})
+secondArrowBack.addEventListener('click', () => {
+    firstResetPassword.classList.remove('hidden')
+    firstResetPassword.classList.add('reset-password-div')
+
+    secondResetPassword.classList.remove('reset-password-div')
+    secondResetPassword.classList.add('hidden')
+})
+advanceResetButton.addEventListener('click', () => {
+    firstResetPassword.classList.remove('reset-password-div')
+    firstResetPassword.classList.add('hidden')
+
+    secondResetPassword.classList.remove('hidden')
+    secondResetPassword.classList.add('reset-password-div')
+})
+confirmResetButton.addEventListener('click', () => {
+    resetPasswordModal.close();
+
+    firstResetPassword.classList.remove('hidden')
+    firstResetPassword.classList.add('reset-password-div')
+
+    secondResetPassword.classList.remove('reset-password-div')
+    secondResetPassword.classList.add('hidden')
+})
+cancelResetButton.addEventListener('click', () => {
+    resetPasswordModal.close();
+
+    firstResetPassword.classList.remove('hidden')
+    firstResetPassword.classList.add('reset-password-div')
+
+    secondResetPassword.classList.remove('reset-password-div')
+    secondResetPassword.classList.add('hidden')
+})
+
+//Elementos da parte de configuração
 const configElements = document.getElementById('configElements')
 const passwordElements = document.getElementById('passwordElements')
-const resetPassword = document.getElementById('resetPassword')
 
-const resetPasswordModal = document.getElementById('resetPasswordModal')
 
 configOption.addEventListener('click', () => {
     changeOptionClass(configOption, campaignOption, logoutOption)
 })
 campaignOption.addEventListener('click', () => {
     changeOptionClass(campaignOption, configOption, logoutOption)
+
+    if (campaignData) {
+        window.location.href = '../viewCampanha/viewCampanha.html'
+    } else {
+        window.location.href = '../formulario/inicio/inicioForm.html'
+    }
 })
 logoutOption.addEventListener('click', () => {
     changeOptionClass(logoutOption, campaignOption, configOption)
+
+    localStorage.removeItem("userName")
+    localStorage.removeItem("campaignData")
+    localStorage.removeItem("typeUser")
+    localStorage.removeItem("formModal")
+
+    window.location.href = "../homepage/homepage.html";
 })
 
 profileOption.addEventListener('click', () => {
@@ -136,3 +197,13 @@ function changeOptionClass (clickedOption, ...options) {
         option.classList.add('option')
     })
 }
+
+// const confirmEmailInputVal = document.getElementById('confirmEmailInput').value
+// const newPasswordInputVal = document.getElementById('newPasswordInput').value
+// const confirmNewPasswordInputVal = document.getElementById('confirmNewPasswordInput').value
+
+// if (confirmEmailInputVal.trim()) {
+//     advanceResetButton.disabled = false;
+// } else {
+//     advanceResetButton.disabled = true;
+// }
