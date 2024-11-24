@@ -332,6 +332,19 @@ function validarPerguntaAtual() {
     });
 }
 
+
+document.getElementById('btnInfoTicket').addEventListener('click', () => {
+    const modal = document.getElementById('infoTicketModal');
+    modal.showModal();
+});
+
+document.getElementById('btnCloseModal').addEventListener('click', () => {
+    const modal = document.getElementById('infoTicketModal');
+    modal.close();
+});
+
+
+
 // Botão cancelar redireciona para a página inicial
 document.getElementById('btnCancelar').addEventListener('click', () => {
     window.location.href = '../../homepage/homepage.html';
