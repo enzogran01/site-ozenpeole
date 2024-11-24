@@ -90,6 +90,10 @@
                 <div class="option" id="campaignOption">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M10.5 19.9V4.1c0-1.5-.64-2.1-2.23-2.1H4.23C2.64 2 2 2.6 2 4.1v15.8c0 1.5.64 2.1 2.23 2.1h4.04c1.59 0 2.23-.6 2.23-2.1ZM22 10.9V4.1c0-1.5-.64-2.1-2.23-2.1h-4.04c-1.59 0-2.23.6-2.23 2.1v6.8c0 1.5.64 2.1 2.23 2.1h4.04c1.59 0 2.23-.6 2.23-2.1ZM22 19.9v-1.8c0-1.5-.64-2.1-2.23-2.1h-4.04c-1.59 0-2.23.6-2.23 2.1v1.8c0 1.5.64 2.1 2.23 2.1h4.04c1.59 0 2.23-.6 2.23-2.1Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Minha Campanha</span>
                 </div>
+
+                <div class="option" id="dashboardOption">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.2 14.4c0 1.06-.46 2.02-1.2 2.68-.64.58-1.48.92-2.4.92a3.598 3.598 0 01-.95-7.07A3.61 3.61 0 0012 13.21c.33 0 .65-.04.95-.13.16.4.25.85.25 1.32z"></path><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.6 9.6c0 .47-.09.92-.25 1.33A3.61 3.61 0 0112 13.21c-.33 0-.65-.04-.95-.13A3.587 3.587 0 018.4 9.6C8.4 7.61 10.01 6 12 6s3.6 1.61 3.6 3.6z"></path><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18 14.4a3.598 3.598 0 01-6 2.68 3.55 3.55 0 001.2-2.68c0-.47-.09-.92-.25-1.33 1.1-.3 1.99-1.1 2.4-2.15A3.62 3.62 0 0118 14.4z"></path><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7z"></path></svg><span>Dashboard</span>
+                </div>
     
                 <div class="option" id="logoutOption">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M17.44 14.62L20 12.06 17.44 9.5M9.76 12.06h10.17M11.76 20c-4.42 0-8-3-8-8s3.58-8 8-8"></path></svg><span>Sair</span>
@@ -119,20 +123,34 @@
 
                             <div class="block-divisor"></div>
 
+                            <div class="config-user-data">
+                                <div class="user-data-name">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none"><path d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81v8.38c0 2.81 1.29 4.74 3.56 5.47.66.23 1.42.34 2.25.34h8.38c.83 0 1.59-.11 2.25-.34C20.71 20.93 22 19 22 16.19V7.81C22 4.17 19.83 2 16.19 2Zm4.31 14.19c0 2.14-.84 3.49-2.53 4.05-.97-1.91-3.27-3.27-5.97-3.27-2.7 0-4.99 1.35-5.97 3.27h-.01c-1.67-.54-2.52-1.9-2.52-4.04V7.81c0-2.82 1.49-4.31 4.31-4.31h8.38c2.82 0 4.31 1.49 4.31 4.31v8.38Z" fill="#000000"></path><path d="M12.002 8c-1.98 0-3.58 1.6-3.58 3.58s1.6 3.59 3.58 3.59 3.58-1.61 3.58-3.59c0-1.98-1.6-3.58-3.58-3.58Z" fill="#000000"></path></svg>
+                                    <h1 class="user-name" id="user">Teste teste</h1>
+                                </div>
+
+                                <div class="user-data-email">
+                                    <span>teste@gmail.com</span>
+                                    <span>'(xx) xxxxx-xxxx'</span>
+                                </div>
+                            </div>
+
+                            <div class="block-divisor"></div>
+
                             <div class="form-group">
                                 <div class="form-minigroup">
                                     <label class="general-label" for="nome">Nome</label>
-                                    <input class="general-text-input" name="nome" type="text" placeholder="Nome">
+                                    <input id="userNameInput" class="general-text-input" name="nome" type="text" placeholder="Nome">
                                 </div>
                                 <div class="form-minigroup">
                                     <label class="general-label" for="email">Email</label>
-                                    <input class="general-text-input" name="email" type="email" placeholder="exemplo@gmail.com">
+                                    <input id="userEmailInput" class="general-text-input" name="email" type="email" placeholder="exemplo@gmail.com">
                                 </div>
                             </div>
     
                             <div class="form-minigroup">
                                 <label class="general-label" for="telefone">Telefone</label>
-                                <input class="general-text-input" name="telefone" type="tel" placeholder="(xx) xxxxx-xxxx" maxlength="11">
+                                <input id="userTelInput" class="general-text-input" name="telefone" type="tel" placeholder="(xx) xxxxx-xxxx" maxlength="11">
                             </div>
     
                             <div class="submit-button">

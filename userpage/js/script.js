@@ -11,6 +11,9 @@ window.addEventListener('load', () => {
     const campButton = document.getElementById('modalCampButton');
     const dashButton = document.getElementById('mocalDashButton');
 
+    const dashboardOption = document.getElementById('dashboardOption')
+    const campaignOption = document.getElementById('campaignOption')
+
     if (userName) {
        const user = document.querySelector('#user');
        user.textContent = `${userName}`;
@@ -19,10 +22,20 @@ window.addEventListener('load', () => {
        if (typeUser === 'admin') {
            modalCampButton.classList.add('hidden');
            modalDashButton.classList.remove('hidden');
+
+           campaignOption.classList.remove('option') 
+           campaignOption.classList.add('hidden')
+           dashboardOption.classList.remove('hidden') 
+           dashboardOption.classList.add('option') 
        }
        else {
            modalCampButton.classList.remove('hidden');
            modalDashButton.classList.add('hidden');
+
+           campaignOption.classList.remove('hidden') 
+           campaignOption.classList.add('option')
+           dashboardOption.classList.remove('option') 
+           dashboardOption.classList.add('hidden') 
        }
         
        const campaignData = localStorage.getItem('campaignData');
@@ -31,6 +44,9 @@ window.addEventListener('load', () => {
            modalCampButton.href = '../viewCampanha/viewCampanha.html'
        }
 
+    } else {
+        alert('Usuário não encontrado.')
+        window.location.href = '../homepage/homepage.html'
     }
 
 });
@@ -42,15 +58,6 @@ document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("campaignData")
     localStorage.removeItem("typeUser")
     localStorage.removeItem("formModal")
-    
-    document.getElementById('login').classList.remove("hidden");
-    document.getElementById('cadastro').classList.remove("hidden");
-    
-    // Mostra novamente o botão de cadastro laranja na página inicial após logout
-    const cadastroBtn = document.getElementById('cadastro-btn');
-    if (cadastroBtn) {
-        cadastroBtn.style.display = "block"; // Exibir o botão de cadastro de novo
-    }
 
     window.location.href = "../homepage/homepage.html";
 });
