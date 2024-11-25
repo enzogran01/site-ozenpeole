@@ -546,6 +546,9 @@ footer {
     background-color: var(--lighter-gray);
     padding: 10px;
     gap: 10px;
+    transition: all 0.2s;
+    cursor: default;
+    border: solid 2px transparent;
 }
 
 .user-name {
@@ -564,4 +567,11 @@ footer {
     background-color: var(--lighter-gray);
     padding: 10px;
     font-weight: bold;
+    transition: all 0.2s;
+    cursor: default;
+    border: solid 2px transparent;
+}
+
+.user-data-name:hover, .user-data-email:hover {
+    border: solid 2px var(--blue);
 }

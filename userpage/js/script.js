@@ -18,6 +18,9 @@ window.addEventListener('load', () => {
        const user = document.querySelector('#user');
        user.textContent = `${userName}`;
        user.classList.remove('hidden');
+
+       const userNameElement = document.getElementById('userNameElement')
+       userNameElement.innerHTML = `${userName}`;
         
        if (typeUser === 'admin') {
            modalCampButton.classList.add('hidden');
