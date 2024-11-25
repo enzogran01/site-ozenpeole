@@ -50,6 +50,7 @@ app.post('/login', (req, res) => {
                 return res.status(200).json({ 
                     message: 'Login bem-sucedido!', 
                     userName: user.nm_usuario, 
+                    userId: user.id_usuario,
                     status: 'user'
                 });
             } else {
@@ -98,12 +99,14 @@ app.post('/register', (req, res) => {
     db.query(query, [name, email, password, telephone], (err, result) => {
         if (err) {
             console.error('Erro ao registrar usuário:', err);
-            res.status(500).send('Erro ao registrar usuário');
+            res.status(500).json({ error: 'Erro ao registrar usuário'});
         } else {
-            res.status(200).send('Usuário registrado com sucesso');
+            res.status(200).send({ success: 'Usuário registrado com sucesso'});
         }
     });
 });
+
+
 
 // testa tá rodando o server
 app.get('/', (req, res) => {
@@ -116,13 +119,68 @@ app.listen(3000, () => {
 });
 
 
+// Cadastro de campanhas
+app.post('/salvarcampanha/:id', (req, res) => {
+    const dadosCampanha = req.body;
+    const id = req.params.id
+
+    if (Array.isArray(dadosCampanha)) {
+        let promises = [];
+        dadosCampanha.forEach((campanha, index) => {
+            const query = "INSERT INTO dia_campanha (id_usuario, dt_dia, ds_imagem, ds_legenda, hr_postagem) VALUES (?, ?, ?, ?, ?)"
+            promises.push(new Promise((resolve, reject) => {
+                db.query(query, [id, campanha.dia, campanha.descricao, campanha.legenda, campanha.hora], (err, resultado) => {
+                    if (err) {
+                        reject('Erro ao cadastrar campanha: ' + err);
+                    } else {
+                        resolve(resultado);
+                    }
+                });
+            }));
+        });
+        Promise.all(promises)
+        .then(() => {
+            res.status(200).send('Campanhas registradas com sucesso');
+        })
+        .catch((erro) => {
+            console.error(erro);
+            res.status(500).send('Erro ao cadastrar campanhas');
+        });
+    } else {
+        res.status(400).send('Dados inválidos, esperado um array de campanhas');
+    }
+});
 
 
+//buscar campanha por id
+app.get('/getCampanhas/:id', (req, res) => {
+    const idUsuario = req.params.id;
+
+    const query = `
+        SELECT dt_dia AS dia, ds_imagem AS descricao, ds_legenda AS legenda, hr_postagem AS hora 
+        FROM dia_campanha 
+        WHERE id_usuario = ?
+        ORDER BY dt_dia ASC;
+    `;
+
+    db.query(query, [idUsuario], (err, resultados) => {
+        if (err) {
+            console.error('Erro ao buscar campanhas:', err);
+            res.status(500).send('Erro ao buscar campanhas');
+        } else {
+            res.status(200).json(resultados);
+        }
+    });
+});
+
+
+
+// Gerar campanhas com IA
 app.post('/api/marketing-campaign', async (req, res) => {
     const { idade, local, social, venda, preco, propaganda } = req.body;
     
     // Defina um prompt para a IA
-    const prompt = `responda em português brasileiro: Crie uma campanha de marketing baseada nas teorias mais usadas atualmente, para uma empresa que é um/uma ${area} com o conteúdo para uma semana de postagem na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando esses outros seguintes dados: Idade do público-alvo: ${idade}, Localização da maioria dos seus clientes: ${local}, Localização do negócio ${lojaLocal}, Maior parte das vendas feitas ${venda}, Ticket médio: ${preco} e o negócio ${propaganda} fez algum tipo de marketing . Lembrando que é necessário a descrição da imagem da postagem, a legenda necessária e o horário da postagem. Me reponda OBRIGATORIAMENTE neste formato: *Dia 1* - descrição da imagem 1,  - legenda 1,  - horário da postagem 1, ; *Dia 2* - descrição da imagem 2,  - legenda 2,  - horário da postagem 2; *Dia 3* - descrição da imagem 3,  - legenda 3, - horário da postagem 3; *Dia 4* - descrição da imagem 4, - legenda 4, - horário da postagem 4; *Dia 5* - descrição da imagem 5, - legenda 5, - horário da postagem 5; *Dia 6* - descrição da imagem 6, - legenda 6, - horário da postagem 6; *Dia 7* - descrição da imagem 7,  - legenda 7, - horário da postagem 7;`;
+    const prompt = `responda em português brasileiro: Crie uma campanha de marketing para uma loja com o conteúdo para uma semana de postagens na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando esses outros seguintes dados: Idade do público-alvo: ${idade}, Localização: ${local}, Tipo de venda: ${venda}, Ticket médio: ${preco}, Já faz marketing?: ${propaganda}. lembrando que é necessário a descrição da imagem da postagem, e a legenda necessária.`;
     
     try {
         const response = await axios.post('https://api.groq.com/v2/api', {

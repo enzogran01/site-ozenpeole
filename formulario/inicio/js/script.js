@@ -27,11 +27,11 @@ window.addEventListener('load', () => {
             modalDashButton.classList.add('hidden');
         }
 
-        const campaignData = localStorage.getItem('campaignData');
+        // const campaignData = localStorage.getItem('campaignData');
         
-        if (campaignData) {
-            modalCampButton.href = '../viewCampanha/viewCampanha.html'
-        }
+        // if (campaignData) {
+        //     modalCampButton.href = '../viewCampanha/viewCampanha.html'
+        // }
     } else {
         alert('Login não encontrado.');
         window.location.href = "../../homepage/homepage.html"
@@ -40,7 +40,7 @@ window.addEventListener('load', () => {
 
 document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("userName")
-    localStorage.removeItem("campaignData")
+    // localStorage.removeItem("campaignData")
     localStorage.removeItem("typeUser")
     localStorage.removeItem("formModal")
     

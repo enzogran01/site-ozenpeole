@@ -74,7 +74,8 @@ form.addEventListener('submit', function validate(e) {
         .then(data => {
             if (data.message === 'Login bem-sucedido!') {
                 // Armazena o nome do administrador ou do usuário no localStorage
-                localStorage.setItem('userName', data.userName); // `userName` vem do servidor
+                localStorage.setItem('userName', data.userName);
+                localStorage.setItem('userId', data.userId); // `userName` vem do servidor
                 localStorage.setItem('typeUser', data.status); // `userName` vem do servidor
                 localStorage.setItem('formModal', false);
                 

@@ -13,10 +13,10 @@ window.addEventListener('DOMContentLoaded', () => { // Substituído por DOMConte
         user.classList.remove('hidden');
     }
 
-    const campaignData = localStorage.getItem('campaignData');
-    if (campaignData) {
-        modalCampButton.href = '../viewCampanha/viewCampanha.html';
-    }
+    // const campaignData = localStorage.getItem('campaignData');
+    // if (campaignData) {
+    //     modalCampButton.href = '../viewCampanha/viewCampanha.html';
+    // }
 
     if (typeUser === 'admin') {
         modalCampButton?.classList.add('hidden');
@@ -26,13 +26,13 @@ window.addEventListener('DOMContentLoaded', () => { // Substituído por DOMConte
         modalDashButton?.classList.add('hidden');
     }
 
-    if (!campaignData) {
-        console.error('Nenhuma campanha encontrada no LocalStorage!');
-    }
+    // if (!campaignData) {
+    //     console.error('Nenhuma campanha encontrada no LocalStorage!');
+    // }
 });
 
 document.getElementById('sair')?.addEventListener('click', () => {
-    ['userName', 'campaignData', 'typeUser', 'formModal'].forEach(item => localStorage.removeItem(item));
+    ['userName',  'typeUser', 'formModal'].forEach(item => localStorage.removeItem(item));
     window.location.href = '../homepage/homepage.html';
 });
 
@@ -60,32 +60,39 @@ userModal?.addEventListener('click', (event) => {
     }
 });
 
-const campaignData = localStorage.getItem('campaignData');
-console.log(campaignData);
-if (campaignData) {
-    const container = document.getElementById('campaignContainer');
-    const regex = /\*Dia (\d+)\* - (.*?),\s*- (.*?),\s*- (.*?);/g;
-    let match;
+document.addEventListener("DOMContentLoaded", function () {
+    const userId = localStorage.getItem("userId");
+    const campanhasContainer = document.querySelector(".campanhas-container");
+    // Buscar campanhas do servidor
+    fetch(`http://localhost:3001/getCampanhas/${userId}`)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then((campanhas) => {
+            if (campanhas.length === 0) {
+                campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
+                return;
+            }
 
-    while ((match = regex.exec(campaignData)) !== null) {
-        const [_, day, description, caption, time] = match;
+            // Montar o conteúdo dinamicamente
+            campanhasContainer.innerHTML = campanhas.map(campanha => `
+                <div class="campanha">
+                    <p><strong>Dia:</strong> ${campanha.dia}</p>
+                    <p><strong>Descrição:</strong> ${campanha.descricao}</p>
+                    <p><strong>Legenda:</strong> ${campanha.legenda}</p>
+                    <p><strong>Hora:</strong> ${campanha.hora}</p>
+                </div>
+            `).join("");
+        })
+        .catch((error) => {
+            console.error('Erro ao buscar campanhas:', error);
+            campanhasContainer.innerHTML = "<p>a  deu erro ao carregar campanhas.</p>";
+        });
+});
 
-        const dayDiv = document.createElement('div');
-        dayDiv.classList.add('day');
-        dayDiv.innerHTML = `
-            <h2>Dia ${day}</h2>
-            <p><strong>Descrição da imagem:</strong> ${description}</p>
-            <p><strong>Legenda:</strong> ${caption}</p>
-            <p><strong>Horário da postagem:</strong> ${time}</p>
-        `;
-        container.appendChild(dayDiv);
-    }
-} else {
-    const container = document.getElementById('campaignContainer');
-    container.textContent = 'Nenhuma campanha encontrada.';
-    console.error('Nenhuma campanha encontrada!');
-    window.location.href = '../homepage/homepage.html';
-}
 
 const campButton = document.getElementById('campButton');
 const delButton = document.getElementById('delButton');
@@ -117,7 +124,7 @@ dontDelCampButton?.addEventListener('click', () => {
 });
 
 delCampButton?.addEventListener('click', () => {
-    localStorage.removeItem('campaignData');
+    // localStorage.removeItem('campaignData');
     window.location.href = '../homepage/homepage.html';
 });
 

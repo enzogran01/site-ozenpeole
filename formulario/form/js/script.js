@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
 
 document.getElementById("sair").addEventListener("click", () => {
     localStorage.removeItem("userName")
-    localStorage.removeItem("campaignData")
+    // localStorage.removeItem("campaignData")
     localStorage.removeItem("typeUser")
     localStorage.removeItem("formModal")
     
@@ -138,7 +138,7 @@ userModal.addEventListener('click', (event) => {
                 "model": "llama3-groq-70b-8192-tool-use-preview",
                 "messages": [{
                   "role": "user",
-                  "content": `responda em português brasileiro: Crie uma campanha de marketing baseada nas teorias mais usadas atualmente, para uma empresa que é um/uma ${area} com o conteúdo para uma semana de postagem na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando esses outros seguintes dados: Idade do público-alvo: ${idade}, Localização da maioria dos seus clientes: ${local}, Localização do negócio ${lojaLocal}, Maior parte das vendas feitas ${venda}, Ticket médio: ${preco} e o negócio ${propaganda} fez algum tipo de marketing . Lembrando que é necessário a descrição da imagem da postagem, a legenda necessária e o horário da postagem. Me reponda OBRIGATORIAMENTE neste formato: -Título, *Dia 1* - descrição da imagem 1,  - legenda 1,  - horário da postagem 1, ; *Dia 2* - descrição da imagem 2,  - legenda 2,  - horário da postagem 2; *Dia 3* - descrição da imagem 3,  - legenda 3, - horário da postagem 3; *Dia 4* - descrição da imagem 4, - legenda 4, - horário da postagem 4; *Dia 5* - descrição da imagem 5, - legenda 5, - horário da postagem 5; *Dia 6* - descrição da imagem 6, - legenda 6, - horário da postagem 6; *Dia 7* - descrição da imagem 7,  - legenda 7, - horário da postagem 7;`
+                  "content": `responda em português brasileiro: Crie uma campanha de marketing baseada nas teorias mais usadas atualmente, para uma empresa que é um/uma  ${area} com o conteúdo para uma semana de postagem na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando esses outros seguintes dados: Idade do público-alvo: ${idade}, Localização da maioria dos seus clientes: ${local}, Localização da loja ${lojaLocal}, Maior parte das vendas feitas ${venda}, Ticket médio: ${preco}, A loja ${propaganda} algum tipo de marketing . Lembrando que é necessário a descrição da imagem da postagem, a legenda necessária e o horário da postagem. Me reponda OBRIGATÓRIAMENTE neste formato: *Dia 1* - descrição da imagem 1,  - legenda 1,  - horário da postagem 1, ; *Dia 2* - descrição da imagem 2,  - legenda 2,  - horário da postagem 2; *Dia 3* - descrição da imagem 3,  - legenda 3, - horário da postagem 3; *Dia 4* - descrição da imagem 4, - legenda 4, - horário da postagem 4; *Dia 5* - descrição da imagem 5, - legenda 5, - horário da postagem 5; *Dia 6* - descrição da imagem 6, - legenda 6, - horário da postagem 6; *Dia 7* - descrição da imagem 7,  - legenda 7, - horário da postagem 7;`
                 }]
               })
         });
@@ -151,12 +151,39 @@ userModal.addEventListener('click', (event) => {
             const campaignOutput = document.getElementById('respostas');
             campaignOutput.innerText = data.choices[0].message.content;
 
-        // Salvar a campanha no LocalStorage para acessar na nova página
-        localStorage.setItem('campaignData', responseContent);
+            
+        // // Salvar a campanha no LocalStorage para acessar na nova página
+        // localStorage.setItem('campaignData', responseContent);
 
         // Redirecionar para o arquivo viewCampanha.html
         window.location.href = "/../../viewCampanha/viewCampanha.html";
+        const regex = /\*Dia (\d+)\* - (.*?),\n  - (.*?),\n  - (.*?),/g;
+        let match;
 
+        const dias = responseContent.split('\n').filter(dia => dia.trim() !== '');
+        // Loop para capturar todas as informações de cada dia
+        const resultado = dias.map(linha => {
+            const partes = linha.split(' - '); // Divide cada linha em partes
+          
+            // Extrair informações de cada parte
+            const dia = partes[0].replace('*', '').trim();
+            const descricao = partes[1].trim();
+            const legenda = partes[2].replace(/"/g, '').trim(); // Remove as aspas
+            const hora = partes[3].replace(';', '').trim();
+          
+            return { dia, descricao, legenda, hora };
+          });
+
+        fetch(`http://localhost:3001/salvarcampanha/${localStorage.getItem("userId")}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(resultado)
+        })
+        .then(function (response){
+            data = response.json();
+        })
          // Redirecionar após salvar
         setTimeout(() => {
         window.location.href = "/../../viewCampanha/viewCampanha.html";
@@ -172,82 +199,6 @@ userModal.addEventListener('click', (event) => {
 // ORGANIZA A RESPOSTA DA IA PARA FACILITAR A VISUALIZAÇÃO DO USUÁRIO
 
 // Expressão regular para capturar os dias e seus respectivos dados, incluindo o título
-const regex = /\*Título:\s*(.*?)\* - Dia (\d+)\* - (.*?),\n  - (.*?),\n  - (.*?),/g;
-let match;
-
-// Variáveis para armazenar as informações dos 7 dias, incluindo o título
-let titulo;
-let dia1, desc1, leg1, hr1;
-let dia2, desc2, leg2, hr2;
-let dia3, desc3, leg3, hr3;
-let dia4, desc4, leg4, hr4;
-let dia5, desc5, leg5, hr5;
-let dia6, desc6, leg6, hr6;
-let dia7, desc7, leg7, hr7;
-
-// Loop para capturar todas as informações de cada dia
-while ((match = regex.exec(responseContent)) !== null) {
-    titulo = match[1];  // Captura o título da campanha
-    const dia = match[2];            // Captura o número do dia
-    const descricaoImagem = match[3]; // Captura a descrição da imagem
-    const legenda = match[4];        // Captura a legenda da postagem
-    const horario = match[5];        // Captura o horário da postagem
-
-    // Atribuindo os valores às variáveis específicas
-    if (dia === '1') {
-        dia1 = "Dia 1";
-        desc1 = descricaoImagem;
-        leg1 = legenda;
-        hr1 = horario;
-    }
-    if (dia === '2') {
-        dia2 = "Dia 2";
-        desc2 = descricaoImagem;
-        leg2 = legenda;
-        hr2 = horario;
-    }
-    if (dia === '3') {
-        dia3 = "Dia 3";
-        desc3 = descricaoImagem;
-        leg3 = legenda;
-        hr3 = horario;
-    }
-    if (dia === '4') {
-        dia4 = "Dia 4";
-        desc4 = descricaoImagem;
-        leg4 = legenda;
-        hr4 = horario;
-    }
-    if (dia === '5') {
-        dia5 = "Dia 5";
-        desc5 = descricaoImagem;
-        leg5 = legenda;
-        hr5 = horario;
-    }
-    if (dia === '6') {
-        dia6 = "Dia 6";
-        desc6 = descricaoImagem;
-        leg6 = legenda;
-        hr6 = horario;
-    }
-    if (dia === '7') {
-        dia7 = "Dia 7";
-        desc7 = descricaoImagem;
-        leg7 = legenda;
-        hr7 = horario;
-    }
-}
-
-// Exibindo o título e as variáveis no console para verificar
-console.log(titulo);  // Exibe o título
-console.log(dia1, desc1, leg1, hr1);
-console.log(dia2, desc2, leg2, hr2);
-console.log(dia3, desc3, leg3, hr3);
-console.log(dia4, desc4, leg4, hr4);
-console.log(dia5, desc5, leg5, hr5);
-console.log(dia6, desc6, leg6, hr6);
-console.log(dia7, desc7, leg7, hr7);
-
 } else {
     console.error("Erro na requisição fetch:", response.statusText);
     campaignOutput.innerText = "Erro ao gerar a campanha";
@@ -331,19 +282,6 @@ function validarPerguntaAtual() {
         return true;  // Para inputs não obrigatórios, consideramos válidos
     });
 }
-
-
-document.getElementById('btnInfoTicket').addEventListener('click', () => {
-    const modal = document.getElementById('infoTicketModal');
-    modal.showModal();
-});
-
-document.getElementById('btnCloseModal').addEventListener('click', () => {
-    const modal = document.getElementById('infoTicketModal');
-    modal.close();
-});
-
-
 
 // Botão cancelar redireciona para a página inicial
 document.getElementById('btnCancelar').addEventListener('click', () => {
@@ -436,36 +374,46 @@ document.getElementById('btnAnterior').addEventListener('click', btnAnterior);
 
 //INICIA A CONFIGURAÇÃO DA FUNÇÃO PARA BUSCAR AS CAMPANHAS PELO LOGIN
 
-    //função para buscar as campanhas no banco de dados
-    function getCampanhas(){
+    // //função para buscar as campanhas no banco de dados
+    // function getCampanhas(){
 
-        if (isValid) {
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
+    //     if (isValid) {
+    //         const email = emailInput.value.trim();
+    //         const password = passwordInput.value.trim();
 
-            fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, password })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === 'Login bem-sucedido!') {
-                    // armazena o nome do usuário no localStorage
-                    localStorage.setItem('userName', data.userName); // `userName` vem do servidor
+    //         fetch('http://localhost:3000/login', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({ email, password })
+    //         })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             if (data.message === 'Login bem-sucedido!') {
+    //                 // armazena o nome do usuário no localStorage
+    //                 localStorage.setItem('userName', data.userName); // `userName` vem do servidor
                     
-                    alert('Login realizado com sucesso!');
-                    window.location.href = '../homepage/homepage.html'; // redireciona para a homepage
-                } else {
-                    alert(data.message); // exibe mensagem de erro
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao fazer login:', error);
-            });
-        }
-    }
+    //                 alert('Login realizado com sucesso!');
+    //                 window.location.href = '../homepage/homepage.html'; // redireciona para a homepage
+    //             } else {
+    //                 alert(data.message); // exibe mensagem de erro
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.error('Erro ao fazer login:', error);
+    //         });
+    //     }
+    // }
 
 //TERMINA A CONFIGURAÇÃO DA FUNÇÃO DE PERGAR CAMPANHA PELO LOGIN
+
+
+
+
+
+
+
+
+//"content": `responda em português brasileiro: Crie uma campanha de marketing baseada nas teorias mais usadas atualmente, para uma empresa que é um/uma ${area} com o conteúdo para uma semana de postagem na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando esses outros seguintes dados: Idade do público-alvo: ${idade}, Localização da maioria dos seus clientes: ${local}, Localização do negócio ${lojaLocal}, Maior parte das vendas feitas ${venda}, Ticket médio: ${preco} e o negócio ${propaganda} fez algum tipo de marketing . Lembrando que é necessário a descrição da imagem da postagem, a legenda necessária e o horário da postagem. Me reponda OBRIGATORIAMENTE neste formato: -Título, *Dia 1* - descrição da imagem 1,  - legenda 1,  - horário da postagem 1, ; *Dia 2* - descrição da imagem 2,  - legenda 2,  - horário da postagem 2; *Dia 3* - descrição da imagem 3,  - legenda 3, - horário da postagem 3; *Dia 4* - descrição da imagem 4, - legenda 4, - horário da postagem 4; *Dia 5* - descrição da imagem 5, - legenda 5, - horário da postagem 5; *Dia 6* - descrição da imagem 6, - legenda 6, - horário da postagem 6; *Dia 7* - descrição da imagem 7,  - legenda 7, - horário da postagem 7;`
+//"content": `responda em português brasileiro: Crie uma campanha de marketing baseada nas teorias mais usadas atualmente, para uma empresa que atua na área de ${area} com o conteúdo para uma semana de postagem na rede social ${social}, especificando os dias de postagens e o horário, buscando o melhor engajamento, e considerando esses outros seguintes dados: Idade do público-alvo: ${idade}, Localização da maioria dos seus clientes: ${local}, Localização da loja ${lojaLocal}, Maior parte das vendas feitas ${venda}, Ticket médio: ${preco}, A loja ${propaganda} algum tipo de marketing . Lembrando que é necessário a descrição da imagem da postagem, a legenda necessária e o horário da postagem. Me reponda OBRIGATÓRIAMENTE neste formato: *Dia 1* - descrição da imagem 1,  - legenda 1,  - horário da postagem 1, ; *Dia 2* - descrição da imagem 2,  - legenda 2,  - horário da postagem 2; *Dia 3* - descrição da imagem 3,  - legenda 3, - horário da postagem 3; *Dia 4* - descrição da imagem 4, - legenda 4, - horário da postagem 4; *Dia 5* - descrição da imagem 5, - legenda 5, - horário da postagem 5; *Dia 6* - descrição da imagem 6, - legenda 6, - horário da postagem 6; *Dia 7* - descrição da imagem 7,  - legenda 7, - horário da postagem 7;`
