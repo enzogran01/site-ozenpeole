@@ -408,7 +408,7 @@ footer {
 
 .submit-button {
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
 }
 
 .save-button {
@@ -424,13 +424,26 @@ footer {
     transition: all 0.2s;
 }
 
+.deactivate-button {
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--red);
+    color: #fff;
+    padding: 17px;
+    width: 25%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
 .save-button:disabled {
     opacity: 0.5;
     cursor: default;
     pointer-events: none;
 }
 
-.save-button:hover, .cancel-button:hover {
+.save-button:hover, .cancel-button:hover, .deactivate-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
 }
