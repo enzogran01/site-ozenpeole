@@ -335,6 +335,10 @@ header .header-left, .header-right {
     align-items: center;
 }
 
+.day-title {
+    font-size: 25px;
+}
+
 .camp-container {
     display: flex;
     flex-direction: column;

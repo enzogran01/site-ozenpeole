@@ -62,7 +62,7 @@ userModal?.addEventListener('click', (event) => {
 
 document.addEventListener("DOMContentLoaded", function () {
     const userId = localStorage.getItem("userId");
-    const campanhasContainer = document.querySelector(".campanhas-container");
+    const campanhasContainer = document.querySelector("#campaignContainer");
     // Buscar campanhas do servidor
     fetch(`http://localhost:3001/getCampanhas/${userId}`)
         .then((response) => {
@@ -76,11 +76,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
                 return;
             }
-
+                
             // Montar o conteúdo dinamicamente
             campanhasContainer.innerHTML = campanhas.map(campanha => `
-                <div class="campanha">
-                    <p><strong>Dia:</strong> ${campanha.dia}</p>
+                <div class="day">
+                    <h1 class="day-title">${campanha.dia}</h1>
                     <p><strong>Descrição:</strong> ${campanha.descricao}</p>
                     <p><strong>Legenda:</strong> ${campanha.legenda}</p>
                     <p><strong>Hora:</strong> ${campanha.hora}</p>
@@ -102,29 +102,30 @@ const dontDelCampButton = document.getElementById('dontDelCampButton');
 const delCampButton = document.getElementById('delCampButton');
 const icons = document.querySelectorAll('#path');
 
-campButton?.addEventListener('click', () => {
+campButton.addEventListener('click', () => {
     removeButtonClass(delButton);
     changeIconColor(icons, icons[0]);
     campButton.classList.add('button-active');
 });
 
-delButton?.addEventListener('click', () => {
+delButton.addEventListener('click', () => {
     removeButtonClass(campButton);
     changeIconColor(icons, icons[0]);
     delButton.classList.add('del-button-active');
     delCampModal.showModal();
 });
 
-closeDelCampModal?.addEventListener('click', () => {
+closeDelCampModal.addEventListener('click', () => {
     closeDeleteModal();
 });
 
-dontDelCampButton?.addEventListener('click', () => {
+dontDelCampButton.addEventListener('click', () => {
     closeDeleteModal();
 });
 
-delCampButton?.addEventListener('click', () => {
-    // localStorage.removeItem('campaignData');
+delCampButton.addEventListener('click', () => {
+    
+    
     window.location.href = '../homepage/homepage.html';
 });
 

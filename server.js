@@ -156,11 +156,15 @@ app.post('/salvarcampanha/:id', (req, res) => {
 app.get('/getCampanhas/:id', (req, res) => {
     const idUsuario = req.params.id;
 
+    // const query = `
+    //    SELECT dt_dia AS dia, ds_imagem AS descricao, ds_legenda AS legenda, hr_postagem AS hora 
+    //    FROM dia_campanha 
+    //    WHERE id_usuario = ?
+    //    ORDER BY dt_dia ASC;
+    //`;
+
     const query = `
-        SELECT dt_dia AS dia, ds_imagem AS descricao, ds_legenda AS legenda, hr_postagem AS hora 
-        FROM dia_campanha 
-        WHERE id_usuario = ?
-        ORDER BY dt_dia ASC;
+        SELECT * FROM dia_campanha WHERE id_usuario = ?;
     `;
 
     db.query(query, [idUsuario], (err, resultados) => {
