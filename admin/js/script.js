@@ -159,6 +159,42 @@ closeAdminButton.addEventListener('click', () => {
 const editAllUsers = document.querySelectorAll('#editUserSvg');
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const userCountSpan = document.getElementById("userCount");
+    const campaignCountSpan = document.getElementById("campaignCount");
+
+    // Buscar número total de usuários
+    fetch('http://localhost:3000/countUsers')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro na requisição de contagem de usuários");
+            }
+            return response.json();
+        })
+        .then(data => {
+            userCountSpan.textContent = data.totalUsuarios;
+        })
+        .catch(error => {
+            console.error("Erro ao buscar número de usuários:", error);
+            userCountSpan.textContent = "Erro ao carregar.";
+        });
+
+    // Buscar número total de campanhas
+    fetch('http://localhost:3000/countAllCampanhas')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro na requisição de contagem de campanhas");
+            }
+            return response.json();
+        })
+        .then(data => {
+            campaignCountSpan.textContent = data.totalCampanhas;
+        })
+        .catch(error => {
+            console.error("Erro ao buscar número total de campanhas:", error);
+            campaignCountSpan.textContent = "Erro ao carregar.";
+        });
+});
 
 
 // function openModalId(...id_modal){

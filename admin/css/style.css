@@ -254,7 +254,7 @@ header .header-left, .header-right {
     margin-bottom: 10px;
 }
 
-.visits, .camp-quantity, .users span {
+.visits, .campaignCount, .users span {
     font-size: 50px;
 }
 .new-users-desc span, .camp-desc span {

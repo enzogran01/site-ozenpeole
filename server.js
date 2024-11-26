@@ -177,6 +177,53 @@ app.get('/getCampanhas/:id', (req, res) => {//faggot man!!
     });
 });
 
+//conta quasntos usuarios tem
+app.get('/countUsers', (req, res) => {
+    const query = "SELECT COUNT(id_usuario) AS totalUsuarios FROM usuario";
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Erro ao contar usuários:", err);
+            res.status(500).json({ error: "Erro ao contar usuários." });
+        } else {
+            const totalUsuarios = results[0].totalUsuarios;
+            res.status(200).json({ totalUsuarios });
+        }
+    });
+});
+
+//conta quasntas campanhas tem
+app.get('/countAllCampanhas', (req, res) => {
+    const query = "SELECT COUNT(id_campanha) AS totalCampanhas FROM dia_campanha";
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Erro ao contar campanhas:", err);
+            res.status(500).json({ error: "Erro ao contar campanhas!!" });
+        } else {
+            const totalCampanhas = results[0].totalCampanhas;
+            res.status(200).json({ totalCampanhas });
+        }
+    });
+});
+// //conta quasntas campanhas tem um usuario em especifico, NÃO APAGA Q PODE SER IMPORTANTE POR FAVOR!!!!!
+// app.get('/countCampanhas/:id', (req, res) => {
+//     const userId = req.params.id;
+//     const query = "SELECT COUNT(id_campanha) AS totalCampanhas FROM dia_campanha WHERE ";
+
+//     db.query(query, [userId], (err, results) => {
+//         if (err) {
+//             console.error("Erro ao contar campanhas:", err);
+//             res.status(500).json({ error: "Erro ao contar campanhas." });
+//         } else {
+//             const totalCampanhas = results[0].totalCampanhas;
+//             res.status(200).json({ totalCampanhas });
+//         }
+//     });
+// });
+
+
+
 
 
 // Gerar campanhas com IA
