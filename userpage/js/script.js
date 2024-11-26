@@ -1,5 +1,3 @@
-// const { config } = require("dotenv");
-
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
@@ -8,8 +6,8 @@ window.addEventListener('load', () => {
     const userName = localStorage.getItem('userName');
     const typeUser = localStorage.getItem('typeUser');
 
-    const campButton = document.getElementById('modalCampButton');
-    const dashButton = document.getElementById('mocalDashButton');
+    const modalCampButton = document.getElementById('modalCampButton');
+    const modalDashButton = document.getElementById('modalDashButton');
 
     const dashboardOption = document.getElementById('dashboardOption')
     const campaignOption = document.getElementById('campaignOption')
@@ -40,18 +38,24 @@ window.addEventListener('load', () => {
            dashboardOption.classList.remove('option') 
            dashboardOption.classList.add('hidden') 
        }
-        
-       const campaignData = localStorage.getItem('campaignData');
-
-       if (campaignData) {
-           modalCampButton.href = '../viewCampanha/viewCampanha.html'
-       }
 
     } else {
         alert('Usuário não encontrado.')
         window.location.href = '../homepage/homepage.html'
     }
 
+    const userId = localStorage.getItem("userId");
+
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
+        .then((campanhas) => {
+            if (campanhas) {
+                modalCampButton.href = '../viewCampanha/viewCampanha.html'
+                return;
+            } else {
+                modalCampButton.href = '../formulario/inicio/inicioForm.html'
+                return;
+            }
+        })
 });
 
 const campaignData = localStorage.getItem('campaignData');
@@ -159,11 +163,18 @@ configOption.addEventListener('click', () => {
 campaignOption.addEventListener('click', () => {
     changeOptionClass(campaignOption, configOption, logoutOption)
 
-    if (campaignData) {
-        window.location.href = '../viewCampanha/viewCampanha.html'
-    } else {
-        window.location.href = '../formulario/inicio/inicioForm.html'
-    }
+    const userId = localStorage.getItem("userId");
+
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
+        .then((campanhas) => {
+            if (campanhas) {
+                window.location.href = '../viewCampanha/viewCampanha.html'
+                return;
+            } else {
+                window.location.href = '../formulario/inicio/inicioForm.html'
+                return;
+            }
+        })
 })
 logoutOption.addEventListener('click', () => {
     changeOptionClass(logoutOption, campaignOption, configOption)

@@ -30,11 +30,19 @@ window.addEventListener('load', () => {
             modalDashButton.classList.add('hidden');
         }
 
-        // const campaignData = localStorage.getItem('campaignData');
+        const userId = localStorage.getItem("userId");
+
+    // Buscar campanhas do servidor
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
+        .then((campanhas) => {
+            if (campanhas) {
+                // modalCampButton.href = '../viewCampanha/viewCampanha.html'
+                alert('Já possui campanha')
+                window.location.href = '../../viewCampanha/viewCampanha.html'
+                return;
+            }
+        })
         
-        // if (campaignData) {
-        //     modalCampButton.href = '../viewCampanha/viewCampanha.html'
-        // }
     } else {
         alert('Login não encontrado.');
         window.location.href = "../../homepage/homepage.html"

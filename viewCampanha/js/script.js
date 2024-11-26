@@ -11,24 +11,32 @@ window.addEventListener('DOMContentLoaded', () => { // Substituído por DOMConte
         const user = document.querySelector('#user');
         user.textContent = userName;
         user.classList.remove('hidden');
-    }
 
-    // const campaignData = localStorage.getItem('campaignData');
-    // if (campaignData) {
-    //     modalCampButton.href = '../viewCampanha/viewCampanha.html';
-    // }
-
-    if (typeUser === 'admin') {
-        modalCampButton?.classList.add('hidden');
-        modalDashButton?.classList.remove('hidden');
+        if (typeUser === 'admin') {
+            modalCampButton?.classList.add('hidden');
+            modalDashButton?.classList.remove('hidden');
+        } else {
+            modalCampButton?.classList.remove('hidden');
+            modalDashButton?.classList.add('hidden');
+        }
     } else {
-        modalCampButton?.classList.remove('hidden');
-        modalDashButton?.classList.add('hidden');
+        alert('Usuário não encontrado')
+        window.location.href = '../homepage/homepage.html'
     }
 
-    // if (!campaignData) {
-    //     console.error('Nenhuma campanha encontrada no LocalStorage!');
-    // }
+    const userId = localStorage.getItem("userId");
+
+    // Buscar campanhas do servidor
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
+        .then((campanhas) => {
+            if (campanhas) {
+                modalCampButton.href = '../viewCampanha/viewCampanha.html'
+                return;
+            } else {
+                modalCampButton.href = '../formulario/form/form.html'
+                return;
+            }
+        })
 });
 
 document.getElementById('sair')?.addEventListener('click', () => {
@@ -73,6 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then((campanhas) => {
             if (campanhas.length === 0) {
+                alert('Não há campanhas registradas')
+                window.location.href = '../homepage/homepage.html'
                 campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
                 return;
             }
@@ -88,10 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch((error) => {
             console.error('Erro ao buscar campanhas:', error);
-            campanhasContainer.innerHTML = "<p>a  deu erro ao carregar campanhas.</p>";
+            campanhasContainer.innerHTML = "<p>Erro ao carregar campanhas.</p>";
         });
 });
-
 
 const campButton = document.getElementById('campButton');
 const delButton = document.getElementById('delButton');
