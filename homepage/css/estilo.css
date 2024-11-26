@@ -551,11 +551,11 @@ footer {
     gap: 40px;
 }
 
-.insta-icon, .youtube-icon {
+.insta-icon, .youtube-icon, .face-icon {
     transition: all 0.3s;
 }
 
-.insta-icon:hover, .youtube-icon:hover {
+.insta-icon:hover, .youtube-icon:hover, .face-icon:hover {
     transform: translateY(-3px);
 }
 

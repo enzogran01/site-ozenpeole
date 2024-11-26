@@ -66,6 +66,20 @@ window.addEventListener('load', () => {
 
     }
 
+    const userId = localStorage.getItem("userId");
+
+    // Buscar campanhas do servidor
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
+        .then((campanhas) => {
+            if (campanhas) {
+                modalCampButton.href = '../viewCampanha/viewCampanha.html'
+                return;
+            } else {
+                modalCampButton.href = '../formulario/form/form.html'
+                return;
+            }
+        })
+
 });
 
 
