@@ -76,14 +76,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
                 return;
             }
-                
             // Montar o conteúdo dinamicamente
             campanhasContainer.innerHTML = campanhas.map(campanha => `
                 <div class="day">
-                    <h1 class="day-title">${campanha.dia}</h1>
-                    <p><strong>Descrição:</strong> ${campanha.descricao}</p>
-                    <p><strong>Legenda:</strong> ${campanha.legenda}</p>
-                    <p><strong>Hora:</strong> ${campanha.hora}</p>
+                    <h1 class="day-title">${campanha.dt_dia}</h1>
+                    <p><strong>Descrição:</strong> ${campanha.ds_imagem}</p>
+                    <p><strong>Legenda:</strong> ${campanha.ds_legenda}</p>
+                    <p><strong>Hora:</strong> ${campanha.hr_postagem}</p>
                 </div>
             `).join("");
         })
@@ -124,7 +123,7 @@ dontDelCampButton.addEventListener('click', () => {
 });
 
 delCampButton.addEventListener('click', () => {
-    
+
     
     window.location.href = '../homepage/homepage.html';
 });

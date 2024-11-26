@@ -153,7 +153,7 @@ app.post('/salvarcampanha/:id', (req, res) => {
 
 
 //buscar campanha por id
-app.get('/getCampanhas/:id', (req, res) => {
+app.get('/getCampanhas/:id', (req, res) => {//faggot man!!
     const idUsuario = req.params.id;
 
     // const query = `
