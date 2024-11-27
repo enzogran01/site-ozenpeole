@@ -35,10 +35,13 @@ window.addEventListener('load', () => {
     // Buscar campanhas do servidor
     fetch(`http://localhost:3000/getCampanhas/${userId}`)
         .then((campanhas) => {
-            if (campanhas) {
-                // modalCampButton.href = '../viewCampanha/viewCampanha.html'
+            if (campanhas.value === true) {
                 alert('Já possui campanha')
+                modalCampButton.href = '../../viewCampanha/viewCampanha.html'
                 window.location.href = '../../viewCampanha/viewCampanha.html'
+                return;
+            } else {
+                modalCampButton.href = '../inicio/inicioForm.html'
                 return;
             }
         })

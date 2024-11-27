@@ -29,11 +29,11 @@ window.addEventListener('DOMContentLoaded', () => { // Substituído por DOMConte
     // Buscar campanhas do servidor
     fetch(`http://localhost:3000/getCampanhas/${userId}`)
         .then((campanhas) => {
-            if (campanhas) {
+            if (campanhas.value === true) {
                 modalCampButton.href = '../viewCampanha/viewCampanha.html'
                 return;
             } else {
-                modalCampButton.href = '../formulario/form/form.html'
+                modalCampButton.href = '../formulario/inicio/inicioForm.html'
                 return;
             }
         })

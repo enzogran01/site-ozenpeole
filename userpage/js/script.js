@@ -167,7 +167,7 @@ campaignOption.addEventListener('click', () => {
 
     fetch(`http://localhost:3000/getCampanhas/${userId}`)
         .then((campanhas) => {
-            if (campanhas) {
+            if (campanhas.value === true) {
                 window.location.href = '../viewCampanha/viewCampanha.html'
                 return;
             } else {
