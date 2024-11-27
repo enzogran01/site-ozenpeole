@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const campaignCountSpan = document.getElementById("campaignCount");
 
     // Buscar número total de usuários
-    fetch('http://localhost:3000/countUsers')
+    fetch('http://localhost:3001/countUsers')
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erro na requisição de contagem de usuários");
@@ -179,28 +179,27 @@ document.addEventListener("DOMContentLoaded", function () {
             userCountSpan.textContent = "Erro ao carregar.";
         });
 
-    // Buscar número total de campanhas
-    document.addEventListener("DOMContentLoaded", function () {
-        const campaignCountSpan = document.getElementById("campaignCount");
-    
-        // Buscar número total de campanhas
-        fetch('http://localhost:3000/countAllCampanhas')
-            .then(response => {
+        const totalCampanhasSpan = document.querySelector("#totalCampanhas");
+
+        // Buscar o total de campanhas
+        fetch("http://localhost:3000/countAllCampanhas")
+            .then((response) => {
                 if (!response.ok) {
-                    throw new Error("Erro na requisição de contagem de campanhas");
+                    throw new Error(`Erro na requisição: ${response.statusText}`);
                 }
                 return response.json();
             })
-            .then(data => {
-                campaignCountSpan.textContent = data.totalCampanhas;
+            .then((data) => {
+                if (data.totalCampanhas !== undefined) {
+                    totalCampanhasSpan.textContent = data.totalCampanhas;
+                } else {
+                    totalCampanhasSpan.textContent = "Erro ao carregar";
+                }
             })
-            .catch(error => {
-                console.error("Erro ao buscar número total de campanhas:", error);
-                campaignCountSpan.textContent = "Erro ao carregar.";
+            .catch((error) => {
+                console.error("Erro ao buscar total de campanhas:", error);
+                totalCampanhasSpan.textContent = "Erro ao carregar";
             });
-    });
-    
-    
 });
 
 

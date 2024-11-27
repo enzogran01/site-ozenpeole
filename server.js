@@ -153,29 +153,29 @@ app.post('/salvarcampanha/:id', (req, res) => {
 
 
 //buscar campanha por id
-app.get('/getCampanhas/:id', (req, res) => {//faggot man!!
-    const idUsuario = req.params.id;
+// app.get('/getCampanhas/:id', (req, res) => {//faggot man!!
+//     const idUsuario = req.params.id;
 
-    // const query = `
-    //    SELECT dt_dia AS dia, ds_imagem AS descricao, ds_legenda AS legenda, hr_postagem AS hora 
-    //    FROM dia_campanha 
-    //    WHERE id_usuario = ?
-    //    ORDER BY dt_dia ASC;
-    //`;
+//     // const query = `
+//     //    SELECT dt_dia AS dia, ds_imagem AS descricao, ds_legenda AS legenda, hr_postagem AS hora 
+//     //    FROM dia_campanha 
+//     //    WHERE id_usuario = ?
+//     //    ORDER BY dt_dia ASC;
+//     //`;
 
-    const query = `
-        SELECT * FROM dia_campanha WHERE id_usuario = ?;
-    `;
+//     const query = `
+//         SELECT * FROM dia_campanha WHERE id_usuario = ?;
+//     `;
 
-    db.query(query, [idUsuario], (err, resultados) => {
-        if (err) {
-            console.error('Erro ao buscar campanhas:', err);
-            res.status(500).send('Erro ao buscar campanhas');
-        } else {
-            res.status(200).json(resultados);
-        }
-    });
-});
+//     db.query(query, [idUsuario], (err, resultados) => {
+//         if (err) {
+//             console.error('Erro ao buscar campanhas:', err);
+//             res.status(500).send('Erro ao buscar campanhas');
+//         } else {
+//             res.status(200).json(resultados);
+//         }
+//     });
+// });
 
 //conta quasntos usuarios tem
 app.get('/countUsers', (req, res) => {
@@ -189,6 +189,24 @@ app.get('/countUsers', (req, res) => {
             const totalUsuarios = results[0].totalUsuarios;
             res.status(200).json({ totalUsuarios });
         }
+    });
+});
+
+app.get('/countAllCampanhas', (req, res) => {
+    const query = "SELECT COUNT(id_dia) AS totalCampanhas FROM dia_campanha";
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Erro ao contar campanhas:", err);
+            return res.status(500).json({ error: "Erro ao contar campanhas no banco de dados." });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ error: "Nenhuma campanha encontrada." });
+        }
+
+        const totalCampanhas = results[0].totalCampanhas;
+        res.status(200).json({ totalCampanhas });
     });
 });
 
