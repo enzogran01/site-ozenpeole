@@ -191,6 +191,7 @@ select#comercios {
     justify-content: space-between;
     vertical-align: baseline;
 }
+
 button{
     padding: 10px;
     font-size: 14px;
@@ -204,9 +205,11 @@ button{
     transition: all 0.2s;
     cursor: pointer;
     vertical-align: baseline;
+    transition: all 0.2s;
 }
 button:hover{
-    opacity: 0.5;
+    transform: translateY(-2px);
+    box-shadow: 0px 0px 39px 0px rgba(26,83,227,1);
 }
 select{
     font-family: "Inter", sans-serif;

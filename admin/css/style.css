@@ -248,6 +248,7 @@ header .header-left, .header-right {
     background-color: #fff;
     border-radius: 15px;
     width: 33%;
+    align-items: center;
 }
 
 .new-users-title, .new-camp-title, .users-title {

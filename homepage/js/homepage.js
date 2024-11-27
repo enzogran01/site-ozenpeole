@@ -6,8 +6,8 @@ window.addEventListener('load', () => {
     const userName = localStorage.getItem('userName');
     const typeUser = localStorage.getItem('typeUser');
 
-    const campButton = document.getElementById('modalCampButton');
-    const dashButton = document.getElementById('mocalDashButton');
+    const modalCampButton = document.getElementById('modalCampButton');
+    const modalDashButton = document.getElementById('modalDashButton');
 
     if (userName) {
         // Mostra a mensagem de boas-vindas
@@ -45,8 +45,13 @@ window.addEventListener('load', () => {
         if (isFormModal) {
             modal.close();
         } else {
-            modal.showModal();
-            localStorage.setItem("formModal", true)
+            if (typeUser === 'admin') {
+                modal.close();
+            } else {
+                modal.showModal();
+                localStorage.setItem("formModal", true)
+            }
+
         }
         
         noModalButton.addEventListener('click', () => {
@@ -60,22 +65,25 @@ window.addEventListener('load', () => {
 
     }
 
+    
+});
+
+modalCampButton.addEventListener('click', () => {
     const userId = localStorage.getItem("userId");
 
-    // Buscar campanhas do servidor
     fetch(`http://localhost:3000/getCampanhas/${userId}`)
-        .then((campanhas) => {
-            if (campanhas.value === true) {
-                modalCampButton.href = '../viewCampanha/viewCampanha.html'
-                console.log(campanhas)
-                return;
-            } else {
-                modalCampButton.href = '../formulario/inicio/inicioForm.html'
-                return;
-            }
-        })
+    .then((campanhas) => {
+        if (campanhas.value === true) {
+            modalCampButton.href = '../viewCampanha/viewCampanha.html'
+            return;
+        } else {
+            modalCampButton.href = '../formulario/inicio/inicioForm.html'
+            return;
+        }
+    })
 
-});
+})
+
 
 
 document.getElementById("sair").addEventListener("click", () => {

@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then((data) => {
                 if (data.totalCampanhas !== undefined) {
-                    totalCampanhasSpan.textContent = data.totalCampanhas;
+                    totalCampanhasSpan.textContent = data.totalCampanhas / 7;
                 } else {
                     totalCampanhasSpan.textContent = "Erro ao carregar";
                 }

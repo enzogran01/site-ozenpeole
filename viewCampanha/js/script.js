@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const userId = localStorage.getItem("userId");
     const campanhasContainer = document.querySelector("#campaignContainer");
     // Buscar campanhas do servidor
-    fetch(`http://localhost:3001/getCampanhas/${userId}`)
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`Erro na requisição: ${response.statusText}`);
