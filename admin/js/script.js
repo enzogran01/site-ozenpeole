@@ -180,20 +180,27 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
     // Buscar número total de campanhas
-    fetch('http://localhost:3000/countAllCampanhas')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro na requisição de contagem de campanhas");
-            }
-            return response.json();
-        })
-        .then(data => {
-            campaignCountSpan.textContent = data.totalCampanhas;
-        })
-        .catch(error => {
-            console.error("Erro ao buscar número total de campanhas:", error);
-            campaignCountSpan.textContent = "Erro ao carregar.";
-        });
+    document.addEventListener("DOMContentLoaded", function () {
+        const campaignCountSpan = document.getElementById("campaignCount");
+    
+        // Buscar número total de campanhas
+        fetch('http://localhost:3000/countAllCampanhas')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro na requisição de contagem de campanhas");
+                }
+                return response.json();
+            })
+            .then(data => {
+                campaignCountSpan.textContent = data.totalCampanhas;
+            })
+            .catch(error => {
+                console.error("Erro ao buscar número total de campanhas:", error);
+                campaignCountSpan.textContent = "Erro ao carregar.";
+            });
+    });
+    
+    
 });
 
 
