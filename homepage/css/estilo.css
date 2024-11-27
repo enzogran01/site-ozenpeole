@@ -515,10 +515,12 @@ footer {
     font-size: 12px;
     justify-content: space-between;
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding-top: 2%;
     padding-bottom: 2%;
     vertical-align: baseline;
+    gap: 10px;
 }
 
 .terms {
@@ -557,6 +559,35 @@ footer {
 
 .insta-icon:hover, .youtube-icon:hover, .face-icon:hover {
     transform: translateY(-3px);
+}
+
+.upper-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.lower-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 100%;
+}
+
+.lower-footer a {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.lower-footer a:hover {
+    background-color: #1A53E3;
+    transform: translateY(-2px);
+    box-shadow: 0px 0px 39px 0px rgba(26,83,227,1);
 }
 
 .loader {
