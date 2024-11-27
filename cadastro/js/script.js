@@ -166,4 +166,3 @@ form.addEventListener('submit', function validate(e) {
     }
     
 });
-
