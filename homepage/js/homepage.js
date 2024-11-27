@@ -34,12 +34,6 @@ window.addEventListener('load', () => {
             modalCampButton.classList.remove('hidden');
             modalDashButton.classList.add('hidden');
         }
-        
-        const campaignData = localStorage.getItem('campaignData');
-
-        if (campaignData) {
-            modalCampButton.href = '../viewCampanha/viewCampanha.html'
-        }
 
         const modal = document.getElementById('logonModal');
         const noModalButton = document.querySelector('#logonModal .options #btn-no');
@@ -71,11 +65,12 @@ window.addEventListener('load', () => {
     // Buscar campanhas do servidor
     fetch(`http://localhost:3000/getCampanhas/${userId}`)
         .then((campanhas) => {
-            if (campanhas) {
+            if (campanhas.value === true) {
                 modalCampButton.href = '../viewCampanha/viewCampanha.html'
+                console.log(campanhas)
                 return;
             } else {
-                modalCampButton.href = '../formulario/form/form.html'
+                modalCampButton.href = '../formulario/inicio/inicioForm.html'
                 return;
             }
         })
