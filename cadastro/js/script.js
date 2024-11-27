@@ -140,7 +140,7 @@ form.addEventListener('submit', function validate(e) {
             password: passwordInput.value,
             telephone: phoneInput.value
         };
-
+    
         // Envia os dados para o servidor
         fetch('http://localhost:3000/register', {
             method: 'POST',
@@ -149,17 +149,22 @@ form.addEventListener('submit', function validate(e) {
             },
             body: JSON.stringify(userData)
         })
-        .then(response => response.text())
+        .then(response => response.json()) // Ajuste para lidar com JSON
         .then(data => {
-            alert(data); // mensagem de sucesso ou erro
-            if (data === 'Usuário registrado com sucesso') {
+          
+            if (data.success) { 
                 // Redireciona para a página de login
                 window.location.href = '../login/login.html';
+                alert(data.success); // Exibe a mensagem retornada pelo servidor dream on faggot
             }
         })
+        
         .catch(error => {
             console.error('Erro ao registrar usuário:', error);
             alert('Erro ao registrar usuário');
         });
     }
+    
 });
+
+

@@ -101,7 +101,7 @@ app.post('/register', (req, res) => {
             console.error('Erro ao registrar usuário:', err);
             res.status(500).json({ error: 'Erro ao registrar usuário'});
         } else {
-            res.status(200).send({ success: 'Usuário registrado com sucesso'});
+            res.status(200).send({ success: 'Usuário registrado com sucesso ta bom né '});
         }
     });
 });
@@ -192,7 +192,7 @@ app.get('/countUsers', (req, res) => {
     });
 });
 
-//conta quasntas campanhas tem
+//conta quasntas campanhas tem todo mundo
 app.get('/countAllCampanhas', (req, res) => {
     const query = "SELECT COUNT(id_campanha) AS totalCampanhas FROM dia_campanha";
 
