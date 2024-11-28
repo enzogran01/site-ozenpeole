@@ -23,20 +23,6 @@ window.addEventListener('DOMContentLoaded', () => { // Substituído por DOMConte
         alert('Usuário não encontrado')
         window.location.href = '../homepage/homepage.html'
     }
-
-    const userId = localStorage.getItem("userId");
-
-    // Buscar campanhas do servidor
-    fetch(`http://localhost:3000/getCampanhas/${userId}`)
-        .then((campanhas) => {
-            if (campanhas.value === true) {
-                modalCampButton.href = '../viewCampanha/viewCampanha.html'
-                return;
-            } else {
-                modalCampButton.href = '../formulario/inicio/inicioForm.html'
-                return;
-            }
-        })
 });
 
 document.getElementById('sair')?.addEventListener('click', () => {
