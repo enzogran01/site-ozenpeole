@@ -64,25 +64,8 @@ window.addEventListener('load', () => {
         });
 
     }
-
     
 });
-
-modalCampButton.addEventListener('click', () => {
-    const userId = localStorage.getItem("userId");
-
-    fetch(`http://localhost:3000/getCampanhas/${userId}`)
-    .then((campanhas) => {
-        if (campanhas.value === true) {
-            modalCampButton.href = '../viewCampanha/viewCampanha.html'
-            return;
-        } else {
-            modalCampButton.href = '../formulario/inicio/inicioForm.html'
-            return;
-        }
-    })
-
-})
 
 
 

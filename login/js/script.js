@@ -1,6 +1,12 @@
 window.addEventListener('load', () => {
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
+
+    const userName = localStorage.getItem('userName')
+
+    if (userName) {
+        window.location.href = '../homepage/homepage.html'
+    }
 });
 
 const form = document.getElementById('formulario');

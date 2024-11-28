@@ -40,22 +40,9 @@ window.addEventListener('load', () => {
        }
 
     } else {
-        alert('Usuário não encontrado.')
+        alert('Usuário não encontrado')
         window.location.href = '../homepage/homepage.html'
     }
-
-    const userId = localStorage.getItem("userId");
-
-    fetch(`http://localhost:3000/getCampanhas/${userId}`)
-        .then((campanhas) => {
-            if (campanhas) {
-                modalCampButton.href = '../viewCampanha/viewCampanha.html'
-                return;
-            } else {
-                modalCampButton.href = '../formulario/inicio/inicioForm.html'
-                return;
-            }
-        })
 });
 
 const campaignData = localStorage.getItem('campaignData');
@@ -162,25 +149,11 @@ configOption.addEventListener('click', () => {
 })
 campaignOption.addEventListener('click', () => {
     changeOptionClass(campaignOption, configOption, logoutOption)
-
-    const userId = localStorage.getItem("userId");
-
-    fetch(`http://localhost:3000/getCampanhas/${userId}`)
-        .then((campanhas) => {
-            if (campanhas.value === true) {
-                window.location.href = '../viewCampanha/viewCampanha.html'
-                return;
-            } else {
-                window.location.href = '../formulario/inicio/inicioForm.html'
-                return;
-            }
-        })
 })
 logoutOption.addEventListener('click', () => {
     changeOptionClass(logoutOption, campaignOption, configOption)
 
     localStorage.removeItem("userName")
-    localStorage.removeItem("campaignData")
     localStorage.removeItem("typeUser")
     localStorage.removeItem("formModal")
 
