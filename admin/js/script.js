@@ -242,6 +242,12 @@ userModal.addEventListener('click', (event) => {
     }
 });
 
+const addUserForm = document.getElementById('addUserForm')
+
+addUserForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+})
+
 new Chart(GraphBar, {
     type: 'bar',
     data: {
