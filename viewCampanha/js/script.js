@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return response.json();
         })
         .then((campanhas) => {
+            console.log(campanhas)
             if (campanhas.length === 0) {
                 alert('Não há campanhas registradas')
                 window.location.href = '../homepage/homepage.html'

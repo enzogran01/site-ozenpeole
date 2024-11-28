@@ -27,6 +27,7 @@ html {
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
+    outline: none;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
@@ -75,6 +76,7 @@ html {
     border-radius: 80px;
     padding: 15px;
     cursor: pointer;
+    outline: none;
     transition: all 0.2s;
 }
 
@@ -86,6 +88,7 @@ html {
     border-radius: 80px;
     padding: 15px;
     cursor: pointer;
+    outline: none;
     transition: all 0.2s;
 }
 
