@@ -43,15 +43,37 @@ window.addEventListener('load', () => {
         alert('Usuário não encontrado')
         window.location.href = '../homepage/homepage.html'
     }
+
+    const userId = localStorage.getItem("userId");
+
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then((campanhas) => {
+        console.log(campanhas)
+        modalCampButton.addEventListener('click', () => {
+            if (campanhas.length > 0) {
+                alert('viewcampanha')
+                window.location.href = '../viewCampanha/viewCampanha.html'
+                return;
+            } else {
+                alert('formulario')
+                window.location.href = '../formulario/inicio/inicioForm.html'
+                return;
+            }
+        })
+    })
 });
 
 const campaignData = localStorage.getItem('campaignData');
 
 document.getElementById("sair").addEventListener("click", () => {
-    localStorage.removeItem("userName")
-    localStorage.removeItem("campaignData")
-    localStorage.removeItem("typeUser")
-    localStorage.removeItem("formModal")
+    ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
+    window.location.href = '../homepage/homepage.html';
 
     window.location.href = "../homepage/homepage.html";
 });
@@ -149,6 +171,26 @@ configOption.addEventListener('click', () => {
 })
 campaignOption.addEventListener('click', () => {
     changeOptionClass(campaignOption, configOption, logoutOption)
+
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then((campanhas) => {
+        console.log(campanhas)
+        if (campanhas.length > 0) {
+            alert('viewcampanha')
+            window.location.href = '../viewCampanha/viewCampanha.html'
+            return;
+        } else {
+            alert('formulario')
+            window.location.href = '../formulario/inicio/inicioForm.html'
+            return;
+        }
+    })
 })
 logoutOption.addEventListener('click', () => {
     changeOptionClass(logoutOption, campaignOption, configOption)

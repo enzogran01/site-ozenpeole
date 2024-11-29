@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', () => { // Substituído por DOMConte
 });
 
 document.getElementById('sair')?.addEventListener('click', () => {
-    ['userName',  'typeUser', 'formModal'].forEach(item => localStorage.removeItem(item));
+    ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
     window.location.href = '../homepage/homepage.html';
 });
 
@@ -67,7 +67,9 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .then((campanhas) => {
             console.log(campanhas)
-            if (campanhas.length === 0) {
+            if (campanhas.length !== 0) {
+                modalCampButton.href = '../viewCampanha/viewCampanha.html'
+            } else {
                 alert('Não há campanhas registradas')
                 window.location.href = '../homepage/homepage.html'
                 campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";

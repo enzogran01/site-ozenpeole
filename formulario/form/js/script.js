@@ -34,14 +34,30 @@ window.addEventListener('load', () => {
         alert('Login não encontrado.');
         window.location.href = "../../homepage/homepage.html"
     }
+
+    const userId = localStorage.getItem("userId");
+
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then((campanhas) => {
+        console.log(campanhas)
+        if (campanhas.length > 0) {
+            window.location.href = '../../viewCampanha/viewCampanha.html'
+            modalCampButton.href = '../viewCampanha/viewCampanha.html'
+            return;
+        }
+    })
 })
 
 
 document.getElementById("sair").addEventListener("click", () => {
-    localStorage.removeItem("userName")
-    // localStorage.removeItem("campaignData")
-    localStorage.removeItem("typeUser")
-    localStorage.removeItem("formModal")
+    ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
+    window.location.href = '../homepage/homepage.html';
     
     document.getElementById('login').classList.remove("hidden");
     document.getElementById('cadastro').classList.remove("hidden");
