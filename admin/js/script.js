@@ -25,10 +25,8 @@ window.addEventListener('load', () => {
 });
 
 document.getElementById("sair").addEventListener("click", () => {
-    localStorage.removeItem("userName")
-    localStorage.removeItem("campaignData")
-    localStorage.removeItem("typeUser")
-    localStorage.removeItem("formModal")
+    ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
+    window.location.href = '../homepage/homepage.html';
 
     window.location.href = "../homepage/homepage.html";
 });

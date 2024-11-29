@@ -64,15 +64,37 @@ window.addEventListener('load', () => {
         });
 
     }
+    
+    const userId = localStorage.getItem("userId");
+
+    fetch(`http://localhost:3000/getCampanhas/${userId}`)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then((campanhas) => {
+        console.log(campanhas)
+        modalCampButton.addEventListener('click', () => {
+            if (campanhas.length > 0) {
+                alert('viewcampanha')
+                window.location.href = '../viewCampanha/viewCampanha.html'
+                return;
+            } else {
+                alert('formulario')
+                window.location.href = '../formulario/inicio/inicioForm.html'
+                return;
+            }
+        })
+    })
 });
 
 
 
 document.getElementById("sair").addEventListener("click", () => {
-    localStorage.removeItem("userName")
-    localStorage.removeItem("campaignData")
-    localStorage.removeItem("typeUser")
-    localStorage.removeItem("formModal")
+    ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
+    window.location.href = '../homepage/homepage.html';
     
     document.getElementById('login').classList.remove("hidden");
     document.getElementById('cadastro').classList.remove("hidden");

@@ -51,11 +51,3 @@ CREATE TABLE dia_campanha (
       hr_postagem TEXT NOT NULL,
       FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
  );
-
-CREATE TABLE administrador_campanha (
-    id_administrador INT NOT NULL,
-    id_dia INT NOT NULL,
-    PRIMARY KEY (id_administrador, id_dia),
-    FOREIGN KEY (id_administrador) REFERENCES administrador(id_administrador),
-    FOREIGN KEY (id_dia) REFERENCES dia_campanha(id_dia) 
-);
