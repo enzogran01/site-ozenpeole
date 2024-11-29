@@ -1,4 +1,7 @@
 // importa os pacotes necessários
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+
 require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
@@ -265,40 +268,44 @@ app.listen(3001 , () => {
 });
 
 
-// //api llama (Deus me ajuda a dar certo!)
-// app.post('/api/marketing-campaign', async (req, res) => {
-    //     const { idade, local, social, venda, preco, propaganda } = req.body;
+app.get('/downloadCampanha/:id', (req, res) => {
+
+    const idUsuario = req.params.id;
+
+    const query = `
+        SELECT * FROM dia_campanha WHERE id_usuario = ?;
+    `;
+
+    db.query(query, [idUsuario], (err, resultados) => {
+        if (err) {
+            console.error('Erro ao buscar campanhas:', err);
+            res.status(500).send('Erro ao buscar campanhas');
+        } else {
+            // Configura o cabeçalho da resposta HTTP
+            res.setHeader('Content-Type', 'application/pdf');
+            res.setHeader('Content-Disposition', 'attachment; filename="minha-campanha.pdf"');
+
+            // Cria um novo documento PDF
+            const doc = new PDFDocument();
+
+            // Envia o conteúdo do PDF diretamente para a resposta
+            doc.pipe(res);
+
+            // Adiciona conteúdo ao PDF
+            console.log('1');
+            doc.fontSize(18).text('Campanha de Marketing', { align: 'center' });
+            doc.text('\nDetalhes da campanha:');
+            doc.fontSize(12).text('• Promoção válida até 31/12.');
+            doc.text('• Descontos progressivos para compras acima de R$ 100.');
+            doc.text('\nAproveite agora mesmo!');
+
+            // Finaliza o documento
+            console.log('2');
+            doc.end();
+            res.status(200).json(resultados);
+        }
+    });
+
     
-    //     // Defina um prompt para a IA
-    //     const prompt = `
-    //     Crie uma campanha de marketing para uma loja considerando os seguintes dados:
-    //     - Idade do público-alvo: ${idade}
-    //     - Localização: ${local}
-    //     - Rede social mais utilizada: ${social}
-    //     - Tipo de venda: ${venda}
-    //     - Ticket médio: ${preco}
-    //     - Já faz marketing?: ${propaganda}
-    //     Descreva o conteúdo e as estratégias recomendadas.`;
-    
-    //     try {
-        //         const response = await axios.post('https://api.llama-api.com', {
-            //             prompt: prompt,
-            //             messages: [{ role: "user", content: prompt }],
-            //             stream: false,  // Ou true, se desejar receber respostas parciais
-            //             function_call: "none"  // Define que não será usada chamada de função extra
-            
-            //         }, {
-                //             headers: { 'Authorization': `Bearer LA-3da40301f1ec402c8446de9f8daee7348a4770a7990a485490876cd2349fe51d` }
-                //         });
-                
-                //         res.json(response.data);  // Retorna a resposta para o front-end
-                //     } catch (error) {
-                    //         console.error("Erro na API Llama:", error);
-                    //         res.status(500).json({ error: "Erro ao gerar a campanha de marketing" });
-                    //     }
-                    // });
-                    
-                    // app.listen(PORT, () => {
-                        //     console.log(`Servidor rodando em http://localhost:3001`);
-                        // });
-                        
+});
+

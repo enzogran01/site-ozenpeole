@@ -9,7 +9,8 @@
     "llamaai": "^1.0.4",
     "mysql": "^2.18.1",
     "mysql2": "^3.11.3",
-    "openai": "^4.68.4"
+    "openai": "^4.68.4",
+    "pdfkit": "^0.15.1"
   },
   "scripts": {
     "start": "node server.js"

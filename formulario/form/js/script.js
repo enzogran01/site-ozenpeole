@@ -163,7 +163,7 @@ userModal.addEventListener('click', (event) => {
             // Extrair informações de cada parte
             const dia = partes[0].replace('*', '').trim();
             const descricao = partes[1].trim();
-            const legenda = partes[2].replace(/"/g, '').trim(); // Remove as aspas
+            const legenda = partes[2].replace(/"/g, '').trim(); 
             const hora = partes[3].replace(';', '').trim();
           
             return { dia, descricao, legenda, hora };

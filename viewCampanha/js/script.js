@@ -143,3 +143,29 @@ function closeDeleteModal() {
 }
 
 
+document.getElementById("downloadButton").addEventListener("click",()=>{
+
+    const userId = localStorage.getItem("userId");
+    
+    // Buscar campanhas do servidor
+    fetch(`http://localhost:3000/downloadCampanha/${userId}`)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then((campanhas) => {
+            console.log(campanhas)
+            if (campanhas.length === 0) {
+                alert('Não há campanhas registradas')
+                window.location.href = '../homepage/homepage.html'
+                campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
+                return;
+            }
+        })
+
+
+
+});
+
