@@ -22,24 +22,25 @@ CREATE TABLE IF NOT EXISTS usuario (
     nm_usuario VARCHAR(50) NOT NULL,
     nm_email VARCHAR(100) UNIQUE NOT NULL,
     cd_senha VARCHAR(255) NOT NULL,
-    cd_telefone VARCHAR(15) NOT NULL
+    cd_telefone VARCHAR(15) NOT NULL,
+    ativo BOOL
 );
 
-INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone) VALUES 
-('Amélia Jordan', 'ammy@hotmail.com', 'Supersenha123@', '13967890123'),
-('Rogério Bing', 'bingrogerio@hotmail.com', 'Supersenha123@', '13989012345'),
-('Plineo Doce', 'candyplin@hotmail.com', 'Supersenha123@', '13912345678'),
-('Danilo Gentil', 'contatodani@gmail.com', 'Supersenha123@', '13956789012'),
-('Doug Funni', 'cooldoug@outlook.com', 'Supersenha123@', '13934567890'),
-('Denis Alemida', 'empresadenis@outlook.com', 'Supersenha123@', '13987654321'),
-('Gertrude Farofa', 'farofa@outlook.com', 'Supersenha123@', '13978901234'),
-('Dina Frans', 'fransdina@hotmail.com', 'Supersenha123@', '13923456781'),
-('Fernando Pinto', 'fredp@gmail.com', 'Supersenha123@', '13990123456'),
-('Jorge Nitays', 'nitajorge@gmail.com', 'Supersenha123@', '13912345670'),
-('Garry Oldman', 'oldman@hotmail.com', 'Supersenha123@', '13981234567'),
-('Paula Shimeji', 'paula@gmail.com', 'Supersenha123@', '13998765432'),
-('Lisa Shark', 'sharklista@hotmail.com', 'Supersenha123@', '13945678901'),
-('Linda Tenório', 'tenorioconsultoria@gmail.com', 'Supersenha123@', '13923456789');
+INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone, ativo) VALUES 
+('Amélia Jordan', 'ammy@hotmail.com', 'Supersenha123@', '13967890123', 1),
+('Rogério Bing', 'bingrogerio@hotmail.com', 'Supersenha123@', '13989012345', 1),
+('Plineo Doce', 'candyplin@hotmail.com', 'Supersenha123@', '13912345678', 1),
+('Danilo Gentil', 'contatodani@gmail.com', 'Supersenha123@', '13956789012', 1),
+('Doug Funni', 'cooldoug@outlook.com', 'Supersenha123@', '13934567890', 1),
+('Denis Alemida', 'empresadenis@outlook.com', 'Supersenha123@', '13987654321', 1),
+('Gertrude Farofa', 'farofa@outlook.com', 'Supersenha123@', '13978901234', 1),
+('Dina Frans', 'fransdina@hotmail.com', 'Supersenha123@', '13923456781', 1),
+('Fernando Pinto', 'fredp@gmail.com', 'Supersenha123@', '13990123456', 1),
+('Jorge Nitays', 'nitajorge@gmail.com', 'Supersenha123@', '13912345670', 1),
+('Garry Oldman', 'oldman@hotmail.com', 'Supersenha123@', '13981234567', 1),
+('Paula Shimeji', 'paula@gmail.com', 'Supersenha123@', '13998765432', 1),
+('Lisa Shark', 'sharklista@hotmail.com', 'Supersenha123@', '13945678901', 1),
+('Linda Tenório', 'tenorioconsultoria@gmail.com', 'Supersenha123@', '13923456789', 1);
 
  
 CREATE TABLE dia_campanha (
