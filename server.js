@@ -180,6 +180,28 @@ app.get('/getCampanhas/:id', (req, res) => {
     });
 });
 
+app.delete('/deleteCampanhas/:id', (req, res) => {
+    const idUsuario = req.params.id;
+
+    const query = `
+        DELETE FROM dia_campanha WHERE id_usuario = ?;
+    `;
+
+    db.query(query, [idUsuario], (err, resultados) => {
+        if (err) {
+            console.error('Erro ao excluir campanhas:', err);
+            res.status(500).send('Erro ao excluir campanhas');
+        } else {
+            // Verifica se alguma linha foi afetada
+            if (resultados.affectedRows > 0) {
+                res.status(200).send('Campanhas excluídas com sucesso');
+            } else {
+                res.status(404).send('Nenhuma campanha encontrada para o usuário especificado');
+            }
+        }
+    });
+});
+
 //conta quasntos usuarios tem
 app.get('/countUsers', (req, res) => {
     const query = "SELECT COUNT(id_usuario) AS totalUsuarios FROM usuario";

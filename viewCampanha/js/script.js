@@ -148,9 +148,24 @@ dontDelCampButton.addEventListener('click', () => {
 });
 
 delCampButton.addEventListener('click', () => {
-
+    const userId = localStorage.getItem("userId");
+    fetch(`http://localhost:3000/deleteCampanhas/${userId}`, {method: 'DELETE',})
     
-    window.location.href = '../homepage/homepage.html';
+    .then(response => {
+        if (response.ok) {
+            return response.text();
+        } else {
+            throw new error('Erro ao excluir campanha');
+        }
+    })
+    .then(message => {
+        alert('Campanha excluída');
+        window.location.href = '../homepage/homepage.html';
+    })
+    .catch(error => {
+        console.error(error)
+        alert('Houve um erro ao excluir a campanha')
+    })
 });
 
 function removeButtonClass(...elements) {

@@ -78,11 +78,11 @@ window.addEventListener('load', () => {
         console.log(campanhas)
         modalCampButton.addEventListener('click', () => {
             if (campanhas.length > 0) {
-                alert('viewcampanha')
+                // alert('viewcampanha')
                 window.location.href = '../viewCampanha/viewCampanha.html'
                 return;
             } else {
-                alert('formulario')
+                // alert('formulario')
                 window.location.href = '../formulario/inicio/inicioForm.html'
                 return;
             }
