@@ -50,9 +50,4 @@ CREATE TABLE dia_campanha (
       ds_imagem TEXT NOT NULL,
       ds_legenda TEXT NOT NULL,
       hr_postagem TEXT NOT NULL,
-<<<<<<< HEAD
       FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario));
-=======
-      FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
- );
->>>>>>> 84b5c22380fc956c22d7d6245526e179158f87d9
