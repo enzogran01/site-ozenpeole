@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const campButton = document.getElementById('campButton');
 const delButton = document.getElementById('delButton');
+const downloadButton = document.getElementById('downloadButton')
 const delCampModal = document.getElementById('delCampModal');
 const closeDelCampModal = document.getElementById('closeDelCampModal');
 const dontDelCampButton = document.getElementById('dontDelCampButton');
@@ -100,16 +101,42 @@ const delCampButton = document.getElementById('delCampButton');
 const icons = document.querySelectorAll('#path');
 
 campButton.addEventListener('click', () => {
-    removeButtonClass(delButton);
+    removeButtonClass(delButton, downloadButton);
     changeIconColor(icons, icons[0]);
     campButton.classList.add('button-active');
 });
 
 delButton.addEventListener('click', () => {
-    removeButtonClass(campButton);
+    removeButtonClass(campButton, downloadButton);
     changeIconColor(icons, icons[0]);
     delButton.classList.add('del-button-active');
     delCampModal.showModal();
+});
+
+downloadButton.addEventListener("click",()=>{
+    removeButtonClass(delButton, campButton);
+    changeIconColor(icons, icons[0]);
+    downloadButton.classList.add('button-active')
+
+    const userId = localStorage.getItem("userId");
+    
+    // Buscar campanhas do servidor
+    // fetch(`http://localhost:3000/downloadCampanha/${userId}`)
+    //     .then((response) => {
+    //         if (!response.ok) {
+    //             throw new Error(`Erro na requisição: ${response.statusText}`);
+    //         }
+    //         return response.json();
+    //     })
+    //     .then((campanhas) => {
+    //         console.log(campanhas)
+    //         if (campanhas.length === 0) {
+    //             alert('Não há campanhas registradas')
+    //             window.location.href = '../homepage/homepage.html'
+    //             campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
+    //             return;
+    //         }
+    //     })
 });
 
 closeDelCampModal.addEventListener('click', () => {
@@ -128,7 +155,11 @@ delCampButton.addEventListener('click', () => {
 
 function removeButtonClass(...elements) {
     elements.forEach(element => {
-        element?.classList.remove(element.id === 'delButton' ? 'del-button-active' : 'button-active');
+       if (element.id === 'delButton') {
+        element.classList.remove('del-button-active')
+       } else {
+        element.classList.remove('button-active')
+       } 
     });
 }
 
@@ -143,31 +174,3 @@ function closeDeleteModal() {
     changeIconColor(icons, icons[0]);
     campButton?.classList.add('button-active');
 }
-
-
-document.getElementById("downloadButton").addEventListener("click",()=>{
-
-    const userId = localStorage.getItem("userId");
-    
-    // Buscar campanhas do servidor
-    fetch(`http://localhost:3000/downloadCampanha/${userId}`)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then((campanhas) => {
-            console.log(campanhas)
-            if (campanhas.length === 0) {
-                alert('Não há campanhas registradas')
-                window.location.href = '../homepage/homepage.html'
-                campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
-                return;
-            }
-        })
-
-
-
-});
-
