@@ -47,7 +47,7 @@ CREATE TABLE dia_campanha (
      id_dia INT AUTO_INCREMENT PRIMARY KEY,
      id_usuario INT NOT NULL,
      dt_dia TEXT NOT NULL,
-      ds_imagem TEXT NOT NULL,
-      ds_legenda TEXT NOT NULL,
-      hr_postagem TEXT NOT NULL,
-      FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario));
+     ds_imagem TEXT NOT NULL,
+     ds_legenda TEXT NOT NULL,
+     hr_postagem TEXT NOT NULL,
+     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario));

@@ -252,6 +252,25 @@ app.get('/countAllCampanhas', (req, res) => {
 //     });
 // });
 
+app.patch('/desativarUsuario/:id', (req, res) => {
+    const idUsuario = req.params.id;
+
+    const query = 'UPDATE usuario SET ativo = 0 WHERE id_usuario = ?';
+
+    db.query(query, [idUsuario], (err, resultados) => {
+        if (err) {
+            console.error('Erro ao desativar usuário:', err);
+            return res.status(500).send('Erro ao desativar usuário');
+        }
+
+        if (resultados.affectedRows === 0) {
+            return res.status(404).send('Usuário não encontrado');
+        }
+
+        res.status(200).send('Usuário desativado com sucesso');
+    });
+})
+
 
 
 

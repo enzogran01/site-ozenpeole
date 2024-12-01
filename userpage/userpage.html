@@ -11,6 +11,7 @@
 <body>
     <!-- TODO Redirect opção campanha -->
     <!-- TODO Disabled button if input is blank -->
+    <!-- TODO Disable usuario -->
     <dialog id="userModal">
         <div class="modal-user-options">
             <a id="modalConfigButton" class="gen-modal-button" href="../userpage/userpage.html">Configurações</a>
@@ -18,6 +19,47 @@
             <a id="modalDashButton" class="gen-modal-button" href="../admin/admin.html">Dashboard</a>
             <div class="modal-divisor"></div>
             <a id="sair" class="exit-button">Sair</a>
+        </div>
+    </dialog>
+
+    <dialog class="del-user-modal" id="disableUserModal">
+        <div class="upper-del-modal">
+            <p class="del-modal-title">Desativar conta?</p>
+            <svg id="closeDelUserModal" class="close-del-user-modal" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10ZM9.17 14.83l5.66-5.66M14.83 14.83 9.17 9.17" stroke="#313638" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </div>
+
+        <div class="mid-del-modal">
+            <p class="del-modal-p">- Desativar essa conta vai tornar o seu acesso impossível.</p>
+        </div>
+
+        <div class="bottom-del-modal">
+            <button id="dontDelUserButton" class="dont-del-user-button">Não, manter conta</button>
+            <button id="delUserButton" class="del-user-button">Sim, desativar conta</button>
+        </div>
+    </dialog>
+
+    <dialog class="confirm-password-modal" id="confirmPasswordModal">
+        <div class="confirm-password-div">
+            <div class="confirm-password-title">
+                <svg id="closeArrowBack" class="back-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg>
+            </div>
+            
+            <div class="confirm-password-sentence">
+                <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24" fill="none"><path d="M12 7.75V13M21.08 8.58v6.84c0 1.12-.6 2.16-1.57 2.73l-5.94 3.43c-.97.56-2.17.56-3.15 0l-5.94-3.43a3.15 3.15 0 0 1-1.57-2.73V8.58c0-1.12.6-2.16 1.57-2.73l5.94-3.43c.97-.56 2.17-.56 3.15 0l5.94 3.43c.97.57 1.57 1.6 1.57 2.73Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 16.2v.1" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+
+            <h1 class="general-subtitle">Confirme sua senha</h1>
+
+            <form action="#" class="confirm-password-form" id="confirmPasswordForm">
+                <div class="form-minigroup">
+                    <input id="confirmPasswordInput" class="general-text-input" name="confirmPassowrdInput" type="text" placeholder="Sua senha atual">
+                </div>
+
+                <div class="confirm-password-div-buttons">
+                    <button class="save-button" id="confirmPasswordButton" type="submit">Confirmar</button>
+                </div>
+            </form>
+
         </div>
     </dialog>
 
@@ -157,7 +199,7 @@
     
                             <div class="submit-button">
                                 <button class="save-button">Salvar alterações</button>
-                                <button class="deactivate-button">Desativar conta</button>
+                                <button class="deactivate-button" id="disableButton">Desativar conta</button>
                             </div>
                         </form>
                     </section>

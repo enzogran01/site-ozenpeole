@@ -99,6 +99,129 @@ html {
     height: 1px;
 }
 
+/* CSS do modal de desativar usuário */
+.confirm-password-modal[open] {
+    border: none;
+    border-radius: 5px;
+    padding-inline: 30px;
+    padding-block: 30px;
+    width: 30%;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.confirm-password-modal[open]::backdrop {
+    background-color: rgb(0 0 0 / .3);;
+}
+
+.confirm-password-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.confirm-password-sentence {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.confirm-password-div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.confirm-password-div-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.del-user-modal[open] {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 4px;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+}
+
+.del-user-modal::backdrop {
+    background-color: rgb(0 0 0 / .3);
+}
+
+.upper-del-modal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: 12px;
+}
+
+.mid-del-modal {
+    background-color: #f6f6f6;
+    border-block: solid 1px #e3e3e3;
+}
+
+.bottom-del-modal {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 6px;
+    padding: 12px;
+}
+
+.del-modal-title {
+    margin: 0;
+}
+
+.del-modal-p {
+    margin: 0;
+    margin-inline: 12px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.dont-del-user-button, .del-user-button {
+    padding: 12px;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    border: solid 1px transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.del-user-button {
+    background-color: #FF033E;
+    color: #fff;
+}
+
+.dont-del-user-button {
+    background-color: #fff;
+    border: solid 1px #bdbdbd;
+    color: #a5a5a5;
+}
+
+.dont-del-user-button:hover, .del-user-button:hover {
+    transform: translateY(-2px);
+}
+
+.close-del-user-modal {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.close-del-user-modal:hover {
+    transform: translateY(-1px)
+}
+
 /*CSS header*/
 header {
     display: flex;
@@ -452,6 +575,7 @@ footer {
     padding: 17px;
     width: 25%;
     cursor: pointer;
+    outline: none;
     transition: all 0.2s;
 }
 

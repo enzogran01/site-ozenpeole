@@ -57,11 +57,9 @@ window.addEventListener('load', () => {
         console.log(campanhas)
         modalCampButton.addEventListener('click', () => {
             if (campanhas.length > 0) {
-                alert('viewcampanha')
                 window.location.href = '../viewCampanha/viewCampanha.html'
                 return;
             } else {
-                alert('formulario')
                 window.location.href = '../formulario/inicio/inicioForm.html'
                 return;
             }
@@ -69,11 +67,8 @@ window.addEventListener('load', () => {
     })
 });
 
-const campaignData = localStorage.getItem('campaignData');
-
 document.getElementById("sair").addEventListener("click", () => {
     ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
-    window.location.href = '../homepage/homepage.html';
 
     window.location.href = "../homepage/homepage.html";
 });
@@ -172,6 +167,8 @@ configOption.addEventListener('click', () => {
 campaignOption.addEventListener('click', () => {
     changeOptionClass(campaignOption, configOption, logoutOption)
 
+    const userId = localStorage.getItem("userId");
+
     fetch(`http://localhost:3000/getCampanhas/${userId}`)
     .then((response) => {
         if (!response.ok) {
@@ -182,11 +179,9 @@ campaignOption.addEventListener('click', () => {
     .then((campanhas) => {
         console.log(campanhas)
         if (campanhas.length > 0) {
-            alert('viewcampanha')
             window.location.href = '../viewCampanha/viewCampanha.html'
             return;
         } else {
-            alert('formulario')
             window.location.href = '../formulario/inicio/inicioForm.html'
             return;
         }
@@ -233,6 +228,68 @@ function changeOptionClass (clickedOption, ...options) {
         option.classList.add('option')
     })
 }
+
+// Modais confirmar senha
+const delUserModal = document.getElementById('disableUserModal');
+const confirmPasswordModal = document.getElementById('confirmPasswordModal');
+const disableModal = document.getElementById('disableUserModal');
+
+// Botões confirmar senha
+const disableButton = document.getElementById('disableButton');
+const dontDelUserModal = document.getElementById('dontDelUserButton');
+const delUserButton = document.getElementById('delUserButton');
+const closeArrowBack = document.getElementById('closeArrowBack');
+const confirmPasswordButton = document.getElementById('confirmPasswordButton')
+const closeDelUserModal = document.getElementById('closeDelUserModal');
+
+disableButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    confirmPasswordModal.showModal();
+})
+
+dontDelUserModal.addEventListener('click', () => {
+    delUserModal.close()
+})
+closeDelUserModal.addEventListener('click', () => {
+    delUserModal.close()
+})
+closeArrowBack.addEventListener('click', () => {
+    confirmPasswordModal.close();
+})
+
+confirmPasswordButton.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    confirmPasswordModal.close();
+    delUserModal.showModal();
+
+    ['formModal', 'userName', 'userId', 'typeUser'].forEach(item => localStorage.removeItem(item))
+    window.location.href = '../homepage/homepage.html'
+});
+
+
+
+delUserButton.addEventListener('click', () => {
+
+    const userId = localStorage.getItem('userId')
+
+    fetch(`http://localhost:3000/desativarUsuario/${userId}`, {method: 'PATCH',})
+
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Erro: ${response.statusText}`);
+        }
+        return response.text();
+    })
+    .then(message => {
+        alert('Usuário desativado');
+        console.log(message); // Usuário desativado com sucesso
+        localStorage.removeItem
+    })
+    .catch(error => {
+        console.error('Erro ao desativar usuário:', error);
+    });
+})
 
 // const confirmEmailInputVal = document.getElementById('confirmEmailInput').value
 // const newPasswordInputVal = document.getElementById('newPasswordInput').value
