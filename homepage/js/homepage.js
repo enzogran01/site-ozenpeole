@@ -5,6 +5,7 @@ window.addEventListener('load', () => {
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
     const typeUser = localStorage.getItem('typeUser');
+    const ativo = localStorage.getItem('ativo');
 
     const modalCampButton = document.getElementById('modalCampButton');
     const modalDashButton = document.getElementById('modalDashButton');

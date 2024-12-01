@@ -4,6 +4,8 @@ window.addEventListener('load', () => {
     
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
+    const userTelephone = localStorage.getItem('userTelephone');
     const typeUser = localStorage.getItem('typeUser');
 
     const modalCampButton = document.getElementById('modalCampButton');
@@ -18,7 +20,11 @@ window.addEventListener('load', () => {
        user.classList.remove('hidden');
 
        const userNameElement = document.getElementById('userNameElement')
+       const userEmailElement = document.getElementById('userEmailElement')
+       const userTelephoneElement = document.getElementById('userTelephoneElement')
        userNameElement.innerHTML = `${userName}`;
+       userEmailElement.innerHTML = `${userEmail}`;
+       userTelephoneElement.innerHTML = `${userTelephone}`;
         
        if (typeUser === 'admin') {
            modalCampButton.classList.add('hidden');
@@ -229,10 +235,11 @@ function changeOptionClass (clickedOption, ...options) {
     })
 }
 
-// Modais confirmar senha
+// Modais / elementos confirmar senha
 const delUserModal = document.getElementById('disableUserModal');
 const confirmPasswordModal = document.getElementById('confirmPasswordModal');
 const disableModal = document.getElementById('disableUserModal');
+const confirmPasswordForm = document.getElementById('confirmPasswordForm')
 
 // Botões confirmar senha
 const disableButton = document.getElementById('disableButton');
@@ -257,14 +264,11 @@ closeArrowBack.addEventListener('click', () => {
     confirmPasswordModal.close();
 })
 
-confirmPasswordButton.addEventListener('click', (e) => {
+confirmPasswordForm.addEventListener('click', (e) => {
     e.preventDefault();
 
     confirmPasswordModal.close();
     delUserModal.showModal();
-
-    ['formModal', 'userName', 'userId', 'typeUser'].forEach(item => localStorage.removeItem(item))
-    window.location.href = '../homepage/homepage.html'
 });
 
 
