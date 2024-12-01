@@ -54,6 +54,9 @@ app.post('/login', (req, res) => {
                     message: 'Login bem-sucedido!', 
                     userName: user.nm_usuario, 
                     userId: user.id_usuario,
+                    userEmail: user.nm_email,
+                    userTelephone: user.cd_telefone,
+                    ativo: user.ativo,
                     status: 'user'
                 });
             } else {

@@ -68,7 +68,7 @@ window.addEventListener('load', () => {
 });
 
 document.getElementById("sair").addEventListener("click", () => {
-    ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
+    ['userName',  'typeUser', 'formModal', 'userId', 'userEmail', 'userTelephone', 'ativo'].forEach(item => localStorage.removeItem(item));
 
     window.location.href = "../homepage/homepage.html";
 });

@@ -18,7 +18,6 @@ window.addEventListener('load', () => {
         // Esconde os botões de login e cadastro
         document.getElementById('login').classList.add("hidden");
         document.getElementById('cadastro').classList.add("hidden"); // Esconde o botão de cadastro
-        // document.getElementById('sair').classList.remove("hidden");
         
         // Esconde o botão de cadastro laranja na página inicial
         const cadastroBtn = document.getElementById('cadastro-btn');
@@ -90,10 +89,8 @@ window.addEventListener('load', () => {
     })
 });
 
-
-
 document.getElementById("sair").addEventListener("click", () => {
-    ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
+    ['userName',  'typeUser', 'formModal', 'userId', 'userEmail', 'userTelephone', 'ativo'].forEach(item => localStorage.removeItem(item));
     window.location.href = '../homepage/homepage.html';
     
     document.getElementById('login').classList.remove("hidden");

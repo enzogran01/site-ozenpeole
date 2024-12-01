@@ -52,8 +52,7 @@ window.addEventListener('load', () => {
 })
 
 document.getElementById("sair").addEventListener("click", () => {
-    ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
-    window.location.href = '../homepage/homepage.html';
+    ['userName',  'typeUser', 'formModal', 'userId', 'userEmail', 'userTelephone', 'ativo'].forEach(item => localStorage.removeItem(item));
     
     document.getElementById('login').classList.remove("hidden");
     document.getElementById('cadastro').classList.remove("hidden");

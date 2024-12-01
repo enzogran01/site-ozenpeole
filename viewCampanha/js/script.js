@@ -25,9 +25,10 @@ window.addEventListener('DOMContentLoaded', () => { // Substituído por DOMConte
     }
 });
 
-document.getElementById('sair')?.addEventListener('click', () => {
-    ['userName',  'typeUser', 'formModal', 'userId'].forEach(item => localStorage.removeItem(item));
-    window.location.href = '../homepage/homepage.html';
+document.getElementById("sair").addEventListener("click", () => {
+    ['userName',  'typeUser', 'formModal', 'userId', 'userEmail', 'userTelephone', 'ativo'].forEach(item => localStorage.removeItem(item));
+
+    window.location.href = "../homepage/homepage.html";
 });
 
 const userModal = document.getElementById('userModal');
