@@ -121,7 +121,23 @@ app.post('/verificarSenha', (req, res) => {
     });
 });
 
+
+app.get('/show-users', (req, res) => {
+    const query = "SELECT * FROM usuario;";
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Erro ao contar usuários:", err);
+            res.status(500).json({ error: "Erro ao contar usuários." });
+        } else {
+            const usuarios = results;
+            res.status(200).json({ usuarios });
+        }
+    });
+});
 // rota que registra um novo usuário (cadastro)
+
+
 app.post('/register', (req, res) => {
     const { name, email, password, telephone } = req.body;
     
@@ -246,6 +262,7 @@ app.get('/countUsers', (req, res) => {
         }
     });
 });
+
 
 app.get('/countAllCampanhas', (req, res) => {
     const query = "SELECT COUNT(id_usuario) AS totalCampanhas FROM dia_campanha";
