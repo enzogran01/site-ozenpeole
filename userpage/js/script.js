@@ -73,9 +73,12 @@ window.addEventListener('load', () => {
     })
 });
 
-document.getElementById("sair").addEventListener("click", () => {
+function logoff () {
     ['userName',  'typeUser', 'formModal', 'userId', 'userEmail', 'userTelephone', 'ativo'].forEach(item => localStorage.removeItem(item));
+}
 
+document.getElementById("sair").addEventListener("click", () => {
+    logoff();
     window.location.href = "../homepage/homepage.html";
 });
 
@@ -248,6 +251,7 @@ const delUserButton = document.getElementById('delUserButton');
 const closeArrowBack = document.getElementById('closeArrowBack');
 const confirmPasswordButton = document.getElementById('confirmPasswordButton')
 const closeDelUserModal = document.getElementById('closeDelUserModal');
+const confirmPasswordInput = document.getElementById('confirmPasswordInput').value;
 
 disableButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -264,11 +268,34 @@ closeArrowBack.addEventListener('click', () => {
     confirmPasswordModal.close();
 })
 
-confirmPasswordForm.addEventListener('click', (e) => {
+confirmPasswordForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    confirmPasswordModal.close();
-    delUserModal.showModal();
+    const userId = localStorage.getItem('userId'); // Recupera o ID do usuário do localStorage
+    const senha = document.getElementById('confirmPasswordInput').value; // Obtém o valor da senha
+
+    fetch('http://localhost:3000/verificarSenha', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: userId, senha: senha })
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.success) {
+            alert(data.message);
+            console.log('Senha confirmada com sucesso');
+            
+            confirmPasswordModal.close();
+            delUserModal.showModal();
+        } else {
+            alert(data.message); // Exibe mensagem de erro
+        }
+    })
+    .catch((error) => {
+        console.error('Erro na requisição:', error);
+        alert('Erro ao verificar senha');
+    });
+
 });
 
 
@@ -286,9 +313,8 @@ delUserButton.addEventListener('click', () => {
         return response.text();
     })
     .then(message => {
-        alert('Usuário desativado');
-        console.log(message); // Usuário desativado com sucesso
-        localStorage.removeItem
+        logoff();
+        window.location.href = "../homepage/homepage.html";
     })
     .catch(error => {
         console.error('Erro ao desativar usuário:', error);

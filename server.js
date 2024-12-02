@@ -93,6 +93,33 @@ app.post('/login', (req, res) => {
     });
 });
 
+app.post('/verificarSenha', (req, res) => {
+    const { id, senha } = req.body;
+
+    if (!id || !senha) {
+        return res.status(400).json({ success: false, message: 'Dados incompletos' });
+    }
+
+    const query = 'SELECT cd_senha FROM usuario WHERE id_usuario = ?';
+    db.query(query, [id], (err, resultados) => {
+        if (err) {
+            console.error('Erro ao verificar senha:', err);
+            return res.status(500).json({ success: false, message: 'Erro no servidor' });
+        }
+
+        if (resultados.length === 0) {
+            return res.status(404).json({ success: false, message: 'Usuário não encontrado' });
+        }
+
+        const senhaCorreta = resultados[0].cd_senha;
+
+        if (senha === senhaCorreta) {
+            return res.status(200).json({ success: true, message: 'Senha verificada com sucesso' });
+        } else {
+            return res.status(401).json({ success: false, message: 'Senha incorreta' });
+        }
+    });
+});
 
 // rota que registra um novo usuário (cadastro)
 app.post('/register', (req, res) => {
