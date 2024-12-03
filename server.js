@@ -121,7 +121,7 @@ app.post('/verificarSenha', (req, res) => {
     });
 });
 
-
+//mostra tabela de usuario no administrador
 app.get('/show-users', (req, res) => {
     const query = "SELECT * FROM usuario;";
 
@@ -135,6 +135,23 @@ app.get('/show-users', (req, res) => {
         }
     });
 });
+
+//mostra tabela de admin no administrador
+app.get('/show-admins', (req, res) => {
+    const query = "SELECT * FROM administrador;";
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Erro ao contar administradores:", err);
+            res.status(500).json({ error: "Erro ao contar admins." });
+        } else {
+            const administradores = results;
+            res.status(200).json({ administradores });
+        }
+    });
+});
+
+
 // rota que registra um novo usuário (cadastro)
 
 

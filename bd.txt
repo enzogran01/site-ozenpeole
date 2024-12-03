@@ -33,7 +33,7 @@ INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone, ativo) VALUES
 ('Plineo Doce', 'candyplin@hotmail.com', 'Supersenha123@', '13912345678', 1),
 ('Danilo Gentil', 'contatodani@gmail.com', 'Supersenha123@', '13956789012', 1),
 ('Doug Funni', 'cooldoug@outlook.com', 'Supersenha123@', '13934567890', 1),
-('Denis Alemida', 'empresadenis@outlook.com', 'Supersenha123@', '13987654321', 1),
+('Denis Alemida', 'denis@outlook.com', 'Supersenha123@', '13987654321', 1),
 ('Gertrude Farofa', 'farofa@outlook.com', 'Supersenha123@', '13978901234', 1),
 ('Dina Frans', 'fransdina@hotmail.com', 'Supersenha123@', '13923456781', 1),
 ('Fernando Pinto', 'fredp@gmail.com', 'Supersenha123@', '13990123456', 1),
