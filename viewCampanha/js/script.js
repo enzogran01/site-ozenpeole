@@ -99,24 +99,24 @@ const delCampModal = document.getElementById('delCampModal');
 const closeDelCampModal = document.getElementById('closeDelCampModal');
 const dontDelCampButton = document.getElementById('dontDelCampButton');
 const delCampButton = document.getElementById('delCampButton');
-const icons = document.querySelectorAll('#path');
+const icons = document.querySelectorAll('path');
 
 campButton.addEventListener('click', () => {
     removeButtonClass(delButton, downloadButton);
-    changeIconColor(icons, icons[0]);
+    changeIconColor(icons[0], icons[1], icons[2])
     campButton.classList.add('button-active');
 });
 
 delButton.addEventListener('click', () => {
     removeButtonClass(campButton, downloadButton);
-    changeIconColor(icons, icons[0]);
+    changeIconColor(icons[0], icons[1], icons[2]);
     delButton.classList.add('del-button-active');
     delCampModal.showModal();
 });
 
 downloadButton.addEventListener("click",()=>{
     removeButtonClass(delButton, campButton);
-    changeIconColor(icons, icons[0]);
+    changeIconColor(icons[0], icons[1], icons[2]);
     downloadButton.classList.add('button-active')
 
     const userId = localStorage.getItem("userId");
@@ -179,14 +179,18 @@ function removeButtonClass(...elements) {
     });
 }
 
-function changeIconColor(icons, ...clickedIcons) {
-    icons.forEach(icon => icon.setAttribute('stroke', '#000'));
-    clickedIcons.forEach(icon => icon.setAttribute('stroke', '#fff'));
+function changeIconColor(clickedIcon, ...icons) {
+    icons.forEach((notIcon) => {
+        notIcon.setAttribute('stroke', '#000000');
+    })
+    clickedIcon.setAttribute('stroke', '#fff');
+
+    console.log(icons, clickedIcon)
 }
 
 function closeDeleteModal() {
     delCampModal?.close();
     removeButtonClass(delButton);
-    changeIconColor(icons, icons[0]);
+    changeIconColor(icons[0], icons[1], icons[2]);
     campButton?.classList.add('button-active');
 }

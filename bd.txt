@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     nm_email VARCHAR(100) UNIQUE NOT NULL,
     cd_senha VARCHAR(255) NOT NULL,
     cd_telefone VARCHAR(15) NOT NULL,
+    titulo_campanha TEXT,
     ativo BOOL
 );
 
