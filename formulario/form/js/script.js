@@ -114,6 +114,7 @@ userModal.addEventListener('click', (event) => {
             // função para pegar as respostas
             function obterResposta(name){
                 let radioValor = formGeral.querySelector(`input[name = "${name}"]:checked`);
+                console.log(radioValor)
                 return radioValor ? radioValor.value : '';
 
                 let textValor = formGeral.querySelector(`input[name="${name}"]`);
