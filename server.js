@@ -374,21 +374,34 @@ app.listen(3001 , () => {
 });
 
 
+
+
+
+
+
 app.get('/downloadCampanha/:id', (req, res) => {
     const idUsuario = req.params.id;
 
     const query = `
-        SELECT * FROM dia_campanha WHERE id_usuario = ?;
+        SELECT u.nm_usuario, d.*
+        FROM usuario u
+        JOIN dia_campanha d ON u.id_usuario = d.id_usuario
+        WHERE u.id_usuario = ?;
     `;
 
     db.query(query, [idUsuario], (err, resultados) => {
         if (err) {
             console.error('Erro ao buscar campanhas:', err);
             res.status(500).send('Erro ao buscar campanhas');
+        } else if (resultados.length === 0) {
+            res.status(404).send('Nenhuma campanha encontrada para este usuário.');
         } else {
+            const nomeUsuario = resultados[0].nm_usuario; // Nome do usuário
+            const campanhas = resultados;
+
             // Configura o cabeçalho da resposta HTTP
             res.setHeader('Content-Type', 'application/pdf');
-            res.setHeader('Content-Disposition', 'attachment; filename = "minha-campanha.pdf"');
+            res.setHeader('Content-Disposition', 'attachment; filename=minha-campanha.pdf');
 
             const doc = new PDFDocument({ size: 'A4', margin: 50 });
 
@@ -396,62 +409,80 @@ app.get('/downloadCampanha/:id', (req, res) => {
             doc.pipe(res);
 
             // Caminho do logotipo
-            const logoPath = './viewCampanha/img/ozenpelogo.png'; // Atualize com o caminho correto do logotipo
+            const logoPath = './viewCampanha/img/ozenpelogo.png';
 
             // Estilos e cores
             const colors = {
-                base: '#d5d7db',
-                title: '#1a53e3',
-                subtitle: '#f95a33',
-                text: '#313638'
+                background: '#ffffff', // Branco
+                title: '#1a53e3',      // Azul
+                subtitle: '#f95a33',   // Laranja
+                text: '#313638'        // Cinza
             };
 
-            resultados.forEach((campanha, index) => {
-                if (index > 0) doc.addPage(); // Nova página para cada campanha
+            // Página inicial (com destaque para o logo e nome do usuário)
+            doc.rect(0, 0, doc.page.width, doc.page.height).fill(colors.background);
+            doc.image(logoPath, doc.page.width/ 2 - 75, 50, { width: 130, height: 130 }); // Logotipo menor
 
-                // Fundo para a campanha
-                doc.rect(50, doc.y, 500, 180).fill(colors.base).stroke();
+            doc.moveDown(15); // Espaço suficiente para evitar sobreposição
 
-                // Adicionando título
-                doc.fillColor(colors.title)
-                    .fontSize(18)
-                    .text(`Campanha ${index + 1}: ${campanha.dt_dia}`, 60, doc.y + 10);
+            doc.fillColor(colors.text)
+                .fontSize(16)
+                .text('Campanha do', { align: 'center', baseline: 'bottom' });
 
-                // Adicionando legenda
+            doc.fillColor(colors.title)
+                .fontSize(20)
+                .text(nomeUsuario, { align: 'center' });
+
+            doc.moveDown(2);
+
+            // Exibindo o número da campanha apenas uma vez
+            doc.fillColor(colors.title)
+                .fontSize(22)
+                .text(`Número da Campanha: ${campanhas[0].id_usuario}`, { align: 'center' });
+
+            doc.moveDown(3);
+
+            // Adicionando título para a seção de campanhas
+            doc.fillColor(colors.subtitle)
+                .fontSize(18)
+                .text('Dias da Campanha:', { align: 'left' });
+
+            doc.moveDown(2);
+
+            // Variável para controlar a quebra de página a cada 7 dias
+            let diaCount = 0;
+
+            // Listando todos os dias de campanha
+            campanhas.forEach((campanha, index) => {
+                if (diaCount > 0 && diaCount % 7 === 0) {
+                    // Adiciona nova página a cada 7 dias
+                    doc.addPage();
+                    doc.rect(0, 0, doc.page.width, doc.page.height).fill(colors.background);
+
+                    doc.fillColor(colors.subtitle)
+                        .fontSize(18)
+                        .text('Campanha:', { align: 'left' });
+
+                    doc.moveDown(2);
+                }
+
                 doc.fillColor(colors.subtitle)
                     .fontSize(14)
-                    .text(`Legenda:`, 60, doc.y + 10);
+                    .text(`Dia ${index + 1}:`, 50);
 
                 doc.fillColor(colors.text)
                     .fontSize(12)
-                    .text(`${campanha.ds_legenda}`, { indent: 20 });
+                    .text(`Data: ${campanha.dt_dia}`, { indent: 20 });
 
-                // Adicionando detalhes
-                doc.fillColor(colors.subtitle)
-                    .fontSize(14)
-                    .text(`Imagem:`, 60, doc.y + 10);
+                doc.text(`Legenda: ${campanha.ds_legenda}`, { indent: 20, align: 'justify' });
 
-                doc.fillColor(colors.text)
-                    .fontSize(12)
-                    .text(`${campanha.ds_imagem}`, { indent: 20 });
+                doc.text(`Imagem: ${campanha.ds_imagem}`, { indent: 20, align: 'justify' });
 
-                doc.fillColor(colors.subtitle)
-                    .fontSize(14)
-                    .text(`Hora da Postagem:`, 60, doc.y + 10);
+                doc.text(`Hora da Postagem: ${campanha.hr_postagem}`, { indent: 20 });
 
-                doc.fillColor(colors.text)
-                    .fontSize(12)
-                    .text(`${campanha.hr_postagem}`, { indent: 20 });
+                doc.moveDown(3); // Espaçamento maior entre os dias
 
-                // Adicionar logotipo no canto inferior direito
-                const pageWidth = doc.page.width;
-                const pageHeight = doc.page.height;
-                const logoSize = 30;
-
-                doc.image(logoPath, pageWidth - logoSize - 30, pageHeight - logoSize - 30, {
-                    width: logoSize,
-                    height: logoSize,
-                });
+                diaCount++;
             });
 
             // Finalizando o documento
@@ -459,4 +490,6 @@ app.get('/downloadCampanha/:id', (req, res) => {
         }
     });
 });
+
+
 
