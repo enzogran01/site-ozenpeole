@@ -37,20 +37,27 @@ db.connect((err) => {
 // tenta login
 app.post('/login', (req, res) => { 
     const { email, password } = req.body;
-    
-    // verifica se o email ta na tabela do usuario
-    const userQuery = 'SELECT * FROM usuario WHERE nm_email = ?'; // procura no banco o email do usuario
-    db.query(userQuery, [email], (err, userResults) => {  //ele criou uma variavel chamada user e ta dando query pra verificar email e senha
+
+    // Verifica se o email está na tabela do usuário
+    const userQuery = 'SELECT * FROM usuario WHERE nm_email = ?';
+    db.query(userQuery, [email], (err, userResults) => {
         if (err) {
             console.error('Erro ao consultar o banco de dados:', err);
             return res.status(500).json({ message: 'Erro interno do servidor.' });
         }
         
-        // se  achar user
+        // Se o usuário for encontrado
         if (userResults.length > 0) {
             const user = userResults[0];
-            if (password === user.cd_senha) { //verifica se a senha bate com o banco
-                // login do usuario bem-sucedido, volta como status de 'user'
+
+            // Verifica se o status do usuário é inativo
+            if (user.ativo === 0) {
+                return res.status(403).json({ message: 'Sua conta foi desativada, faça novo cadastro.' });
+            }
+
+            // Verifica se a senha bate
+            if (password === user.cd_senha) {
+                // Login do usuário bem-sucedido
                 return res.status(200).json({ 
                     message: 'Login bem-sucedido!', 
                     userName: user.nm_usuario, 
@@ -76,7 +83,7 @@ app.post('/login', (req, res) => {
                 if (adminResults.length > 0) {
                     const admin = adminResults[0];
                     if (password === admin.cd_senha_adm) {
-                        // Login de administrador bem-sucedido, retorna o status de 'admin'
+                        // Login de administrador bem-sucedido
                         return res.status(200).json({ 
                             message: 'Login bem-sucedido!', 
                             userName: admin.nm_administrador, 
@@ -94,6 +101,9 @@ app.post('/login', (req, res) => {
     });
 });
 
+
+
+//verifica senha
 app.post('/verificarSenha', (req, res) => {
     const { id, senha } = req.body;
 
@@ -154,8 +164,6 @@ app.get('/show-admins', (req, res) => {
 
 
 // rota que registra um novo usuário (cadastro)
-
-
 app.post('/register', (req, res) => {
     const { name, email, password, telephone } = req.body;
     
@@ -281,7 +289,7 @@ app.get('/countUsers', (req, res) => {
     });
 });
 
-
+//conta campanhas no admin
 app.get('/countAllCampanhas', (req, res) => {
     const query = "SELECT COUNT(id_usuario) AS totalCampanhas FROM dia_campanha";
 
@@ -300,23 +308,7 @@ app.get('/countAllCampanhas', (req, res) => {
     });
 });
 
-
-// //conta quasntas campanhas tem um usuario em especifico, NÃO APAGA Q PODE SER IMPORTANTE POR FAVOR!!!!!
-// app.get('/countCampanhas/:id', (req, res) => {
-    // const userId = req.params.id; // faggot id dia
-//     const query = "SELECT COUNT(id_campanha) AS totalCampanhas FROM dia_campanha WHERE ";
-
-//     db.query(query, [userId], (err, results) => {
-//         if (err) {
-//             console.error("Erro ao contar campanhas:", err);
-//             res.status(500).json({ error: "Erro ao contar campanhas." });
-//         } else {
-//             const totalCampanhas = results[0].totalCampanhas;
-//             res.status(200).json({ totalCampanhas });
-//         }
-//     });
-// });
-
+//desativa usuario
 app.patch('/desativarUsuario/:id', (req, res) => {
     const idUsuario = req.params.id;
 
@@ -335,10 +327,6 @@ app.patch('/desativarUsuario/:id', (req, res) => {
         res.status(200).send('Usuário desativado com sucesso');
     });
 })
-
-
-
-
 
 // Gerar campanhas com IA
 app.post('/api/marketing-campaign', async (req, res) => {
@@ -378,7 +366,7 @@ app.listen(3001 , () => {
 
 
 
-
+//download da campanha
 app.get('/downloadCampanha/:id', (req, res) => {
     const idUsuario = req.params.id;
 

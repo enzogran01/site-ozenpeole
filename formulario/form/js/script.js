@@ -1,4 +1,3 @@
-
 //INICIA A CONFIGURAÇÃO DE VERIFICAÇÃO DE USUÁRIOS E LOAD DA PÁGINA
 
 window.addEventListener('load', () => {
@@ -256,7 +255,7 @@ function btnAvancar() {
         if (perguntaAtual < totalPerguntas) {
             perguntaAtual++;
             mostrarPergunta(perguntaAtual);
-        }
+        }  
     } else {
         alert('Por favor, responda a pergunta antes de avançar.');
     }
@@ -303,12 +302,12 @@ document.getElementById('btnAvancar').addEventListener('click', btnAvancar);
 document.getElementById('btnAnterior').addEventListener('click', btnAnterior);
 
     // //inicia a primeira pergunta
-    // proximaPergunta();
+    proximaPergunta();
 
-    // //condição para o botão não funcionar quando já tiver na ultima página
-    // if(perguntaAtual === totalPerguntas){
-    //     document.getElementById('btnAvancar').style.display = 'none';
-    // }
+    // condição para o botão não funcionar quando já tiver na ultima página
+    if(perguntaAtual === totalPerguntas){
+        document.getElementById('btnAvancar').style.display = 'none';
+    }
 
 
     // // funcao para passar pergunta
