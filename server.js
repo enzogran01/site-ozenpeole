@@ -7,6 +7,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors'); // Se você ainda não tiver, instale o cors
 const mysql = require('mysql2');
+const { send } = require('process');
 const app = express();
 
 const mysqlPort = 3000;  // Porta para o MySQL
@@ -374,7 +375,6 @@ app.listen(3001 , () => {
 
 
 app.get('/downloadCampanha/:id', (req, res) => {
-
     const idUsuario = req.params.id;
 
     const query = `
@@ -388,29 +388,75 @@ app.get('/downloadCampanha/:id', (req, res) => {
         } else {
             // Configura o cabeçalho da resposta HTTP
             res.setHeader('Content-Type', 'application/pdf');
-            res.setHeader('Content-Disposition', 'attachment; filename="minha-campanha.pdf"');
+            res.setHeader('Content-Disposition', 'attachment; filename = "minha-campanha.pdf"');
 
-            // Cria um novo documento PDF
-            const doc = new PDFDocument();
+            const doc = new PDFDocument({ size: 'A4', margin: 50 });
 
-            // Envia o conteúdo do PDF diretamente para a resposta
+            // Conectando o fluxo do documento diretamente à resposta HTTP
             doc.pipe(res);
 
-            // Adiciona conteúdo ao PDF
-            console.log('1');
-            doc.fontSize(18).text('Campanha de Marketing', { align: 'center' });
-            doc.text('\nDetalhes da campanha:');
-            doc.fontSize(12).text('• Promoção válida até 31/12.');
-            doc.text('• Descontos progressivos para compras acima de R$ 100.');
-            doc.text('\nAproveite agora mesmo!');
+            // Caminho do logotipo
+            const logoPath = './viewCampanha/img/ozenpelogo.png'; // Atualize com o caminho correto do logotipo
 
-            // Finaliza o documento
-            console.log('2');
+            // Estilos e cores
+            const colors = {
+                base: '#d5d7db',
+                title: '#1a53e3',
+                subtitle: '#f95a33',
+                text: '#313638'
+            };
+
+            resultados.forEach((campanha, index) => {
+                if (index > 0) doc.addPage(); // Nova página para cada campanha
+
+                // Fundo para a campanha
+                doc.rect(50, doc.y, 500, 180).fill(colors.base).stroke();
+
+                // Adicionando título
+                doc.fillColor(colors.title)
+                    .fontSize(18)
+                    .text(`Campanha ${index + 1}: ${campanha.dt_dia}`, 60, doc.y + 10);
+
+                // Adicionando legenda
+                doc.fillColor(colors.subtitle)
+                    .fontSize(14)
+                    .text(`Legenda:`, 60, doc.y + 10);
+
+                doc.fillColor(colors.text)
+                    .fontSize(12)
+                    .text(`${campanha.ds_legenda}`, { indent: 20 });
+
+                // Adicionando detalhes
+                doc.fillColor(colors.subtitle)
+                    .fontSize(14)
+                    .text(`Imagem:`, 60, doc.y + 10);
+
+                doc.fillColor(colors.text)
+                    .fontSize(12)
+                    .text(`${campanha.ds_imagem}`, { indent: 20 });
+
+                doc.fillColor(colors.subtitle)
+                    .fontSize(14)
+                    .text(`Hora da Postagem:`, 60, doc.y + 10);
+
+                doc.fillColor(colors.text)
+                    .fontSize(12)
+                    .text(`${campanha.hr_postagem}`, { indent: 20 });
+
+                // Adicionar logotipo no canto inferior direito
+                const pageWidth = doc.page.width;
+                const pageHeight = doc.page.height;
+                const logoSize = 30;
+
+                doc.image(logoPath, pageWidth - logoSize - 30, pageHeight - logoSize - 30, {
+                    width: logoSize,
+                    height: logoSize,
+                });
+            });
+
+            // Finalizando o documento
             doc.end();
-            res.status(200).json(resultados);
         }
     });
-
-    
 });
 

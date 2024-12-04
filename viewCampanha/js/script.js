@@ -121,24 +121,53 @@ downloadButton.addEventListener("click",()=>{
 
     const userId = localStorage.getItem("userId");
     
-    // Buscar campanhas do servidor
-    // fetch(`http://localhost:3000/downloadCampanha/${userId}`)
-    //     .then((response) => {
-    //         if (!response.ok) {
-    //             throw new Error(`Erro na requisição: ${response.statusText}`);
-    //         }
-    //         return response.json();
-    //     })
-    //     .then((campanhas) => {
-    //         console.log(campanhas)
-    //         if (campanhas.length === 0) {
-    //             alert('Não há campanhas registradas')
-    //             window.location.href = '../homepage/homepage.html'
-    //             campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
-    //             return;
-    //         }
-    //     })
+
+    fetch(`http://localhost:3000/downloadCampanha/${userId}`, {
+        method: 'GET',
+    })
+        .then(response => response.blob())
+        .then(campanhas => {
+        console.log(campanhas)
+        if (campanhas.length === 0) {
+                alert('Não há campanhas registradas')
+                window.location.href = '../homepage/homepage.html'
+                campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
+                return;
+            }
+
+            const url = window.URL.createObjectURL(campanhas);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'campanha.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+
+    })
+    .catch(error => {
+        console.error('Erro ao fazer a requisição:', error);
+    });
 });
+
+//     //Buscar campanhas do servidor
+//     fetch(`http://localhost:3000/downloadCampanha/${userId}`)
+//         .then((response) => {
+//             if (!response.ok) {
+//                 throw new Error(`Erro na requisição: ${response.statusText}`);
+//             }
+//             return response.json();
+//         })
+//         .then((campanhas) => {
+//             console.log(campanhas)
+//             if (campanhas.length === 0) {
+//                 alert('Não há campanhas registradas')
+//                 window.location.href = '../homepage/homepage.html'
+//                 campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
+//                 return;
+//             }
+//         })
+// });
 
 closeDelCampModal.addEventListener('click', () => {
     closeDeleteModal();
