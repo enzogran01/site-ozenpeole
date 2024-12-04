@@ -158,22 +158,50 @@ adminButton.addEventListener('click', () => {
 
 function searchInput() {
     let input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById('searchBox');
-    filter = input.value.toUpperCase();
-    table = document.getElementById('userTable');
-    tr = table.getElementsByTagName('tr');
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName('td')[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
+    input = document.getElementById('searchBox'); // Campo de busca
+    filter = input.value.toUpperCase();          // Valor digitado, em maiúsculas
+    table = document.getElementById('userTable'); // Tabela de usuários
+    tr = table.getElementsByTagName('tr');       // Todas as linhas da tabela
+
+    // Loop pelas linhas da tabela (exceto cabeçalhos)
+    for (i = 1; i < tr.length; i++) { // Começa de 1 para pular o cabeçalho
+        let showRow = false;
+
+        // Verifica ID, Nome e Email (colunas 0, 1 e 2)
+        for (let j = 0; j < 3; j++) { // Ajuste conforme as colunas relevantes
+            td = tr[i].getElementsByTagName('td')[j];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    showRow = true;
+                    break; // Para de verificar se uma coluna já correspondeu
+                }
             }
         }
+
+        // Exibe ou oculta a linha com base no resultado
+        tr[i].style.display = showRow ? "" : "none";
     }
 }
+
+// function searchInput() {
+//     let input, filter, table, tr, td, i, txtValue;
+//     input = document.getElementById('searchBox');
+//     filter = input.value.toUpperCase();
+//     table = document.getElementById('userTable');
+//     tr = table.getElementsByTagName('tr');
+//     for (i = 0; i < tr.length; i++) {
+//         td = tr[i].getElementsByTagName('td')[0];
+//         if (td) {
+//             txtValue = td.textContent || td.innerText;
+//             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//                 tr[i].style.display = "";
+//             } else {
+//                 tr[i].style.display = "none";
+//             }
+//         }
+//     }
+// }
 
 function searchAdminInput () {
     let input, filter, tavle, tr, td, i, txtValue;
