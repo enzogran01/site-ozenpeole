@@ -134,16 +134,15 @@ downloadButton.addEventListener("click",()=>{
                 campanhasContainer.innerHTML = "<p>Não há campanhas registradas.</p>";
                 return;
             }
-
+            const userName = localStorage.getItem('userName')
             const url = window.URL.createObjectURL(campanhas);
             const a = document.createElement('a');
             a.style.display = 'none';
             a.href = url;
-            a.download = 'campanha.pdf';
+            a.download = `campanha de ${userName}.pdf`;
             document.body.appendChild(a);
             a.click();
             window.URL.revokeObjectURL(url);
-
     })
     .catch(error => {
         console.error('Erro ao fazer a requisição:', error);

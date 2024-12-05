@@ -15,6 +15,7 @@ const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const phoneInput = document.getElementById('phoneNum');
 const passwordInput = document.getElementById('password');
+const confirmPasswordInput = document.getElementById('confirmPassword');
 const conditionsInput = document.getElementById('conditions');
 const errorMessageDiv = document.getElementById('error-message');
 
@@ -23,11 +24,8 @@ errorMessageDiv.style.display = 'none';
 
 // Mostrar/ocultar senha
 revealer.addEventListener('click', function reveal() {
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-    } else {
-        passwordInput.type = "password";
-    }
+    passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+    confirmPasswordInput.type = confirmPasswordInput.type === "password" ? "text" : "password";
 });
 
 // Função para validar nome (apenas letras e espaços)
@@ -115,6 +113,15 @@ form.addEventListener('submit', function validate(e) {
         toggleError(passwordInput, true, '');
     }
 
+    // **Validação de confirmação de senha**
+    if (passwordInput.value !== confirmPasswordInput.value) {
+        toggleError(confirmPasswordInput, false, 'As senhas não coincidem.');
+        isValid = false;
+        hasError = true;
+    } else {
+        toggleError(confirmPasswordInput, true, '');
+    }
+
     // Validação do Telefone
     if (phoneInput.value.trim() === "" || !validatePhone(phoneInput.value)) {
         toggleError(phoneInput, false, 'Número de telefone inválido. Deve conter 11 dígitos.');
@@ -130,6 +137,8 @@ form.addEventListener('submit', function validate(e) {
         isValid = false;
         hasError = true;
     }
+
+    // Validação de confirmação de senha
 
     // Exibe a div de erros somente se houver erros
     if (hasError) {

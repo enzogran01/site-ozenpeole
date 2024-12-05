@@ -127,21 +127,11 @@ const firstResetPassword = document.getElementById('firstResetPassword')
 const secondResetPassword = document.getElementById('secondResetPassword')
 const advanceResetButton = document.getElementById('advanceResetButton')
 const cancelResetButton = document.getElementById('cancelResetButton')
-const confirmResetButton = document.getElementById('confirmResetButton')
 
 firstArrowBack.addEventListener('click', () => {
     resetPasswordModal.close();
 })
 secondArrowBack.addEventListener('click', () => {
-    firstResetPassword.classList.remove('hidden')
-    firstResetPassword.classList.add('reset-password-div')
-
-    secondResetPassword.classList.remove('reset-password-div')
-    secondResetPassword.classList.add('hidden')
-})
-confirmResetButton.addEventListener('click', () => {
-    resetPasswordModal.close();
-
     firstResetPassword.classList.remove('hidden')
     firstResetPassword.classList.add('reset-password-div')
 
@@ -240,6 +230,7 @@ const confirmPasswordModal = document.getElementById('confirmPasswordModal');
 const disableModal = document.getElementById('disableUserModal');
 const confirmPasswordForm = document.getElementById('confirmPasswordForm')
 const confirmEmailForm = document.getElementById('confirmEmailForm');
+const changePasswordForm = document.getElementById('changePasswordForm');
 
 // Botões confirmar senha
 const disableButton = document.getElementById('disableButton');
@@ -275,6 +266,45 @@ closeDelUserModal.addEventListener('click', () => {
 })
 closeArrowBack.addEventListener('click', () => {
     confirmPasswordModal.close();
+})
+
+changePasswordForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (newPasswordInput.value !== confirmNewPasswordInput.value) {
+        alert('As senhas não coincidem. Por favor, revise')
+        return;
+    }
+
+    const userId = localStorage.getItem('userId');
+    const novaSenha = document.getElementById('newPasswordInput').value;
+
+    fetch(`http://localhost:3000/mudarSenha/${userId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ novaSenha }), // Envia a nova senha
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.success) {
+            alert('Senha atualizada');
+            resetPasswordModal.close();
+            firstResetPassword.classList.remove('hidden')
+            firstResetPassword.classList.add('reset-password-div')
+            secondResetPassword.classList.remove('reset-password-div')
+            secondResetPassword.classList.add('hidden')
+            newPasswordInput.value = ''; // Limpa o input de senha
+        } else {
+            alert(data.message);
+        }
+    })
+        .catch((error) => {
+            console.error('Erro ao atualizar a senha:', error);
+            alert('Erro ao atualizar a senha. Tente novamente.');
+        });
+        
 })
 
 confirmPasswordForm.addEventListener('submit', (e) => {

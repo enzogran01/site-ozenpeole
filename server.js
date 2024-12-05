@@ -198,7 +198,7 @@ app.post('/register', (req, res) => {
             console.error('Erro ao registrar usuário:', err);
             res.status(500).json({ error: 'Erro ao registrar usuário'});
         } else {
-            res.status(200).send({ success: 'Usuário registrado com sucesso ta bom né'});
+            res.status(200).send({ success: 'Usuário registrado'});
         }
     });
 });
@@ -347,6 +347,32 @@ app.patch('/desativarUsuario/:id', (req, res) => {
         }
 
         res.status(200).send('Usuário desativado com sucesso');
+    });
+})
+
+//muda a senha do usuário
+app.patch('/mudarSenha/:id', (req, res) => {
+    const idUsuario = req.params.id;
+    const { novaSenha } = req.body;
+
+    if (!idUsuario || !novaSenha) {
+        return res.status(400).json({ success: false, message: 'Dados incompletos' });
+    }
+
+    const query = 'UPDATE usuario SET cd_senha = ? WHERE id_usuario = ?';
+
+    db.query(query, [novaSenha, idUsuario], (err, resultados) => {
+        if (err) {
+            console.error('Erro ao atualizar a senha:', err);
+            return res.status(500).json({ success: false, message: 'Erro no servidor' });
+        }
+
+        // Verifica se o ID do usuário foi encontrado e a senha atualizada
+        if (resultados.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Usuário não encontrado' });
+        }
+
+        res.status(200).json({ success: true, message: 'Senha atualizada com sucesso' });
     });
 })
 

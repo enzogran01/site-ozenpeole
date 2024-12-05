@@ -102,7 +102,7 @@
 
             <form action="POST" class="reset-password-form" id="changePasswordForm">
                 <div class="form-minigroup">
-                    <input id="newPasswordInput" class="general-text-input" name="newPasswordInput" type="password" placeholder="Nova senha" required>
+                    <input id="newPasswordInput" class="general-text-input" name="newPasswordInput" type="password" placeholder="Nova senha" minlength="8" required>
                 </div>
 
                 <div class="form-minigroup">
@@ -112,12 +112,13 @@
                 <div class="revealer-div">
                     <input id="revealPasswordOne" class="general-check-input" name="revealPasswordOne" type="checkbox"> <label for="revealPasswordOne">Mostrar senha</label>
                 </div>
+
+                <div class="reset-password-div-buttons-2">
+                    <button class="cancel-button" id="cancelResetButton">Cancelar</button>
+                    <button class="save-button" id="confirmResetButton">Confirmar</button>
+                </div>
             </form>
 
-            <div class="reset-password-div-buttons-2">
-                <button class="cancel-button" id="cancelResetButton">Cancelar</button>
-                <button class="save-button" id="confirmResetButton">Confirmar</button>
-            </div>
         </div>
     </dialog>
 
