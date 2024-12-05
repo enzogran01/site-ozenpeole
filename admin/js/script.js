@@ -1,6 +1,15 @@
 window.addEventListener('load', () => {
+
     const loader = document.querySelector('.loader');
     loader.classList.add('loader-hidden');
+
+    const url = new URL(window.location.href)
+    if (url.searchParams.has("usuarios")){
+        userButton.click()
+        RemoveButtonClass(dashButton, adminButton)
+        ChangeIconColor(icons, icons[1])
+        ChangeSectionState(userSection, dashSection, adminSection)
+    }
 
     const adminName = localStorage.getItem('userName'); // Recupera o nome do administrador
     const typeUser = localStorage.getItem('typeUser');
@@ -140,6 +149,9 @@ dashButton.addEventListener('click', () => {
     ChangeIconColor(icons, icons[0])
     ChangeSectionState(dashSection, userSection, adminSection)
     dashButton.classList.add('button-active');
+    const url = new URL(window.location.href);
+    url.search = '';
+    window.history.replaceState({}, '', url.toString());
 });
 
 userButton.addEventListener('click', () => {
@@ -147,6 +159,9 @@ userButton.addEventListener('click', () => {
     ChangeIconColor(icons, icons[1])
     ChangeSectionState(userSection, dashSection, adminSection)
     userButton.classList.add('button-active');
+    const url = new URL(window.location.href)
+    url.searchParams.set("usuarios", "ativo");
+    window.history.pushState({}, "", url);
 });
 
 adminButton.addEventListener('click', () => {
@@ -154,6 +169,9 @@ adminButton.addEventListener('click', () => {
     ChangeIconColor(icons, icons[2], icons[3], icons[4])
     ChangeSectionState(adminSection, dashSection, userSection)
     adminButton.classList.add('button-active');
+    const url = new URL(window.location.href);
+    url.search = '';
+    window.history.replaceState({}, '', url.toString());
 });
 
 function searchInput() {
@@ -230,33 +248,7 @@ function searchAdminInput () {
             }
         }
 
-// function searchInput() {
-//     let input, filter, table, tr, td, i, txtValue;
-//     input = document.getElementById('searchBox'); // Campo de busca
-//     filter = input.value.toUpperCase();          // Valor digitado, em maiúsculas
-//     table = document.getElementById('userTable'); // Tabela de usuários
-//     tr = table.getElementsByTagName('tr');       // Todas as linhas da tabela
 
-//     // Loop pelas linhas da tabela (exceto cabeçalhos)
-//     for (i = 1; i < tr.length; i++) { // Começa de 1 para pular o cabeçalho
-//         let showRow = false;
-
-//         // Verifica ID, Nome e Email (colunas 0, 1 e 2)
-//         for (let j = 0; j < 3; j++) { // Ajuste conforme as colunas relevantes
-//             td = tr[i].getElementsByTagName('td')[j];
-//             if (td) {
-//                 txtValue = td.textContent || td.innerText;
-//                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//                     showRow = true;
-//                     break; // Para de verificar se uma coluna já correspondeu
-//                 }
-//             }
-//         }
-
-//         // Exibe ou oculta a linha com base no resultado
-//         tr[i].style.display = showRow ? "" : "none";
-//     }
-// }
 const addUserButton = document.getElementById('addUserButton');
 const addUserModal = document.getElementById('addUserModal');
 const closeUserButton = document.getElementById('closeUserModal');
@@ -328,6 +320,52 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error("Erro ao buscar total de campanhas:", error);
                 totalCampanhasSpan.textContent = "Erro ao carregar";
             });
+});
+
+document.getElementById('addUserForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Impede o comportamento padrão de recarregar a página
+
+    // Obtém os valores dos campos do formulário
+    const name = document.getElementById('userName').value.trim();
+    const email = document.getElementById('userEmail').value.trim();
+    const password = document.getElementById('userPassword').value.trim();
+    const telephone = document.getElementById('userTelephone').value.trim();
+
+    // Dados do usuário a serem enviados ao servidor
+    const userData = {
+        name,
+        email,
+        password,
+        telephone
+    };
+
+    // Envia os dados para o endpoint usando fetch
+    fetch('http://localhost:3000/register', { // Substitua pelo URL correto do endpoint
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Usuário registrado com sucesso!');
+            // Limpa o formulário
+            document.getElementById('addUserForm').reset();
+            addUserModal.close();
+            location.reload();
+            
+          
+
+        } else {
+            alert(`Erro ao registrar usuário: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao enviar dados:', error);
+        alert('Ocorreu um erro ao registrar o usuário.');
+    });
 });
 
 

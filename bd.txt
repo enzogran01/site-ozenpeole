@@ -5,16 +5,19 @@ USE ozenpeole;
 CREATE TABLE IF NOT EXISTS administrador (
     id_administrador INT(11) NOT NULL AUTO_INCREMENT,
     nm_administrador VARCHAR(30) NOT NULL,
-    nm_email_adm VARCHAR(50) NOT NULL,  
+    nm_email_adm VARCHAR(50) NOT NULL,
+    ativo_adm BOOL,  
     cd_senha_adm VARCHAR(20) NOT NULL,
-    PRIMARY KEY (id_administrador)
+    PRIMARY KEY (id_administrador, nm_email_adm),
+    UNIQUE (id_administrador),
+    UNIQUE (nm_email_adm)
 );
 
-INSERT INTO administrador (nm_administrador, nm_email_adm, cd_senha_adm) VALUES 
-('Enzo', 'enzo.correa@etec.sp.gov.br', ('Supersenha2@')),
-('Leonardo', 'leonardo.oliveira740@etec.sp.gov.br', ('Supersenha3#')),
-('Lorenzo', 'lorenzo.louzada@etec.sp.gov.br', ('Supersenha4$' )),
-('Pedro', 'pedro.pereira297@etec.sp.gov.br', ('Supersenha1*' ));
+INSERT INTO administrador (nm_administrador, nm_email_adm, cd_senha_adm, ativo_adm ) VALUES 
+('Enzo', 'enzo.correa@etec.sp.gov.br', 'Supersenha2@', 1),
+('Leonardo', 'leonardo.oliveira740@etec.sp.gov.br', 'Supersenha3#', 1),
+('Lorenzo', 'lorenzo.louzada@etec.sp.gov.br', 'Supersenha4$', 1 ),
+('Pedro', 'pedro.pereira297@etec.sp.gov.br', 'Supersenha1*', 1 );
 
 
 CREATE TABLE IF NOT EXISTS usuario (

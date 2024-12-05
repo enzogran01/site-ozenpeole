@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -121,21 +121,20 @@
                 </div>
         
                 <div class="user-form">
-                    <form action="#" method="post" id="addUserForm">
+                    <form id="addUserForm">
                         <div class="form-group">
-                            <input name="userName" type="text" id="userName" placeholder="Nome" class="input-field">
-        
-                            <input name="userEmail" type="text" id="userEmail" placeholder="Email" class="input-field">
+                            <input name="userName" type="text" id="userName" placeholder="Nome" class="input-field" required>
+                            <input name="userEmail" type="email" id="userEmail" placeholder="Email" class="input-field" required>
                         </div>
-
+                
                         <div class="form-group">
-                            <input name="userPassword" type="password" id="userPassword" placeholder="Senha" class="input-field">
+                            <input name="userPassword" type="password" id="userPassword" placeholder="Senha" class="input-field" required>
                         </div>
-
+                
                         <div class="form-group">
-                            <input name="userTelephone" type="tel" id="userTelephone" placeholder="Telefone" class="input-field">
+                            <input name="userTelephone" type="tel" id="userTelephone" placeholder="Telefone" class="input-field" maxlength="11" required>
                         </div>
-
+                
                         <div class="add-user-option">
                             <button id="addUserConfirm" type="submit">Adicionar</button>
                         </div>
@@ -216,11 +215,7 @@
                         <div class="form-group">
                             <input name="adminPassword" type="password" id="adminPassword" placeholder="Senha" class="input-field">
                         </div>
-
-                        <div class="form-group">
-                            <input name="adminTelephone" type="tel" id="adminTelephone" placeholder="Telefone" class="input-field">
-                        </div>
-
+                       
                         <div class="add-user-option">
                             <button id="addAdminConfirm" type="submit">Adicionar</button>
                         </div>

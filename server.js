@@ -182,15 +182,15 @@ app.get('/show-admins', (req, res) => {
 });
 
 
-// rota que registra um novo usuário (cadastro)
-app.post('/register', (req, res) => {
-    const { name, email, password, telephone } = req.body;
+// rota que registra um novo admin (pag adim)
+app.post('/registerAdmin', (req, res) => {
+    const { nameadm, emailadm, passwordadm} = req.body;
     
-    // Query do SQL para inserir um novo usuário
-    const query = 'INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone, ativo) VALUES (?, ?, ?, ?, 1)';
+    // Query do SQL para inserir um novo admin
+    const query = 'INSERT INTO administrador (nm_administrador, nm_email_adm, cd_senha_adm, ativo) VALUES (?, ?, ?, 1)';
     
     // Executa a query sem criptografar a senha
-    db.query(query, [name, email, password, telephone], (err, result) => {
+    db.query(query, [nameadm, emailadm, passwordadm], (err, result) => {
         if (err) {
             console.error('Erro ao registrar usuário:', err);
             res.status(500).json({ error: 'Erro ao registrar usuário'});
