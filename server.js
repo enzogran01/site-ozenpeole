@@ -132,6 +132,28 @@ app.post('/verificarSenha', (req, res) => {
     });
 });
 
+app.post('/verificarEmail', (req, res) => {
+    const { id, email } = req.body;
+
+    if (!id || !email) {
+        return res.status(400).json({ success: false, message: 'Dados incompletos' });
+    }
+
+    const query = 'SELECT * FROM usuario WHERE id_usuario = ? AND nm_email = ?';
+    db.query(query, [id, email], (err, resultados) => {
+        if (err) {
+            console.error('Erro ao verificar email:', err);
+            return res.status(500).json({ success: false, message: 'Erro no servidor' });
+        }
+
+        if (resultados.length > 0) {
+            return res.status(200).json({ success: true, message: 'Email verificado com sucesso' });
+        } else {
+            return res.status(401).json({ success: false, message: 'Email incorreto ou usuário não encontrado' });
+        }
+    });
+});
+
 //mostra tabela de usuario no administrador
 app.get('/show-users', (req, res) => {
     const query = "SELECT * FROM usuario;";

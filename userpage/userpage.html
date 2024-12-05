@@ -52,7 +52,11 @@
 
             <form action="#" class="confirm-password-form" id="confirmPasswordForm">
                 <div class="form-minigroup">
-                    <input id="confirmPasswordInput" class="general-text-input" name="confirmPassowrdInput" type="text" placeholder="Sua senha atual">
+                    <input id="confirmPasswordInput" class="general-text-input" name="confirmPassowrdInput" type="password" placeholder="Sua senha atual" required>
+                </div>
+
+                <div class="revealer-div">
+                    <input id="revealPasswordTwo" class="general-check-input" name="revealPasswordTwo" type="checkbox"> <label for="revealPasswordTwo">Mostrar senha</label>
                 </div>
 
                 <div class="confirm-password-div-buttons">
@@ -77,29 +81,36 @@
 
             <form action="POST" class="reset-password-form" id="confirmEmailForm">
                 <div class="form-minigroup">
-                    <input id="confirmEmailInput" class="general-text-input" name="confirmEmailInput" type="email" placeholder="exemplo@gmail.com">
+                    <input id="confirmEmailInput" class="general-text-input" name="confirmEmail" type="email" placeholder="exemplo@gmail.com" required>
+                </div>
+
+                <div class="reset-password-div-buttons-1">
+                    <button class="save-button" id="advanceResetButton">Avançar</button>
                 </div>
             </form>
 
-            <div class="reset-password-div-buttons-1">
-                <button class="save-button" id="advanceResetButton">Avançar</button>
-            </div>
         </div>
 
         <div class="hidden" id="secondResetPassword">
             <div class="reset-password-title">
                 <svg id="secondArrowBack" class="back-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08"></path></svg>
-                <h1 class="general-subtitle">Tudo pronto</h1>
-                <div class="blank"></div>
+            </div>
+            
+            <div class="center-reset-password-title">
+                <h1 class="general-subtitle">Tudo pronto, confirme sua nova senha.</h1>
             </div>
 
             <form action="POST" class="reset-password-form" id="changePasswordForm">
                 <div class="form-minigroup">
-                    <input id="newPasswordInput" class="general-text-input" name="newPasswordInput" type="password" placeholder="Nova senha">
+                    <input id="newPasswordInput" class="general-text-input" name="newPasswordInput" type="password" placeholder="Nova senha" required>
                 </div>
 
                 <div class="form-minigroup">
-                    <input id="confirmNewPasswordInput" class="general-text-input" name="confirmNewPasswordInput" type="password" placeholder="Confirmar senha">
+                    <input id="confirmNewPasswordInput" class="general-text-input" name="confirmNewPasswordInput" type="password" placeholder="Confirmar nova senha" required>
+                </div>
+
+                <div class="revealer-div">
+                    <input id="revealPasswordOne" class="general-check-input" name="revealPasswordOne" type="checkbox"> <label for="revealPasswordOne">Mostrar senha</label>
                 </div>
             </form>
 

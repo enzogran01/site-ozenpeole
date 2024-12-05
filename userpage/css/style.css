@@ -120,6 +120,12 @@ html {
     gap: 20px;
 }
 
+.confirm-email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .confirm-password-sentence {
     display: flex;
     flex-direction: row;
@@ -556,6 +562,21 @@ footer {
     border:solid 2px var(--blue);
 }
 
+.revealer-div {
+    display: flex;
+    justify-content: left;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type=checkbox] {
+    transform: scale(1.4);
+    cursor: pointer;
+}
+
 .general-label {
     font-weight: bold;
 }
@@ -665,6 +686,12 @@ footer {
     align-items: center;
 }
 
+.center-reset-password-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .reset-password-sentence {
     display: flex;
     flex-direction: row;
@@ -693,7 +720,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .back-arrow {

@@ -139,13 +139,6 @@ secondArrowBack.addEventListener('click', () => {
     secondResetPassword.classList.remove('reset-password-div')
     secondResetPassword.classList.add('hidden')
 })
-advanceResetButton.addEventListener('click', () => {
-    firstResetPassword.classList.remove('reset-password-div')
-    firstResetPassword.classList.add('hidden')
-
-    secondResetPassword.classList.remove('hidden')
-    secondResetPassword.classList.add('reset-password-div')
-})
 confirmResetButton.addEventListener('click', () => {
     resetPasswordModal.close();
 
@@ -196,6 +189,9 @@ campaignOption.addEventListener('click', () => {
         }
     })
 })
+dashboardOption.addEventListener('click', () => {
+    window.location.href = '../admin/admin.html'
+})
 logoutOption.addEventListener('click', () => {
     changeOptionClass(logoutOption, campaignOption, configOption)
 
@@ -243,6 +239,7 @@ const delUserModal = document.getElementById('disableUserModal');
 const confirmPasswordModal = document.getElementById('confirmPasswordModal');
 const disableModal = document.getElementById('disableUserModal');
 const confirmPasswordForm = document.getElementById('confirmPasswordForm')
+const confirmEmailForm = document.getElementById('confirmEmailForm');
 
 // Botões confirmar senha
 const disableButton = document.getElementById('disableButton');
@@ -251,7 +248,19 @@ const delUserButton = document.getElementById('delUserButton');
 const closeArrowBack = document.getElementById('closeArrowBack');
 const confirmPasswordButton = document.getElementById('confirmPasswordButton')
 const closeDelUserModal = document.getElementById('closeDelUserModal');
-const confirmPasswordInput = document.getElementById('confirmPasswordInput').value;
+const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+const newPasswordInput = document.getElementById('newPasswordInput')
+const confirmNewPasswordInput = document.getElementById('confirmNewPasswordInput')
+const revealPasswordOne = document.getElementById('revealPasswordOne')
+const revealPasswordTwo = document.getElementById('revealPasswordTwo')
+
+revealPasswordTwo.addEventListener('click', () => {
+    confirmPasswordInput.type = confirmPasswordInput.type === "password" ? "text" : "password";
+})
+revealPasswordOne.addEventListener('click', () => {
+    newPasswordInput.type = newPasswordInput.type === "password" ? "text" : "password";
+    confirmNewPasswordInput.type = confirmNewPasswordInput.type === "password" ? "text" : "password";
+})
 
 disableButton.addEventListener('click', (e) => {
     e.preventDefault();
@@ -282,11 +291,12 @@ confirmPasswordForm.addEventListener('submit', (e) => {
     .then((response) => response.json())
     .then((data) => {
         if (data.success) {
-            alert(data.message);
             console.log('Senha confirmada com sucesso');
             
             confirmPasswordModal.close();
             delUserModal.showModal();
+
+            confirmPasswordInput.value === '';
         } else {
             alert(data.message); // Exibe mensagem de erro
         }
@@ -298,7 +308,46 @@ confirmPasswordForm.addEventListener('submit', (e) => {
 
 });
 
+confirmEmailForm.addEventListener('submit', (e) => {
+    e.preventDefault();
 
+    const userId = localStorage.getItem('userId');
+    const email = document.getElementById('confirmEmailInput').value;
+
+    fetch('http://localhost:3000/verificarEmail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: userId, email: email })
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.statusText}`);
+        }
+        return response.json();
+    })
+    .then((data) => {
+        console.log('data: ' + data); // Verificar o que o backend retorna
+
+        if (data.success) {
+            console.log('Email confirmado com sucesso');
+
+            // Mudar classes somente quando for sucesso
+            firstResetPassword.classList.add('hidden');
+            firstResetPassword.classList.remove('reset-password-div');
+
+            secondResetPassword.classList.add('reset-password-div');
+            secondResetPassword.classList.remove('hidden');
+
+            confirmEmailInput.value = '';
+        } else {
+            alert(data.message || 'Email inválido'); // Exibe mensagem do backend ou mensagem padrão
+        }
+    })
+    .catch((error) => {
+        console.error('Erro na requisição:', error);
+        alert('Email inválido');
+    });
+});
 
 delUserButton.addEventListener('click', () => {
 
@@ -320,13 +369,3 @@ delUserButton.addEventListener('click', () => {
         console.error('Erro ao desativar usuário:', error);
     });
 })
-
-// const confirmEmailInputVal = document.getElementById('confirmEmailInput').value
-// const newPasswordInputVal = document.getElementById('newPasswordInput').value
-// const confirmNewPasswordInputVal = document.getElementById('confirmNewPasswordInput').value
-
-// if (confirmEmailInputVal.trim()) {
-//     advanceResetButton.disabled = false;
-// } else {
-//     advanceResetButton.disabled = true;
-// }
