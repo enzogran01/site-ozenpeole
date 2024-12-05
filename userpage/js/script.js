@@ -23,8 +23,6 @@ window.addEventListener('load', () => {
        const userEmailElement = document.getElementById('userEmailElement')
        const userTelephoneElement = document.getElementById('userTelephoneElement')
        userNameElement.innerHTML = `${userName}`;
-       userEmailElement.innerHTML = `${userEmail}`;
-       userTelephoneElement.innerHTML = `${userTelephone}`;
         
        if (typeUser === 'admin') {
            modalCampButton.classList.add('hidden');
@@ -399,3 +397,42 @@ delUserButton.addEventListener('click', () => {
         console.error('Erro ao desativar usuário:', error);
     });
 })
+
+document.getElementById('userForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const userId = localStorage.getItem('userId'); // Obtém o ID do usuário do localStorage
+    let nome = document.getElementById('userNameInput').value.trim();
+    let email = document.getElementById('userEmailInput').value.trim();
+    let telefone = document.getElementById('userTelInput').value.trim();
+
+    fetch(`http://localhost:3000/atualizarUsuario/${userId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ nome, email, telefone }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message); // Exibe mensagem de sucesso
+                // Atualiza as informações exibidas no formulário, se necessário
+                document.getElementById('userNameElement').textContent = nome || '(username)';
+                document.getElementById('userEmailElement').textContent = email || 'useremail';
+                document.getElementById('userTelephoneElement').textContent = telefone || 'useremail';
+
+                nome = ''
+                email = ''
+                telefone = ''
+
+                localStorage.setItem('UserName', nome)
+            } else {
+                alert(data.message); // Exibe mensagem de erro
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao atualizar usuário:', error);
+            alert('Erro ao atualizar os dados. Tente novamente.');
+        });
+});

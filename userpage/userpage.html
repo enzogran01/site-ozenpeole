@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    <!-- TODO Redirect opção campanha -->
-    <!-- TODO Disabled button if input is blank -->
-    <!-- TODO Disable usuario -->
     <dialog id="userModal">
         <div class="modal-user-options">
             <a id="modalConfigButton" class="gen-modal-button" href="../userpage/userpage.html">Configurações</a>
@@ -210,10 +207,11 @@
                             </div>
     
                             <div class="submit-button">
-                                <button class="save-button">Salvar alterações</button>
-                                <button class="deactivate-button" id="disableButton">Desativar conta</button>
+                                <button class="save-button" type="submit">Salvar alterações</button>
+                                <button class="deactivate-button" id="disableButton" type="button">Desativar conta</button>
                             </div>
                         </form>
+
                     </section>
 
                     <section class="hidden" id="passwordElements">

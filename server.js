@@ -62,9 +62,6 @@ app.post('/login', (req, res) => {
                     message: 'Login bem-sucedido!', 
                     userName: user.nm_usuario, 
                     userId: user.id_usuario,
-                    userEmail: user.nm_email,
-                    userTelephone: user.cd_telefone,
-                    ativo: user.ativo,
                     status: 'user'
                 });
             } else {
@@ -190,7 +187,7 @@ app.post('/register', (req, res) => {
     const { name, email, password, telephone } = req.body;
     
     // Query do SQL para inserir um novo usuário
-    const query = 'INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone, ativo) VALUES (?, ?, ?, ?, 1)';
     
     // Executa a query sem criptografar a senha
     db.query(query, [name, email, password, telephone], (err, result) => {
@@ -375,6 +372,44 @@ app.patch('/mudarSenha/:id', (req, res) => {
         res.status(200).json({ success: true, message: 'Senha atualizada com sucesso' });
     });
 })
+
+app.patch('/atualizarUsuario/:id', (req, res) => {
+    const userId = req.params.id;
+    const { nome, email, telefone } = req.body;
+
+    if (!nome && !email && !telefone) {
+        return res.status(400).json({ success: false, message: 'Nenhum dado fornecido para atualização' });
+    }
+
+    let query = 'UPDATE usuario SET ';
+    const values = [];
+    if (nome) {
+        query += 'nm_usuario = ?, ';
+        values.push(nome);
+    }
+    if (email) {
+        query += 'nm_email = ?, ';
+        values.push(email);
+    }
+    if (telefone) {
+        query += 'cd_telefone = ?, ';
+        values.push(telefone);
+    }
+
+    query = query.slice(0, -2) + ' WHERE id_usuario = ?';
+    values.push(userId);
+
+    console.log('Query gerada:', query);
+    console.log('Valores para a query:', values);
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao executar a query:', err);
+            return res.status(500).json({ success: false, message: 'Erro interno no servidor' });
+        }
+        res.status(200).json({ success: true, message: 'Usuário atualizado com sucesso!' });
+    });
+});
 
 // Gerar campanhas com IA
 app.post('/api/marketing-campaign', async (req, res) => {
