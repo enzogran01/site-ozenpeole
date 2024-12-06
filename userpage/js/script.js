@@ -4,8 +4,6 @@ window.addEventListener('load', () => {
     
     // Verifica se o usuário está logado
     const userName = localStorage.getItem('userName');
-    const userEmail = localStorage.getItem('userEmail');
-    const userTelephone = localStorage.getItem('userTelephone');
     const typeUser = localStorage.getItem('typeUser');
 
     const modalCampButton = document.getElementById('modalCampButton');
@@ -49,6 +47,28 @@ window.addEventListener('load', () => {
     }
 
     const userId = localStorage.getItem("userId");
+
+    if (userId) {
+        fetch(`http://localhost:3000/getUser/${userId}`)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`Erro ao buscar dados do usuário: ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then((userData) => {
+            // Atualiza os elementos HTML com os dados do usuário
+            const userEmailElement = document.getElementById('userEmailElement');
+            const userTelephoneElement = document.getElementById('userTelephoneElement');
+
+            userEmailElement.textContent = userData.nm_email || 'Email não disponível';
+            userTelephoneElement.textContent = userData.cd_telefone || 'Telefone não disponível';
+        })
+        .catch((error) => {
+            console.error('Erro ao buscar os dados do usuário:', error);
+            alert('Erro ao carregar dados do usuário. Tente novamente.');
+        });
+    }
 
     fetch(`http://localhost:3000/getCampanhas/${userId}`)
     .then((response) => {
@@ -422,11 +442,7 @@ document.getElementById('userForm').addEventListener('submit', function (e) {
                 document.getElementById('userEmailElement').textContent = email || 'useremail';
                 document.getElementById('userTelephoneElement').textContent = telefone || 'useremail';
 
-                nome = ''
-                email = ''
-                telefone = ''
-
-                localStorage.setItem('UserName', nome)
+                location.reload();
             } else {
                 alert(data.message); // Exibe mensagem de erro
             }

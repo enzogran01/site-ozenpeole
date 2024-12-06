@@ -96,9 +96,6 @@ form.addEventListener('submit', function validate(e) {
                     localStorage.setItem('userName', data.userName);
                     localStorage.setItem('userId', data.userId);
                     localStorage.setItem('typeUser', data.status);
-                    localStorage.setItem('userEmail', data.userEmail);
-                    localStorage.setItem('userTelephone', data.userTelephone);
-                    localStorage.setItem('ativo', data.ativo);
                     localStorage.setItem('formModal', false);
     
                     if (data.status === 'admin') {

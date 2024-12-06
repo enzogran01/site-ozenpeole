@@ -187,7 +187,7 @@ app.post('/registerAdmin', (req, res) => {
     const { nameadm, emailadm, passwordadm} = req.body;
     
     // Query do SQL para inserir um novo admin
-    const query = 'INSERT INTO administrador (nm_administrador, nm_email_adm, cd_senha_adm, ativo) VALUES (?, ?, ?, 1)';
+    const query = 'INSERT INTO administrador (nm_administrador, nm_email_adm, cd_senha_adm, ativo_adm) VALUES (?, ?, ?, 1)';
     
     // Executa a query sem criptografar a senha
     db.query(query, [nameadm, emailadm, passwordadm], (err, result) => {
@@ -197,6 +197,23 @@ app.post('/registerAdmin', (req, res) => {
         } else {
             res.status(200).send({ success: 'Usuário registrado'});
         }
+    });
+});
+
+app.get('/getUser/:id', (req, res) => {
+    const userId = req.params.id;
+
+    const query = 'SELECT nm_email, cd_telefone FROM usuario WHERE id_usuario = ?';
+    db.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar usuário:', err);
+            return res.status(500).json({ message: 'Erro interno do servidor.' });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'Usuário não encontrado.' });
+        }
+
+        res.status(200).json(results[0]);
     });
 });
 
