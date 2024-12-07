@@ -39,18 +39,17 @@ window.addEventListener('load', () => {
                 const maskedEmail = maskEmail(user.nm_email);
                 
                 let row = `
-                    <tr>
+                    <tr ${user.ativo ? '' : "style='opacity: 0.5;'"}>
                         <td>${user.id_usuario}</td>
                         <td>${user.nm_usuario}</td>
                         <td>${maskedEmail}</td>
                         <td class="user-actions">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM3.41 22c0-3.87 3.85-7 8.59-7 .96 0 1.89.13 2.76.37" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 18c0 .32-.04.63-.12.93-.09.4-.25.79-.46 1.13A3.97 3.97 0 0 1 18 22a3.92 3.92 0 0 1-2.66-1.03c-.3-.26-.56-.57-.76-.91A3.92 3.92 0 0 1 14 18a3.995 3.995 0 0 1 4-4c1.18 0 2.25.51 2.97 1.33.64.71 1.03 1.65 1.03 2.67ZM19.49 17.98h-2.98" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <svg onclick = 'deactiveUser(${user.id_usuario})' xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM3.41 22c0-3.87 3.85-7 8.59-7 .96 0 1.89.13 2.76.37" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 18c0 .32-.04.63-.12.93-.09.4-.25.79-.46 1.13A3.97 3.97 0 0 1 18 22a3.92 3.92 0 0 1-2.66-1.03c-.3-.26-.56-.57-.76-.91A3.92 3.92 0 0 1 14 18a3.995 3.995 0 0 1 4-4c1.18 0 2.25.51 2.97 1.33.64.71 1.03 1.65 1.03 2.67ZM19.49 17.98h-2.98" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         </td>
                     </tr>
                 `
                 document.getElementById("userTable").innerHTML += row;
             })
-
     
         })
         fetch('http://localhost:3001/show-admins', {
@@ -77,12 +76,12 @@ window.addEventListener('load', () => {
                 const maskedEmail = maskEmail(user.nm_email_adm);
                 
                 let row = `
-                    <tr>
+                    <tr ${user.ativo_adm ? '' : "style='opacity: 0.5;'"}>
                         <td>${user.id_administrador}</td>
                         <td>${user.nm_administrador}</td>
                         <td>${maskedEmail}</td>
                         <td class="user-actions">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM3.41 22c0-3.87 3.85-7 8.59-7 .96 0 1.89.13 2.76.37" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 18c0 .32-.04.63-.12.93-.09.4-.25.79-.46 1.13A3.97 3.97 0 0 1 18 22a3.92 3.92 0 0 1-2.66-1.03c-.3-.26-.56-.57-.76-.91A3.92 3.92 0 0 1 14 18a3.995 3.995 0 0 1 4-4c1.18 0 2.25.51 2.97 1.33.64.71 1.03 1.65 1.03 2.67ZM19.49 17.98h-2.98" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <svg onclick = 'deactiveAdmin(${user.id_administrador})' xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM3.41 22c0-3.87 3.85-7 8.59-7 .96 0 1.89.13 2.76.37" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 18c0 .32-.04.63-.12.93-.09.4-.25.79-.46 1.13A3.97 3.97 0 0 1 18 22a3.92 3.92 0 0 1-2.66-1.03c-.3-.26-.56-.57-.76-.91A3.92 3.92 0 0 1 14 18a3.995 3.995 0 0 1 4-4c1.18 0 2.25.51 2.97 1.33.64.71 1.03 1.65 1.03 2.67ZM19.49 17.98h-2.98" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         </td>
                     </tr>
                 `
@@ -114,6 +113,52 @@ window.addEventListener('load', () => {
         modalDashButton.classList.add('hidden');
     }
 });
+
+function deactiveUser (idUsuario) {
+    fetch(`http://localhost:3001/desativarUsuario/${idUsuario}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(data => {
+            console.log(data)
+            if (data.status) {
+                alert('Usuário desativado')
+                location.reload();
+                return;
+            } else {
+                alert('Erro ao desativar usuário')
+                return;
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao desativar usuário:", error);
+        });
+}
+
+function deactiveAdmin (idAdmin) {
+    fetch(`http://localhost:3001/desativarAdmin/${idAdmin}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then(data => {
+            console.log(data)
+            if (data.status) {
+                alert('Administrador desativado')
+                location.reload();
+                return;
+            } else {
+                alert('Erro ao desativar administrador')
+                return;
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao desativar administrador:", error);
+        });
+}
 
 document.getElementById("sair").addEventListener("click", () => {
     ['userName',  'typeUser', 'formModal', 'userId', 'userEmail', 'userTelephone', 'ativo'].forEach(item => localStorage.removeItem(item));

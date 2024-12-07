@@ -383,6 +383,25 @@ app.patch('/desativarUsuario/:id', (req, res) => {
     });
 })
 
+app.patch('/desativarAdmin/:id', (req, res) => {
+    const idAdmin = req.params.id;
+
+    const query = 'UPDATE administrador SET ativo_adm = 0 WHERE id_administrador = ?';
+
+    db.query(query, [idAdmin], (err, resultados) => {
+        if (err) {
+            console.error('Erro ao desativar administrador:', err);
+            return res.status(500).send('Erro ao desativar administrador');
+        }
+
+        if (resultados.affectedRows === 0) {
+            return res.status(404).send('Administrador não encontrado');
+        }
+
+        res.status(200).send('Administrador desativado com sucesso');
+    });
+})
+
 //muda a senha do usuário
 app.patch('/mudarSenha/:id', (req, res) => {
     const idUsuario = req.params.id;
