@@ -7,7 +7,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors'); // Se você ainda não tiver, instale o cors
 const mysql = require('mysql2');
-const { send } = require('process');
+// const { send } = require('process');
 const app = express();
 
 const mysqlPort = 3000;  // Porta para o MySQL
@@ -199,6 +199,25 @@ app.post('/registerAdmin', (req, res) => {
         }
     });
 });
+
+// rota que registra um novo usuario
+app.post('/register', (req, res) => {
+    const { name, email, password, telephone} = req.body;
+    
+    // Query do SQL para inserir um novo admin
+    const query = 'INSERT INTO usuario (nm_usuario, nm_email, cd_senha, cd_telefone, ativo) VALUES (?, ?, ?, ?, 1)';
+    
+    // Executa a query sem criptografar a senha
+    db.query(query, [name, email, password, telephone], (err, result) => {
+        if (err) {
+            console.error('Erro ao registrar usuário:', err);
+            res.status(500).json({ error: 'Erro ao registrar usuário'});
+        } else {
+            res.status(200).send({ success: 'Usuário registrado'});
+        }
+    });
+});
+
 
 app.get('/getUser/:id', (req, res) => {
     const userId = req.params.id;

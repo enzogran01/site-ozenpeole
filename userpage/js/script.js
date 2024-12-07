@@ -441,7 +441,8 @@ document.getElementById('userForm').addEventListener('submit', function (e) {
                 document.getElementById('userNameElement').textContent = nome || '(username)';
                 document.getElementById('userEmailElement').textContent = email || 'useremail';
                 document.getElementById('userTelephoneElement').textContent = telefone || 'useremail';
-
+                
+                localStorage.setItem('userName', nome);
                 location.reload();
             } else {
                 alert(data.message); // Exibe mensagem de erro

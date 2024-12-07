@@ -29,14 +29,22 @@ window.addEventListener('load', () => {
         })
         .then(data => {
             data.usuarios.forEach((user) => {
+
+                function maskEmail (email) {
+                    const [localPart, domain] = email.split('@');
+                    const maskedLocal = localPart.slice(0, 1) + '*'.repeat(localPart.length - 1);
+                    return `${maskedLocal}@${domain}`;
+                }
+
+                const maskedEmail = maskEmail(user.nm_email);
                 
                 let row = `
                     <tr>
                         <td>${user.id_usuario}</td>
                         <td>${user.nm_usuario}</td>
-                        <td>${user.nm_email}</td>
+                        <td>${maskedEmail}</td>
                         <td class="user-actions">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98M8.5 4.97l.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3M18.85 9.14l-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14M10.33 16.5h3.33M9.5 12.5h5" stroke="#313638" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM3.41 22c0-3.87 3.85-7 8.59-7 .96 0 1.89.13 2.76.37" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 18c0 .32-.04.63-.12.93-.09.4-.25.79-.46 1.13A3.97 3.97 0 0 1 18 22a3.92 3.92 0 0 1-2.66-1.03c-.3-.26-.56-.57-.76-.91A3.92 3.92 0 0 1 14 18a3.995 3.995 0 0 1 4-4c1.18 0 2.25.51 2.97 1.33.64.71 1.03 1.65 1.03 2.67ZM19.49 17.98h-2.98" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         </td>
                     </tr>
                 `
@@ -59,14 +67,22 @@ window.addEventListener('load', () => {
         })
         .then(data => {
             data.administradores.forEach((user) => {
+
+                function maskEmail (email) {
+                    const [localPart, domain] = email.split('@');
+                    const maskedLocal = localPart.slice(0, 1) + '*'.repeat(localPart.length - 1);
+                    return `${maskedLocal}@${domain}`;
+                }
+
+                const maskedEmail = maskEmail(user.nm_email_adm);
                 
                 let row = `
                     <tr>
                         <td>${user.id_administrador}</td>
                         <td>${user.nm_administrador}</td>
-                        <td>${user.nm_email_adm}</td>
+                        <td>${maskedEmail}</td>
                         <td class="user-actions">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M21 5.98c-3.33-.33-6.68-.5-10.02-.5-1.98 0-3.96.1-5.94.3L3 5.98M8.5 4.97l.22-1.31C8.88 2.71 9 2 10.69 2h2.62c1.69 0 1.82.75 1.97 1.67l.22 1.3M18.85 9.14l-.65 10.07C18.09 20.78 18 22 15.21 22H8.79C6 22 5.91 20.78 5.8 19.21L5.15 9.14M10.33 16.5h3.33M9.5 12.5h5" stroke="#313638" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10ZM3.41 22c0-3.87 3.85-7 8.59-7 .96 0 1.89.13 2.76.37" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 18c0 .32-.04.63-.12.93-.09.4-.25.79-.46 1.13A3.97 3.97 0 0 1 18 22a3.92 3.92 0 0 1-2.66-1.03c-.3-.26-.56-.57-.76-.91A3.92 3.92 0 0 1 14 18a3.995 3.995 0 0 1 4-4c1.18 0 2.25.51 2.97 1.33.64.71 1.03 1.65 1.03 2.67ZM19.49 17.98h-2.98" stroke="#000000" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                         </td>
                     </tr>
                 `
@@ -406,10 +422,44 @@ userModal.addEventListener('click', (event) => {
     }
 });
 
-const addUserForm = document.getElementById('addUserForm')
+const addAdminForm = document.getElementById('addAdminForm')
 
-addUserForm.addEventListener('submit', (e) => {
+const adminNameInput = document.getElementById('adminName');
+const adminEmailInput = document.getElementById('adminEmail');
+const adminPasswordInput = document.getElementById('adminPassword');
+
+addAdminForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    const adminData = {
+        nameadm: adminNameInput.value,
+        emailadm: adminEmailInput.value,
+        passwordadm: adminPasswordInput.value
+    };
+
+    fetch('http://localhost:3001/registerAdmin', {
+        method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(adminData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Admin registrado com sucesso!');
+            // Limpa o formulário
+            document.getElementById('addAdminForm').reset();
+            addAdminModal.close();
+            location.reload();
+        } else {
+            alert(`Erro ao registrar admin: ${data.message}`);
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao enviar dados:', error);
+        alert('Ocorreu um erro ao registrar o admin.');
+    });
 })
 
 new Chart(GraphBar, {
