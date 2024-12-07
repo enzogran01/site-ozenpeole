@@ -535,7 +535,7 @@ app.get('/downloadCampanha/:id', (req, res) => {
             doc.pipe(res);
 
             // Caminho do logotipo
-            const logoPath = './viewCampanha/img/ozenpelogo.png';
+            const logoPath = './viewCampanha/img/ozenpelogooo.png';
 
             // Estilos e cores
             const colors = {
@@ -547,17 +547,16 @@ app.get('/downloadCampanha/:id', (req, res) => {
 
             // Página inicial (com destaque para o logo e nome do usuário)
             doc.rect(0, 0, doc.page.width, doc.page.height).fill(colors.background);
-            doc.image(logoPath, doc.page.width/ 2 - 75, 50, { width: 130, height: 130 }); // Logotipo menor
+            doc.image(logoPath, doc.page.width/ 2 - 75, 60, { width: 130, height: 130 }); // Logotipo menor
 
-            doc.moveDown(15); // Espaço suficiente para evitar sobreposição
+            doc.moveDown(10); // Espaço suficiente para evitar sobreposição]
 
-            doc.fillColor(colors.text)
-                .fontSize(16)
-                .text('Campanha do', { align: 'center', baseline: 'bottom' });
+            doc.lineGap(2); // Ajuste o valor negativo para reduzir o espaçamento
 
             doc.fillColor(colors.title)
-                .fontSize(20)
-                .text(nomeUsuario, { align: 'center' });
+                .fontSize(18)
+                .text(`${nomeUsuario}, aqui está sua campanha gerada por IA`, { align: 'center' });
+
 
             doc.moveDown(2);
 
